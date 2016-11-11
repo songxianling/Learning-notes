@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/layer.css" />
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<button id="btn">dianwo1</button>
+	</body>
+	<script type="text/javascript">
+		$('#btn').on('click', function() {
+			layer.confirm('您是如何看待前端开发？', {
+            btn: ['重要','奇葩1'] //按钮
+        }, function(){
+            layer.msg('的确很重要', {icon: 1});
+        }, function(){
+            layer.msg('也可以这样', {
+                time: 2000, //2s后自动关闭
+                btn: ['明白了', '知道了']
+            });
+        });
+		});
+	</script>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				position: relative;
+				width: 80%;
+				height: 40px;
+				border-radius: 5px;
+				background: #ccc;
+			}
+			.inner{
+				position: absolute;
+				
+				top: 4px;
+				left: 4px;
+				width: 20%;
+				height: 32px;
+				border-radius: 4px;
+				background: red;
+				-webkit-animation: loading 2s linear both;
+			}
+			@-webkit-keyframes loading{
+				/*0%{
+					width: 20%;
+				}*/
+				100%{
+					width: 70%;
+				}
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span class="inner"></span>
+		</div>
+	</body>
+</html>

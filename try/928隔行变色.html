@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul li{
+				list-style: none;
+			}
+			.box ul li:nth-child(odd){
+				background: #009F95;
+			}
+			.box ul li:nth-child(even){
+				background: #87CEFA;
+			}
+			.box ul li.one{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li>户籍卡i哦了迷你版vfgtr1</li>
+				<li>户籍卡i哦了迷你版vfgtr2</li>
+				<li>户籍卡i哦了迷你版vfgtr3</li>
+				<li>户籍卡i哦了迷你版vfgtr4</li>
+				<li>户籍卡i哦了迷你版vfgtr5</li>
+				<li>户籍卡i哦了迷你版vfgtr6</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var $list = $('.box ul li');
+		$list.on("mouseenter",function () {		
+			$(this).addClass('one');
+		}).on("mouseleave",function () {
+			$(this).removeClass('one');
+		});
+		alert($(window).height()); 
+		
+		
+	</script>
+</html>

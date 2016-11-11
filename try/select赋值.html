@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select name="" onchange="if(this.options[selectedIndex].className=='readOnly') this.selectedIndex = -1" id="op">
+			<option value="">A</option>
+			<option value="">B</option>
+			<option value="">C</option>
+			<option value="">D</option>
+			<option value="" class="readOnly">E</option>
+		</select>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var d = null;
+		var heji = 300;
+		function par () {
+			
+			var oprt = $('#op option:selected').text();
+			if(oprt == 'A' && heji > 300){
+				d = '30元';
+			}else{
+				return;
+			}
+			
+//			else if(oprt == 'B'){
+//				d = '200元';
+//			}else if(oprt == 'C'){
+//				d = '500元';
+//			}else if(oprt == 'D'){
+//				d = '1000元';
+//			}else{
+//				d = '2000元';
+//			}
+			console.log(d);
+		}
+		
+	</script>
+</html>

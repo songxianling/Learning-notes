@@ -1,0 +1,36 @@
+.gb-pager2 ul.gb-pager-pages {
+  display: block;
+  border: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.gb-pager2 ul.gb-pager-pages li {
+  float: left;
+  padding: 6px 10px;
+  text-decoration: none;
+  list-style: none;
+  color: #847a7a;
+  cursor: pointer;
+}
+.gb-pager2 ul.gb-pager-pages li:hover {
+  color: #ff4926;
+}
+.gb-pager2 ul.gb-pager-pages li.gb-pager-pgNext {
+}
+.gb-pager2 ul.gb-pager-pages li.gb-pager-pgEmpty {
+  display: none;
+}
+.gb-pager2 ul.gb-pager-pages li.gb-pager-pgCurrent {
+  font-weight: 700;
+  color: #ff3300;
+}
+.gb-pager2 .gb-pager-frist{
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.gb-pager2 .gb-pager-last{
+  display: none;
+  margin: 0;
+  padding: 0;
+}

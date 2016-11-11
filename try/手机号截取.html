@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="telNum" maxlength="13"/><!--因为添加了两个空格，所以这里是13-->
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#telNum').keyup(function(event){
+				if(($(this).val().length==3 || $(this).val().length == 8) && event.keyCode !==8){
+					var vlst = $(this).val()
+					$(this).val(vlst+"-")
+				}
+				if(event.keyCode == 32){
+					$(this).val($(this).val().slice(0,$(this).val().length-1))
+				}
+			}); 
+	</script>
+</html>

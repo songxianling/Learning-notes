@@ -1,0 +1,52 @@
+body{
+	width: 100%;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+ul li{
+	list-style: none;
+}
+.productfour{
+	width: 90%;
+	height: 540px;
+	margin: 0 auto;
+}
+@media only screen and (max-width: 1400) {
+	.productfour{
+		width: 80%;		
+	}
+}
+@media only screen and (min-width: 1401) {
+	.productfour{
+		width: 90%;		
+	}
+}
+.productfour>p{
+	width: 100%;
+	font-size: 36px;
+	letter-spacing: 4px;
+	color: #11407a;
+	text-align: center;
+	margin: 74px auto;
+}
+.productfour .cp-pic-box{
+	width: 100%;
+}
+.productfour .cp-pic-box ul{
+	width: 24%;
+	float: left;
+	border-right: 1px solid #adc3de;
+}
+.productfour .cp-pic-box ul li{
+	width: 393px;
+	height: 183px;
+	
+}
+.productfour .cp-pic-box ul li img{
+	display: block;
+	width: 285px;
+	height: 130px;
+	margin: 26px auto;
+}

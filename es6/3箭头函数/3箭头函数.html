@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//箭头函数是语法上匿名函数的简写，如果想找到，就给一个变量接受
+		let a=1;
+		let func1 = a =>a;
+		let func2 = function(a){
+			return a;
+		};
+		
+		//多个参数的时候
+		let func3 = (a,b) =>a+b;
+		
+		
+		//如果多个参数之间还需要计算，就用代码块包裹起来
+		let func4 = (a,b) =>{
+			let res = a+b;
+			res = res*5;
+			return res;
+		}
+		console.log(func1(123),func2(234),func3(12,23),func4(1,2));
+		
+		let f = x => console.log(x)+1;
+    var res = f(1);
+    console.log(res);
+	</script>
+</html>

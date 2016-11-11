@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		{}
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$.ajax({
+			url:'js/pageData.json',
+			dataType:'json',
+			type:'get',
+			success:function (data) {
+				console.log("ok")
+				var data = JSON.stringify(data);
+				for (var i=0;i<data.length;i++) {
+					console.log(data[i]);					
+				}
+			}
+		})
+	</script>
+</html>

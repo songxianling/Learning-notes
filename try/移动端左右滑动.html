@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.outer{
+				position: relative;
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+			}
+			.box{
+				position: relative;
+				padding: 20px 0;
+				width: 1600px;
+				transform: translate3d(0px,0px,0px);
+				transition: .3s ease 0s; 
+			}
+			ul li{
+				list-style: none;
+			}
+			.box li{
+				float: left;
+				line-height: 40px;
+				margin-left: 20px;
+				width: 116px;
+				text-align: center;
+			}
+			.box li:nth-child(odd){
+				background: red;
+			}
+			.box li:nth-child(even){
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+			<ul class="box">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</div>
+	</body>
+</html>

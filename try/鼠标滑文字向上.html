@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				position: relative;
+				width: 224px;
+				height: 172px;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.box .inner{
+				position: absolute;
+				top: 90px;
+				padding: 0 20px;
+				box-sizing: border-box;
+				height: 144px;
+				width: 100%;
+				background: url(images/bg-course.png) no-repeat;
+				transition: top .5s;  /*这里写，是为了当鼠标离开的时候还能有动画效果*/
+			}
+			.box:hover .inner{
+				/*background: red;*/
+				transition: top .5s; /*这里写，是为了当鼠标滑上的时候能有动画效果*/
+				top:17px;/*鼠标滑上的时候要移动到的距离*/
+			}
+			.inner-bottom{
+				position: absolute;
+				padding: 0 20px;
+				bottom: 0;
+				width: 100%;
+				box-sizing: border-box;
+				background: #fff;
+				line-height: 44px;/*这里只是单纯的为了让这个盒子能挡住第二个p标签里面的文字*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<img src="images/try-one.jpg" alt="" />
+			<div class="inner">
+				<p> SegmentFault D-Day 2015 北京：iOS 站  </p>
+				<p> SegmentFault D-Day 2015 北京：iOS 站  </p>
+			</div>
+			<div class="inner-bottom">
+				<span> 6612 人在学</span>
+			</div>
+		</div>
+	</body>
+</html>

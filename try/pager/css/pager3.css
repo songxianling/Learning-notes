@@ -1,0 +1,11 @@
+.gb-pager3-wrap{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.gb-pager3-right{
+    float: right;
+}
+.gb-pager3-wrap .gb-pager-pages li{
+    margin-left: 5px;
+}

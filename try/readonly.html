@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>开始使用layer</title>
+		<link rel="stylesheet" type="text/css" href="css/layer.css"/>
+	</head>
+	<style type="text/css">
+		#test2{
+			display: block;
+		}
+	</style>
+	<body>				
+				
+			<button class="test2">bbbb</button>		
+			<button class="test2">bbbb</button>		
+			<button class="test2">bbbb</button>		
+			<button class="test2">bbbb</button>		
+			<button class="test2">bbbb</button>		
+			<button class="test2">bbbb</button>		
+			
+			
+			
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">				
+					
+												
+				$('.test2').on('click', function(){
+				  layer.open({
+				  type: 1,
+				  area: ['600px', '360px','padding:10px'],
+				  shadeClose: true, //点击遮罩关闭
+				  content: '<textarea name="textname" rows="12" cols="21" readonly="readonly"></textarea></br><button class="lile">点击这个按钮</button>'
+				  });
+				});
+				$('.lile').click(function  () {
+					$('textarea[name="textname"]').removeClass('readonly') ;
+				});
+			
+				
+		</script>
+	</body>
+</html>

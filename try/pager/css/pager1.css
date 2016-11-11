@@ -1,0 +1,47 @@
+.gb-pager1 ul.gb-pager-pages {
+  display: block;
+  border: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.gb-pager1 ul.gb-pager-pages li {
+  float: left;
+  padding: 6px 10px;
+  text-decoration: none;
+  list-style: none;
+  background-color: #fff;
+  color: #847a7a;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+}
+.gb-pager1 ul.gb-pager-pages li:hover {
+  color: #ff4926;
+  background-color: #ebebeb;
+}
+.gb-pager1 ul.gb-pager-pages li.gb-pager-pgNext {
+}
+.gb-pager1 ul.gb-pager-pages li.gb-pager-pgEmpty {
+  display: none;
+}
+.gb-pager1 ul.gb-pager-pages li.gb-pager-pgCurrent {
+  color: #fff;
+  font-weight: 700;
+  background-color: #e84c3d;
+  border: 1px solid #e63c2b;
+}
+.gb-pager1 ul.gb-pager-pages .gb-pager-page-more{
+  cursor: default;
+}
+.gb-pager1 ul.gb-pager-pages .gb-pager-page-more:hover, .gb-pager1 ul.gb-pager-pages .gb-pager-page-jump:hover {
+  color: #847a7a;
+  background-color: #fff;
+}
+.gb-pager-page-jump{
+  border: none;
+  cursor: default;
+}
+.gb-pager-page-more input{
+  border: none;
+  outline: none;
+  width: 46px;
+}

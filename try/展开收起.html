@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.showBox{
+				height: 40px;
+				width: 80%;
+			}
+			.show{
+				overflow: hidden;
+			}
+			.sh{
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="show">
+			<span class="sh">隐藏</span>
+		</div>
+		<div class="showBox">
+			Js通过鼠标滚轮放大缩小图片，目前为止，仍有不少网站正在使用的效果，运行代码后，请滚动鼠标中间的滚轮，向下滚轮则图片变小，向上滚轮则图片被放大，很实用的效果。Js通过鼠标滚轮放大缩小图片，目前为止，仍有不少网站正在使用的效果，运行代码后，请滚动鼠标中间的滚轮，向下滚轮则图片变小，向上滚轮则图片被放大，很实用的效果。Js通过鼠标滚轮放大缩小图片，目前为止，仍有不少网站正在使用的效果，运行代码后，请滚动鼠标中间的滚轮，向下滚轮则图片变小，向上滚轮则图片被放大，很实用的效果。
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function () {
+			$('.sh').on('click',function () {
+				console.log($(this).outerWidth());
+				$(this).html()=="隐藏" ? $(this).html("展开") :$(this).html("隐藏");
+//				$('.showBox').slideToggle(1000);
+				console.log(1);
+			});
+			
+			
+			
+		});
+	</script>
+</html>
