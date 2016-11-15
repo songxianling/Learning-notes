@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="51Gg3 搜索" class="Aa"/>
+		<input type="checkbox" name="test" value="第1项" class="one"/> 第1项
+		<input type="checkbox" name="test" value="第2项" class="one" />第2项
+		<input type="checkbox" name="test" value="第3项" class="one" />第3项
+		<a href=""></a>
+
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$('input[type="button"]').on('click',function(){
+			if($(this).attr('isClick')==='true'){
+				
+				$("input[type='checkbox']").removeAttr('checked');
+				$(this).removeAttr('isClick');				
+				return;
+			}
+			$(this).attr('isClick','true');
+			$("input[type='checkbox']").prop('checked','ok');			
+		});
+	</script>
+	
+</html>
