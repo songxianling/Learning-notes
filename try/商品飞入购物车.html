@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/gouwuche.css" />
+	</head>
+	<body>
+		<div id="main">
+			<div class="demo">
+				<div class="box">
+					<div class="info">
+						<img src="images/lg.jpg" width="180" height="180">
+						<h4>¥<span>3499.00</span></h4>
+						<p>LG 49LF5400-CA 49寸IPS硬屏富贵招财铜钱设计</p>
+					</div>
+					<a href="#" class="button orange addcar">加入购物车</a>
+				</div>
+				<div class="box">
+					<div class="info">
+						<img src="images/hs.jpg" width="180" height="180">
+						<h4>¥<span>3799.00</span></h4>
+						<p>Hisense/海信 LED50T1A 海信电视官方旗舰店</p>
+					</div>
+					<a href="#" class="button orange addcar">加入购物车</a>
+				</div>
+				<div class="box">
+					<div class="info">
+						<img src="images/cw.jpg" width="180" height="180">
+						<h4>¥<span>¥3999.00</span></h4>
+						<p>Skyworth/创维 50E8EUS 8核4Kj极清酷开系统智能液晶电视</p>
+					</div>
+					<a href="#" class="button orange addcar">加入购物车</a>
+				</div>
+				<div class="box">
+					<div class="info">
+						<img src="images/ls.jpg" width="180" height="180">
+						<h4>¥<span>6969.00</span></h4>
+						<p>乐视TV Letv X60S 4核1080P高清3D安卓智能超级电视</p>
+					</div>
+					<a href="#" class="button orange addcar">加入购物车</a>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--右侧购物车-->
+		<div class="m-sidebar">
+			<div class="cart">
+				<i id="end"></i>
+				<span>购物车</span>
+			</div>
+		</div>
+		<!--隐藏的文字-->
+		<div id="msg">已成功加入购物车！</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.fly.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		$(function() {
+			var offset = $("#end").offset();
+			$(".addcar").click(function(event){
+				var addcar = $(this);
+				var img = addcar.parent().find('img').attr('src');
+				var flyer = $('<img class="u-flyer" src="'+img+'">');
+				flyer.fly({
+					start: {
+						left: event.pageX,
+						top: event.pageY
+					},
+					end: {
+						left: offset.left+10,
+						top: offset.top+10,
+						width: 0,
+						height: 0
+					},
+					onEnd: function(){
+						$("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
+						//增加了下面的代码，就不能再点击le
+//						addcar.css("cursor","default").removeClass('orange').unbind('click');
+						this.destory();
+					}
+				});
+			});
+						  
+		});
+
+	</script>
+</html>
