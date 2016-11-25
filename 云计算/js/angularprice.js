@@ -37,7 +37,7 @@ var A = angular.module('myApp', []);
 //						}
 //					});
 				
-				ynumber(39.00)
+				ynumber(20.00)
 //				$scope.allprice = 39;
 				
 					
@@ -92,13 +92,16 @@ var A = angular.module('myApp', []);
 					var $sele_ul_li = $('#jsSeleAll li');
 					
 					if($sele_ul_li.eq(0).hasClass('cur')){
-						var cpuandnc = $('#jsNcBox li').find('.sele-li').prop('data-pri')*1,
-							fftype = $('#jsFfBox li').find('.sele-li').prop('data-ff-pri')*1,
-							shujuqian = $('#bandwidthId').val()*1*0.26;
+//						var cpuandnc = $('#jsNcBox li').find('.sele-li').prop('data-pri')*1,
+//							fftype = $('#jsFfBox li').find('.sele-li').prop('data-ff-pri')*1,
+//							shujuqian = $('#bandwidthId').val()*1*0.26;
+						var cpuandnc = 13,
+							fftype = 15,
+							shujuqian = 26.26;
 						
 						var Z = parseFloat((cpuandnc+fftype+shujuqian).toFixed(2));
-						console.log(Z,cpuandnc,fftype,shujuqian);
-						console.log($(angular.element('#jsNcBox')).find('li').find('.sele-li').html());
+						console.log(Z);
+//						console.log($(angular.element('#jsNcBox')).find('li').find('.sele-li').html());
 						return ynumber(Z);
 					}
 					if($sele_ul_li.eq(1).hasClass('cur')){
@@ -370,18 +373,21 @@ var scrollbar={
  * snum：当前这个钱数
  */
 function ynumber (snum) {
+	
 	var snum = snum.toString();//把当前的值 转化为字符串
 		numarr = snum.split('.');//以小数点拆分成两个数组
-
+	
 	var spo = numarr[0].length;
 	var strr1 = numarr[0],//这是第一个数组
 		strr2 = numarr[1];//这是第二个数组
 	
+	console.log(numarr,spo,strr1,strr2);
 	//下面是对第一个数组的钱数进行判断的
 	if(spo == 1){
 		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(0));
 	}			
 	if(spo == 2){
+		console.log(1);
 		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(0));
 		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(1));
 	}	
@@ -390,13 +396,14 @@ function ynumber (snum) {
 		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(1));
 		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(2));
 	}
-	if(spo == 4){
+	if(spo == 4){		
 		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(0));
 		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(1));
 		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(2));
 		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(3));
 	}
 	if(spo == 5){
+		
 		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(0));
 		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(1));
 		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(2));
