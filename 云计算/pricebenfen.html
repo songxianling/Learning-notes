@@ -506,7 +506,7 @@
 			   				<div class="price_duct">
 					   			<h6>CPU</h6>
 					   			<ul class="clearfix js-select" id="jsCpuBox" >
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList" livebit>{{data.name}}</li>				   									   							   								   						   				
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList" data-pri="{{data.oneprice}}">{{data.name}}</li>				   									   							   								   						   				
 					   			</ul>
 					   		</div>
 			   			</li>
@@ -514,7 +514,7 @@
 			   				<div class="price_duct">
 					   			<h6>内存</h6>
 					   			<ul class="clearfix js-select js-selef" id="jsNcBox">	
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" data-pri="{{data.price}}" livebit>{{data.gn}}</li>
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" data-pri="{{data.price}}">{{data.gn}}</li>
 				   				</ul>
 					   		</div>
 			   			</li>
@@ -540,25 +540,25 @@
 					   			<h6>数据盘</h6>
 					   			<div style="margin-top: 20px;">
 					   				<div class="unfold" style="display: inline-block;">			
-											<div class="item">											
-												<div class="slider" style="width: 500px;">
-													<div class="slider-track">
-														<div class="slider-selection" style="width:0%;"></div>
-														<div class="slider-handle round" style="left: 0%;"></div>
-													</div>
+										<div class="item">											
+											<div class="slider" style="width: 500px;">
+												<div class="slider-track">
+													<div class="slider-selection" style="width:0%;"></div>
+													<div class="slider-handle round" style="left: 0%;"></div>
 												</div>
-												
-												<input type="text" name="bandwidth" id="bandwidthId" value="0" class="preview mini"/>
-												<span class="help inline">G</span>
-												
-												<!--这是滚动条的后面的点击-->
-												<div class="right_icont" style="display: inline-block;">
-									    			<span id="Yjia">∧</span>
-									    			<span id="Yjian">∨</span>
-									    		</div>
-												
 											</div>
-										</div>		
+											
+											<input type="text" name="bandwidth" value="0" class="preview mini"/>
+											<span class="help inline" style="color: #fff;">Mbps</span>
+											
+											<!--这是滚动条的后面的点击-->
+											<div class="right_icont" style="display: inline-block;">
+								    			<span id="Yjia">∧</span>
+								    			<span id="Yjian">∨</span>
+								    		</div>
+											
+										</div>
+									</div>	
 					   				
 					   				
 					   				
@@ -586,7 +586,7 @@
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details" id="jsFfBox" style="margin: 0px;">
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details($index)" ng-repeat="data in ffdetails_data" data-ff-pri="{{data.price}}">{{data.time}}</li>
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="sele_ff_details($index)" ng-repeat="data in ffdetails_data" data-ff-pri="{{data.price}}">{{data.time}}</li>
 				   				</ul>
 					   		</div>
 			   			</li>
@@ -980,7 +980,7 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <script src="js/price2.js"></script>
-<!--<script src="js/pricenumber.js"></script>-->
+<script src="js/pricenumber.js"></script>
 <script src="js/progressBar.js"></script>
 <script src="js/scrollbar.js" type="text/javascript" charset="utf-8"></script>
 <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>

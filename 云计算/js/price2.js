@@ -13,7 +13,7 @@ $(document).ready(function function_name () {
 			_this.addClass('cur').siblings().removeClass('cur');
 			$sele_con.eq(_this.index()).show().siblings().hide();				
 	});
-	
+
 	
 	/*
 	 * 公共方法  点击增加外面的红边框
