@@ -35,11 +35,16 @@ var A = angular.module('myApp', []);
 				//总价格的计算
 				$scope.allPrices = function() {
 					$scope.allprice = 0;
-					angular.forEach($scope.dataList, function(data, index, array) {
-						data.price = data.num * data.oneprice;						
-							$scope.allprice += parseInt(data.price);
-						
-					})
+					
+					
+					
+					
+					
+//					angular.forEach($scope.dataList, function(data, index, array) {
+//						data.price = data.num * data.oneprice;						
+//							$scope.allprice += parseInt(data.price);
+//						
+//					})
 
 					return $scope.allprice;
 				};
@@ -51,5 +56,29 @@ var A = angular.module('myApp', []);
 				}
 				$scope.seleF =  function (i) {
 					$('.js-selef li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-				}				
+				}
+				
+				
+				
+				//付费方式数据
+				$scope.fufeitype_data = [ //仿造数据
+					{
+						mode:'包年包月',
+						Gnum:[{time:'购置月底',price:'5'},{time:'1个月',price:'30'},{time:'2个月',price:'60'},{time:'3个月',price:'90'},{time:'4个月',price:'120'},{time:'5个月',price:'150'},{time:'6个月',price:'180'},{time:'7个月',price:'210'},{time:'8个月',price:'240'},{time:'9个月',price:'270'},{time:'1年',price:'40'},{time:'2年',price:'50'},{time:'3年',price:'60'}]
+					},
+					{
+						mode:'按需',	
+						Gnum:[]
+					}
+				];
+				$scope.ffdetails_data=[];
+				$scope.selectFun_fufei = function(i){
+					$scope.ffdetails_data = $scope.fufeitype_data[i].Gnum;
+					$('.js-select-type li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+				}
+				$scope.sele_ff_details =  function (i) {
+					$('.js-ff-details li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+				}
+				
+				
 			}])

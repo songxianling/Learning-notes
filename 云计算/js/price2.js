@@ -29,7 +29,6 @@ $(document).ready(function function_name () {
 		});	
 	};
 	seleauto($('.js-select li'));
-	seleauto($('.price_pro li'));
 	// 修改价格清单里面的总价格的值
 	function totalPeice() {
 		var sum = 0;
