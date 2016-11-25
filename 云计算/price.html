@@ -506,7 +506,7 @@
 			   				<div class="price_duct">
 					   			<h6>CPU</h6>
 					   			<ul class="clearfix js-select" id="jsCpuBox" >
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList" livebit>{{data.name}}</li>				   									   							   								   						   				
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList">{{data.name}}</li>				   									   							   								   						   				
 					   			</ul>
 					   		</div>
 			   			</li>
@@ -514,7 +514,7 @@
 			   				<div class="price_duct">
 					   			<h6>内存</h6>
 					   			<ul class="clearfix js-select js-selef" id="jsNcBox">	
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" data-pri="{{data.price}}" livebit>{{data.gn}}</li>
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" data-pri="{{data.price}}">{{data.gn}}</li>
 				   				</ul>
 					   		</div>
 			   			</li>

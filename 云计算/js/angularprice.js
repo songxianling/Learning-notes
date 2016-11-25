@@ -37,7 +37,7 @@ var A = angular.module('myApp', []);
 //						}
 //					});
 				
-				ynumber(20.00)
+				
 //				$scope.allprice = 39;
 				
 					
@@ -56,11 +56,11 @@ var A = angular.module('myApp', []);
 				$scope.selectFun = function(i){
 					$scope.dataInfo = $scope.cpudataList[i].Gnum;
 					$('.js-select li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-					$scope.allPrices();
+					allPrices();
 				}
 				$scope.seleF =  function (i) {
 					$('.js-selef li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-					$scope.allPrices();
+					allPrices();
 				}
 				
 				
@@ -80,15 +80,14 @@ var A = angular.module('myApp', []);
 				$scope.selectFun_fufei = function(i){
 					$scope.ffdetails_data = $scope.fufeitype_data[i].Gnum;
 					$('.js-select-type li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-					$scope.allPrices();
+					allPrices();
 				}
 				$scope.sele_ff_details =  function (i) {
 					$('.js-ff-details li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-					$scope.allPrices();
+					allPrices();
 				}
 				
-				$scope.allPrices = function() {
-					$scope.allprice = 0;
+				function allPrices() {
 					var $sele_ul_li = $('#jsSeleAll li');
 					
 					if($sele_ul_li.eq(0).hasClass('cur')){
@@ -102,7 +101,7 @@ var A = angular.module('myApp', []);
 						var Z = parseFloat((cpuandnc+fftype+shujuqian).toFixed(2));
 						console.log(Z);
 //						console.log($(angular.element('#jsNcBox')).find('li').find('.sele-li').html());
-						return ynumber(Z);
+						return ynumber(12.34);
 					}
 					if($sele_ul_li.eq(1).hasClass('cur')){
 						
@@ -298,7 +297,6 @@ var A = angular.module('myApp', []);
 		});
 	},
 	
-
 };
 var scrollbar={
 	
@@ -372,8 +370,18 @@ var scrollbar={
  * jgcss：这是对得到的钱数计算的方法
  * snum：当前这个钱数
  */
+	var Yready = false;
+		
+		
+	ynumber(26.26);  //必须放到变量ready后才行
 function ynumber (snum) {
-	
+	var $jiageSpan = $('#yunjg').find('span');
+	if(Yready){		
+		for (var i=0;i<10;i++) {
+			$jiageSpan.removeClass('number-'+i);
+		}		
+	}
+	Yready = true;
 	var snum = snum.toString();//把当前的值 转化为字符串
 		numarr = snum.split('.');//以小数点拆分成两个数组
 	
@@ -381,81 +389,79 @@ function ynumber (snum) {
 	var strr1 = numarr[0],//这是第一个数组
 		strr2 = numarr[1];//这是第二个数组
 	
-	console.log(numarr,spo,strr1,strr2);
 	//下面是对第一个数组的钱数进行判断的
 	if(spo == 1){
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(0));
 	}			
 	if(spo == 2){
-		console.log(1);
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(1));
 	}	
 	if(spo == 3){
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(2));
 	}
 	if(spo == 4){		
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(3));
 	}
 	if(spo == 5){
 		
-		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(3));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(4));
+		$jiageSpan.eq(4).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(4));
 	}
 	if(spo == 6){
-		$('#yunjg').find('span').eq(3).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(3));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(4));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(5));
+		$jiageSpan.eq(3).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(4).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(4));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(5));
 	}
 	if(spo == 7){
-		$('#yunjg').find('span').eq(2).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(3).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(3));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(4));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(5));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(6));
+		$jiageSpan.eq(2).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(3).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(4).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(4));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(5));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(6));
 	}
 	if(spo == 8){
-		$('#yunjg').find('span').eq(1).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(2).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(3).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(3));
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(4));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(5));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(6));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(7));
+		$jiageSpan.eq(1).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(2).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(3).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(4).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(4));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(5));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(6));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(7));
 	}
 	if(spo == 9){
-		$('#yunjg').find('span').eq(0).addClass('number-'+strr1.charAt(0));
-		$('#yunjg').find('span').eq(1).addClass('number-'+strr1.charAt(1));
-		$('#yunjg').find('span').eq(2).addClass('number-'+strr1.charAt(2));
-		$('#yunjg').find('span').eq(3).addClass('number-'+strr1.charAt(3));
-		$('#yunjg').find('span').eq(4).addClass('number-'+strr1.charAt(4));
-		$('#yunjg').find('span').eq(5).addClass('number-'+strr1.charAt(5));
-		$('#yunjg').find('span').eq(6).addClass('number-'+strr1.charAt(6));
-		$('#yunjg').find('span').eq(7).addClass('number-'+strr1.charAt(7));
-		$('#yunjg').find('span').eq(8).addClass('number-'+strr1.charAt(8));
+		$jiageSpan.eq(0).addClass('number-'+strr1.charAt(0));
+		$jiageSpan.eq(1).addClass('number-'+strr1.charAt(1));
+		$jiageSpan.eq(2).addClass('number-'+strr1.charAt(2));
+		$jiageSpan.eq(3).addClass('number-'+strr1.charAt(3));
+		$jiageSpan.eq(4).addClass('number-'+strr1.charAt(4));
+		$jiageSpan.eq(5).addClass('number-'+strr1.charAt(5));
+		$jiageSpan.eq(6).addClass('number-'+strr1.charAt(6));
+		$jiageSpan.eq(7).addClass('number-'+strr1.charAt(7));
+		$jiageSpan.eq(8).addClass('number-'+strr1.charAt(8));
 	}
 	//这是对第二个数组进行判断的
 	//当第二个数组存在的话   往后添加类名    如果不存在直接写number-0;
 	if(strr2){
-		$('#yunjg').find('span').eq(10).addClass('number-'+strr2.charAt(0));
-		$('#yunjg').find('span').eq(11).addClass('number-'+strr2.charAt(1));
+		$jiageSpan.eq(10).addClass('number-'+strr2.charAt(0));
+		$jiageSpan.eq(11).addClass('number-'+strr2.charAt(1));
 	}else{
-		$('#yunjg').find('span').eq(10).addClass('number-0');
-		$('#yunjg').find('span').eq(11).addClass('number-0');
+		$jiageSpan.eq(10).addClass('number-0');
+		$jiageSpan.eq(11).addClass('number-0');
 	}
 	
 }
@@ -658,6 +664,7 @@ pnumber(pnum);
  * wnum：当前这个钱数
  */
 function pnumber (pnum) {
+
 	var pnum = pnum.toString();//把当前的值 转化为字符串
 		numarr = pnum.split('.');//以小数点拆分成两个数组
 
