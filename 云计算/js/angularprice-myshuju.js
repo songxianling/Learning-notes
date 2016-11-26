@@ -574,14 +574,5 @@ function ynumber (snum) {
 		var _this = $(this);
 		_this.next('li').slideToggle(500);
 	});	
-	
-
-
-
-
-
-
-				
-				
-				
+			
 }])

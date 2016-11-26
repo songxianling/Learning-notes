@@ -29,7 +29,7 @@
 		$('.sheng').css('width',($ysinp/10)+'px');	
 		$('#btn').css('left',($ysinp/10)-8+'px');
 	});
-	
+	console.log(1);
 	//input里面的值		
 	$('.yun_right_input').on('blur',function () {	
 		var _this = $(this);
