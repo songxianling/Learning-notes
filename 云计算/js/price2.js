@@ -371,7 +371,7 @@ $(document).ready(function function_name () {
 		$('.preview').val($ysinp);
 		$('.sheng').css('width',($ysinp/10)+'px');
 		$('#btn').css('left',($ysinp/10)-8+'px');
-		console.log($ysinp);	
+//		console.log($ysinp);	
 	});
 
 	//这里是点击包年包月的地方

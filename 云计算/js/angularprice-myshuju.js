@@ -1,29 +1,28 @@
 var A = angular.module('myApp', []);
 			A.controller('myAngular', ['$scope', '$filter', function($scope, $filter) {
 				$scope.cpudataList = [ //仿造数据
-						{
-					    "1_1": {
-					        "cpu": 1,
-					        "cpuAndRamPrice": 11,
-					        "ram": 1,
-					    },
-					    "2_2": {
-					        "cpu": 2,
-					        "cpuAndRamPrice": 22,
-					        "ram": 2,
-					    },
-					    {
-					    "1_2": {
-					        "cpu": 1,
-					        "cpuAndRamPrice": 12,
-					        "ram": 2,
-					    },
-					    "3_3": {
-					        "cpu": 3,
-					        "cpuAndRamPrice": 33,
-					        "ram": 3,
-					    }
-						
+					{
+						name: '1核',						
+						Gnum:[{gn:'1G',price:'10'},{gn:'2G',price:'20'},{gn:'4G',price:'40'}]
+					},{
+						name: '2核',
+						Gnum:[{gn:'2G',price:'20'},{gn:'4G',price:'40'},{gn:'6G',price:'60'}]
+					},{
+						name: '3核',
+						Gnum:[{gn:'3G',price:'30'},{gn:'5G',price:'50'},{gn:'7G',price:'70'}]
+					},{
+						name: '4核',
+						Gnum:[{gn:'3G',price:'30'},{gn:'5G',price:'50'},{gn:'7G',price:'70'}]
+					},{
+						name: '5核',
+						Gnum:[{gn:'3G',price:'30'},{gn:'5G',price:'50'},{gn:'7G',price:'70'}]
+					},{
+						name: '6核',
+						Gnum:[{gn:'3G',price:'30'},{gn:'5G',price:'50'},{gn:'7G',price:'70'}]
+					},{
+						name: '7核',
+						Gnum:[{gn:'3G',price:'30'},{gn:'5G',price:'50'},{gn:'7G',price:'70'}]
+					},
 				];
 				$scope.dataInfo = [{gn:'1G',price:'10'},{gn:'2G',price:'20'},{gn:'4G',price:'40'}];
 				//总价格的计算
@@ -63,6 +62,7 @@ var A = angular.module('myApp', []);
 							$scope.canprice =$scope.cpudataList[i].Gnum[0].price;
 						}
 					})
+					
 					allPrices();
 				}
 				
@@ -127,12 +127,10 @@ var A = angular.module('myApp', []);
 				function allPrices() {
 					var $sele_ul_li = $('#jsSeleAll li');					
 					if($sele_ul_li.eq(0).hasClass('cur')){
-//						var cpuandnc = $('#jsNcBox li').find('.sele-li').prop('data-pri')*1,
-//							fftype = $('#jsFfBox li').find('.sele-li').prop('data-ff-pri')*1,
-//							shujuqian = $('#bandwidthId').val()*1*0.26;
 						var cpuandnc = $scope.canprice*1,
 							fftype = $scope.fftypeprice*1,
-							shujuqian = 26.26*1;						
+							yjsInp = $('#bandwidthId').val()*1;
+							shujuqian = 26.26*yjsInp;  //这个26.26是从后台获取的数据盘1G的价格						
 						var yunallZ = parseFloat((cpuandnc+shujuqian) * fftype.toFixed(2));
 						return ynumber(yunallZ);
 					}
@@ -144,16 +142,12 @@ var A = angular.module('myApp', []);
 						
 						return;
 					}
-				};		
-}])
-			//~~~~~~~~~~~~~~~上方为angularJs部分~~~~~~~~~~~~~~~~~~~~~~~~`
-			genal.show();				
-var genal={
-	show:function(fn){
-		
-		genal.sto();
-		genal.ips();
-		genal.hard();
+				};
+$scope.genal={
+	show:function(fn){		
+		$scope.genal.sto();
+		$scope.genal.ips();
+		$scope.genal.hard();
 	},
 	sto:function(){
 		var btn = $(".unfold:eq(0) .silbtn");
@@ -163,8 +157,8 @@ var genal={
 		var bar = $(".unfold:eq(0) .slider-selection");
 		var slider = $(".unfold:eq(0) .slider");
 		var mini = $(".unfold:eq(0) .mini");
-		scrollbar.init(scrol,bar);
-		scrollbar.assign(0,sil,0);
+		$scope.scrollbar.init(scrol,bar);
+		$scope.scrollbar.assign(0,sil,0);
 		var flag = false;
 		slider.mousedown(function(e) {
 			
@@ -178,8 +172,8 @@ var genal={
 			}else if(a>=w){
 				per =1;
 			}
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,sil,0);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,sil,0);
 			flag = true;
 		});
 		slider.mouseup(function(e) {
@@ -197,8 +191,8 @@ var genal={
 				per=1;
 			}
 			if(flag){				
-				scrollbar.scro(scrol,bar,per);
-				scrollbar.assign(per,sil,0);
+				$scope.scrollbar.scro(scrol,bar,per);
+				$scope.scrollbar.assign(per,sil,0);
 			}
 		});
 	    mini.blur(function(){
@@ -209,8 +203,8 @@ var genal={
 				mini.val(0);
 			}
 			var per = mini.val()/5000;
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,sil,0);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,sil,0);
 		});
 	},
 	ips:function(){
@@ -219,8 +213,8 @@ var genal={
 		var slider = $(".unfold:eq(1) .slider");
 		var mini = $(".unfold:eq(1) .mini");
 		var flag = false;
-		scrollbar.init(scrol,bar);
-		scrollbar.assign(0,300,1);
+		$scope.scrollbar.init(scrol,bar);
+		$scope.scrollbar.assign(0,300,1);
 		slider.mousedown(function(e) {			
 			var track = $(".unfold:eq(1) .slider-track");
 			var x = track.offset().left,px = e.pageX,w =parseInt(slider.css("width"));
@@ -233,8 +227,8 @@ var genal={
 				per =1;
 			}
 			
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,300,1);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,300,1);
 			flag = true;
 		});
 		slider.mouseup(function(e) {
@@ -253,8 +247,8 @@ var genal={
 				per=1;
 			}
 			if(flag){
-				scrollbar.scro(scrol,bar,per);
-				scrollbar.assign(per,300,1);
+				$scope.scrollbar.scro(scrol,bar,per);
+				$scope.scrollbar.assign(per,300,1);
 			}
 			
 		});
@@ -267,8 +261,8 @@ var genal={
 				mini.val(0);
 			}
 			var per = mini.val()/300;
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,300,1);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,300,1);
 			
 		});
 		
@@ -281,8 +275,8 @@ var genal={
 		var bar = $(".unfold:eq(2) .slider-selection");
 		var slider = $(".unfold:eq(2) .slider");
 		var mini = $(".unfold:eq(2) .mini");
-		scrollbar.init(scrol,bar);
-		scrollbar.assign(0,silHard,2);
+		$scope.scrollbar.init(scrol,bar);
+		$scope.scrollbar.assign(0,silHard,2);
 		var flag = false;
 		slider.mousedown(function(e) {
 			var track = $(".unfold:eq(2) .slider-track");
@@ -295,8 +289,8 @@ var genal={
 			}else if(a>=w){
 				per =1;
 			}
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,silHard,2);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,silHard,2);
 			flag = true;
 		    });
 		slider.mouseup(function(e) {
@@ -315,8 +309,8 @@ var genal={
 				per=1;
 			}
 			if(flag){				
-				scrollbar.scro(scrol,bar,per);
-				scrollbar.assign(per,silHard,2);
+				$scope.scrollbar.scro(scrol,bar,per);
+				$scope.scrollbar.assign(per,silHard,2);
 			}
 		});
 	    mini.blur(function(){
@@ -327,14 +321,14 @@ var genal={
 				mini.val(0);
 			}
 			var per = mini.val()/5000;
-			scrollbar.scro(scrol,bar,per);
-			scrollbar.assign(per,silHard,2);
+			$scope.scrollbar.scro(scrol,bar,per);
+			$scope.scrollbar.assign(per,silHard,2);
 		});
 	},
 	
 };
 
-var scrollbar={
+$scope.scrollbar={
 	
 	init:function(scrol,bar,fn){
 		bar.css("width","0%");
@@ -351,6 +345,8 @@ var scrollbar={
 			var price =Math.round(per*max);
 			pris.children("div").remove();			
 			mini.attr('value',price);
+			allPrices();
+//			var controllerScope =  $('div[ng-controller="myAngular"]').scope().fftypeprice;
 			/*if(price*10<100){
 				pris.append("<div>¥<span>"+26+"</span>/月</div>");
 				document.getElementById("bandwidthId").value="100";
@@ -393,24 +389,13 @@ var scrollbar={
 	}
 }
 
-
-
-
-//------------数字定位111111111111111
-//这是云计算的价格计算器
-
-
-
-
-/*
- * jgcss：这是对得到的钱数计算的方法
- * snum：当前这个钱数
- */
-	var Yready = false;
-		
-		
+	$scope.genal.show();
+	
+	
+	var Yready = false;				
 	ynumber(26.26);  //必须放到变量ready后才行
 function ynumber (snum) {
+	console.log(snum);
 	var $jiageSpan = $('#yunjg').find('span');
 	if(Yready){		
 		for (var i=0;i<10;i++) {
@@ -502,286 +487,7 @@ function ynumber (snum) {
 	
 }
 
-//这是网络的价格计算器
-var wnum = 678.37;
 
-wnumber(wnum);
-
-/*
- * jgcss：这是对得到的钱数计算的方法
- * wnum：当前这个钱数
- */
-function wnumber (wnum) {
-	var wnum = wnum.toString();//把当前的值 转化为字符串
-		numarr = wnum.split('.');//以小数点拆分成两个数组
-
-	var spo = numarr[0].length;
-	var strr1 = numarr[0],//这是第一个数组
-		strr2 = numarr[1];//这是第二个数组
-	
-	//下面是对第一个数组的钱数进行判断的
-	if(spo == 1){
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(0));
-	}			
-	if(spo == 2){
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(1));
-	}	
-	if(spo == 3){
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(2));
-	}
-	if(spo == 4){
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(3));
-	}
-	if(spo == 5){
-		$('#wangjg').find('span').eq(4).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(3));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(4));
-	}
-	if(spo == 6){
-		$('#wangjg').find('span').eq(3).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(4).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(3));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(4));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(5));
-	}
-	if(spo == 7){
-		$('#wangjg').find('span').eq(2).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(3).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(4).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(3));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(4));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(5));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(6));
-	}
-	if(spo == 8){
-		$('#wangjg').find('span').eq(1).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(2).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(3).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(4).addClass('number-'+strr1.charAt(3));
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(4));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(5));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(6));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(7));
-	}
-	if(spo == 9){
-		$('#wangjg').find('span').eq(0).addClass('number-'+strr1.charAt(0));
-		$('#wangjg').find('span').eq(1).addClass('number-'+strr1.charAt(1));
-		$('#wangjg').find('span').eq(2).addClass('number-'+strr1.charAt(2));
-		$('#wangjg').find('span').eq(3).addClass('number-'+strr1.charAt(3));
-		$('#wangjg').find('span').eq(4).addClass('number-'+strr1.charAt(4));
-		$('#wangjg').find('span').eq(5).addClass('number-'+strr1.charAt(5));
-		$('#wangjg').find('span').eq(6).addClass('number-'+strr1.charAt(6));
-		$('#wangjg').find('span').eq(7).addClass('number-'+strr1.charAt(7));
-		$('#wangjg').find('span').eq(8).addClass('number-'+strr1.charAt(8));
-	}
-	//这是对第二个数组进行判断的
-	//当第二个数组存在的话   往后添加类名    如果不存在直接写number-0;
-	if(strr2){
-		$('#wangjg').find('span').eq(10).addClass('number-'+strr2.charAt(0));
-		$('#wangjg').find('span').eq(11).addClass('number-'+strr2.charAt(1));
-	}else{
-		$('#wangjg').find('span').eq(10).addClass('number-0');
-		$('#wangjg').find('span').eq(11).addClass('number-0');
-	}
-	
-}
-
-//这是负载均衡的计算器
-
-var fnum = 478.78;
-
-fnumber(fnum);
-
-/*
- * jgcss：这是对得到的钱数计算的方法
- * wnum：当前这个钱数
- */
-function fnumber (fnum) {
-	var fnum = fnum.toString();//把当前的值 转化为字符串
-		numarr = fnum.split('.');//以小数点拆分成两个数组
-
-	var spo = numarr[0].length;
-	var strr1 = numarr[0],//这是第一个数组
-		strr2 = numarr[1];//这是第二个数组
-	
-	//下面是对第一个数组的钱数进行判断的
-	if(spo == 1){
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(0));
-	}			
-	if(spo == 2){
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(1));
-	}	
-	if(spo == 3){
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(2));
-	}
-	if(spo == 4){
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(3));
-	}
-	if(spo == 5){
-		$('#fujg').find('span').eq(4).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(3));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(4));
-	}
-	if(spo == 6){
-		$('#fujg').find('span').eq(3).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(4).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(3));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(4));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(5));
-	}
-	if(spo == 7){
-		$('#fujg').find('span').eq(2).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(3).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(4).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(3));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(4));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(5));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(6));
-	}
-	if(spo == 8){
-		$('#fujg').find('span').eq(1).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(2).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(3).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(4).addClass('number-'+strr1.charAt(3));
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(4));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(5));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(6));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(7));
-	}
-	if(spo == 9){
-		$('#fujg').find('span').eq(0).addClass('number-'+strr1.charAt(0));
-		$('#fujg').find('span').eq(1).addClass('number-'+strr1.charAt(1));
-		$('#fujg').find('span').eq(2).addClass('number-'+strr1.charAt(2));
-		$('#fujg').find('span').eq(3).addClass('number-'+strr1.charAt(3));
-		$('#fujg').find('span').eq(4).addClass('number-'+strr1.charAt(4));
-		$('#fujg').find('span').eq(5).addClass('number-'+strr1.charAt(5));
-		$('#fujg').find('span').eq(6).addClass('number-'+strr1.charAt(6));
-		$('#fujg').find('span').eq(7).addClass('number-'+strr1.charAt(7));
-		$('#fujg').find('span').eq(8).addClass('number-'+strr1.charAt(8));
-	}
-	//这是对第二个数组进行判断的
-	//当第二个数组存在的话   往后添加类名    如果不存在直接写number-0;
-	if(strr2){
-		$('#fujg').find('span').eq(10).addClass('number-'+strr2.charAt(0));
-		$('#fujg').find('span').eq(11).addClass('number-'+strr2.charAt(1));
-	}else{
-		$('#fujg').find('span').eq(10).addClass('number-0');
-		$('#fujg').find('span').eq(11).addClass('number-0');
-	}
-	
-}
-
-//云硬盘的价格计算器
-
-var pnum = 456.89;
-
-pnumber(pnum);
-
-/*
- * jgcss：这是对得到的钱数计算的方法
- * wnum：当前这个钱数
- */
-function pnumber (pnum) {
-
-	var pnum = pnum.toString();//把当前的值 转化为字符串
-		numarr = pnum.split('.');//以小数点拆分成两个数组
-
-	var spo = numarr[0].length;
-	var strr1 = numarr[0],//这是第一个数组
-		strr2 = numarr[1];//这是第二个数组
-	
-	//下面是对第一个数组的钱数进行判断的
-	if(spo == 1){
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(0));
-	}			
-	if(spo == 2){
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(1));
-	}	
-	if(spo == 3){
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(2));
-	}
-	if(spo == 4){
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(3));
-	}
-	if(spo == 5){
-		$('#panjg').find('span').eq(4).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(3));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(4));
-	}
-	if(spo == 6){
-		$('#panjg').find('span').eq(3).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(4).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(3));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(4));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(5));
-	}
-	if(spo == 7){
-		$('#panjg').find('span').eq(2).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(3).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(4).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(3));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(4));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(5));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(6));
-	}
-	if(spo == 8){
-		$('#panjg').find('span').eq(1).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(2).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(3).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(4).addClass('number-'+strr1.charAt(3));
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(4));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(5));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(6));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(7));
-	}
-	if(spo == 9){
-		$('#panjg').find('span').eq(0).addClass('number-'+strr1.charAt(0));
-		$('#panjg').find('span').eq(1).addClass('number-'+strr1.charAt(1));
-		$('#panjg').find('span').eq(2).addClass('number-'+strr1.charAt(2));
-		$('#panjg').find('span').eq(3).addClass('number-'+strr1.charAt(3));
-		$('#panjg').find('span').eq(4).addClass('number-'+strr1.charAt(4));
-		$('#panjg').find('span').eq(5).addClass('number-'+strr1.charAt(5));
-		$('#panjg').find('span').eq(6).addClass('number-'+strr1.charAt(6));
-		$('#panjg').find('span').eq(7).addClass('number-'+strr1.charAt(7));
-		$('#panjg').find('span').eq(8).addClass('number-'+strr1.charAt(8));
-	}
-	//这是对第二个数组进行判断的
-	//当第二个数组存在的话   往后添加类名    如果不存在直接写number-0;
-	if(strr2){
-		$('#panjg').find('span').eq(10).addClass('number-'+strr2.charAt(0));
-		$('#panjg').find('span').eq(11).addClass('number-'+strr2.charAt(1));
-	}else{
-		$('#panjg').find('span').eq(10).addClass('number-0');
-		$('#panjg').find('span').eq(11).addClass('number-0');
-	}	
-}
 
 // 修改价格清单里面的总价格的值
 	function totalPeice() {
@@ -817,6 +523,7 @@ function pnumber (pnum) {
 		$type_yzj = $('#js_type_yzj'), //类型小计的总钱数
 		$yzj_evone;
 	 $Yjsjion.click(function  () {	
+	 	console.log(23);
 	 	$('#js_yjz_slide_box').append('<div class="qd_xiaoji_box" de="1">'+
 	 										'<span>￥</span><span class="qd_xiaoji js_yzj_evone">'+snum+'</span><span> > </span>'+
 	 									'</div>');
@@ -867,3 +574,13 @@ function pnumber (pnum) {
 		_this.next('li').slideToggle(500);
 	});	
 	
+
+
+
+
+
+
+				
+				
+				
+}])
