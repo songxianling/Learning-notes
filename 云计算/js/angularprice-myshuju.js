@@ -124,6 +124,7 @@ var A = angular.module('myApp', []);
 				}
 				
 				//
+				$scope.yjsallP = 26;
 				function allPrices() {
 					var $sele_ul_li = $('#jsSeleAll li');					
 					if($sele_ul_li.eq(0).hasClass('cur')){
@@ -132,6 +133,7 @@ var A = angular.module('myApp', []);
 							yjsInp = $('#bandwidthId').val()*1;
 							shujuqian = 26.26*yjsInp;  //这个26.26是从后台获取的数据盘1G的价格						
 						var yunallZ = parseFloat((cpuandnc+shujuqian) * fftype.toFixed(2));
+						$scope.yjsallP = yunallZ;
 						return ynumber(yunallZ);
 					}
 					if($sele_ul_li.eq(1).hasClass('cur')){
@@ -522,14 +524,13 @@ function ynumber (snum) {
 		$jgqd = $('#jsJgqd'),  //价格清单价格元素
 		$type_yzj = $('#js_type_yzj'), //类型小计的总钱数
 		$yzj_evone;
-	 $Yjsjion.click(function  () {	
-	 	console.log(23);
+	 $Yjsjion.click(function  () {
 	 	$('#js_yjz_slide_box').append('<div class="qd_xiaoji_box" de="1">'+
-	 										'<span>￥</span><span class="qd_xiaoji js_yzj_evone">'+snum+'</span><span> > </span>'+
+	 										'<span>￥</span><span class="qd_xiaoji js_yzj_evone">'+$scope.yjsallP+'</span><span> > </span>'+
 	 									'</div>');
 	 	$('#js_yjz_slide_box').append('<li class="right_three" id="right_three" style="display:none">'+
 						'<p>云主机</p>'+
-						'<p><span class="jsJG">'+snum+'</span>元</p>'+
+						'<p><span class="jsJG">'+$scope.yjsallP+'</span>元</p>'+
 						'<p><span>地域 :</span><span>'+$('#jsQyBoxOne .sele-li').html()+'</span></p>'+
 						'<div>'+
 							'<div>配置 :</div>'+
