@@ -50,16 +50,29 @@ var A = angular.module('myApp', []);
 //					})
 
 //					return $scope.allprice;
-				
+				//往$scope 注入变量canprice 是cpu  and  neicun  的总价格
+				$scope.canprice = 26; //这个地方写默认的1核1G的价格就行
 				
 				//改变cpu的核数的代码
 				$scope.selectFun = function(i){
 					$scope.dataInfo = $scope.cpudataList[i].Gnum;
-					$('.js-select li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					$('.js-select li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');					
+					angular.forEach($scope.cpudataList,function (item,index) {
+						if(i==index){
+							$scope.canprice =$scope.cpudataList[i].Gnum[0].price;
+						}
+					})
 					allPrices();
 				}
+				
 				$scope.seleF =  function (i) {
 					$('.js-selef li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					//这时候操作的是内存，所以循环遍历内存的数组（内存数组也一直在改变）--> code 57 line
+					angular.forEach($scope.dataInfo,function (item,index) {
+						if(i==index){
+							$scope.canprice =$scope.dataInfo[i].price;
+						}
+					})
 					allPrices();
 				}
 				
@@ -69,7 +82,7 @@ var A = angular.module('myApp', []);
 				$scope.fufeitype_data = [ //仿造数据
 					{
 						mode:'包年包月',
-						Gnum:[{time:'购置月底',price:'5'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}]
+						Gnum:[{time:'购置月底',price:'0.1'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}]
 					},
 					{
 						mode:'按需',	
@@ -77,13 +90,35 @@ var A = angular.module('myApp', []);
 					}
 				];
 				$scope.ffdetails_data=[{time:'购置月底',price:'5'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}];
+				
+				//往$scope 注入变量fftypeprice 是付费方式的价格
+				$scope.fftypeprice = 1 ;  //这个地方写默认1 因为是默认是1个月
+				
 				$scope.selectFun_fufei = function(i){
 					$scope.ffdetails_data = $scope.fufeitype_data[i].Gnum;
 					$('.js-select-type li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					//这里要加判断
+					if($scope.ffdetails_data == ""){
+						$scope.fftypeprice = "0.5";
+					}else{
+						angular.forEach($scope.ffdetails_data,function (item,index) {
+							if(i==index){
+								// 这里要默认的是一个月的价格，所以索引为1
+								//$scope.ffdetails_data[0] -->这个地方索引为0,不为1的原因是因为自己想法，不知道怎么解释
+								$scope.fftypeprice =$scope.ffdetails_data[0].price;
+							}
+						})
+					}					
 					allPrices();
 				}
 				$scope.sele_ff_details =  function (i) {
 					$('.js-ff-details li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					//这个时候操作的是包年包月详细的操作，所以循环遍历$scope.ffdetails_data这个数字，这个数组也一直在变
+					angular.forEach($scope.ffdetails_data,function (item,index) {
+						if(i==index){
+							$scope.fftypeprice =$scope.ffdetails_data[i].price;
+						}
+					})
 					allPrices();
 				}
 				
@@ -94,13 +129,12 @@ var A = angular.module('myApp', []);
 //						var cpuandnc = $('#jsNcBox li').find('.sele-li').prop('data-pri')*1,
 //							fftype = $('#jsFfBox li').find('.sele-li').prop('data-ff-pri')*1,
 //							shujuqian = $('#bandwidthId').val()*1*0.26;
-						var cpuandnc = 13,
-							fftype = 15,
-							shujuqian = 26.26;
+						var cpuandnc = $scope.canprice*1,
+							fftype = $scope.fftypeprice*1,
+							shujuqian = 26.26*1;
 						
-						var Z = parseFloat((cpuandnc+fftype+shujuqian).toFixed(2));
-						console.log(Z);
-//						console.log($(angular.element('#jsNcBox')).find('li').find('.sele-li').html());
+//						var Z = parseFloat((cpuandnc+fftype+shujuqian).toFixed(2));
+						console.log((cpuandnc+shujuqian) * fftype.toFixed(2));
 						return ynumber(12.34);
 					}
 					if($sele_ul_li.eq(1).hasClass('cur')){
