@@ -479,7 +479,7 @@
 			    		<ul class="price_ul clearfix">		    				    			
 			    			<li id="Yjsjion">加入清单</li>
 			    			<li>去购买</li>
-			    			<li>重置</li>
+			    			<li onclick="location.reload()">重置</li>
 			    		</ul>
 			    	</div>		    	
 			   </div>
@@ -514,7 +514,7 @@
 			   				<div class="price_duct">
 					   			<h6>内存</h6>
 					   			<ul class="clearfix js-select js-selef" id="jsNcBox">	
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" data-pri="{{data.price}}">{{data.gn}}</li>
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)">{{data.gn}}</li>
 				   				</ul>
 					   		</div>
 			   			</li>
@@ -848,14 +848,14 @@
 		   </div>
 		</div>
 		<!--内容的右边的-->
-		<div class="price_right">
+		<div class="price_right" id="js-price-right">
 			<p class="jiage"><img src="images/money_bac.png" style="vertical-align: sub;"><span>价格清单</span></p>
 				<div class="right_two">
 					<span>￥</span>
 					<span id="jsJgqd">0.00</span>
 					<button>导出</button>
 				</div>			
-			<ul id="ceShi" class="ce_shi js-qdul">
+			<ul id="ceShi" class="ce_shi js-qdul" >
 				<span>云主机</span> 
 				<span id="js_type_yzj">￥0.00</span>
 				<span> > </span>
@@ -902,7 +902,7 @@
 			<div class="slideBox" id="js_fz_slide_box">
 					
 			</div>
-			<ul id="ceShi" class="ce_shi js-qdul">				
+			<ul id="ceShi" class="ce_shi js-qdul" style="border-bottom: 1px solid #e0e0e0;">				
 				<span>云硬盘</span> 
 				<span id="js_type_yyp">￥0.00</span>
 				<span> > </span>
@@ -911,12 +911,13 @@
 					
 			</div>
 		</div>
+	
 	</div>
-</div>
+
 
 
 <!--这里是bottom 的部分-->
-<div class='footer_bottom'>
+<div class='footer_bottom' id="js-fot-bto">
     <div class="bottomLastFir">
             <div class="bottomListFir">
             <ul style="float: left;">
@@ -974,15 +975,15 @@
         
         </div>
 </div>
-
+</div>
 <!--这里是bottom 的部分-->
 
 <script src="js/jquery-1.8.3.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <!--<script src="js/price2.js"></script>-->
-<script src="js/pricenumber.js"></script>
-<script src="js/progressBar.js"></script>
-<script src="js/scrollbar.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="js/pricenumber.js"></script>-->
+<!--<script src="js/progressBar.js"></script>-->
+<!--<script src="js/scrollbar.js" type="text/javascript" charset="utf-8"></script>-->
 
 <!--<script type="text/javascript">
 			    $(function() {
@@ -990,7 +991,9 @@
 			        genal.show();			        			        
 			    })
 	</script> -->
-<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>	
+<!--<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>-->	
+<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/angularprice-myshuju.js" type="text/javascript" charset="utf-8"></script>	
+<script src="js/scroll-top.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

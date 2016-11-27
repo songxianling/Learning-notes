@@ -156,7 +156,7 @@ $(document).ready(function function_name () {
 	 
 	 
 	 
-	 //负载均衡的添加
+	
 	
 	 /*云硬盘的添加*/
 	var $Yypjion=$('#Yypjion'),

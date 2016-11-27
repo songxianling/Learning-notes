@@ -50,14 +50,14 @@ input,select,textarea{ outline:none;  resize:none;}
 }
 .price_content .price_all{
 	width: 1200px;	
-	height: 2000px;
+	/*height: 2000px;*/
 	min-width: 1200px;	
 	margin: 0 auto;
 }
 .price_content .price_left{
 	width: 871px;
 	float: left;
-	height: 200px;		
+	/*height: 200px;*/		
 }
 .price_content .price_left .price_yun{
 	width: 870px;
@@ -504,8 +504,12 @@ input,select,textarea{ outline:none;  resize:none;}
   /*右边的内容*/
  .price_all .price_right{
  	width: 295px;
- 	border: 1px solid #e0e0e0; 
+ 	/*border: 1px solid #e0e0e0;*/ 
  	float: right;
+ }
+  .price_all .price_right > *{
+ 	border-left:1px solid  #e0e0e0;
+ 	border-right:1px solid  #e0e0e0;
  }
   .price_all .price_right.scro{
   	position: fixed;
