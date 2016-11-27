@@ -732,6 +732,7 @@ function wnumber (wnum) {
 		var _this = $(this);
 		_this.next('li').slideToggle(500);
 	});	
+
 	
 	
 	
@@ -828,9 +829,4 @@ var $seleAll = $('#jsSeleAll'),
 			$sele_con.eq(_this.index()).show().siblings().hide();				
 	});
 
-
-
-				
-				
-				
 }])
