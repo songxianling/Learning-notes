@@ -37,6 +37,7 @@ var A = angular.module('myApp', []);
 				$scope.sjpNum = '0G';
 				$scope.ffNum = '1个月';
 				
+				$scope.op='北京';
 				
 				//改变cpu的核数的代码
 				$scope.selectFun = function(i){
@@ -80,6 +81,23 @@ var A = angular.module('myApp', []);
 				];
 				$scope.ffdetails_data=[{time:'购置月底',price:'.1'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}];
 				
+				//网络付费方式数据
+				$scope.fufeitype_data_wl = [ //仿造数据
+					{
+						mode:'包年包月',
+						Gnum:[{time:'购置月底',price:'0.1'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}]
+					},
+					{
+						mode:'按需',	
+						Gnum:[{time:'每小时',price:'0.0014'}]
+					}
+				];
+				$scope.ffdetails_data_wl=[{time:'购置月底',price:'.1'},{time:'1个月',price:'1'},{time:'2个月',price:'2'},{time:'3个月',price:'3'},{time:'4个月',price:'4'},{time:'5个月',price:'5'},{time:'6个月',price:'6'},{time:'7个月',price:'7'},{time:'8个月',price:'8'},{time:'9个月',price:'9'},{time:'1年',price:'10'},{time:'2年',price:'19'},{time:'3年',price:'27'}];
+				
+				
+				
+				
+				
 				//往$scope 注入变量fftypeprice 是付费方式的价格
 				$scope.fftypeprice = 1 ;  //这个地方写默认1 因为是默认是1个月
 				
@@ -103,6 +121,37 @@ var A = angular.module('myApp', []);
 					}					
 					allPrices();
 				}
+				
+				//网络付费方式操作（包年包月or按需）
+				$scope.fftypeprice_wl = 1;
+				$scope.selectFun_fufei_wl = function(i){
+					removeNumSpan = true;			  
+					$scope.ffdetails_data_wl = $scope.fufeitype_data_wl[i].Gnum;
+					$('.js-select-type-wl li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					//这里要加判断					
+					if($scope.ffdetails_data_wl.length == 1){
+						$scope.fftypeprice_wl = $scope.ffdetails_data_wl[0].price;
+						
+						$('.js-ff-details-wl li').attr('class','sele-li');
+					}else{
+						angular.forEach($scope.ffdetails_data_wl,function (item,index) {
+							if(i==index){
+								// 这里要默认的是一个月的价格，所以索引为1
+								//$scope.ffdetails_data[1] -->这个地方索引为1
+								$scope.fftypeprice_wl =$scope.ffdetails_data_wl[1].price;
+							}
+						})
+					}					
+					allPrices();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 				$scope.sele_ff_details =  function (i) {
 					$('.js-ff-details li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这个时候操作的是包年包月详细的操作，所以循环遍历$scope.ffdetails_data这个数字，这个数组也一直在变
@@ -116,12 +165,29 @@ var A = angular.module('myApp', []);
 					allPrices();
 				}
 				
+				//网络付费方式操作（几个月）
+				$scope.sele_ff_details_wl =  function (i) {
+					$('.js-ff-details-wl li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					//这个时候操作的是包年包月详细的操作，所以循环遍历$scope.ffdetails_data这个数字，这个数组也一直在变
+					$scope.ffNum_wl = $scope.ffdetails_data[i].time;					
+					
+					angular.forEach($scope.ffdetails_data_wl,function (item,index) {
+						if(i==index){
+							$scope.fftypeprice_wl =$scope.ffdetails_data_wl[i].price;
+						}
+					})
+					allPrices();
+				}
+				
+				
+				
 				// 这个$scope身上注入的变量是为了，不进行任何操作，直接点击加入清单的需求,26的作用不大，写多少都不影响加入清单里面的价格，因为默认执行了allPrices
 				$scope.yjsallP = 26;
+				$scope.wlallP=37;//这是网络中  不做任何的操作的 网清单里加的钱数
 				// 这个$scope身上注入的变量是为了，不进行台数的任何操作，默认是1台
-				$scope.Tnum = 1;
-				function allPrices() {
-					console.log($scope.fftypeprice)
+				$scope.Tnum = 1;//云主机的默认台数
+				$scope.Tnum_wl = 1;//网络的默认台数
+				function allPrices() {				
 					var $sele_ul_li = $('#jsSeleAll li');					
 					if($sele_ul_li.eq(0).hasClass('cur')){
 						var cpuandnc = $scope.cpuprice*1,
@@ -135,8 +201,15 @@ var A = angular.module('myApp', []);
 						return ynumber(yunallZ);
 					}
 					if($sele_ul_li.eq(1).hasClass('cur')){
+						var fftype_wl = $scope.fftypeprice_wl*1,
+							Tnum_wl = $scope.Tnum_wl*1,
+							Inp_wl = $('#js-band-wl-inp').val()*1;
+							shujuqian_wl = 26.26*Inp_wl;  //这个26.26是从后台获取的数据盘1G的价格						
+						var wangallZ = parseFloat(shujuqian_wl * fftype_wl * Tnum_wl.toFixed(2));
+						console.log(fftype_wl,Tnum_wl,Inp_wl,shujuqian_wl)
+						$scope.wlallP = wangallZ.toFixed(2);
+						return wnumber(wangallZ);
 						
-						return;
 					}
 					if($sele_ul_li.eq(2).hasClass('cur')){
 						
@@ -343,7 +416,7 @@ $scope.scrollbar={
 		var pris = $(".unfold:eq("+index+") .price");
 		var mini = $(".unfold:eq("+index+") .mini");
 		if(index==0){		
-			var price =Math.round(per*max);
+			var price =Math.ceil(per*max);
 			pris.children("div").remove();			
 			mini.attr('value',price);
 			$scope.sjpNum = price;
@@ -353,7 +426,9 @@ $scope.scrollbar={
 		if(index==1){
 			var price =Math.round(per*max);
 			pris.children("div").remove();
-			mini.val(price);
+			mini.attr('value',price);
+			$scope.dkNum = price;
+			allPrices();
 			/*if(price==0){
 				pris.append("<div>¥<span>"+0+"</span>/月</div>");
 			}
@@ -637,7 +712,7 @@ function wnumber (wnum) {
 								'<span>内存:</span><span>'+$scope.ncNum+'</span>'+'    '+
 								'<span>镜像:</span><span>'+$scope.jxNum+'</span>'+'    '+
 								'<span>数据盘 :</span><span>'+$scope.sjpNum+'G</span>'+'    '+
-								'<span>数量 :</span><span>'+$scope.Tnum+'台'+'</span>'+'    '+
+								'<span>数量 :</span><span>'+$scope.Tnum+'台</span>'+'    '+
 								'<span>付费方式 :</span><span>'+$scope.ffNum+'</span>'+
 							'</div>'+
 							
@@ -664,19 +739,19 @@ function wnumber (wnum) {
 	 		return;
 	 	}
 	 	$('#js_wl_slide_box').append('<div class="qd_xiaoji_box">'+
-	 										'<span>￥</span><span class="qd_xiaoji js_wl_evone">'+wnum+'</span><span> > </span>'+
+	 										'<span>￥</span><span class="qd_xiaoji js_wl_evone">'+$scope.wlallP+'</span><span> > </span>'+
 	 									'</div>');
 	 	$('#js_wl_slide_box').append('<li class="right_three" id="right_three" style="display:none">'+
 						'<p>网络</p>'+
-						'<p><span class="jsJG">'+wnum+'</span>元</p>'+
-						'<p><span>地域 :</span><span>'+$('#jsQyBoxThree .sele-li').html()+'</span></p>'+
+						'<p><span class="jsJG">'+$scope.wlallP+'</span>元</p>'+
+						'<p><span>地域 :</span><span>'+$scope.op+'</span></p>'+
 						'<div>'+
 							'<div>配置 :</div>'+
 							'<div>'+
-								'<span>计费方式:</span><span>'+$('#wlDk .sele-li').html()+'</span>'+'    '+
-								'<span>带宽:</span><span>'+ +'</span>'+'    '+														
-								'<span>数量 :</span><span>'+$('#jsWTsBox').val()+'台'+'</span>'+'    '+
-								'<span>付费方式 :</span><span>'+$('#jsFfBoxThree .sele-li').html()+'</span>'+
+								'<span>计费方式:</span><span>带宽</span>'+'    '+
+								'<span>带宽:</span><span>'+$scope.dkNum+'</span>'+'    '+														
+								'<span>数量 :</span><span>'+$scope.Tnum_wl+'台</span>'+'    '+
+								'<span>付费方式 :</span><span>'+$scope.ffNum_wl+'</span>'+
 							'</div>'+
 							
 						'</div>'+

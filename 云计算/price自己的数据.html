@@ -665,7 +665,7 @@
 												</div>
 											</div>
 											
-											<input type="text" name="bandwidth" value="0" class="preview mini"/>
+											<input type="text" name="bandwidth" value="0" class="preview mini" id="js-band-wl-inp"/>
 											<span class="help inline" style="color: #fff;">Mbps</span>
 											
 											<!--这是滚动条的后面的点击-->
@@ -697,24 +697,13 @@
 			   			<li class="price_pro price_last">
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
-					   			<ul class="clearfix js-select">
-					   				<li class="sele-li nian_yue">包年包月</li>
-					   				<li class="an_xu">按需</li>
+					   			<ul class="clearfix js-select-type-wl">
+					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei_wl($index)">{{data.mode}}</li>
+					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
-					   			<ul class="clearfix js-select" id="jsFfBoxThree" style="margin-top: 0px;">
-					   				<li>购置月底</li>
-					   				<li class="sele-li">1个月</li>
-					   				<li>2个月</li>
-					   				<li>3个月</li>
-					   				<li>4个月</li>
-					   				<li>5个月</li>
-					   				<li>6个月</li>
-					   				<li>7个月</li>
-					   				<li>8个月</li>
-					   				<li>9个月</li>
-					   				<li>1年</li>
-					   				<li>2年</li>
-					   				<li>3年</li>
+					   			<ul class="clearfix js-ff-details-wl" id="jsFfBoxThree" style="margin-top: 0px;">
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details_wl($index)" ng-repeat="data in ffdetails_data_wl">{{data.time}}</li>
+					   				
 					   			</ul>
 					   		</div>
 			   			</li>
@@ -815,11 +804,11 @@
 			   			<li class="price_pro price_last">
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
-					   			<ul class="clearfix js-select">
+					   			<ul class="clearfix js-select-yyp-type">
 					   				<li class="sele-li nian_yue">包年包月</li>
 					   				<li class="an_xu">按需</li>
 					   			</ul>
-					   			<ul class="clearfix js-select" id="jsFfBoxFour" style="margin: 0px;">
+					   			<ul class="clearfix js-ff-details_yyp" id="jsFfBoxFour" style="margin: 0px;">
 					   				<li>购置月底</li>
 					   				<li class="sele-li">1个月</li>
 					   				<li>2个月</li>

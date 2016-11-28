@@ -16,7 +16,7 @@ $(document).scroll(function  () {
     var $rigBox_offtop = $('#js-price-right').offset().top;
     	$btoBox_offtop  =$('#js-fot-bto').offset().top;
 	
-	var rHeight = $btoBox_offtop-$rigBox_offtop;
+	var rHeight = $btoBox_offtop-$rigBox_offtop-100;
 	$('#js-price-right').css({
 		'overflowX':'hidden',
 		'overflowY':'auto',
