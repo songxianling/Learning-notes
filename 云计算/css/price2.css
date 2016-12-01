@@ -74,29 +74,54 @@ input,select,textarea{ outline:none;  resize:none;}
 	width: 100%;
 	height: 60px;
 	background: #031e40;
+	border-radius: 6px;
 }
 
 .price_left .price_yun .price_yun_small ul li{
-	width: 280px;
-	height: 58px;
+	width: 33.3%;
+	height: 59px;
 	line-height: 59px;
-	padding-left: 8px;
 	float: left;
+	text-align: center;
 	cursor: pointer;
 	color: #FFF;
 	font-size: 22px;
 	border: 1px solid transparent;
-
+	box-sizing: border-box;
 }
-.price_left .price_yun .price_yun_small ul li img{
-	vertical-align: bottom;
-	margin-right: 12px;
+.price_left .price_yun .price_yun_small ul li i{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+	background-size: 100% 100%;
+	vertical-align: middle;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(1) i{
+	background: url(../images/yun-pic.png) no-repeat;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(2) i{
+	background: url(../images/wang-pic.png) no-repeat;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(3) i{
+	background: url(../images/yinpan-pic.png) no-repeat;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(1).cur i{
+	background: url(../images/yun-ac-pic.png) no-repeat;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(2).cur i{
+	background: url(../images/wang-ac-pic.png) no-repeat;
+}
+.price_left .price_yun .price_yun_small ul li:nth-child(3).cur i{
+	background: url(../images/yinpan-ac-pic.png) no-repeat;
 }
 .price_left .price_yun .price_yun_small ul li.cur{
 	border: 1px solid #079fed;
 	background: #043863;
+	border-radius: 6px;
 	
 }
+
 .price_left .price_jia{
 	width: 871px;
 	height: 44px;
@@ -529,6 +554,7 @@ input,select,textarea{ outline:none;  resize:none;}
  	color: #fff;
  	font-weight: bold; 	
  	text-align: center;
+ 	border-radius: 6px;
  }
   .price_all .price_right .jiage span{
  	font-size: 16px;

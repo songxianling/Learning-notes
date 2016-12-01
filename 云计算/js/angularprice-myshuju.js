@@ -5,18 +5,19 @@ var A = angular.module('myApp', []);
 				function ngAxjx(ngHttp,ngUrl,ngData,callData){
 					ngUrl = ngUrl+'?callback=JSON_CALLBACK';
 				ngHttp.jsonp(ngUrl, {params:ngData}).success(function (json){
-					$scope[callData] = json;
+					$scope[callData] = json; 
 				}).error(function (){
 					console.log('失败了');
 					});
 				
-				};
-								
+				};								
 				var data ={};
 			
 				$scope.cpudataList = "";
 				//这是cpu 内存；
-				var ngurl_cpu = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
+//				var ngurl_cpu = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
+				var ngurl_cpu = 'http://192.168.10.240:8000/querydata/queryCpuAndRamTypePriceList';
+				
 				ngAxjx($http,ngurl_cpu,data,'cpudataList');
 				$scope.dataInfo = [{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}];
 
@@ -29,13 +30,11 @@ var A = angular.module('myApp', []);
 				$scope.dqNum = '北京';
 				$scope.jxNum = 'Linux';				
 				$scope.sjpNum = '0G';
-				$scope.ffNum = '1个月';
-				
-				$scope.op='北京';
-				
-				$scope.ffNum_wl = '1个月';
-				
+				$scope.ffNum = '1个月';				
+				$scope.op='北京';				
+				$scope.ffNum_wl = '1个月';				
 				$scope.ffNum_yyp = '1个月';
+				
 				//改变cpu的核数的代码
 				$scope.selectFun = function(i){
 					$scope.dataInfo = $scope.cpudataList[i].gnum;
@@ -50,7 +49,8 @@ var A = angular.module('myApp', []);
 					
 					allPrices();
 				};
-			
+						
+				//这是内存
 				$scope.seleF =  function (i) {
 					$('.js-selef li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这时候操作的是内存G，所以循环遍历内存的数组（内存数组也一直在改变）--> code 57 line
@@ -67,44 +67,46 @@ var A = angular.module('myApp', []);
 				
 				//云主机付费方式数据
 				$scope.fufeitype_data = "";
+				
+				$scope.yu = 0;
 				//这个付费方式的
-				var ngurl_ff = 'http://cms.docker.sspaas.net/querydata/queryPayTypeList';
+				//var ngurl_ff = 'http://cms.docker.sspaas.net/querydata/queryPayTypeList';
+				
+				var ngurl_ff = 'http://192.168.10.240:8000/querydata/queryPayTypeList';
 				ngAxjx($http,ngurl_ff,data,'fufeitype_data');
-				$scope.ffdetails_data=[{payTime:'购置月底',price:'.1'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
+				$scope.ffdetails_data=[{payTime:'购置月底',price:'0.5'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
 				
 				//网络付费方式数据
 				$scope.fufeitype_data_wl = '';
 				ngAxjx($http,ngurl_ff,data,'fufeitype_data_wl');
-				$scope.ffdetails_data_wl=[{payTime:'购置月底',price:'.1'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
+				$scope.ffdetails_data_wl=[{payTime:'购置月底',price:'0.5'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
 				
 				
 				//云硬盘付费方式数据
 				$scope.fufeitype_data_yyp = '';
 				ngAxjx($http,ngurl_ff,data,'fufeitype_data_yyp');
-				$scope.ffdetails_data_yyp=[{payTime:'购置月底',price:'.1'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
+				$scope.ffdetails_data_yyp=[{payTime:'购置月底',price:'0.5'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
 				
 				
 				
 				
 				//（云主机的付费方式有包年包月和按需）往$scope 注入变量fftypeprice 是付费方式的价格;
-				$scope.fftypeprice = 1 ;  //这个地方写默认1 因为是默认是1个月
-				
+				$scope.fftypeprice = 1 ;  //这个地方写默认1 因为是默认是1个月				
 				$scope.selectFun_fufei = function(i){
 					removeNumSpan = true;
-					$scope.ffdetails_data = $scope.fufeitype_data[i].gnum;
-					console.log($scope.ffdetails_data);
+					$scope.ffdetails_data = $scope.fufeitype_data[i].gnum;					
 					$('.js-select-type li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这里要加判断					
 					if($scope.ffdetails_data.length == 1){
-						$scope.fftypeprice = $scope.ffdetails_data[0].price;
-						
+						$scope.fftypeprice = $scope.ffdetails_data[0].price*1;
 						$('.js-ff-details li').attr('class','sele-li');
 					}else{
 						angular.forEach($scope.ffdetails_data,function (item,index) {
 							if(i==index){
+								
 								// 这里要默认的是一个月的价格，所以索引为1
 								//$scope.ffdetails_data[1] -->这个地方索引为1
-								$scope.fftypeprice =$scope.ffdetails_data[1].price;
+								$scope.fftypeprice =$scope.ffdetails_data[1].price;								
 							}
 						})
 					}					
@@ -158,10 +160,10 @@ var A = angular.module('myApp', []);
 			
 				//云主机包年包月详细的操作
 				$scope.sele_ff_details =  function (i) {
-					$('.js-ff-details li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					$('.js-ff-details li').eq(i).addClass('small_sele-li').siblings().removeClass('small_sele-li');
 					//这个时候操作的是包年包月详细的操作，所以循环遍历$scope.ffdetails_data这个数字，这个数组也一直在变
-					$scope.ffNum = $scope.ffdetails_data[i].time;					
-					
+					$scope.ffNum = $scope.ffdetails_data[i].payTime;					
+															
 					angular.forEach($scope.ffdetails_data,function (item,index) {
 						if(i==index){
 							$scope.fftypeprice =$scope.ffdetails_data[i].price;
@@ -172,9 +174,9 @@ var A = angular.module('myApp', []);
 				
 				//网络付费方式操作（几个月）
 				$scope.sele_ff_details_wl =  function (i) {
-					$('.js-ff-details-wl li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
+					$('.js-ff-details-wl li').eq(i).addClass('small_sele-li').siblings().removeClass('small_sele-li');
 					//这个时候操作的是包年包月详细的操作，所以循环遍历$scope.ffdetails_data这个数字，这个数组也一直在变
-					$scope.ffNum_wl = $scope.ffdetails_data_wl[i].time;					
+					$scope.ffNum_wl = $scope.ffdetails_data_wl[i].payTime;					
 					
 					angular.forEach($scope.ffdetails_data_wl,function (item,index) {
 						if(i==index){
@@ -186,8 +188,8 @@ var A = angular.module('myApp', []);
 				
 				//云硬盘详细的付费方式
 				 $scope.sele_ff_details_yyp=function(i) {
-				 	$('.js-ff-details-yyp li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
-				 	$scope.ffNum_yyp = $scope.ffdetails_data[i].time;
+				 	$('.js-ff-details-yyp li').eq(i).addClass('small_sele-li').siblings().removeClass('small_sele-li');
+				 	$scope.ffNum_yyp = $scope.ffdetails_data[i].payTime;
 				 	
 				 	angular.forEach($scope.ffdetails_data_yyp,function (item,index) {
 						if(i==index){
@@ -197,22 +199,22 @@ var A = angular.module('myApp', []);
 					allPrices();
 				 }	
 				 
-				// 带宽1----------5的价格
+				// 带宽1-5的价格变量
 				var oneP_1,oneP_2,oneP_3,oneP_4,oneP_5,oneP_6,oneP_6_detail;
-				 
-				 
-				 
+				 				 				 
 				$scope.daidprice = '';
-				var ngurl_dd = 'http://cms.docker.sspaas.net/querydata/queryIPBroadBandPriceList';
+				//var ngurl_dd = 'http://cms.docker.sspaas.net/querydata/queryIPBroadBandPriceList';
+				var ngurl_dd = 'http://192.168.10.240:8000/querydata/queryIPBroadBandPriceList';
 				ngAxjx($http,ngurl_dd,data,'daidprice');
+				
 				//这是三个模块的切换
 				var $seleAll = $('#jsSeleAll'),
 						$yzjBox = $('#jsYjsOuterBox'),		
 						$wlBox=$('#jsWlOuterBox'),
-						$yypBox=$('#jsYypOuterBox'),
-						
+						$yypBox=$('#jsYypOuterBox'),						
 						$left_con=$('.left_con'),
 						$sele_con = $('#js-selebox>div');
+						
 				$seleAll.on('click','li',function () {	
 					ngAxjx($http,ngurl_dd,data,'daidprice');
 					angular.forEach($scope.daidprice,function (item,index) {
@@ -223,8 +225,7 @@ var A = angular.module('myApp', []);
 							 oneP_4 = item['4']['minIpBroadBandPrice'];
 							 oneP_5 = item['5']['minIpBroadBandPrice'];							 
 							 oneP_6 = item['6']['minIpBroadBandPrice'];
-							 oneP_6_detail = item['6']['growRate'];
-							
+							 oneP_6_detail = item['6']['growRate'];							
 //							$scope.fftypeprice_yyp =$scope.ffdetails_data_yyp[i].price;
 						}
 					})
@@ -232,35 +233,51 @@ var A = angular.module('myApp', []);
 					_this.addClass('cur').siblings().removeClass('cur');
 					$sele_con.eq(_this.index()).show().siblings().hide();				
 				});							
-				 
-				 
-				 
-				 
+				 	
+				 	
 				// 这个$scope身上注入的变量是为了，不进行任何操作，直接点击加入清单的需求,26的作用不大，写多少都不影响加入清单里面的价格，因为默认执行了allPrices
 				$scope.yjsallP = 39;
-				$scope.wlallP=37;//这是网络中  不做任何的操作的 网清单里加的钱数这个是默认值
-				$scope.yypallP=73;
+				$scope.wlallP=20;//这是网络中  不做任何的操作的 网清单里加的钱数这个是默认值
+				$scope.yypallP=0.00;
 				// 这个$scope身上注入的变量是为了，不进行台数的任何操作，默认是1台
 				$scope.Tnum = 1;//云主机的默认台数
 				$scope.Tnum_wl = 1;//网络的默认台数
 				$scope.Tnum_yyp = 1;//网络的默认台数
+				
+				//计算当天时间距离月末的天数
+				var day;
+
+				function timeDateM() {
+					var curTime = new Date().getDate();					
+					day = (30 - curTime) + 1;
+				}
+				timeDateM();
+				
+				
+				
+				//每一步都要走这个的计算
+		
 				function allPrices() {				
 					var $sele_ul_li = $('#jsSeleAll li');					
 					if($sele_ul_li.eq(0).hasClass('cur')){
-						var cpuandnc = $scope.cpuprice*1,
-							fftype = $scope.fftypeprice*1,
+						var cpuandnc = $scope.cpuprice*1,							
 							Tnum = $scope.Tnum*1,
 							yjsInp = $('#bandwidthId').val()*1;
-							shujuqian = 0.26*yjsInp;  //这个26.26是从后台获取的数据盘1G的价格						
+							shujuqian = 0.26*yjsInp,  //这个26.26是从后台获取的数据盘1G的价格	
+							fftype = $scope.ffNum == '购置月底'?day/30:$scope.fftypeprice*1;
+						console.log(yjsInp)	;
 						var yunallZ = parseFloat((cpuandnc + shujuqian) * fftype * Tnum.toFixed(2));
 						$scope.yjsallP = yunallZ.toFixed(2);
 						return ynumber(yunallZ);
-					}
+					};
+					
 					if($sele_ul_li.eq(1).hasClass('cur')){
-						var fftype_wl = $scope.fftypeprice_wl*1,
-							Tnum_wl = $scope.Tnum_wl*1,
+						var Tnum_wl = $scope.Tnum_wl*1,
 							Inp_wl = $('#js-band-wl-inp').val()*1,
-							dkzong;
+							dkzong,
+							fftype_wl = $scope.fftypeprice_wl*1,
+							
+							fftype_wl = $scope.ffNum_wl == '购置月底'?day/30:$scope.fftypeprice_wl*1;
 						if(Inp_wl == 1){
 							dkzong = oneP_1;							
 						}else if(Inp_wl == 2){
@@ -275,22 +292,22 @@ var A = angular.module('myApp', []);
 							dkzong = oneP_6*1 + (Inp_wl-5) * oneP_6_detail;
 						}
 						
-						var wangallZ = parseFloat(dkzong * fftype_wl * Tnum_wl.toFixed(2));
-//						console.log(fftype_wl,Tnum_wl,Inp_wl,dkzong)
+						var wangallZ = parseFloat(dkzong * fftype_wl * Tnum_wl.toFixed(2));					
 						$scope.wlallP = wangallZ.toFixed(2);
 						return wnumber(wangallZ);
 						
-					}
+					};
 					if($sele_ul_li.eq(2).hasClass('cur')){
-						var fftype_yyp=$scope.fftypeprice_yyp*1,
-							Tnum_yyp = $scope.Tnum_yyp*1,
+						var Tnum_yyp = $scope.Tnum_yyp*1,
 							Inp_yyp = $('#js-band-yyp-inp').val()*1;
-							shujuqian_yyp = 26.26*Inp_yyp;  //这个26.26是从后台获取的数据盘1G的价格		
+							shujuqian_yyp =0.26*Inp_yyp,  //这个26.26是从后台获取的数据盘1G的价格
+							fftype_yyp=$scope.fftypeprice_yyp*1,
+							fftype_yyp = $scope.ffNum_yyp == '购置月底'?day/30:$scope.fftypeprice_yyp*1;
 						var yypallZ = parseFloat(shujuqian_yyp * fftype_yyp * Tnum_yyp.toFixed(2));
 						
 						$scope.yypallP = yypallZ.toFixed(2);
 						return pnumber(yypallZ);
-					}
+					};
 				};
 				
 //这是每个页面的滚动条的方法;				
@@ -493,9 +510,10 @@ $scope.scrollbar={
 		var pris = $(".unfold:eq("+index+") .price");
 		var mini = $(".unfold:eq("+index+") .mini");
 		if(index==0){		
-			var price =Math.ceil(per*max);
+			var price =Math.round(per*max);
 			pris.children("div").remove();			
 			mini.attr('value',price);
+		
 			$scope.sjpNum = price;
 			allPrices();
 
@@ -504,7 +522,6 @@ $scope.scrollbar={
 			var price =Math.round(per*max);
 			pris.children("div").remove();
 			mini.attr('value',price);
-			console.log(mini.val())
 			$scope.dkNum = price;
 			allPrices();
 			
@@ -515,13 +532,46 @@ $scope.scrollbar={
 			mini.attr('value',price);
 			$scope.cpNum = price;
 			allPrices();
-			console.log(mini.val())
 		}
 	
 	}
 }
 //这是上面定义的方法  在这里执行的;
 	$scope.genal.show();
+	
+	//
+	var sjNUm;
+
+	function getOldNum(ele) {
+		ele.on('focus', function() {
+			sjNUm = $(this).val();
+//			$(this).val('');
+			console.log(sjNUm)
+		});
+		ele.on('blur', function() {
+			var hanZiXiu = $(this).val();
+			var zhengZe = /^[0-9]\d*$/;
+			if(!(zhengZe.test(hanZiXiu))) {
+				ele.attr('value',sjNUm);
+				allPrices();
+				return;
+			}
+		});
+		
+	};	
+	var $yjsInp = $('#bandwidthId'),
+		$wlInp = $('#js-band-wl-inp'),
+		$yypInp = $('#js-band-yyp-inp');
+	getOldNum($yjsInp)
+	getOldNum($wlInp)
+	getOldNum($yypInp)
+	
+	
+	
+	
+	
+	
+	
 	
 //从这里开始是关于每个模块计算器里面的需求;
  //这是云主机的;
@@ -629,7 +679,7 @@ function ynumber (snum) {
  */
 
 var Wready=false;
-wnumber(37);
+wnumber(20);
 function wnumber (wnum) {
 	wnum = wnum.toFixed(2);
 	var $jiageWang=$('#wangjg').find('span');
@@ -925,7 +975,7 @@ function pnumber (pnum) {
 							'<div>'+
 								'<span>CPU:</span><span>'+$scope.hNum+'</span>'+'    '+
 								'<span>内存:</span><span>'+$scope.ncNum+'</span>'+'    '+
-								'<span>镜像:</span><span>'+$scope.jxNum+'</span>'+'    '+
+								'<span>镜像:</span><span>'+$scope.catter+'</span>'+'    '+
 								'<span>数据盘 :</span><span>'+$scope.sjpNum+'G</span>'+'    '+
 								'<span>数量 :</span><span>'+$scope.Tnum+'台</span>'+'    '+
 								'<span>付费方式 :</span><span>'+$scope.ffNum+'</span>'+
@@ -1161,9 +1211,11 @@ function pnumber (pnum) {
 		
 
 
-	
-
-
-	
+//云主机的数据盘
+$scope.catter='Linux';
+$('#jsJxBox li').click(function  () {	
+$(this).index==0?$scope.catter='Linux':$scope.catter='Windows';
+$(this).addClass('sele-li').siblings().removeClass('sele-li');
+})
 
 }])

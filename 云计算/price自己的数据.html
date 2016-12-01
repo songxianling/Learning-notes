@@ -433,10 +433,10 @@
 			<!--左边盒子的里面-->
 			<div class="price_yun">				
 				<div class="price_yun_small">										
-					<ul class="clearfix" id="jsSeleAll">
-						<li class="cur"><img src="images/yun_fi.png"/>云主机</li>
-						<li><img src="images/wang_co.png"/>网络</li>					
-						<li><img src="images/pan_for.png"/>云硬盘</li>
+					<ul class="clearfix jsSeleAll" id="jsSeleAll">
+						<li class="cur"><i></i>云主机</li>
+						<li><i></i>网络</li>					
+						<li><i></i>云硬盘</li>
 					</ul>			
 				</div>
 			</div>
@@ -577,7 +577,7 @@
 					    			<span>台</span>
 					    		</div>
 					    		<div class="">
-					    			<span id="jsYrisen" zenga="1">∧</span>
+					    			<span id="jsYrisen" zenga="1" class="du_li">∧</span>
 					    			<span id="jsYreduce" jiana="1">∨</span>
 					    		</div>
 			    			</div>
@@ -586,7 +586,7 @@
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
 					   			<ul class="clearfix js-select-type">
-					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.amode}}</li>
+					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.amode}}</li>
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details" id="jsFfBox" style="margin: 0px;">
@@ -628,7 +628,7 @@
 			    		<!--下面的重置  去购买  加入清单-->
 			    		<ul class="price_ul clearfix">		    				    			
 			    			<li id="Wljion">加入清单</li>
-			    			<li>去购买</li>
+			    			<li><a href="http://http://console.sspaas.com/">去购买</a></li>
 			    			<li>重置</li>
 			    		</ul>
 			    	</div>		    	
@@ -810,7 +810,7 @@
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
 					   			<ul class="clearfix js-select-type-yyp">
-					   				<li class="nian_yue" ng-class="{true: 'sele-li',false:''}[$index==0]" ng-repeat="data in fufeitype_data_yyp" ng-click="selectFun_fufei_yyp($index)">{{data.amode}}</li>
+					   				<li class="nian_yue" ng-class="{true: 'sele-li',false:''}[$index==yu]" ng-repeat="data in fufeitype_data_yyp" ng-click="selectFun_fufei_yyp($index)">{{data.amode}}</li>
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details-yyp" id="jsFfBoxFour" style="margin: 0px;">

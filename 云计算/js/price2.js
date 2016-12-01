@@ -23,8 +23,9 @@ $(document).ready(function function_name () {
 	function seleauto(ele) {
 	//	var _this = ele.find('li');	
 		ele.off('click').on('click',function () {
+			
+			that.addClass('sele-li').siblings().removeClass('sele-li');	
 			var that = $(this);
-			that.addClass('sele-li').siblings().removeClass('sele-li');				
 			that.css('border-color','transparent').siblings().css('border-color','#e1e1e1')
 		});	
 	};
