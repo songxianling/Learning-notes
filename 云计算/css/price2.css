@@ -578,8 +578,25 @@ input,select,textarea{ outline:none;  resize:none;}
  	float: left;
  	width: 33%;
  }
+ .price_all .price_right ul>span.slide-j{
+ 	/*transform: rotate(90deg);*/
+    float: right;
+    width: auto;
+    height: auto;
+ }
+ .price_all .price_right ul>span.slide-j.rotate{
+ 	transform: rotate(90deg);
+ }
   .price_all .price_right ul>span:nth-child(1),.price_all .price_right .slideBox .qd_xiaoji_box span:nth-child(1){
   	text-align: left;
+  }
+  .price_all .price_right .slideBox .qd_xiaoji_box span.slide-j{
+  	 float: right;
+    width: auto;
+    height: auto;
+  }
+  .price_all .price_right .slideBox .qd_xiaoji_box span.slide-j.rotate{
+  	transform: rotate(90deg);
   }
   .price_all .price_right ul>span:nth-child(2){
   	color: #3d65ac;
@@ -605,7 +622,7 @@ input,select,textarea{ outline:none;  resize:none;}
   	display: inline-block;
   }
   .price_all .price_right .slideBox .qd_xiaoji_box span:nth-child(1),.price_all .price_right .slideBox .qd_xiaoji_box span:nth-child(3){
-  	width: 10%;
+  	/*width: 10%;*/
   }
   .price_all .price_right .slideBox .qd_xiaoji_box span:nth-child(2){
   	width: 79%;

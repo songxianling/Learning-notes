@@ -883,6 +883,8 @@ function pnumber (pnum) {
 	var ok = true,
 		timedow  = null;
 	$qdul.on('click',function () {
+		
+		$(this).find('.js-slide-j').toggleClass('rotate')
 		clearInterval(timedow);
 		if(ok){
 			ok = false;			
@@ -896,8 +898,13 @@ function pnumber (pnum) {
 	});	
 	$rightBox.on('click','.qd_xiaoji_box',function () {
 		var _this = $(this);
+		$(this).find('.js-slide-j').toggleClass('rotate')
 		_this.next('li').stop().slideToggle(500);
-	});	 
+	});	
+	
+	
+	
+	
 	
 	
 	/*云主机点击加入清单*/
@@ -907,7 +914,7 @@ function pnumber (pnum) {
 		$yzj_evone;
 	 $Yjsjion.click(function  () {
 	 	$('#js_yjz_slide_box').append('<div class="qd_xiaoji_box" de="1">'+
-	 										'<span>￥</span><span class="qd_xiaoji js_yzj_evone">'+$scope.yjsallP+'</span><span> > </span>'+
+	 										'<span>￥</span><span class="qd_xiaoji js_yzj_evone">'+$scope.yjsallP+'</span><span class="slide-j js-slide-j"> > </span>'+
 	 									'</div>');
 	 	$('#js_yjz_slide_box').append('<li class="right_three" id="right_three" style="display:none">'+
 						'<p>云主机</p>'+
@@ -947,7 +954,7 @@ function pnumber (pnum) {
 	 		return;
 	 	}
 	 	$('#js_wl_slide_box').append('<div class="qd_xiaoji_box">'+
-	 										'<span>￥</span><span class="qd_xiaoji js_wl_evone">'+$scope.wlallP+'</span><span> > </span>'+
+	 										'<span>￥</span><span class="qd_xiaoji js_wl_evone">'+$scope.wlallP+'</span><span class="slide-j js-slide-j"> > </span>'+
 	 									'</div>');
 	 	$('#js_wl_slide_box').append('<li class="right_three" id="right_three" style="display:none">'+
 						'<p>网络</p>'+
@@ -984,7 +991,7 @@ function pnumber (pnum) {
 	 		return;
 	 	}
 	 	$('#js_yyp_slide_box').append('<div class="qd_xiaoji_box">'+
-	 										'<span>￥</span><span class="qd_xiaoji js_yyp_evone">'+$scope.yypallP+'</span><span> > </span>'+
+	 										'<span>￥</span><span class="qd_xiaoji js_yyp_evone">'+$scope.yypallP+'</span><span class="slide-j js-slide-j"> > </span>'+
 	 									'</div>');
 	 	$('#js_yyp_slide_box').append('<li class="right_three" id="right_three" style="display:none">'+
 						'<p>云硬盘</p>'+
