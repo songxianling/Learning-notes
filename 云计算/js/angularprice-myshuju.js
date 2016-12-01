@@ -18,10 +18,10 @@ var A = angular.module('myApp', []);
 				//这是cpu 内存；
 				var ngurl_cpu = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
 				ngAxjx($http,ngurl_cpu,data,'cpudataList');
-				$scope.dataInfo = [{gn:'1',price:'10'},{gn:'2',price:'20'},{gn:'4',price:'40'}];
+				$scope.dataInfo = [{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}];
 
 				//往$scope 注入变量cpuprice 是cpu  and  neicun  的总价格
-				$scope.cpuprice = 26; //这个地方写默认的1核1G的价格就行
+				$scope.cpuprice = 39; //这个地方写默认的1核1G的价格就行
 				
 				//多注入几个变量，分别代表不同的配置的变量
 				$scope.ncNum = '1G';
@@ -237,7 +237,7 @@ var A = angular.module('myApp', []);
 				 
 				 
 				// 这个$scope身上注入的变量是为了，不进行任何操作，直接点击加入清单的需求,26的作用不大，写多少都不影响加入清单里面的价格，因为默认执行了allPrices
-				$scope.yjsallP = 26;
+				$scope.yjsallP = 39;
 				$scope.wlallP=37;//这是网络中  不做任何的操作的 网清单里加的钱数这个是默认值
 				$scope.yypallP=73;
 				// 这个$scope身上注入的变量是为了，不进行台数的任何操作，默认是1台
@@ -251,7 +251,7 @@ var A = angular.module('myApp', []);
 							fftype = $scope.fftypeprice*1,
 							Tnum = $scope.Tnum*1,
 							yjsInp = $('#bandwidthId').val()*1;
-							shujuqian = 26.26*yjsInp;  //这个26.26是从后台获取的数据盘1G的价格						
+							shujuqian = 0.26*yjsInp;  //这个26.26是从后台获取的数据盘1G的价格						
 						var yunallZ = parseFloat((cpuandnc + shujuqian) * fftype * Tnum.toFixed(2));
 						$scope.yjsallP = yunallZ.toFixed(2);
 						return ynumber(yunallZ);
@@ -526,7 +526,7 @@ $scope.scrollbar={
 //从这里开始是关于每个模块计算器里面的需求;
  //这是云主机的;
 	var Yready = false;				
-	ynumber(26.00);  //必须放到变量ready后才行
+	ynumber(39.00);  //必须放到变量ready后才行
 function ynumber (snum) {
 	snum = snum.toFixed(2);
 	var $jiageSpan = $('#yunjg').find('span');
@@ -627,8 +627,9 @@ function ynumber (snum) {
  * jgcss：这是对得到的钱数计算的方法
  * wnum：当前这个钱数
  */
-wnumber(37);
+
 var Wready=false;
+wnumber(37);
 function wnumber (wnum) {
 	wnum = wnum.toFixed(2);
 	var $jiageWang=$('#wangjg').find('span');
@@ -726,8 +727,9 @@ function wnumber (wnum) {
  * jgcss：这是对得到的钱数计算的方法
  * wnum：当前这个钱数
  */
-pnumber(0.00);
+
 var Pready=false;
+pnumber(0.00);
 function pnumber (pnum) {
 	pnum = pnum.toFixed(2);
 	var $jiagePan=$('#panjg').find('span');
