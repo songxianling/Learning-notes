@@ -13,26 +13,17 @@ $(document).scroll(function  () {
         $('.price_right').removeClass('scro');
     };
     
-    var $rigBox_offtop = $('#js-price-right').offset().top;
+    var $rigBox_offtop = $('#elephent').offset().top;
     	$btoBox_offtop  =$('#js-fot-bto').offset().top;
 	
 	var rHeight = $btoBox_offtop-$rigBox_offtop-100;
-	$('#js-price-right').css({
-		'overflowX':'hidden',
-		'overflowY':'auto',
+	$('#elephent').css({		
 		'height':rHeight+"px"
 	})
-//	.mouseenter(function () {
-//		$(this).css('overflow','auto');
-//	}).mouseleave(function () {
-//		$(this).css('overflow','hidden');
-//	});
-    	
-    	
-    	
-    
-    
-    
-    
+	  
     
 });
+    	
+    	    	
+
+

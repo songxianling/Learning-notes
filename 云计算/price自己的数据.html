@@ -7,12 +7,14 @@
 
 <link rel="stylesheet" href="css/animate.min.css">
 <link rel="stylesheet" href="css/common.css">
+
+<link rel="stylesheet" type="text/css" href="js/layer.css"/>
 <link rel="stylesheet" type="text/css" href="css/price2.css"/>
 <!--<link href='//cdn.webfont.youziku.com/webfonts/nomal/27051/37057/5821d2eaf629d80e5080b07a.css' rel='stylesheet' type='text/css' />-->
 
 
 </head>
-<body ng-controller="myAngular" class="ng-scope">
+<body ng-controller="myAngular" class="ng-scope" style="overflow:-Scroll;overflow-x: hidden ;">
 <!--导航--> 
 <div class="nav_main">
     <div class="nav_main_center auto clearfix">
@@ -498,7 +500,7 @@
 			   				<div class="price_duct">
 					   			<h6>机型</h6>
 					   			<ul class="clearfix">
-					   				<li>标准机型</li>				   				
+					   				<li class="sele-li">标准机型</li>				   				
 					   			</ul>
 					   		</div>
 			   			</li>
@@ -506,7 +508,7 @@
 			   				<div class="price_duct">
 					   			<h6>CPU</h6>
 					   			<ul class="clearfix js-select" id="jsCpuBox" >
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList">{{data.name}}</li>				   									   							   								   						   				
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList">{{data.cpuName}}核</li>				   									   							   								   						   				
 					   			</ul>
 					   		</div>
 			   			</li>
@@ -514,7 +516,7 @@
 			   				<div class="price_duct">
 					   			<h6>内存</h6>
 					   			<ul class="clearfix js-select js-selef" id="jsNcBox">	
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)">{{data.gn}}</li>
+					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)">{{data.gn}}G</li>
 				   				</ul>
 					   		</div>
 			   			</li>
@@ -540,7 +542,8 @@
 					   			<h6>数据盘</h6>
 					   			<div style="margin-top: 20px;">
 					   				<div class="unfold" style="display: inline-block;">			
-											<div class="item">											
+											<div class="item" style="position: relative;">		
+												
 												<div class="slider" style="width: 500px;">
 													<div class="slider-track">
 														<div class="slider-selection" style="width:0%;"></div>
@@ -548,7 +551,7 @@
 													</div>
 												</div>
 												
-												<input type="text" name="bandwidth" id="bandwidthId" value="0" class="preview mini"/>
+												<input type="text" name="bandwidth" id="bandwidthId" value="1" class="preview mini"/>
 												<span class="help inline">G</span>
 												
 												<!--这是滚动条的后面的点击-->
@@ -556,7 +559,8 @@
 									    			<span id="Yjia">∧</span>
 									    			<span id="Yjian">∨</span>
 									    		</div>
-												
+									    		
+									    		
 											</div>
 										</div>		
 					   				
@@ -582,11 +586,11 @@
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
 					   			<ul class="clearfix js-select-type">
-					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.mode}}</li>
+					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.amode}}</li>
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details" id="jsFfBox" style="margin: 0px;">
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details($index)" ng-repeat="data in ffdetails_data" data-ff-pri="{{data.price}}">{{data.time}}</li>
+					   				<li ng-class="{true: 'small_sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details($index)" ng-repeat="data in ffdetails_data" data-ff-pri="{{data.price}}">{{data.payTime}}</li>
 				   				</ul>
 					   		</div>
 			   			</li>
@@ -657,7 +661,8 @@
 					   			<!--这是滚动条-->
 					   			<div style="margin-top: 20px;">					   									   			
 							   		<div class="unfold" style="display: inline-block;">			
-										<div class="item">											
+										<div class="item">	
+											
 											<div class="slider" style="width: 500px;">
 												<div class="slider-track">
 													<div class="slider-selection" style="width:0%;"></div>
@@ -665,8 +670,8 @@
 												</div>
 											</div>
 											
-											<input type="text" name="bandwidth" value="0" class="preview mini" id="js-band-wl-inp"/>
-											<span class="help inline" style="color: #fff;">Mbps</span>
+											<input type="text" name="bandwidth" value="1" class="preview mini" id="js-band-wl-inp"/>
+											<span class="help inline">Mbps</span>
 											
 											<!--这是滚动条的后面的点击-->
 											<div class="right_icont" style="display: inline-block;">
@@ -698,11 +703,11 @@
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
 					   			<ul class="clearfix js-select-type-wl">
-					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei_wl($index)">{{data.mode}}</li>
+					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data_wl" ng-click="selectFun_fufei_wl($index)">{{data.amode}}</li>
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details-wl" id="jsFfBoxThree" style="margin-top: 0px;">
-					   				<li ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details_wl($index)" ng-repeat="data in ffdetails_data_wl">{{data.time}}</li>
+					   				<li ng-class="{true: 'small_sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details_wl($index)" ng-repeat="data in ffdetails_data_wl">{{data.payTime}}</li>
 					   				
 					   			</ul>
 					   		</div>
@@ -775,7 +780,7 @@
 												</div>
 											</div>
 											
-											<input type="text" name="bandwidth" value="0" class="preview mini"/>
+											<input type="text" name="bandwidth" value="0" class="preview mini" id="js-band-yyp-inp"/>
 											<span class="help inline" style="color: #fff;">Mbps</span>
 											
 											<!--这是滚动条的后面的点击-->
@@ -804,27 +809,14 @@
 			   			<li class="price_pro price_last">
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
-					   			<ul class="clearfix js-select-yyp-type">
-					   				<li class="sele-li nian_yue">包年包月</li>
-					   				<li class="an_xu">按需</li>
+					   			<ul class="clearfix js-select-type-yyp">
+					   				<li class="nian_yue" ng-class="{true: 'sele-li',false:''}[$index==0]" ng-repeat="data in fufeitype_data_yyp" ng-click="selectFun_fufei_yyp($index)">{{data.amode}}</li>
+					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
-					   			<ul class="clearfix js-ff-details_yyp" id="jsFfBoxFour" style="margin: 0px;">
-					   				<li>购置月底</li>
-					   				<li class="sele-li">1个月</li>
-					   				<li>2个月</li>
-					   				<li>3个月</li>
-					   				<li>4个月</li>
-					   				<li>5个月</li>
-					   				<li>6个月</li>
-					   				<li>7个月</li>
-					   				<li>8个月</li>
-					   				<li>9个月</li>
-					   				<li>1年</li>
-					   				<li>2年</li>
-					   				<li>3年</li>
-					   			</ul>
-					   			
-					   			
+					   			<ul class="clearfix js-ff-details-yyp" id="jsFfBoxFour" style="margin: 0px;">
+					   				<li ng-class="{true: 'small_sele-li', false: ''}[$index == 1]" ng-click="sele_ff_details_yyp($index)" ng-repeat="data in ffdetails_data_yyp">{{data.payTime}}</li>
+					   				
+					   			</ul>					   								   			
 					   		</div>
 			   			</li>
 			   		</ul>
@@ -839,66 +831,63 @@
 		<!--内容的右边的-->
 		<div class="price_right" id="js-price-right">
 			<p class="jiage"><img src="images/money_bac.png" style="vertical-align: sub;"><span>价格清单</span></p>
+								
 				<div class="right_two">
 					<span>￥</span>
 					<span id="jsJgqd">0.00</span>
 					<button>导出</button>
-				</div>			
-			<ul id="ceShi" class="ce_shi js-qdul" >
-				<span>云主机</span> 
-				<span id="js_type_yzj">￥0.00</span>
-				<span> > </span>
-				
-				<!--<li class="right_three" id="right_three">
-					<p>云主机</p>
-					<p>88888.00元</p>
-					<p><span>地域 :</span><span>北京</span></p>
-					<div>
-						<div>配置 :</div>
-						<div>
-							<span>CPU :</span><span></span>
-							<span>内存:</span><span></span>
-							<span>镜像 :</span><span></span>
-							<span>数据盘 :</span><span></span>
-							<span>数量 :</span><span></span>
-							<span>付费方式 :</span><span></span>
+				</div>		
+				<div id="elephent" class="elephent">	
+					<div class="monkey">
+						<ul id="ceShi" class="ce_shi js-qdul" >
+							<span>云主机</span> 
+							<span id="js_type_yzj">￥0.00</span>
+							<span> > </span>
+							
+							<!--<li class="right_three" id="right_three">
+								<p>云主机</p>
+								<p>88888.00元</p>
+								<p><span>地域 :</span><span>北京</span></p>
+								<div>
+									<div>配置 :</div>
+									<div>
+										<span>CPU :</span><span></span>
+										<span>内存:</span><span></span>
+										<span>镜像 :</span><span></span>
+										<span>数据盘 :</span><span></span>
+										<span>数量 :</span><span></span>
+										<span>付费方式 :</span><span></span>
+									</div>
+									
+								</div>
+								<div class="shop_delete">				
+									<a href="javascript:;" title="删除" ><img src="images/delete.png" id="delete"/></a>						
+									<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>											
+								</div>
+							</li>-->
+						</ul>	
+						<div class="slideBox" id="js_yjz_slide_box">
+								<!--<div class="qd_xiaoji_box">
+									<span>￥</span>
+									<span>2999.00</span>
+									<span> > </span>
+								</div>-->
 						</div>
-						
+						<ul id="ceShi" class="ce_shi js-qdul">				
+							<span>网络</span> 
+							<span id="js_type_wl">￥0.00</span>
+							<span> > </span>
+							
+						</ul>
+						<div class="slideBox" id="js_wl_slide_box"></div>
+						<ul id="ceShi" class="ce_shi js-qdul" style="border-bottom: 1px solid #e0e0e0;">
+							<span>云硬盘</span> 
+							<span id="js_type_yyp">￥0.00</span>
+							<span> > </span>
+						</ul>
+						<div class="slideBox" id="js_yyp_slide_box"></div>
 					</div>
-					<div class="shop_delete">				
-						<a href="javascript:;" title="删除" ><img src="images/delete.png" id="delete"/></a>						
-						<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>											
-					</div>
-				</li>-->
-			</ul>	
-			<div class="slideBox" id="js_yjz_slide_box">
-					<!--<div class="qd_xiaoji_box">
-						<span>￥</span>
-						<span>2999.00</span>
-						<span> > </span>
-					</div>-->
-			</div>
-			<ul id="ceShi" class="ce_shi js-qdul">				
-				<span>网络</span> 
-				<span id="js_type_wl">￥0.00</span>
-				<span> > </span>
-				
-			</ul>
-			<div class="slideBox" id="js_wl_slide_box">
-					
-			</div>
-			
-			<div class="slideBox" id="js_fz_slide_box">
-					
-			</div>
-			<ul id="ceShi" class="ce_shi js-qdul" style="border-bottom: 1px solid #e0e0e0;">				
-				<span>云硬盘</span> 
-				<span id="js_type_yyp">￥0.00</span>
-				<span> > </span>
-			</ul>
-			<div class="slideBox" id="js_yyp_slide_box">
-					
-			</div>
+				</div>
 		</div>
 	
 	</div>
@@ -906,8 +895,8 @@
 
 
 <!--这里是bottom 的部分-->
-<div class='footer_bottom' id="js-fot-bto">
-    <div class="bottomLastFir">
+	<div class='footer_bottom' id="js-fot-bto">
+    	<div class="bottomLastFir">
             <div class="bottomListFir">
             <ul style="float: left;">
                 <li class="groupItemFir" style="">
@@ -968,6 +957,7 @@
 <!--这里是bottom 的部分-->
 
 <script src="js/jquery-1.8.3.min.js"></script>
+<!--<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>-->
 <!--<script src="js/index.js"></script>-->
 <!--<script src="js/price2.js"></script>-->
 

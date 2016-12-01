@@ -490,8 +490,12 @@ input,select,textarea{ outline:none;  resize:none;}
   	background: url(../images/sele-li.png)no-repeat;
   	background-size: 100% 100%;
   	
-  }
+}
 
+.small_sele-li{
+	background: url(../images/small_kuang.png) no-repeat;
+	background-size:100% 100%;
+}
 
 .du_li{
 	background:#0e3e62 ;
@@ -507,14 +511,14 @@ input,select,textarea{ outline:none;  resize:none;}
  	/*border: 1px solid #e0e0e0;*/ 
  	float: right;
  }
-  .price_all .price_right > *{
+/*  .price_all .price_right > *{
  	border-left:1px solid  #e0e0e0;
  	border-right:1px solid  #e0e0e0;
- }
+ }*/
   .price_all .price_right.scro{
   	position: fixed;
   	top: 88px;
-  	margin-left: 903px;
+  	margin-left: 904px;
   }                                         
  .price_all .price_right .jiage{
  	width: 100%;
@@ -595,6 +599,7 @@ input,select,textarea{ outline:none;  resize:none;}
   	padding: 0 22px;
   	box-sizing: border-box;
   	cursor: pointer;
+  	border-bottom: 1px solid #e0e0e0;
   }
   .price_all .price_right .slideBox .qd_xiaoji_box span{
   	display: inline-block;
@@ -669,23 +674,24 @@ input,select,textarea{ outline:none;  resize:none;}
 }
 .slider{
 	
-	height: 20px;
+	height:32px;
 	display: inline-block;
 	vertical-align: middle;
 	position: relative;
-	background: burlywood;
+	background: #f7f8fa;
 	cursor: pointer;
+	border-bottom: 1px solid #dddfe3;
 }
 .slider-track{
-	height: 20px;
+	height: 16px;
 	width: 100%;
-	margin-top: -10px;
+	margin-top: -7px;
 	top: 50%;
 	left: 0;
 	
 	position: absolute;
 	cursor: pointer;
-	background-color: #eee;
+	background-color: #e0e0e0;
 	background-repeat: repeat-x;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -708,18 +714,30 @@ input,select,textarea{ outline:none;  resize:none;}
 }
 
 .slider-handle{
-	margin-left: -10px;
-    margin-top: -6px;
+	margin-left: -9px;
+    /*margin-top: -6px;*/
     position: absolute;
-    width: 20px;
-    height: 30px;
-    background-color: #F99331;
+    width: 25px;
+    height: 25px;
+    /*background-color: #F99331;*/
+    background: url(../images/kedu.png) no-repeat;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     cursor: pointer;
 }
 
+
+/*#wohaha li{
+	width: 2px !important;
+	height: 41px !important;
+	background: #e0e0e0;
+	float: left;
+	margin-left: 5px;
+	position: absolute;
+	top: 4px;
+	left:23px;
+}*/
 
 .mini{
 	margin-left: 15px;
@@ -728,7 +746,7 @@ input,select,textarea{ outline:none;  resize:none;}
     
     display: inline-block;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding:8px;
     background: #fff;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -741,4 +759,17 @@ input,select,textarea{ outline:none;  resize:none;}
     /* width: 168px; */
 }
 
+.elephent{
+	width: 100%;
+	box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+.monkey{
+	box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    margin-right: -1pc;
+}
 
