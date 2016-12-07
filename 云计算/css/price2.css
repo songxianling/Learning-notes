@@ -92,7 +92,7 @@ input,select,textarea{ outline:none;  resize:none;}
 .price_left .price_yun .price_yun_small ul li i{
 	display: inline-block;
 	width: 60px;
-	height: 60px;
+	height: 66px;
 	margin-right: 10px;
 	background-size: 100% 100%;
 	vertical-align: middle;
@@ -568,6 +568,7 @@ input,select,textarea{ outline:none;  resize:none;}
  	line-height: 80px;
  	/*border-bottom:1px solid #e0e0e0;*/
  	background:#f0f3fa;
+ 	position: relative;
  }
    .price_all .price_right .right_two span:nth-child(1){
  	font-size: 20px;
@@ -586,9 +587,11 @@ input,select,textarea{ outline:none;  resize:none;}
  		color: #fff; 
  		box-shadow:3px 5px 3px #abc7cc ;
  		cursor: pointer;
- 		margin-left: 63px;
+ 		position: absolute;
+ 		right: 10px;
+ 		top:33%;
  		vertical-align: super;
- 		border-radius: 3px; 		
+ 		border-radius: 12px; 		
  }
  .price_all .price_right ul{
  	height: 58px;
@@ -667,6 +670,14 @@ input,select,textarea{ outline:none;  resize:none;}
   	top:30px;
   	right: 20px;
 }
+.price_all .price_right .slideBox li.right_three .clear{
+	position: absolute;
+	top:60px;
+  	right: 20px;
+  	font-size: 12px;
+  
+}
+
 .price_all .price_right .slideBox li.right_three .shop_delete a{
    	float: right;
    	margin-left: 12px;

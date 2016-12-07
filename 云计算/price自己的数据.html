@@ -8,10 +8,8 @@
 <link rel="stylesheet" href="css/animate.min.css">
 <link rel="stylesheet" href="css/common.css">
 
-<link rel="stylesheet" type="text/css" href="js/layer.css"/>
+<link rel="stylesheet" type="text/css" href="js/skin/layer.css"/>
 <link rel="stylesheet" type="text/css" href="css/price2.css"/>
-<!--<link href='//cdn.webfont.youziku.com/webfonts/nomal/27051/37057/5821d2eaf629d80e5080b07a.css' rel='stylesheet' type='text/css' />-->
-
 
 </head>
 <body ng-controller="myAngular" class="ng-scope" style="overflow:-Scroll;overflow-x: hidden ;">
@@ -481,7 +479,7 @@
 			    		<ul class="price_ul clearfix">		    				    			
 			    			<li id="Yjsjion">加入清单</li>
 			    			<li>去购买</li>
-			    			<li onclick="location.reload()">重置</li>
+			    			<li id="yunAgain">重置</li>
 			    		</ul>
 			    	</div>		    	
 			   </div>
@@ -546,8 +544,8 @@
 												
 												<div class="slider" style="width: 500px;">
 													<div class="slider-track">
-														<div class="slider-selection" style="width:0%;"></div>
-														<div class="slider-handle round" style="left: 0%;"></div>
+														<div class="slider-selection" id="yunAgainWidth" style="width:0%;"></div>
+														<div class="slider-handle round" id="yunAgainLeft" style="left: 0%;"></div>
 													</div>
 												</div>
 												
@@ -555,12 +553,10 @@
 												<span class="help inline">G</span>
 												
 												<!--这是滚动条的后面的点击-->
-												<div class="right_icont" style="display: inline-block;">
+												<!--<div class="right_icont" style="display: inline-block;">
 									    			<span id="Yjia">∧</span>
 									    			<span id="Yjian">∨</span>
-									    		</div>
-									    		
-									    		
+									    	</div>-->									    											    		
 											</div>
 										</div>		
 					   				
@@ -573,7 +569,7 @@
 			   				<div class="price_three_nine" style="margin-bottom: 22px;">
 				    			<h6>数量</h6>
 					    		<div class="">
-					    			<input type="text" name=""  id="jsTsBox" value="1" />
+					    			<input type="text" name=""  id="jsTsBox" value="1" readonly="readonly"/>
 					    			<span>台</span>
 					    		</div>
 					    		<div class="">
@@ -586,7 +582,7 @@
 			   				<div class="price_duct">
 					   			<h6>付费方式</h6>
 					   			<ul class="clearfix js-select-type">
-					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 1]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.amode}}</li>
+					   				<li class="nian_yue" ng-class="{true: 'sele-li', false: ''}[$index == 0]" ng-repeat="data in fufeitype_data" ng-click="selectFun_fufei($index)">{{data.amode}}</li>
 					   				<!--<li class="an_xu">按需</li>-->
 					   			</ul>
 					   			<ul class="clearfix js-ff-details" id="jsFfBox" style="margin: 0px;">
@@ -629,7 +625,7 @@
 			    		<ul class="price_ul clearfix">		    				    			
 			    			<li id="Wljion">加入清单</li>
 			    			<li><a href="http://http://console.sspaas.com/">去购买</a></li>
-			    			<li>重置</li>
+			    			<li id="wangAgain">重置</li>
 			    		</ul>
 			    	</div>		    	
 			   </div>
@@ -665,8 +661,8 @@
 											
 											<div class="slider" style="width: 500px;">
 												<div class="slider-track">
-													<div class="slider-selection" style="width:0%;"></div>
-													<div class="slider-handle round" style="left: 0%;"></div>
+													<div class="slider-selection" id="wangAgainWidth" style="width:0%;"></div>
+													<div class="slider-handle round" id="wangAgainLeft" style="left: 0%;"></div>
 												</div>
 											</div>
 											
@@ -674,10 +670,10 @@
 											<span class="help inline">Mbps</span>
 											
 											<!--这是滚动条的后面的点击-->
-											<div class="right_icont" style="display: inline-block;">
+											<!--<div class="right_icont" style="display: inline-block;">
 								    			<span id="Wjia">∧</span>
 								    			<span id="Wjian">∨</span>
-						    				</div>
+						    				</div>-->
 											
 										</div>
 									</div>					   									   			
@@ -689,7 +685,7 @@
 			   				<div class="price_three_nine" style="margin-bottom: 22px;">
 				    			<h6>数量</h6>
 					    		<div class="">
-					    			<input type="text" name=""  id="jsWTsBox" value="1" />
+					    			<input type="text" name=""  id="jsWTsBox" value="1" readonly="readonly"/>
 					    			<span>台</span>
 					    		</div>
 					    		<div class="">
@@ -751,7 +747,7 @@
 			    		<ul class="price_ul clearfix">		    				    			
 			    			<li id="Yypjion">加入清单</li>
 			    			<li>去购买</li>
-			    			<li>重置</li>
+			    			<li id="panAgain">重置</li>
 			    		</ul>
 			    	</div>		    	
 			   </div>
@@ -775,19 +771,19 @@
 										<div class="item">											
 											<div class="slider" style="width: 500px;">
 												<div class="slider-track">
-													<div class="slider-selection" style="width:0%;"></div>
-													<div class="slider-handle round" style="left: 0%;"></div>
+													<div class="slider-selection" id="panAgainWidth" style="width:0%;"></div>
+													<div class="slider-handle round" id="panAgainLeft" style="left: 0%;"></div>
 												</div>
 											</div>
 											
 											<input type="text" name="bandwidth" value="0" class="preview mini" id="js-band-yyp-inp"/>
-											<span class="help inline" style="color: #fff;">Mbps</span>
+											<span class="help inline">G</span>
 											
 											<!--这是滚动条的后面的点击-->
-											<div class="right_icont" style="display: inline-block;">
+											<!--<div class="right_icont" style="display: inline-block;">
 								    			<span>∧</span>
 								    			<span>∨</span>
-						    		        </div>											
+						    		        </div>		-->									
 										</div>
 									</div>					   									   										   				
 					   			</div>
@@ -797,7 +793,7 @@
 			   				<div class="price_three_nine" style="margin-bottom: 22px;">
 				    			<h6>数量</h6>
 					    		<div class="">
-					    			<input type="text" name="" id="jsYpTsBox" value="1" />
+					    			<input type="text" name="" id="jsYpTsBox" value="1" readonly="readonly"/>
 					    			<span>台</span>
 					    		</div>
 					    		<div class="">
@@ -844,6 +840,8 @@
 							<span id="js_type_yzj">￥0.00</span>
 							<span class="js-slide-j slide-j"> > </span>
 							
+							
+							
 							<!--<li class="right_three" id="right_three">
 								<p>云主机</p>
 								<p>88888.00元</p>
@@ -864,7 +862,13 @@
 									<a href="javascript:;" title="删除" ><img src="images/delete.png" id="delete"/></a>						
 									<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>											
 								</div>
+								
+								<div class="clear">
+									<span>1个月</span>
+									<span>1台</span>
+								</div>
 							</li>-->
+							
 						</ul>	
 						<div class="slideBox" id="js_yjz_slide_box">
 								<!--<div class="qd_xiaoji_box">
@@ -957,7 +961,8 @@
 <!--这里是bottom 的部分-->
 
 <script src="js/jquery-1.8.3.min.js"></script>
-<!--<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>-->
+
+<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
 <!--<script src="js/index.js"></script>-->
 <!--<script src="js/price2.js"></script>-->
 
@@ -965,15 +970,6 @@
 <!--<script src="js/progressBar.js"></script>-->
 <!--<script src="js/scrollbar.js" type="text/javascript" charset="utf-8"></script>-->
 
-
-
-<!--<script type="text/javascript">
-			    $(function() {
-			    	
-			        genal.show();			        			        
-			    })
-	</script> -->
-<!--<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>-->	
 <script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/angularprice-myshuju.js" type="text/javascript" charset="utf-8"></script>	
 <script src="js/scroll-top.js" type="text/javascript" charset="utf-8"></script>

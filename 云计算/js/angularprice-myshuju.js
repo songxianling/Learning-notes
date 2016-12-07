@@ -3,20 +3,22 @@ var A = angular.module('myApp', []);
 				
 				//从这里开始是angular的请求	
 				function ngAxjx(ngHttp,ngUrl,ngData,callData){
+					
 					ngUrl = ngUrl+'?callback=JSON_CALLBACK';
-				ngHttp.jsonp(ngUrl, {params:ngData}).success(function (json){
-					$scope[callData] = json; 
-				}).error(function (){
-					console.log('失败了');
+					ngHttp.jsonp(ngUrl, {params:ngData}).success(function (json){
+						$scope[callData] = json;
+						
+					}).error(function (){
+						console.log('失败了');
 					});
-				
+					
 				};								
 				var data ={};
 			
 				$scope.cpudataList = "";
 				//这是cpu 内存；
-//				var ngurl_cpu = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
-				var ngurl_cpu = 'http://192.168.10.240:8000/querydata/queryCpuAndRamTypePriceList';
+				var ngurl_cpu = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
+//				var ngurl_cpu = 'http://192.168.10.240:8000/querydata/queryCpuAndRamTypePriceList';
 				
 				ngAxjx($http,ngurl_cpu,data,'cpudataList');
 				$scope.dataInfo = [{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}];
@@ -70,9 +72,8 @@ var A = angular.module('myApp', []);
 				
 				$scope.yu = 0;
 				//这个付费方式的
-				//var ngurl_ff = 'http://cms.docker.sspaas.net/querydata/queryPayTypeList';
-				
-				var ngurl_ff = 'http://192.168.10.240:8000/querydata/queryPayTypeList';
+				var ngurl_ff = 'http://cms.docker.sspaas.net/querydata/queryPayTypeList';				
+				//var ngurl_ff = 'http://192.168.10.240:8000/querydata/queryPayTypeList';
 				ngAxjx($http,ngurl_ff,data,'fufeitype_data');
 				$scope.ffdetails_data=[{payTime:'购置月底',price:'0.5'},{payTime:'1个月',price:'1'},{payTime:'2个月',price:'2'},{payTime:'3个月',price:'3'},{payTime:'4个月',price:'4'},{payTime:'5个月',price:'5'},{payTime:'6个月',price:'6'},{payTime:'7个月',price:'7'},{payTime:'8个月',price:'8'},{payTime:'9个月',price:'9'},{payTime:'1年',price:'10'},{payTime:'2年',price:'19'},{payTime:'3年',price:'27'}];
 				
@@ -98,12 +99,13 @@ var A = angular.module('myApp', []);
 					$('.js-select-type li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这里要加判断					
 					if($scope.ffdetails_data.length == 1){
+						$scope.ffNum = '按需';
 						$scope.fftypeprice = $scope.ffdetails_data[0].price*1;
 						$('.js-ff-details li').attr('class','sele-li');
 					}else{
+						$scope.ffNum = '1个月';
 						angular.forEach($scope.ffdetails_data,function (item,index) {
-							if(i==index){
-								
+							if(i==index){								
 								// 这里要默认的是一个月的价格，所以索引为1
 								//$scope.ffdetails_data[1] -->这个地方索引为1
 								$scope.fftypeprice =$scope.ffdetails_data[1].price;								
@@ -121,9 +123,11 @@ var A = angular.module('myApp', []);
 					$('.js-select-type-wl li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这里要加判断					
 					if($scope.ffdetails_data_wl.length == 1){
+						$scope.ffNum_wl='按需';
 						$scope.fftypeprice_wl = $scope.ffdetails_data_wl[0].price;						
 						$('.js-ff-details-wl li').attr('class','sele-li');
 					}else{
+						$scope.ffNum_wl = '1个月';
 						angular.forEach($scope.ffdetails_data_wl,function (item,index) {
 							if(i==index){
 								// 这里要默认的是一个月的价格，所以索引为1
@@ -143,9 +147,11 @@ var A = angular.module('myApp', []);
 					$('.js-select-type-yyp li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');
 					//这里是按需的判断
 					if($scope.ffdetails_data_yyp.length==1){
+						$scope.ffNum_yyp='按需';
 						$scope.fftypeprice_yyp = $scope.ffdetails_data_yyp[0].price;	
 						$('.js-ff-details-yyp li').attr('class','sele-li');
 					}else{
+						$scope.ffNum_yyp='1个月';
 						angular.forEach($scope.ffdetails_data_yyp,function(item,index) {
 							if(i==index){
 								// 这里要默认的是一个月的价格，所以索引为1
@@ -203,8 +209,8 @@ var A = angular.module('myApp', []);
 				var oneP_1,oneP_2,oneP_3,oneP_4,oneP_5,oneP_6,oneP_6_detail;
 				 				 				 
 				$scope.daidprice = '';
-				//var ngurl_dd = 'http://cms.docker.sspaas.net/querydata/queryIPBroadBandPriceList';
-				var ngurl_dd = 'http://192.168.10.240:8000/querydata/queryIPBroadBandPriceList';
+				var ngurl_dd = 'http://cms.docker.sspaas.net/querydata/queryIPBroadBandPriceList';
+				//var ngurl_dd = 'http://192.168.10.240:8000/querydata/queryIPBroadBandPriceList';
 				ngAxjx($http,ngurl_dd,data,'daidprice');
 				
 				//这是三个模块的切换
@@ -246,15 +252,12 @@ var A = angular.module('myApp', []);
 				
 				//计算当天时间距离月末的天数
 				var day;
-
 				function timeDateM() {
 					var curTime = new Date().getDate();					
 					day = (30 - curTime) + 1;
 				}
 				timeDateM();
-				
-				
-				
+												
 				//每一步都要走这个的计算
 		
 				function allPrices() {				
@@ -263,9 +266,8 @@ var A = angular.module('myApp', []);
 						var cpuandnc = $scope.cpuprice*1,							
 							Tnum = $scope.Tnum*1,
 							yjsInp = $('#bandwidthId').val()*1;
-							shujuqian = 0.26*yjsInp,  //这个26.26是从后台获取的数据盘1G的价格	
-							fftype = $scope.ffNum == '购置月底'?day/30:$scope.fftypeprice*1;
-						console.log(yjsInp)	;
+							shujuqian = 0.26*yjsInp,  //这个0.26是从后台获取的数据盘1G的价格	
+							fftype = $scope.ffNum == '购置月底'?day/30:$scope.fftypeprice*1;						
 						var yunallZ = parseFloat((cpuandnc + shujuqian) * fftype * Tnum.toFixed(2));
 						$scope.yjsallP = yunallZ.toFixed(2);
 						return ynumber(yunallZ);
@@ -539,14 +541,12 @@ $scope.scrollbar={
 //这是上面定义的方法  在这里执行的;
 	$scope.genal.show();
 	
-	//
+	
 	var sjNUm;
 
 	function getOldNum(ele) {
 		ele.on('focus', function() {
-			sjNUm = $(this).val();
-//			$(this).val('');
-			console.log(sjNUm)
+			sjNUm = $(this).val();			
 		});
 		ele.on('blur', function() {
 			var hanZiXiu = $(this).val();
@@ -562,6 +562,7 @@ $scope.scrollbar={
 	var $yjsInp = $('#bandwidthId'),
 		$wlInp = $('#js-band-wl-inp'),
 		$yypInp = $('#js-band-yyp-inp');
+		
 	getOldNum($yjsInp)
 	getOldNum($wlInp)
 	getOldNum($yypInp)
@@ -986,6 +987,10 @@ function pnumber (pnum) {
 							'<a href="javascript:;" title="删除" ><img src="images/delete.png" class="delete" dele-type="1"/></a>'+						
 							'<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>'+										
 						'</div>'+
+						'<div class="clear">'+
+							'<span>'+$scope.ffNum+'</span>'+
+							'<span>*'+$scope.Tnum+'台</span>'+
+						'</div>'+
 					'</li>');		
 		totalPeice();
 		$yzj_evone = $('.js_yzj_evone');
@@ -1000,7 +1005,7 @@ function pnumber (pnum) {
 	 $Wljion.click(function  () {
 	 	
 	 	if($type_yzj.html() == "￥0.00"){
-	 		alert('请先选购云主机~~~');
+	 		layer.alert('请先选购云主机~~~');
 	 		return;
 	 	}
 	 	$('#js_wl_slide_box').append('<div class="qd_xiaoji_box">'+
@@ -1024,6 +1029,10 @@ function pnumber (pnum) {
 							'<a href="javascript:;" title="删除" ><img src="images/delete.png" class="delete" dele-type="2"/></a>'+						
 							'<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>'+										
 						'</div>'+
+						'<div class="clear">'+
+							'<span>'+$scope.Tnum_wl+'台</span>'+
+							'<span>*'+$scope.ffNum_wl+'</span>'+
+						'</div>'+
 					'</li>')
 	 	totalPeice();
 	 	$wl_evone = $('.js_wl_evone');
@@ -1037,7 +1046,7 @@ function pnumber (pnum) {
 	 	$yyp_evone;
 	 $Yypjion.click(function  () {
 	 	if($type_yzj.html() == "￥0.00"){
-	 		alert('请先选购云主机~~~');
+	 		layer.alert('请先选购云主机~~~');
 	 		return;
 	 	}
 	 	$('#js_yyp_slide_box').append('<div class="qd_xiaoji_box">'+
@@ -1051,13 +1060,17 @@ function pnumber (pnum) {
 							'<div>配置 :</div>'+
 							'<div>'+							
 								'<span>数据盘:</span><span>'+$scope.cpNum+'</span>'+'    '+														
-								'<span>数量 :</span><span>'+$scope.Tnum_wl+'个</span>'+'    '+
+								'<span>数量 :</span><span>'+$scope.Tnum_yyp+'个</span>'+'    '+
 								'<span>付费方式 :</span><span>'+$scope.ffNum_yyp+'</span>'+
 							'</div>'+						
 						'</div>'+
 						'<div class="shop_delete">'+			
 							'<a href="javascript:;  " title="删除" ><img src="images/delete.png" class="delete" dele-type="4"/></a>'+						
 							'<a href="javascript:;" title="去购买"><img src="images/shop.png" alt="" /></a>'+										
+						'</div>'+
+						'<div class="clear">'+
+							'<span>'+$scope.Tnum_yyp+'个</span>'+
+							'<span>*'+$scope.ffNum_yyp+'</span>'+
 						'</div>'+
 					'</li>');
 					
@@ -1078,18 +1091,19 @@ function pnumber (pnum) {
 		if(th.attr('zenga') == 1){
 			//云主机
 			if($scope.Tnum > 4){
-				alert('最大数量要保持在5台以下哦！~~');
+				layer.alert('最大数量要保持在5台以下哦！~~');
 				return;
 			}
 			$scope.Tnum ++;
 			
 			inp.val($scope.Tnum);
+			
 			allPrices();
 		}		
 		if(th.attr('zenga') == 3){
 			// 网络 
 			if($scope.Tnum_wl>9){
-				alert('最大数量要保持在10台以下哦！~~');
+				layer.alert('最大数量要保持在10台以下哦！~~');
 				return;
 			}
 			$scope.Tnum_wl ++;
@@ -1099,7 +1113,7 @@ function pnumber (pnum) {
 		if(th.attr('zenga') == 4){
 			//云硬盘
 			if($scope.Tnum_yyp>9){
-				alert('最大数量要保持在10台以下哦！~~');
+				layer.alert('最大数量要保持在10台以下哦！~~');
 				return;
 			}
 			$scope.Tnum_yyp ++;
@@ -1113,7 +1127,7 @@ function pnumber (pnum) {
 		if(th.attr('jiana') == 1){
 			//云主机
 			if($scope.Tnum <= 1){
-			alert('数量要保持在1台以上哦！~~');
+			layer.alert('数量要保持在1台以上哦！~~');
 			return false;
 		    };	
 			$scope.Tnum --;
@@ -1124,7 +1138,7 @@ function pnumber (pnum) {
 		// 网络
 		if(th.attr('jiana') == 3){			
 			if($scope.Tnum_wl <= 1){
-				alert('数量要保持在1台以上哦！~~');
+				layer.alert('数量要保持在1台以上哦！~~');
 				return false;
 			}
 			$scope.Tnum_wl --;			
@@ -1134,7 +1148,7 @@ function pnumber (pnum) {
 		//云硬盘
 		if(th.attr('jiana') == 4){
 			if($scope.Tnum_yyp<=1){
-				alert('数量要保持在1台以上哦！~~');
+				layer.alert('数量要保持在1台以上哦！~~');
 				return false;
 			}
 			$scope.Tnum_yyp --;
@@ -1161,7 +1175,7 @@ function pnumber (pnum) {
 	$('#jsTsBox').on('blur',function () {
 		
 		if($(this).val() == "0"){
-			alert('数量要保持在1台以上哦！~~');
+			layer.alert('数量要保持在1台以上哦！~~');
 			$('#jsTsBox').val(1);
 			return;
 		}
@@ -1182,7 +1196,7 @@ function pnumber (pnum) {
 	});
 	$('#jsWTsBox').on('blur',function () {
 		if($(this).val() == "0"){
-			alert('数量要保持在1台以上哦！~~');
+			layer.alert('数量要保持在1台以上哦！~~');
 			$('#jsWTsBox').val(1);
 			return;
 		}
@@ -1201,7 +1215,7 @@ function pnumber (pnum) {
 	});	
 	$('#jsYpTsBox').on('blur',function () {
 		if($(this).val() == "0"){
-			alert('数量要保持在1台以上哦！~~');
+			layer.alert('数量要保持在1台以上哦！~~');
 			$('#jsYpTsBox').val(1);
 			return;
 		}
@@ -1218,4 +1232,51 @@ $(this).index==0?$scope.catter='Linux':$scope.catter='Windows';
 $(this).addClass('sele-li').siblings().removeClass('sele-li');
 })
 
+
+//点击重置按钮
+//云主机的重置按钮
+$('#yunAgain').click(function() {
+	$('#jsCpuBox li:first').click();
+	$('#yunAgainWidth').css('width','0%');
+	$('#yunAgainLeft').css('left','0%');
+	$('#bandwidthId').val(0);
+	$('.js-select-type li:first').click();
+	$('#jsFfBox li:nth-child(2)').click();
+	$('#jsTsBox').val(1);
+	$scope.Tnum=1;
+	allPrices();
+});
+//网络的重置按钮
+$('#wangAgain').click(function  () {
+	$('#wangAgainWidth').css('width','0%');
+	$('#wangAgainLeft').css('left','0%');
+	$('#js-band-wl-inp').val(1);
+	$('.js-select-type-wl li:first').click();
+	$('#jsFfBoxThree li:nth-child(2)').click();
+	$('#jsWTsBox').val(1);
+	$scope.Tnum_wl = 1;
+	allPrices();
+});
+
+//云硬盘的重置按钮
+$('#panAgain').click(function() {
+	$('#panAgainWidth').css('width','0%');
+	$('#panAgainLeft').css('left','0%');
+	$('#js-band-yyp-inp').val(0);
+	$('.js-select-type-yyp li:first').click();
+	$('#jsFfBoxFour li:nth-child(2)').click();
+	$('#jsYpTsBox').val(1);
+	$scope.Tnum_yyp = 1;
+	allPrices();
+});
+
+
+
+
+
+
+
+
 }])
+
+
