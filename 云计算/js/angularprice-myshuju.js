@@ -43,6 +43,8 @@ var A = angular.module('myApp', []);
 					// 核数的效果class切换
 					$scope.hNum = $scope.cpudataList[i].cpuName;
 					$('.js-select li').eq(i).addClass('sele-li').siblings().removeClass('sele-li');					
+					$('.js-selef li').eq(0).addClass('sele-li').siblings().removeClass('sele-li');
+					console.log(123);
 					angular.forEach($scope.cpudataList,function (item,index) {
 						if(i==index){
 							$scope.cpuprice =$scope.cpudataList[i].gnum[0].price;
