@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+
+	<body ng-controller="myCtrl">
+		<select ng-model="xxx" ng-options="one.group for one in myOptions" ng-change="changeff()">
+  			<option value="">请选择</option>
+  		</select>
+  		<select ng-model="xxxa" ng-options="one.op for one in ffdetails_list" ng-change="changeffdeta()">
+  			<option value="">请选择</option>
+  		</select>
+		<p>总价格 :  {{price}}</p>
+	</body>
+	<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	var A = angular.module('myApp', []);
+		A.controller('myCtrl', ['$scope', function($scope) {
+		    $scope.myOptions = [
+	        {   "id": 1,
+	            "group": "按需",
+	            "detail": [{op:'按需',opssj:1}]
+	        },
+	        {   "id": 2,
+	            "group": "月付",
+	            "detail": [{op:'1个月',opssj:1},{op:'2个月',opssj:2},{op:'3个月',opssj:3}]
+	        },
+	        {
+	            "id": 3,
+	            "group": "年付",
+	            "detail":[{op:'1年',opssj:10},{op:'2年',opssj:19},{op:'3年',opssj:27}]
+	        }]
+		    var a = $scope.myOptions['0'].group;
+		    $scope.xxx = a;
+		    $scope.ffdetails_list = null;
+		    $scope.changeff = function () {		    	 
+		    	$scope.ffdetails_list = $scope.myOptions[$("select option:selected").eq(0).val()].detail; 
+		   		priceAll(0);//这个地方传0是因为选了前面的,后面的自动修改为[请选择]这时候的价格应该为0(0*eve = 0)
+		    }
+		     $scope.changeffdeta = function () {		    	 
+		    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(1).val()].opssj;
+//		    	console.log($("select option:selected").eq(1).val(),$scope.ffdenum)
+		    	priceAll($scope.ffdenum);
+		    }
+		     //两个方法里面的$("select option:selected")后面都带有eq()是因为可能页面中有很多select选中的状态
+		    
+		    $scope.price = 0; //总价格
+		    function priceAll(num) {
+		    	var equAll = 2000;  //所选设备的价格(没选计费方式)
+		    	 $scope.price = equAll*num;
+		    }
+		}]);
+		
+	</script>
+</html>
