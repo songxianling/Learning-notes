@@ -19,13 +19,14 @@
 	<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-	var A = angular.module('myApp', []);
-		A.controller('myCtrl', ['$scope', function($scope) {
+	angular.module('myApp', [])
+		.controller('myCtrl', ['$scope', function($scope) {
 		    $scope.myOptions = [
 	        {   "id": 1,
 	            "group": "按需",
 	            "detail": [{op:'按需',opssj:1}]
 	        },
+	        
 	        {   "id": 2,
 	            "group": "月付",
 	            "detail": [{op:'1个月',opssj:1},{op:'2个月',opssj:2},{op:'3个月',opssj:3}]
