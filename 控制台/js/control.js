@@ -1,5 +1,6 @@
 
 // 折页
+
 $(".zong").click(function(){	
 
     $(this).addClass("cur").next().slideToggle(500).parent().siblings().children(".zong").removeClass("cur").next().slideUp(500);

@@ -1,0 +1,209 @@
+*{
+	font-family: "microsoft yahei";
+	-webkit-user-select: none;
+}
+.newhard{
+	width: 100%;
+	height: 100%;
+	padding-top: 50px;
+}
+.newhard .newhard_con{
+	padding-left: 200px;
+}
+.newhard .newhard_con .hard_up{
+	width: 100%;
+	height: 39px;
+	position: fixed;
+	border: 1px dashed #d6e0e8;
+	box-sizing: border-box;
+	padding:14px 30px 0 ;
+	cursor: pointer;
+	z-index: 99;
+	background: #fff;
+}
+
+.newhard .newhard_con .hard_under{
+	position: relative;
+	top: 0;
+	left: 0;	
+	padding-top: 39px;
+	box-sizing: border-box;
+	height: 100%;
+}
+.newhard .newhard_con .hard_under .hard_under_left{
+	padding: 0 50px;	
+	min-width: 830px;
+	margin-right: 375px;
+	box-sizing: border-box;
+}
+.newhard .newhard_con .hard_under .hard_under_left .hard_ming{
+	padding-top: 30px;
+	margin-bottom: 10px;
+}
+.newhard .newhard_con .hard_under .hard_under_left .hard_ming .hard_label{
+	 width: 80px;
+    font-size: 14px;
+    color: #3e3e3e;
+    box-sizing: border-box;
+    font-weight: bold;
+    float: left;
+    line-height: 20px;
+}
+.newhard .newhard_con .hard_under .hard_under_left .hard_yd{
+	margin-left: 85px;
+	position: relative;
+}
+
+/*数据盘*/
+.slider{	
+	height:32px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	background: #f7f8fa;
+	cursor: pointer;
+	border-bottom: 1px solid #dddfe3;
+}
+.slider-track{
+	height: 16px;
+	width: 100%;
+	margin-top: -7px;
+	top: 50%;
+	left: 0;	
+	position: absolute;
+	cursor: pointer;
+	background-color: #e0e0e0;
+	background-repeat: repeat-x;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer;	
+}
+.slider-selection{
+	height: 100%;
+    top: 0;
+    bottom: 0;    
+    position: absolute;
+    background-color: #ECDB0F;
+    box-sizing: border-box;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.slider-handle{
+	margin-left: -9px;  
+    position: absolute;
+    width: 25px;
+    height: 25px;   
+    background: url(../images/kedu.png) no-repeat;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.mini{
+	margin-left: 15px;
+    width: 40px;        
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding:8px;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    line-height: 16px;
+    color: #555;
+    vertical-align: middle;  
+}
+
+.newhard .newhard_con .hard_under .hard_under_left .hard_ming .con_background{
+	width: 450px;
+	padding: 20px;
+	background: #ccc;
+	font-size: 12px;
+	border-radius: 3px;
+}
+/*合计费用右边*/
+.newhard .newhard_con .hard_under .hard_under_right{
+	position: fixed;
+    right: 260px;
+    top: 89px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 6;
+    margin-right: 10px;
+    background: #f0f8ff;
+}
+.newhard .newhard_con .hard_under .hard_under_right .hard_right_gg{
+	padding:26px 0 15px 35px ;
+	border-bottom: 1px dashed #67a5fd;
+	font-size: 14px;
+}
+.hard_under .hard_under_right .hard_right_gg .hard_right_yd{
+	padding-bottom: 20px;
+}
+
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(1){
+	position: relative;
+ 	width: 90px;
+ 	height: 26px;
+ 	margin-top: 20px;
+ 	font-size: 14px;
+ 	display: inline-block;
+}
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(1) input{
+ 	display: inline-block;
+ 	width: 100%;
+ 	height: 100%;
+ 	text-align: center;
+ }
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(1) span{
+ 	position: absolute;
+ 	top:5px;
+ 	right: 2px; 	
+ }  
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(2){
+ 	width: 15px;
+ 	height: 26px;
+ 	border: 1px solid #dddfe3;
+ 	display:inline-block ;
+ 	margin-left: 15px; 	
+ 	vertical-align: middle;
+ }
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(2) span{
+ 	display: block; 	
+ 	width: 100%;
+ 	height: 50%;
+ 	line-height: 100%;
+ 	text-align: center;
+ 	-webkit-user-select: none;
+ 	cursor: pointer;
+ }  
+.hard_right_gg .hard_right_yd .price_three_nine div:nth-of-type(2) span:active{
+ 	background: #ccc;
+ 	color: #fff;
+ }
+
+
+/*合计费用*/
+.hard_under_right .hard_right_gg .add_up{
+		padding: 10px 0;
+}
+.hard_under_right .hard_right_gg .add_up .add_up_lab{
+	font-size: 14px;
+	width: 100px;
+	line-height: 30px;
+}
+.hard_under_right .hard_right_gg .add_up .add_money{
+	margin-left: 120px;
+	 display: inline-block;
+}
+.hard_under_right .hard_right_gg .add_up .add_money_tal{
+	font-size: 20px;
+    color: #4074e1;
+    font-weight: 600;
+   
+}

@@ -2,12 +2,9 @@
 	font-family: "microsoft yahei";
 	-webkit-user-select: none;
 }
-body{
-	background: #ffffff;
-}
 .new_build{
 	width: 100%;
-height: 100%;
+    height: 100%;
 	padding-top:50px;
 	background: #ffffff;
 }
