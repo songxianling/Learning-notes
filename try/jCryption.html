@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>用户名: <input type="text" class="uname"/></div>
+		<div>密码: <input type="password" class="pwd" /></div>
+		<div class="btn">点点</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery_jcryption_3_1_0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">	
+		var $btn = $('.btn');
+		$btn.on('click',function () {
+			var _data = {
+			username:$.trim($('.uname').val()),
+			password:$.trim($('.pwd').val())
+		}
+			var encryptedString = $.jCryption.encrypt($.param(_data), "");
+			console.log(encryptedString)
+		});
+	</script>
+</html>
