@@ -1,13 +1,11 @@
-
+$(document).ready(function(){
 // 折页
+	$(".computer").click();
+var $zongList = $(".zong")
+$zongList.click(function(){	
 
-$(".zong").click(function(){	
-
-    $(this).addClass("cur").next().slideToggle(500).parent().siblings().children(".zong").removeClass("cur").next().slideUp(500);
-
-    $('.second').on('click',"li",function(){
-    	$(this).addClass("zhe_change").siblings().removeClass("zhe_change")
-    })
+    $(this).addClass("cur").next().slideToggle(500)
+    .parent().siblings().children(".zong").removeClass("cur").next().slideUp(500);
 
     var $point=$('.one:eq(1)').children(".second");
     $point.on("click","li",function(){
@@ -15,20 +13,31 @@ $(".zong").click(function(){
 		$('.control_main_right>div').eq(index).show().siblings().hide();
     })
 
-   	$(this).children(".control_main_center_tu").toggleClass('control_img').siblings().removeClass("control_img");
-    return false;
+   //	$(this).children(".control_main_center_tu").toggleClass('control_img').siblings().removeClass("control_img");
+    var $arrow = $(this).find(".control_main_center_tu");
+    if($arrow.hasClass('control_img')){
+    	$arrow.removeClass("control_img");
+    }else{
+    	$zongList.find(".control_main_center_tu").removeClass('control_img');
+    	$arrow.addClass('control_img');
+    }
+    
  })
 
+    $('.second').on('click',"li",function(){
+    	$(this).addClass("zhe_change").siblings().removeClass("zhe_change")
+    });
+
 // 折页下拉
-var flag = true;
-$('.control_main_top').on('click',function(){
-	if (flag == true) {
-			$('.xialia').slideDown(500);
-	}else{
-			$('.xialia').slideUp(500);
-	}
-		flag = !flag;
-})
+//var flag = true;
+//$('.control_main_top').on('click',function(){
+//	if (flag == true) {
+//			$('.xialia').slideDown(500);
+//	}else{
+//			$('.xialia').slideUp(500);
+//	}
+//		flag = !flag;
+//})
 
 $('.xialia ul li').on("click",function(){
 	Ynum1 = $(this).html();
@@ -112,25 +121,6 @@ $('.master_xiala ul li').on("click",function(){
 	$('.master_xiala').slideUp(500);
 })
 
-// 更多下拉
-$('.master_la').on('click',function(){
-	$('.master_join').slideToggle(500);
-	return false;
-});
-$(document).on("click",function(e){
-	var ele = e.target;
-	if(ele.id == 'master_join'){
-		return false;
-	}else{
-		$('.master_join').slideUp(500);
-	}
-})
-
-$('.master_join ul li').on("click",function(){
-	Ynum1 = $(this).html();
-	$('.master_la').html(Ynum1)
-	$('.master_join').slideUp(500);
-})
 
 
 $(".control_btn").on("click","li",function(event){
@@ -150,3 +140,6 @@ $(".control_btn").on("click","li",function(event){
 // $(".control_btn").on("click","li:eq(0)",function(){
 // 	$('')
 // })
+
+
+})

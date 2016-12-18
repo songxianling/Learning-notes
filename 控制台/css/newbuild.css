@@ -191,10 +191,7 @@
 	margin-top:12px ;
 	color: #5c5c5c;
 }
-.new_step_trol .new_wai_p{
-	margin-top:4px ;
-	color: #5c5c5c;
-}
+
 .new_step_trol p .only_i{
 	display: inline-block;
 	width: 10px;
@@ -281,12 +278,11 @@
 
 /*这里是付费方式的 接63行*/
 .new_under_right .new_right_gg .method .method_sele{
-	display: inline-block;
 	margin-left: 100px;
 }
 .new_under_right .new_right_gg .method .method_sele_price{
-	width: 130px;
-	height: 25px;
+	width: 160px;
+	height: 30px;
 	border: 1px solid #ccc;
 }
 
