@@ -1,6 +1,7 @@
 //模拟数据
-angular.module('sspaas', [])
-.controller('myCtrl', ['$scope', function($scope) {
+sspaas = angular.module('sspaas',[]);
+sspaas.controller('myCtrl', ['$scope','$rootScope','$http', function($scope,$rootScope,$http){
+
 	$scope.cpudataList = [ //仿造数据
 					{
 						cpuName: '1',						
@@ -23,6 +24,7 @@ angular.module('sspaas', [])
 					}
 				];
 //核数点击的时候
+
 $scope.cpuprice = 39; // 默认核数对应G数的价格 （1核1G）
 $scope.selectFun = function  (i) {
 	$scope.dataInfo = $scope.cpudataList[i].gnum;
@@ -30,6 +32,7 @@ $scope.selectFun = function  (i) {
 	$('#jsCpuBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
 	 angular.forEach($scope.cpudataList,function  (item, index) {
 	 	if(i==index){
+	 		
 	 		$scope.cpuprice = $scope.dataInfo[0].price;
 	 	}
 	 });
@@ -53,68 +56,61 @@ $scope.seleF = function  (i) {
 	$scope.optionArr=[
 		{
 			"amode":"月付",
-			"ffid":"0",
 			"gnum":[
 				{
 			        "payTime": "1个月",
-			        "ffdetaid":"1",
+			        "ffdetaid":"0",
 			        "price": "1"
 		        },
 		         {
 			        "payTime": "2个月",
-			        "ffdetaid":"2",
+			        "ffdetaid":"1",
 			        "price": "2"
 		        },
 		         {
 			        "payTime": "3个月",
-			        "ffdetaid":"3",
+			        "ffdetaid":"2",
 			        "price": "3"
 		        },
 		         {
 			        "payTime": "4个月",
-			        "ffdetaid":"4",
+			        "ffdetaid":"3",
 			        "price": "4"
 		        },
 		         {
 			        "payTime": "5个月",
-			        "ffdetaid":"5",
+			        "ffdetaid":"4",
 			        "price": "5"
 		        },
 		         {
 			        "payTime": "6个月",
-			        "ffdetaid":"6",
+			        "ffdetaid":"5",
 			        "price": "6"
 		        },
 		         {
 			        "payTime": "7个月",
-			        "ffdetaid":"7",
+			        "ffdetaid":"6",
 			        "price": "7"
 		        },
 		         {
 			        "payTime": "8个月",
-			        "ffdetaid":"8",
+			        "ffdetaid":"7",
 			        "price": "8"
 		        },
 		         {
 			        "payTime": "9个月",
-			        "ffdetaid":"9",
+			        "ffdetaid":"8",
 			        "price": "9"
-		        },
-		         {
-			        "payTime": "10个月",
-			        "ffdetaid":"10",
-			        "price": "10"
 		        },
 		        {
 					"payTime":"购置月末",
-					"ffdetaid":"0",
+					"ffdetaid":"9",
 					"price":"0.05"
 				}
 			]
 		},
 		{
 			 "amode": "年付",
-			 "ffid":"1",
 			 "gnum" : [
 			 	{
 			 		"payTime": "1年",
@@ -135,7 +131,6 @@ $scope.seleF = function  (i) {
 		},
 		{
 			"amode":"按需",
-			"ffid":"2",
 			"gnum":[
 				{
 					"payTime":"小时",
@@ -145,21 +140,28 @@ $scope.seleF = function  (i) {
 			]
 		}
 	]
+  
+  var ffobj = {
+  	f1:$scope.optionArr[0].amode,
+  	f2:$scope.optionArr[1].amode,
+  	f3:$scope.optionArr[2].amode,
+  }
 	
-	  var a = $scope.optionArr['0'].amode;
-		    $scope.xxx = '月付';
-		  
-		    $scope.ffdetails_list = $scope.optionArr[0].gnum;
-			$scope.ffdenum = '1';
-		    $scope.changeff = function () {
-		    	$scope.ffdetails_list = $scope.optionArr[$("select option:selected").eq(3).val()].gnum; 
-		  		$scope.ffdenum = $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-		    	allPrices()
-		    }
-		    $scope.changeffdeta = function () {	
-		    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-				allPrices();
-		    }
+  var a = $scope.optionArr['0'].amode;	  
+	    $scope.ffdetails_list = $scope.optionArr[0].gnum;
+		$scope.ffdenum = '1';
+	    $scope.changeff = function ()  {
+	    	var fftext = $("select option:selected").eq(3).html(),
+	    		n = 0;
+	    	n = fftext == ffobj.f1 ? 0 : fftext == ffobj.f2 ? 1 : 2;
+	    	$scope.ffdetails_list = $scope.optionArr[n].gnum; 
+	  		$scope.ffdenum = $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+	    	allPrices();
+	    }
+	    $scope.changeffdeta = function () {	
+	    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+			allPrices();
+	    }
 //模拟镜像的数据
 $scope.imagesImg = [
 	{
@@ -253,15 +255,26 @@ $scope.imagesImg = [
 	}
 ]
 
+var jxobj = {
+	o1:$scope.imagesImg[0].imag,
+	o2:$scope.imagesImg[1].imag,
+	o3:$scope.imagesImg[2].imag,
+	o4:$scope.imagesImg[3].imag,
+}
+
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
 	$scope.jingFF = function  () {
-		$scope.jxdetails_list = $scope.imagesImg[$("select option:selected").eq(0).val()].inum;
+		var opse = $("select option:selected").eq(0).html();
+			n = 0;
+		n = opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : opse == jxobj.o3 ? 2 : 3;
+		$scope.jxdetails_list = $scope.imagesImg[n].inum;
 	};
-	$scope.jingChange = function  () {
-		$scope.jxdenum = $scope.jxdetails_list[$("select option:selected").eq(1).val()].details;
-	}
+	$scope.jingFF();
+//	$scope.jingChange = function  () {
+//		$scope.jxdenum = $scope.jxdetails_list[$("select option:selected").eq(1).val()].details;
+//	}
 
 //云主机主机名，系统，配置页面中的数据模拟
 $scope.cloudhost=[
@@ -307,11 +320,9 @@ $scope.cloudhost=[
 ]
 
 
-//点击全选
-
  
 
-$('.Aall').click(function  () {
+$('#js-Aall').click(function  () {
 	if($(this).attr('isCed')==='true'){
 		$('.master_list_main').find('.checkYS').removeAttr('checked');
 		$(this).removeAttr('isCed');
@@ -344,12 +355,11 @@ $('.Aall').click(function  () {
 	}
 	
 	
-	//这是每个页面的滚动条的方法;				
+//这是每个页面的滚动条的方法;				
 $scope.genal={
 	show:function(fn){		
 		$scope.genal.sto();
 		$scope.genal.ips();
-		$scope.genal.hard();
 	},
 	sto:function(){
 		var btn = $(".unfold:eq(0) .silbtn");
@@ -363,7 +373,6 @@ $scope.genal={
 		$scope.scrollbar.assign(0,sil,0);
 		var flag = false;
 		slider.mousedown(function(e) {
-			
 			var track = $(".unfold:eq(0) .slider-track");
 			var x = track.offset().left,px = e.pageX,w =parseInt(slider.css("width"));
 			var a = px-x,per=0;
@@ -396,6 +405,7 @@ $scope.genal={
 				$scope.scrollbar.scro(scrol,bar,per);
 				$scope.scrollbar.assign(per,sil,0);
 			}
+			
 		});
 	    mini.blur(function(){
 			if(mini.val()>5000){
@@ -422,6 +432,7 @@ $scope.genal={
 			var track = $(".unfold:eq(1) .slider-track");
 			var x = track.offset().left,px = e.pageX,w =parseInt(slider.css("width"));
 			var a = px-x,per=0;
+			
 			if(a>0&&a<w){
 				per = a/w;
 			}else if(a<=0){
@@ -467,67 +478,7 @@ $scope.genal={
 			$scope.scrollbar.assign(per,300,1);
 			
 		});
-		
-	},
-	hard:function(){
-		var btn = $(".unfold:eq(2) .silbtn");
-		var des = $(".unfold:eq(2) .des")
-		var silHard = 5000;
-		var scrol = $(".unfold:eq(2) .round");
-		var bar = $(".unfold:eq(2) .slider-selection");
-		var slider = $(".unfold:eq(2) .slider");
-		var mini = $(".unfold:eq(2) .mini");
-		$scope.scrollbar.init(scrol,bar);
-		$scope.scrollbar.assign(0,silHard,2);
-		var flag = false;
-		slider.mousedown(function(e) {
-			var track = $(".unfold:eq(2) .slider-track");
-			var x = track.offset().left,px = e.pageX,w =parseInt(slider.css("width"));
-			var a = px-x,per=0;
-			if(a>0&&a<w){
-				per = a/w;
-			}else if(a<=0){
-				per =0;
-			}else if(a>=w){
-				per =1;
-			}
-			$scope.scrollbar.scro(scrol,bar,per);
-			$scope.scrollbar.assign(per,silHard,2);
-			flag = true;
-		    });
-		slider.mouseup(function(e) {
-			flag = false;
-		    });
-		slider.mousemove(function(e) {
-			
-			var track = $(".unfold:eq(2) .slider-track");
-			var x = track.offset().left,px = e.pageX,w =parseInt(slider.css("width"));
-			var a = px-x,per=0;
-			if(a>0&&a<w){
-				per=a/w;
-			}else if(a<=0){
-				per=0;
-			}else if(a>=w){
-				per=1;
-			}
-			if(flag){				
-				$scope.scrollbar.scro(scrol,bar,per);
-				$scope.scrollbar.assign(per,silHard,2);
-			}
-		});
-	    mini.blur(function(){
-			if(mini.val()>5000){
-				mini.val(5000);
-			}
-			if(mini.val()<0){
-				mini.val(0);
-			}
-			var per = mini.val()/5000;
-			$scope.scrollbar.scro(scrol,bar,per);
-			$scope.scrollbar.assign(per,silHard,2);
-		});
-	},
-	
+	}
 };
 
 $scope.scrollbar={
@@ -554,23 +505,102 @@ $scope.scrollbar={
 		if(index==1){
 			var price =Math.round(per*max);
 			pris.children("div").remove();
+			if(price == 0){
+				price = 1;
+			}
 			mini.attr('value',price);
 			$scope.dkNum = price;
 			allPrices();
 			
 		}
-		if(index==2){			
-			var price =Math.round(per*max);
-			pris.children("div").remove();			
-			mini.attr('value',price);
-			$scope.cpNum = price;
-			allPrices();
-		}
 	
 	}
 }
 //这是上面定义的方法  在这里执行的;
-	$scope.genal.show();
+$scope.genal.show();
+
+// 检查带宽不能小于 1
+var $daikinp = $('#daik-inp');
+
+$daikinp.on('input',function () {
+	if($(this).val()*1 < 1 && $(this).val()*1 !==0){
+		$(this).val(1);
+		$(this).focus();
+	}
+});	
+	
+//这里是带宽模拟数据
+$scope.daidprice = [
+    {
+        "1":{
+            "createdTime":"2016-11-16",
+            "growRate":0,
+            "id":"89c62ff163bc4139bcfabbcef1ed4b8c",
+            "maxIpBroadBand":1,
+            "minIpBroadBand":1,
+            "minIpBroadBandPrice":20,
+            "updatedTime":"2016-11-16"
+        },
+        "2":{
+            "createdTime":"2016-11-22",
+            "growRate":0,
+            "id":"ccc31eb330474c64b014d2c8fcddab9f",
+            "maxIpBroadBand":2,
+            "minIpBroadBand":2,
+            "minIpBroadBandPrice":41,
+            "updatedTime":"2016-11-22"
+        },
+        "3":{
+            "createdTime":"2016-11-22",
+            "growRate":0,
+            "id":"b5d43d4aa5cd4a199c0c264589bc062d",
+            "maxIpBroadBand":3,
+            "minIpBroadBand":3,
+            "minIpBroadBandPrice":63,
+            "updatedTime":"2016-11-22"
+        },
+        "4":{
+            "createdTime":"2016-11-22",
+            "growRate":0,
+            "id":"dfbb7d5f188743b396ed0feca6817411",
+            "maxIpBroadBand":4,
+            "minIpBroadBand":4,
+            "minIpBroadBandPrice":86,
+            "updatedTime":"2016-11-22"
+        },
+        "5":{
+            "createdTime":"2016-11-22",
+            "growRate":0,
+            "id":"ce02b3f028fd4a1998151345fb10e54e",
+            "maxIpBroadBand":5,
+            "minIpBroadBand":5,
+            "minIpBroadBandPrice":112,
+            "updatedTime":"2016-11-22"
+        },
+        "6":{
+            "createdTime":"2016-11-16",
+            "growRate":71,
+            "id":"aacc18e0b04644158ccc2630be11a5c4",
+            "maxIpBroadBand":300,
+            "minIpBroadBand":6,
+            "minIpBroadBandPrice":112,
+            "updatedTime":"2016-11-16"
+        }
+    }
+]
+var oneP_1, oneP_2, oneP_3, oneP_4, oneP_5, oneP_6, oneP_6_detail;
+angular.forEach($scope.daidprice, function(item, index) {
+			oneP_1 = item['1']['minIpBroadBandPrice'];
+			oneP_2 = item['2']['minIpBroadBandPrice'];
+			oneP_3 = item['3']['minIpBroadBandPrice'];
+			oneP_4 = item['4']['minIpBroadBandPrice'];
+			oneP_5 = item['5']['minIpBroadBandPrice'];
+			oneP_6 = item['6']['minIpBroadBandPrice'];
+			oneP_6_detail = item['6']['growRate'];
+		})
+
+
+//----------------------------------------------------------------------------------------------------------
 	
 	//点击增加类
 	var isg = true;
@@ -579,6 +609,7 @@ $scope.scrollbar={
     		var that = $(this);
     		that.addClass('biao_button_active').siblings().removeClass('biao_button_active');
     		that.index() == 0 ?$('.wai_net_ip').show() : $('.wai_net_ip').hide();
+    		that.index() == 0 ?$('.no_buy').hide() : $('.no_buy').show();
     		that.index() == 0 ?isg = true : isg = false;
     		allPrices();
     	})
@@ -595,46 +626,75 @@ $scope.scrollbar={
 	function allPrices () {
 		var daik = 0,
 			cpuandnc = $scope.cpuprice*1,
-//			Tnum = $scope.Tnum*1,
 			yjsInp = $('#bandwidthId').val()*1;
 			shujuqian = 0.26*yjsInp;  //这个0.26是从后台获取的数据盘1G的价格	
 //			fftype = $scope.ffNum == '购置月底'?day/30:$scope.fftypeprice*1;	
 			fftype = $scope.ffdenum,
-			Tnum = 1;
+			Tnum = $('#jsTsBox').val();
 		if(isg){
 			var daik_inp = $.trim($('#daik-inp').val())*1;
 			if(daik_inp == 1){
-//				dkzong = oneP_1;
-				dkzong = 20;
+				dkzong = oneP_1;
 			}else if(daik_inp == 2){
-//				dkzong = oneP_2;
-				dkzong = 40;
+				dkzong = oneP_2;
 			}else if(daik_inp == 3){
-//				dkzong = oneP_3;
-				dkzong = 60;
+				dkzong = oneP_3;
 			}else if(daik_inp == 4){
-//				dkzong = oneP_4;
-				dkzong = 80;
+				dkzong = oneP_4;
 			}else if(daik_inp == 5){
-//				dkzong = oneP_5;
-				dkzong = 100;
+				dkzong = oneP_5;
 			}else{
-//				dkzong = oneP_6*1 + (daik_inp-5) * oneP_6_detail;
-				dkzong = 200;
+				dkzong = oneP_6*1 + (daik_inp-5) * oneP_6_detail;			
 			}
 		}else{
 			dkzong = 0;
 		}
 //		
-		var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum.toFixed(2));
-//		$scope.yzjallP = yunallZ.toFixed(2);
+		var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
+		//$scope.yzjallP = yunallZ.toFixed(2);
 		$('#allPrice').html(yunallZ.toFixed(2)+'元');
-//		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype)
+//		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
 	}
+
+
 	
+//台数的增加
+ function jiaNum (inp,th) {
+ 	var tval = inp.attr('value');
+ 	if(tval > 100){
+ 		alert('最大的数量保持在100台以内');
+ 		return;
+ 	}
+ 	tval ++ ;
+ 	inp.attr('value',tval);
+ 	allPrices();
+ 	th.addClass('du_li').siblings().removeClass('du_li');	
+ }
+//减少
+function jianNum (inp,th) {
+	var tval = inp.attr('value');
+ 	if(tval <= 1){
+ 		alert('最大的数量保持在100台以内');
+ 		return;
+ 	}
+ 	tval -- ;
+ 	inp.attr('value',tval);
+ 	allPrices();
+	th.addClass('du_li').siblings().removeClass('du_li');	
+}
+//点击执行增加和减少的方法
+var $jsYrisen = $('#jsYrisen');
+var	$jsYreduce = $('#jsYreduce');
 	
-	
-	
-	
-	
+$jsYrisen.click(function  () {
+	jiaNum($('#jsTsBox'),$(this));	
+});
+$jsYreduce.click(function  () {
+	jianNum($('#jsTsBox'),$(this));	
+});
+
+
+
+
+
 }]);

@@ -43,6 +43,15 @@
 	background: rgb(240, 248, 255);
     padding-bottom: 10px;
     padding-left: 22px;
+    z-index: 111;
+}
+.no_buy{
+	background: rgb(240, 248, 255);
+    padding: 22px;
+	position: relative;
+	color: #65a4fd;
+	font-weight: bold;
+	font-size: 14px
 }
 .new_under_right{
 	position: fixed;
@@ -112,7 +121,10 @@
  	color: #fff;
  }
 
-
+.new_under_right .new_right_gg .new_right_yd .price_three_nine .du_li{
+	background: #358bf2;
+	color: #fff;
+}
 
 
 
@@ -304,4 +316,19 @@
     color: #4074e1;
     font-weight: 600;
    
+}
+.new_under_right .new_right_gg .add_up .get_now{
+	margin-left: 150px;
+	display: inline-block;
+    text-align: center;
+  
+}
+.new_under_right .new_right_gg .add_up .get_now .get_new_in{
+	font-size: 14px;
+	  width: 130px;
+    padding: 15px;
+    background: #358bf2;
+    border-radius: 10px;
+    color: #fff;
+      cursor: pointer;
 }

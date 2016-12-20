@@ -28,16 +28,6 @@ $zongList.click(function(){
     	$(this).addClass("zhe_change").siblings().removeClass("zhe_change")
     });
 
-// 折页下拉
-//var flag = true;
-//$('.control_main_top').on('click',function(){
-//	if (flag == true) {
-//			$('.xialia').slideDown(500);
-//	}else{
-//			$('.xialia').slideUp(500);
-//	}
-//		flag = !flag;
-//})
 
 $('.xialia ul li').on("click",function(){
 	Ynum1 = $(this).html();
@@ -136,10 +126,6 @@ $(".control_btn").on("click","li",function(event){
 		alert("nishaya")
 	};
 })
-
-// $(".control_btn").on("click","li:eq(0)",function(){
-// 	$('')
-// })
 
 
 })
