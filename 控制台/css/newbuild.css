@@ -287,7 +287,13 @@
     color: #555;
     vertical-align: middle;  
 }
-
+/*这是input框type类型是number的  里面会有上下箭头*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+input[type="number"]{-moz-appearance:textfield;}
 /*这里是付费方式的 接63行*/
 .new_under_right .new_right_gg .method .method_sele{
 	margin-left: 100px;
@@ -306,22 +312,21 @@
 	font-size: 14px;
 	width: 100px;
 	line-height: 30px;
+	float: left;
 }
 .new_under_right .new_right_gg .add_up .add_money{
-	margin-left: 120px;
-	 display: inline-block;
+	display: inline-block;
+	float: right;
 }
 .new_under_right .new_right_gg .add_up .add_money_tal{
 	font-size: 20px;
     color: #4074e1;
     font-weight: 600;
-   
 }
 .new_under_right .new_right_gg .add_up .get_now{
 	margin-left: 150px;
 	display: inline-block;
     text-align: center;
-  
 }
 .new_under_right .new_right_gg .add_up .get_now .get_new_in{
 	font-size: 14px;

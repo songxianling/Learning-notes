@@ -239,7 +239,7 @@
 					<li>到期时间</li>
 					<li>登录信息</li>
 				</ul>
-				<ul class="master_list_main checkYS" style="padding-top:20px;"ng-repeat="onedata in cloudhost";>
+				<ul class="master_list_main checkYS" style="padding-top:20px;"ng-repeat="onedata in cloudhost[0].onedata";>
 					<li><input type="checkbox" class="checkYS" name="btSelectItem"></li>
 					<li>{{onedata.zhujiming}}</li>
 					<li>{{onedata.xitong}}</li>
@@ -259,16 +259,22 @@
 			<div class="control_data_bottom">
 				<p class="left gdan">
 					工单: 
-					<span>1</span>到<span>10</span><i></i>
-					总共<i></i> <span>19</span>/条数据
-					<i></i><i></i>共: <span>2</span>页
+					<span>{{cloudhost[0].firstNum}}</span>
+					到
+					<span>{{cloudhost[0].lastNum}}</span>
+					<i></i>
+					总共
+					<i></i>
+					<span>{{cloudhost[0].commonNum}}</span>/条数据
+					<i></i>
+					<i></i>共: <span>{{cloudhost[0].zongPage}}</span>页
 				</p>
 				<div class="control_btn right">
 					<ul>
-						<li id="indexpage">首页</li>
-						<li id="prepage">上一页</li>
-						<li id="nextpage" >下一页</li>
-						<li style="width:25.2%;" id="lastpage">尾页</li>
+						<li id="indexpage">{{cloudhost[0].firstPage}}</li>
+						<li id="prepage">{{cloudhost[0].upPage}}</li>
+						<li id="nextpage" >{{cloudhost[0].underPage}}</li>
+						<li style="width:25.2%;" id="lastpage">{{cloudhost[0].lastPage}}</li>
 					</ul>
 				</div>
 			</div>

@@ -2,27 +2,27 @@
 sspaas = angular.module('sspaas',[]);
 sspaas.controller('myCtrl', ['$scope','$rootScope','$http', function($scope,$rootScope,$http){
 
-	$scope.cpudataList = [ //仿造数据
-					{
-						cpuName: '1',						
-						gnum:[{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}]
-					},{
-						cpuName: '2',
-						gnum:[{gn:'2',price:'126'},{gn:'4',price:'171'},{gn:'6',price:'261'}]
-					},{
-						cpuName: '4',
-						gnum:[{gn:'4',price:'250'},{gn:'8',price:'340'},{gn:'16',price:'520'}]
-					},{
-						cpuName: '8',
-						gnum:[{gn:'8',price:'510'},{gn:'16',price:'690'},{gn:'32',price:'1050'}]
-					},{
-						cpuName: '12',
-						gnum:[{gn:'16',price:'885'},{gn:'24',price:'1065'},{gn:'32',price:'1245'}]
-					},{
-						cpuName: '16',
-						gnum:[{gn:'16',price:'1015'},{gn:'32',price:'1375'},{gn:'64',price:'2095'}]
-					}
-				];
+$scope.cpudataList = [ //仿造数据
+	{
+		cpuName: '1',						
+		gnum:[{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}]
+	},{
+		cpuName: '2',
+		gnum:[{gn:'2',price:'126'},{gn:'4',price:'171'},{gn:'6',price:'261'}]
+	},{
+		cpuName: '4',
+		gnum:[{gn:'4',price:'250'},{gn:'8',price:'340'},{gn:'16',price:'520'}]
+	},{
+		cpuName: '8',
+		gnum:[{gn:'8',price:'510'},{gn:'16',price:'690'},{gn:'32',price:'1050'}]
+	},{
+		cpuName: '12',
+		gnum:[{gn:'16',price:'885'},{gn:'24',price:'1065'},{gn:'32',price:'1245'}]
+	},{
+		cpuName: '16',
+		gnum:[{gn:'16',price:'1015'},{gn:'32',price:'1375'},{gn:'64',price:'2095'}]
+	}
+];
 //核数点击的时候
 
 $scope.cpuprice = 39; // 默认核数对应G数的价格 （1核1G）
@@ -39,6 +39,7 @@ $scope.selectFun = function  (i) {
 	 allPrices();
 };
 $scope.selectFun(0);
+
 //G数点击的时候
 $scope.seleF = function  (i) {
 	$('#jsNcBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
@@ -156,6 +157,7 @@ $scope.seleF = function  (i) {
 	    	n = fftext == ffobj.f1 ? 0 : fftext == ffobj.f2 ? 1 : 2;
 	    	$scope.ffdetails_list = $scope.optionArr[n].gnum; 
 	  		$scope.ffdenum = $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+	    	console.log($scope.ffdenum)
 	    	allPrices();
 	    }
 	    $scope.changeffdeta = function () {	
@@ -272,56 +274,69 @@ var b = $scope.imagesImg[0].imag;
 		$scope.jxdetails_list = $scope.imagesImg[n].inum;
 	};
 	$scope.jingFF();
-//	$scope.jingChange = function  () {
-//		$scope.jxdenum = $scope.jxdetails_list[$("select option:selected").eq(1).val()].details;
-//	}
 
 //云主机主机名，系统，配置页面中的数据模拟
+
 $scope.cloudhost=[
 	{
-		"zhujiming":"moumoumou1",
-		"xitong" : "windows 14.6位1",
-		"peizhi" : "peizhi1",
-		"cipan" :"cipan1",
-		"wangluo" : "wangluo1",
-		"zhuangtai" : "zhuangtai1",
-		"zhekou" : "zhekou1",
-		"jifei" : "jifei1",
-		"price" : "price1",
-		"lastdata" : "lastdata1",
-		"loginmessage" : "loginmessage1"
-	},
-	{
-		"zhujiming":"moumoumou2",
-		"xitong" : "windows 14.6位2",
-		"peizhi" : "peizhi2",
-		"cipan" :"cipan2",
-		"wangluo" : "wangluo2",
-		"zhuangtai" : "zhuangtai2",
-		"zhekou" : "zhekou2",
-		"jifei" : "jifei2",
-		"price" : "price2",
-		"lastdata" : "lastdata2",
-		"loginmessage" : "loginmessage2"
-	},
-	{
-		"zhujiming":"moumoumou3",
-		"xitong" : "windows 14.6位3",
-		"peizhi" : "peizhi3",
-		"cipan" :"cipan3",
-		"wangluo" : "wangluo3",
-		"zhuangtai" : "zhuangtai3",
-		"zhekou" : "zhekou3",
-		"jifei" : "jifei3",
-		"price" : "price3",
-		"lastdata" : "lastdata3",
-		"loginmessage" : "loginmessage3"
+		"firstNum" : 1,//每一页开头的数具
+		"lastNum" :10,//这是本页共多少条数具
+		"commonNum" : 20,//一共多少条数据
+		"zongPage" : 3,//总共多少页
+		"firstPage" : "首页",//首页
+		"upPage" : "上一页",//上一页
+		"underPage" : "下一页",//下一页
+		"lastPage" : "尾页",//尾页
+		
+		"onedata" :[
+			{
+				"zhujiming" : "qwe1",
+				"xitong" : "asd1",
+				"peizhi" : "zxc1",
+				"cipan" : "qwe1",
+				"wangluo" : "wangluo1",
+				"zhuangtai" : "zhuangtai1",
+				"zhekou" : "zhekou1",
+				"jifei" : "jifei1",
+				"price" : "price1",
+				"lastdata" : "lastdata1",
+				"loginmessage" : "loginmessage1"
+			},
+			{
+				"zhujiming" : "qwe2",
+				"xitong" : "asd2",
+				"peizhi" : "zxc2",
+				"cipan" : "qwe2",
+				"wangluo" : "wangluo2",
+				"zhuangtai" : "zhuangtai2",
+				"zhekou" : "zhekou2",
+				"jifei" : "jifei2",
+				"price" : "price2",
+				"lastdata" : "lastdata2",
+				"loginmessage" : "loginmessage2"
+			},{
+				"zhujiming" : "qwe3",
+				"xitong" : "asd3",
+				"peizhi" : "zxc3",
+				"cipan" : "qwe3",
+				"wangluo" : "wangluo3",
+				"zhuangtai" : "zhuangtai3",
+				"zhekou" : "zhekou3",
+				"jifei" : "jifei3",
+				"price" : "price3",
+				"lastdata" : "lastdata3",
+				"loginmessage" : "loginmessage3"
+			}
+		
+		]
 	}
+	
+	
 ]
 
 
  
-
+//云主机的页面中按钮的状态
 $('#js-Aall').click(function  () {
 	if($(this).attr('isCed')==='true'){
 		$('.master_list_main').find('.checkYS').removeAttr('checked');
@@ -335,23 +350,22 @@ $('#js-Aall').click(function  () {
 });
 
 		
-	
+//点击选中	
 	$('.wode').click(function  () {
 		delTr('btSelectItem');
-			//这里传的这个btSelectItem是input的name值,之后要依据这个name去遍历查询
+		//这里传的这个btSelectItem是input的name值,之后要依据这个name去遍历查询
 	})
-	
 	function delTr(btSelectItem) {
-			//获取选中的复选框，然后循环遍历删除
-			var ckbs = $("input[name=" + btSelectItem + "]:checked");
-			if (ckbs.size() == 0) {//输出被jQuery选择器 选中的元素的数量
-				//如果没有选中的时候,点击删除的时候,提醒一下~~~
-				alert("要删除指定行，需选中要删除的行！");
-				return;
-			}
-			ckbs.each(function() {
-				$(this).parent().parent().remove();
-			});
+		//获取选中的复选框，然后循环遍历删除
+		var ckbs = $("input[name=" + btSelectItem + "]:checked");
+		if (ckbs.size() == 0) {//输出被jQuery选择器 选中的元素的数量
+			//如果没有选中的时候,点击删除的时候,提醒一下~~~
+			alert("要删除指定行，需选中要删除的行！");
+			return;
+		}
+		ckbs.each(function() {
+			$(this).parent().parent().remove();
+		});
 	}
 	
 	
@@ -521,7 +535,6 @@ $scope.genal.show();
 
 // 检查带宽不能小于 1
 var $daikinp = $('#daik-inp');
-
 $daikinp.on('input',function () {
 	if($(this).val()*1 < 1 && $(this).val()*1 !==0){
 		$(this).val(1);
@@ -602,21 +615,27 @@ angular.forEach($scope.daidprice, function(item, index) {
 
 //----------------------------------------------------------------------------------------------------------
 	
-	//点击增加类
-	var isg = true;
-    function eleActive (ele) {
-    	ele.off('click').on('click',function (){
-    		var that = $(this);
-    		that.addClass('biao_button_active').siblings().removeClass('biao_button_active');
-    		that.index() == 0 ?$('.wai_net_ip').show() : $('.wai_net_ip').hide();
-    		that.index() == 0 ?$('.no_buy').hide() : $('.no_buy').show();
-    		that.index() == 0 ?isg = true : isg = false;
-    		allPrices();
-    	})
-    }
-    eleActive($('.biao_button_ul li'));
-	
-	
+//点击增加类
+var isg = true;
+function eleActive (ele) {
+	ele.off('click').on('click',function (){
+		var that = $(this);
+		that.addClass('biao_button_active').siblings().removeClass('biao_button_active');
+		that.index() == 0 ?$('.wai_net_ip').show() : $('.wai_net_ip').hide();
+		that.index() == 0 ?$('.no_buy').hide() : $('.no_buy').show();
+		that.index() == 0 ?isg = true : isg = false;
+		allPrices();
+	})
+}
+eleActive($('.biao_button_ul li'));
+//这里是购置月末的剩余天数
+var day;
+function timeDateM() {
+		var curTime = new Date().getDate();
+		day = (30 - curTime) + 1;
+	}
+timeDateM();
+console.log(day)	
 	
 	/**
 	 * allPrices {function} -> 计算价格 的函数
@@ -628,7 +647,7 @@ angular.forEach($scope.daidprice, function(item, index) {
 			cpuandnc = $scope.cpuprice*1,
 			yjsInp = $('#bandwidthId').val()*1;
 			shujuqian = 0.26*yjsInp;  //这个0.26是从后台获取的数据盘1G的价格	
-//			fftype = $scope.ffNum == '购置月底'?day/30:$scope.fftypeprice*1;	
+			fftype = $scope.ffNum == '购置月末'?day/30:$scope.fftypeprice*1;	
 			fftype = $scope.ffdenum,
 			Tnum = $('#jsTsBox').val();
 		if(isg){
@@ -653,7 +672,8 @@ angular.forEach($scope.daidprice, function(item, index) {
 		var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
 		//$scope.yzjallP = yunallZ.toFixed(2);
 		$('#allPrice').html(yunallZ.toFixed(2)+'元');
-//		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
+		
+		//console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
 	}
 
 
@@ -692,6 +712,8 @@ $jsYrisen.click(function  () {
 $jsYreduce.click(function  () {
 	jianNum($('#jsTsBox'),$(this));	
 });
+
+
 
 
 
