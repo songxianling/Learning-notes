@@ -161,7 +161,9 @@ $scope.seleF = function  (i) {
 	    };
 	    $scope.changeffdeta = function () {	
 	    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+
 			$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
+
 			allPrices();
 	    };
 	    
@@ -599,10 +601,14 @@ function allPrices () {
 		}
 	}else{
 		dkzong = 0;
-	}
-	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
-	//$scope.yzjallP = yunallZ.toFixed(2);
-	$('#allPrice').html(yunallZ.toFixed(2)+'元');
+
+//		
+		var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
+		//$scope.yzjallP = yunallZ.toFixed(2);
+		$('#allPrice').html(yunallZ.toFixed(2)+'元');
+		
+		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
+
 }
 
 
