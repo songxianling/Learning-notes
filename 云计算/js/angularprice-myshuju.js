@@ -544,30 +544,29 @@ $scope.scrollbar={
 	$scope.genal.show();
 	
 	
-	var sjNUm;
+var sjNUm;
 
-	function getOldNum(ele) {
-		ele.on('focus', function() {
-			sjNUm = $(this).val();			
-		});
-		ele.on('blur', function() {
-			var hanZiXiu = $(this).val();
-			var zhengZe = /^[0-9]\d*$/;
-			if(!(zhengZe.test(hanZiXiu))) {
-				ele.attr('value',sjNUm);
-				allPrices();
-				return;
-			}
-		});
-		
-	};	
-	var $yjsInp = $('#bandwidthId'),
-		$wlInp = $('#js-band-wl-inp'),
-		$yypInp = $('#js-band-yyp-inp');
-		
-	getOldNum($yjsInp)
-	getOldNum($wlInp)
-	getOldNum($yypInp)
+function getOldNum(ele) {
+	ele.on('focus', function() {
+		sjNUm = $(this).val();			
+	});
+	ele.on('blur', function() {
+		var hanZiXiu = $(this).val();
+		var zhengZe = /^[0-9]\d*$/;
+		if(!(zhengZe.test(hanZiXiu))) {
+			ele.attr('value',sjNUm);
+			allPrices();
+			return;
+		}
+	});
+};	
+var $yjsInp = $('#bandwidthId'),
+	$wlInp = $('#js-band-wl-inp'),
+	$yypInp = $('#js-band-yyp-inp');
+	
+getOldNum($yjsInp);
+getOldNum($wlInp);
+getOldNum($yypInp);
 	
 	
 	

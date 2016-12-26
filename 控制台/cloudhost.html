@@ -239,19 +239,19 @@
 					<li>到期时间</li>
 					<li>登录信息</li>
 				</ul>
-				<ul class="master_list_main checkYS" style="padding-top:20px;"ng-repeat="onedata in cloudhost[0].onedata";>
-					<li><input type="checkbox" class="checkYS" name="btSelectItem"></li>
-					<li>{{onedata.zhujiming}}</li>
-					<li>{{onedata.xitong}}</li>
-					<li>{{onedata.peizhi}}</li>
-					<li>{{onedata.cipan}}</li>
-					<li>{{onedata.wangluo}}</li>
-					<li>{{onedata.zhuangtai}}</li>
-					<li>{{onedata.zhekou}}</li>
-					<li>{{onedata.jifei}}</li>
-					<li>{{onedata.price}}</li>
-					<li>{{onedata.lastdata}}</li>
-					<li>{{onedata.loginmessage}}</li>
+				<ul class="master_list_main checkYS" style="padding-top:20px;" ng-repeat="onedatar in dataList";>
+					<li><input type="checkbox" class="checkYS" name="btSelectItem" ng-model="onedata.checked" ng-click="updateSelection($index,dataList)"></li>
+					<li ng-bind="onedatar.zhujiming"></li> 
+					<li ng-bind="onedatar.xitong"></li>
+					<li ng-bind="onedatar.peizhi"></li>
+					<li ng-bind="onedatar.cipan"></li>
+					<li ng-bind="onedatar.wangluo"></li>
+					<li ng-bind="onedatar.zhuangtai"></li>
+					<li ng-bind="onedatar.zhekou"></li>
+					<li ng-bind="onedatar.jifei"></li>
+					<li ng-bind="onedatar.price"></li>
+					<li ng-bind="onedatar.lastdata"></li>
+					<li ng-bind="onedatar.loginmessage"></li>
 				</ul>
 			</div>
 
@@ -259,22 +259,22 @@
 			<div class="control_data_bottom">
 				<p class="left gdan">
 					工单: 
-					<span>{{cloudhost[0].firstNum}}</span>
+					<span ng-bind="cloudhost[0].firstNum"></span>
 					到
-					<span>{{cloudhost[0].lastNum}}</span>
+					<span ng-bind="cloudhost[0].lastNum"></span>
 					<i></i>
 					总共
 					<i></i>
-					<span>{{cloudhost[0].commonNum}}</span>/条数据
+					<span ng-bind="cloudhost[0].commonNum"></span>/条数据
 					<i></i>
-					<i></i>共: <span>{{cloudhost[0].zongPage}}</span>页
+					<i></i>共: <span ng-bind="cloudhost[0].zongPage"></span>页
 				</p>
 				<div class="control_btn right">
 					<ul>
-						<li id="indexpage">{{cloudhost[0].firstPage}}</li>
-						<li id="prepage">{{cloudhost[0].upPage}}</li>
-						<li id="nextpage" >{{cloudhost[0].underPage}}</li>
-						<li style="width:25.2%;" id="lastpage">{{cloudhost[0].lastPage}}</li>
+						<li id="indexpage" ng-bind="cloudhost[0].firstPage"></li>
+						<li id="prepage" ng-bind="cloudhost[0].upPage"></li>
+						<li id="nextpage" ng-bind="cloudhost[0].underPage"></li>
+						<li style="width:25.2%;" id="lastpage" ng-bind="cloudhost[0].lastPage"></li>
 					</ul>
 				</div>
 			</div>
@@ -398,6 +398,7 @@
 
 </div>
 <script src="js/angular.min.js"></script>
+<script src="js/common.js"></script>
 <script src="js/cloudhost_ng.js"></script>
 <script src="js/newbuild-ng.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
@@ -405,3 +406,4 @@
 
 
 </body>
+</html>

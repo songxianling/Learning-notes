@@ -12,14 +12,26 @@
 <script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery_jcryption_3_1_0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">	
-var $btn = $('.btn');
-$btn.on('click',function () {
-	var _data = {
-	username:$.trim($('.uname').val()),
-	password:$.trim($('.pwd').val())
-}
-	var encryptedString = $.jCryption.encrypt($.param(_data), "");
-	console.log(encryptedString)
-});
+//var $btn = $('.btn');
+//$btn.on('click',function () {
+//	var _data = {
+//	username:$.trim($('.uname').val()),
+//	password:$.trim($('.pwd').val())
+//}
+//	var encryptedString = $.jCryption.encrypt($.param(_data), "");
+//	console.log(encryptedString)
+//});
+var herfAll = {
+		aHerf : function (href,con){
+			window.location.href='/jCryption.html'+"?&&"+con; 
+		},
+	
+		aHerfCon : 	function AHerfCon(){
+			console.log(location.search.split("?&&")[1][1]) 	 
+		},
+
+	};
+herfAll.aHerfCon();
+
 </script>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="a">aaa</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	var zj = "1H1G",
+		dk = '20M';
+	var con = '主机='+zj+'&带宽='+dk+'';
+	
+	var herfAll = {
+		aHerf : function (href,con){
+			window.location.href=href+"?&&"+con; 
+		},
+	
+		aHerfCon : 	function AHerfCon(){
+			return location.search.split("?&&")[1];	 
+		},
+
+	};
+	herfAll.aHerf('http://127.0.0.1:8020/Learning-notes/try/jCryption.html',con);
+	
+	function dataAjax (u,data,callBack) {
+		$.ajax({
+			type:"post",
+			url:u,
+			async:true,
+			data:data,
+			success:function (data) {
+				callBack(data);
+			}
+		});
+	}
+	var _data = {
+		curnum:$('#cpu').hasClass('sele-li').html(),
+		hnum:$('#h').hasClass('sele-li').html()
+		
+	}
+	dataAjax(url,_data,function(data){
+		
+	})
+	
+	dataAjax(url,data,fun1)
+	function fun1 () {
+		
+	}
+	
+	
+	
+	function ztAjax () {
+		$.ajax({
+			type:"post",
+			url:"",
+			async:true,
+			data:{},
+			dataType:'json',
+			success:function (data) {
+				if(data.errcode == 0){
+					// 更改状态
+				}else{
+					setTimeout(function () {
+						ztAjax();
+					},1500)
+				}
+			}
+		});
+	}
+		
+	</script>
+</html>
