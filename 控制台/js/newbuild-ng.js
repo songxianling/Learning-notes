@@ -162,6 +162,7 @@ $scope.seleF = function  (i) {
 	    }
 	    $scope.changeffdeta = function () {	
 	    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+	    	$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
 			allPrices();
 	    }
 //模拟镜像的数据
@@ -641,14 +642,20 @@ console.log(day)
 	 * allPrices {function} -> 计算价格 的函数
 	 */
 	$scope.yzjallP = 39.00;
-	allPrices();
+	$scope.ffdenum = 1;
+//	allPrices();
 	function allPrices () {
 		var daik = 0,
 			cpuandnc = $scope.cpuprice*1,
 			yjsInp = $('#bandwidthId').val()*1;
 			shujuqian = 0.26*yjsInp;  //这个0.26是从后台获取的数据盘1G的价格	
-			fftype = $scope.ffNum == '购置月末'?day/30:$scope.fftypeprice*1;	
-			fftype = $scope.ffdenum,
+//			fftype = $scope.ffNum == '购置月末'?day/30:$scope.fftypeprice*1;	
+//			if($scope.ffyuedi == '购置月末'){
+//				fftype = day/30;
+//			}else{
+//				fftype = $scope.ffdenum*1
+//			}
+			fftype = $scope.ffyuedi == '购置月末'?day/30:$scope.ffdenum*1,
 			Tnum = $('#jsTsBox').val();
 		if(isg){
 			var daik_inp = $.trim($('#daik-inp').val())*1;
@@ -673,7 +680,7 @@ console.log(day)
 		//$scope.yzjallP = yunallZ.toFixed(2);
 		$('#allPrice').html(yunallZ.toFixed(2)+'元');
 		
-		//console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
+		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
 	}
 
 
