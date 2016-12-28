@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="sspaas">
+<html lang="zh-CN" ng-app="sspaas" ng-controller="common">
 <head>
 <meta charset="UTF-8">
 <title>控制台</title>
@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/kongzhitai.css">
 </head>
-<body ng-controller="myCtrl">
+<body ng-controller="myCtrlHost">
 <div class="control_box clearfix">
 	<div class="control_top">
 		<!-- nav左边 -->
@@ -38,7 +38,7 @@
 					<li>11982563@qq.com</li>
 					<li>11982563@qq.com</li>
 				</ul>
-			</div>6
+			</div>
 		</div>
 		<!-- 定位图片 -->
 		<div class="control_top_tu">
@@ -183,42 +183,42 @@
 							<img src="images/controllogo21.png" alt="" class="left change">
 							<span class="left"><a href="newbuild.html">新建</a></span>
 						</a></li>
-						<li><a href="##">
+						<li ng-click="beginBiad()">
 							<h6 class="left"></h6>
 							<img src="images/controllogo28.png" alt="" class="left old">
 							<img src="images/controllogo32.png" alt="" class="left change">
 							<span class="left">启动</span>
-						</a></li>
-						<li><a href="##">
+						</li>
+						<li ng-click="shutDown()">
 							<h6 class="left"></h6>
 							<img src="images/controllogo29.png" alt="" class="left old">
 							<img src="images/controllogo33.png" alt="" class="left change">
 							<span class="left">关机</span>
-						</a></li>
-						<li><a href="##">
+						</li>
+						<li ng-click="restart()">
 							<h6 class="left"></h6>
 							<img src="images/controllogo30.png" alt="" class="left old">
 							<img src="images/controllogo34.png" alt="" class="left change">
 							<span class="left">重启</span>
-						</a></li>
-						<li><a href="##">
+						</li>
+						<li ng-click="terminal()">
 							<h6 class="left"></h6>
 							<img src="images/controllogo31.png" alt="" class="left old">
 							<img src="images/controllogo35.png" alt="" class="left change">
 							<span class="left">终端</span>
-						</a></li>
-						<li><a href="##">
+						</li>
+						<li ng-click="resetPass()">
 							<h6 class="left"></h6>
 							<img src="images/masterlogo3.png" alt="" class="left old">
 							<img src="images/masterlogo3.png" alt="" class="left change">
 							<span>重置密码</span>
-						</a></li>
-						<li class="wode"><a href="##">
+						</li>
+						<li class="wode" ng-click="deleteButton()">
 							<h6 class="left"></h6>
 							<img src="images/controllogo27.png" alt="" class="left old">
 							<img src="images/controllogo27.png" alt="" class="left change">
 							<span >删除</span>
-						</a></li>
+						</li>
 					</ul>
 				</div>
 		</div>
@@ -226,7 +226,7 @@
 			<!-- list名称 -->
 			<div class="master_list">
 				<ul class="master_list_main" style="padding-top:20px;">
-					<li><input type="checkbox" id="js-Aall"></li>
+					<li><input type="hidden" id="js-Aall"></li>
 					<li>主机名</li>
 					<li>系统</li>
 					<li>配置</li>
@@ -239,171 +239,58 @@
 					<li>到期时间</li>
 					<li>登录信息</li>
 				</ul>
-				<ul class="master_list_main checkYS" style="padding-top:20px;" ng-repeat="onedatar in dataList";>
+				<ul class="master_list_main checkYS" style="padding-top:20px;" ng-repeat="onedata in dataList">
 					<li><input type="checkbox" class="checkYS" name="btSelectItem" ng-model="onedata.checked" ng-click="updateSelection($index,dataList)"></li>
-					<li ng-bind="onedatar.zhujiming"></li> 
-					<li ng-bind="onedatar.xitong"></li>
-					<li ng-bind="onedatar.peizhi"></li>
-					<li ng-bind="onedatar.cipan"></li>
-					<li ng-bind="onedatar.wangluo"></li>
-					<li ng-bind="onedatar.zhuangtai"></li>
-					<li ng-bind="onedatar.zhekou"></li>
-					<li ng-bind="onedatar.jifei"></li>
-					<li ng-bind="onedatar.price"></li>
-					<li ng-bind="onedatar.lastdata"></li>
-					<li ng-bind="onedatar.loginmessage"></li>
+					<li ng-cloak>{{onedata.aliasName}}</li> 
+					<li ng-cloak>{{onedata.image}}</li>
+					<li ng-cloak>{{onedata.cpu}}{{onedata.ram}}</li>
+					<li ng-cloak>{{onedata.disk}}</li>
+					<li ng-cloak>{{onedata.networkType}}</li>
+					<li ng-cloak>{{onedata.zhuangtai}}</li>
+					<li ng-cloak>{{onedata.discount}}</li>
+					<li ng-cloak>{{onedata.payType}}</li>
+					<li ng-cloak>{{onedata.totalMoney}}</li>
+					<li ng-cloak>{{onedata.expireTime}}</li>
+					<li ng-cloak>{{onedata.loginMessage}}</li>
 				</ul>
 			</div>
 
 			<!-- 底部翻页 -->
 			<div class="control_data_bottom">
 				<p class="left gdan">
-					工单: 
-					<span ng-bind="cloudhost[0].firstNum"></span>
+					&nbsp; 
+					<span ng-cloak>{{startRow}}</span>
 					到
-					<span ng-bind="cloudhost[0].lastNum"></span>
+					<span ng-cloak>{{endRow}}</span>
 					<i></i>
 					总共
 					<i></i>
-					<span ng-bind="cloudhost[0].commonNum"></span>/条数据
+					<span ng-cloak>{{total}}</span>/条数据
 					<i></i>
-					<i></i>共: <span ng-bind="cloudhost[0].zongPage"></span>页
+					<i></i>共: <span ng-cloak>{{pages}}</span>页
 				</p>
-				<div class="control_btn right">
-					<ul>
-						<li id="indexpage" ng-bind="cloudhost[0].firstPage"></li>
-						<li id="prepage" ng-bind="cloudhost[0].upPage"></li>
-						<li id="nextpage" ng-bind="cloudhost[0].underPage"></li>
-						<li style="width:25.2%;" id="lastpage" ng-bind="cloudhost[0].lastPage"></li>
+				<div class="control_btn right" >
+					<ul id="jsPage">
+						<li id="indexpage" class="js_first cur" ng-click="first()">首页</li>
+						<li id="prepage" class="js_up" ng-click="prev()">上一页</li>
+						<li id="nextpage" class="js_next" ng-click="next()">下一页</li>
+						<li style="width:25.2%;" id="lastpage" class="js_last" ng-click="last()">尾页</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-
+ 
 		<!-- 云硬盘 -->
-		<div class="control_main_right_center pp">
-
-			<!-- 操作 -->
-			<div class="control_main_right_top clearfix">
-				<div class="more_kong">
-					<ul>
-						<li><a href="##">
-							<h6 class="left"></h6>
-							<img src="images/controllogo15.png" alt="" class="left old">
-							<img src="images/controllogo20.png" alt="" class="left change">
-							<span class="left">刷新</span>
-						</a></li>
-						<li><a href="##">
-							<h6 class="left"></h6>
-							<img src="images/controllogo16.png" alt="" class="left old">
-							<img src="images/controllogo21.png" alt="" class="left change">
-							<span class="left">新建</span>
-						</a></li>
-						<li><a href="##">
-							<h6 class="left"></h6>
-							<img src="images/controllogo17.png" alt="" class="left old">
-							<img src="images/controllogo22.png" alt="" class="left change">
-							<span class="left">挂载</span>
-						</a></li>
-						<li><a href="##">
-							<h6 class="left"></h6>
-							<img src="images/controllogo18.png" alt="" class="left old">
-							<img src="images/controllogo23.png" alt="" class="left change">
-							<span class="left">卸载</span>
-						</a></li>
-						<li class="change_xiala"><a href="##">
-							<h6 class="left"></h6>
-							<img src="images/controllogo19.png" alt="" class="left old more">
-							<img src="images/controllogo24.png" alt="" class="left change more">
-							<span class="left">更多操作</span>
-						</a></li>
-					</ul>
-				</div>
-				
-				<div class="more_join ">
-					<ul>
-						<li>
-							<img src="images/controllogo25.png" alt="">
-							<span>扩容</span>
-						</li>
-						<li>
-							<img src="images/controllogo25.png" alt="">
-							<span>创建模板</span>
-						</li>
-						<li>
-							<img src="images/controllogo25.png" alt="">
-							<span>更新模板</span>
-						</li>
-						<li>
-							<img src="images/controllogo26.png" alt="">
-							<span>创建快照</span>
-						</li>
-						<li>
-							<img src="images/controllogo27.png" alt="">
-							<span>删除</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- list名称 -->
-			<div class="control_list">
-				<ul class="control_list_main" style="padding-top:20px;">
-					<li><input type="checkbox"></li>
-					<li>硬盘名</li>
-					<li>状态</li>
-					<li>挂载主机</li>
-					<li>设备名称</li>
-					<li>容量</li>
-					<li>创建时间</li>
-					<li>关联模板</li>
-					<li>计费方式</li>
-					<li>价格</li>
-					<li>操作</li>
-				</ul>
-				<ul class="control_list_main">
-					<li><input type="checkbox"></li>
-					<li>20161123124752</li>
-					<li>运行</li>
-					<li>云硬盘</li>
-					<li>云硬盘</li>
-					<li>4G</li>
-					<li>2011.12.21</li>
-					<li>5613561</li>
-					<li>5210元/年</li>
-					<li>300</li>
-					<li>已处理</li>
-				</ul>
-			</div>
-
-			<!-- 底部翻页 -->
-			<div class="control_data_bottom">
-				<p class="left gdan">
-					工单: 
-					<span>1</span>到<span>10</span><i></i>
-					总共<i></i> <span>19</span>/条数据
-					<i></i><i></i>共: <span>2</span>页
-				</p>
-				<div class="control_btn right">
-					<ul>
-						<li id="indexpage">首页</li>
-						<li id="prepage">上一页</li>
-						<li id="nextpage" >下一页</li>
-						<li style="width:25.2%;" id="lastpage">尾页</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+	
 	</div>	
 
 </div>
 <script src="js/angular.min.js"></script>
 <script src="js/common.js"></script>
-<script src="js/cloudhost_ng.js"></script>
+<script src="js/cloudhost-ng.js"></script>
 <script src="js/newbuild-ng.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/control.js"></script>
-
-
+<script src="js/layer.js"></script>
 </body>
 </html>

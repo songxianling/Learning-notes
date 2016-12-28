@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="sspaas">
+<html ng-app="sspaas" ng-controller="common">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -207,7 +207,7 @@
 												<label for="" class="new_label"><span>CPU</span></label>
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul biao_button_he clearfix" id="jsCpuBox">
-														<li class="biao_button " ng-class="{true: 'biao_button_active', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList" >{{data.cpuName}}核</li>
+														<li class="biao_button " ng-class="{true: 'biao_button_active', false: ''}[$index == 0]" ng-click="selectFun($index)" ng-repeat="data in cpudataList" ng-cloak >{{data.cpuName}}核</li>
 													</ul>												
 												</div>
 											</div>
@@ -218,7 +218,7 @@
 												<label for="" class="new_label">内存</label>
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul clearfix" id="jsNcBox">
-														<li class="biao_button" ng-class="{true: 'biao_button_active', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" >{{data.gn}}G</li>
+														<li class="biao_button" ng-class="{true: 'biao_button_active', false: ''}[$index == 0]" ng-repeat="data in dataInfo" ng-click="seleF($index)" ng-cloak>{{data.gn}}G</li>
 													</ul>												
 												</div>
 											</div>
@@ -229,11 +229,11 @@
 												<label for="" class="new_label">镜像</label>
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul clearfix">
-														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingFF()">
-															<option value="" ng-repeat="one in imagesImg">{{one.imag}}</option>
+														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingFF()" ng-cloak>
+															<option value="" ng-repeat="one in imagesImg" ng-cloak>{{one.imag}}</option>
 														</select>
-														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;">
-															<option value="" ng-repeat="one in jxdetails_list">{{one.details}}</option>
+														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-cloak>
+															<option value="" ng-repeat="one in jxdetails_list" ng-cloak>{{one.details}}</option>
 														</select>
 													</ul>	
 												</div>
@@ -356,10 +356,10 @@
 										<div class="no_buy" style="display: none;">
 											<p>不购买弹性IP，则该主机仅支持内网访问，您可以在基础网络选项中购买IP</p>
 										</div>
-										<!--防火墙-->
+										<!--安全组-->
 										<li>
 											<div class="new_con_pd clearfix">
-												<label for="" class="new_label"><span>防火墙</span></label>
+												<label for="" class="new_label"><span>安全组</span></label>
 												<div class="new_step_trol">																									
 														<ul class="biao_button_ul clearfix">														
 															<select name="" style="height: 34px;">
@@ -473,10 +473,10 @@
 								<div class="method clearfix">
 									<label for="" class="new_label">付费方式</label>
 									<div class="method_sele">
-										<select class="method_sele_price" style="margin-bottom: 20px;" ng-click="changeff()">
+										<select class="method_sele_price" style="margin-bottom: 20px;" ng-click="changeff()" ng-cloak>
 	  			                               <option ng-repeat="one in optionArr" value="">{{one.amode}}</option>
 	  		                            </select>
-								  		<select class="method_sele_price" ng-click="changeffdeta()">
+								  		<select class="method_sele_price" ng-click="changeffdeta()" ng-cloak>
 								  			<option ng-repeat="one in ffdetails_list" value="{{one.ffdetaid}}">{{one.payTime}}</option>
 								  		</select>
 							  		</div>
@@ -494,7 +494,7 @@
 								<div class="add_up clearfix">
 									<label for="" class="add_up_lab">    </label>
 									<div class="add_money get_now">
-										<a href="cloudhost.html"><input type="button" name="" id="" value="立即购买" class="get_new_in"/></a>
+										<input type="button" name="" id="" value="立即购买" class="get_new_in" ng-click="nowBuy()"/>
 									</div>
 								</div>
 							</div>

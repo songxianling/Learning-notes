@@ -1,5 +1,5 @@
 //模拟数据
-sspaas = angular.module('sspaas',[]);
+
 sspaas.controller('myCtrl', ['$scope','$rootScope','$http', function($scope,$rootScope,$http){
 //cpu 内存模拟数据
 $scope.cpudataList = [ 
@@ -161,9 +161,7 @@ $scope.seleF = function  (i) {
 	    };
 	    $scope.changeffdeta = function () {	
 	    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-
 			$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
-
 			allPrices();
 	    };
 	    
@@ -601,14 +599,10 @@ function allPrices () {
 		}
 	}else{
 		dkzong = 0;
-
-//		
-		var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
-		//$scope.yzjallP = yunallZ.toFixed(2);
-		$('#allPrice').html(yunallZ.toFixed(2)+'元');
-		
-		console.log(cpuandnc,shujuqian,yunallZ,$scope.yzjallP,fftype,dkzong)
-
+	}
+	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
+	//$scope.yzjallP = yunallZ.toFixed(2);
+	$('#allPrice').html(yunallZ.toFixed(2)+'元');
 }
 
 
@@ -649,140 +643,31 @@ $jsYreduce.click(function  () {
 	jianNum($('#jsTsBox'),$(this));	
 });
 
-
-$scope.cloudhost =""; 
-$scope.ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/queryAllComputeCloudHostByPage?page=1&rows=3';
-
-$http.ngAxjx($scope.ngurl_cpu,{},'cloudList',callback);
-	function callback (json) {
-		$scope.dataList = json.cloudhost.list;
-		console.log(json.cloudhost.onedata);
-	}
-	
+//获取用户选中的数据
+var jsCpuBox = $('#jsCpuBox');
 
 
-//云主机页面中展示的
-
-//云主机主机名，系统，配置页面中的数据模拟
-$scope.cloudhost=[
-	{
-		"firstNum" : 1,//每一页开头的数具
-		"lastNum" :10,//这是本页共多少条数具
-		"commonNum" : 20,//一共多少条数据
-		"zongPage" : 3,//总共多少页
-		"firstPage" : "首页",//首页
-		"upPage" : "上一页",//上一页
-		"underPage" : "下一页",//下一页
-		"lastPage" : "尾页",//尾页
-		
-		"list" :[
-			{
-				"zhujiming" : "zhujiming1",
-				"xitong" : "xitong1",
-				"peizhi" : "peizhi1",
-				"cipan" : "cipan1",
-				"wangluo" : "wangluo1",
-				"zhuangtai" : "zhuangtai1",
-				"zhekou" : "zhekou1",
-				"jifei" : "jifei1",
-				"price" : "price1",
-				"lastdata" : "lastdata1",
-				"loginmessage" : "loginmessage1"
-			},
-			{
-				"zhujiming" : "zhujiming2",
-				"xitong" : "xitong2",
-				"peizhi" : "peizhi2",
-				"cipan" : "cipan2",
-				"wangluo" : "wangluo2",
-				"zhuangtai" : "zhuangtai2",
-				"zhekou" : "zhekou2",
-				"jifei" : "jifei2",
-				"price" : "price2",
-				"lastdata" : "lastdata2",
-				"loginmessage" : "loginmessage2"
-			},{
-				"zhujiming" : "zhujiming3",
-				"xitong" : "xitong3",
-				"peizhi" : "peizhi3",
-				"cipan" : "cipan3",
-				"wangluo" : "wangluo3",
-				"zhuangtai" : "zhuangtai3",
-				"zhekou" : "zhekou3",
-				"jifei" : "jifei3",
-				"price" : "price3",
-				"lastdata" : "lastdata3",
-				"loginmessage" : "loginmessage3"
-			}
-		
-		]
-	}
-]
-
-//复选框单选按钮
-$scope.dataList = "";
-$scope.cloudmessage = function() {
-	dataList =$scope.cloudhost[0].onedata;
+var data = {
+		"aliasName" :'xujianxiong',
+		"cpu":4,
+		"ram":4,
+		"imageId":"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
+		"password":"asd123",
+		"disk" :800,
+		"bandWidth":"aaa",
+		"payType" : '年付'
+    };
+$scope.nowBuy = function  () {
+	var  hostCloud = "";
+	var ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/createComputeCloudHost';
+	$rootScope.ngAxjx(ngurl_cpu,data,'hostCloud');
+	setTimeout(function() {
+		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
+	},3000)
 }
-$scope.cloudmessage(0);
-console.log(dataList)
-
-$scope.dataList = [
-			{
-				"zhujiming" : "zhujiming1",
-				"xitong" : "xitong1",
-				"peizhi" : "peizhi1",
-				"cipan" : "cipan1",
-				"wangluo" : "wangluo1",
-				"zhuangtai" : "zhuangtai1",
-				"zhekou" : "zhekou1",
-				"jifei" : "jifei1",
-				"price" : "price1",
-				"lastdata" : "lastdata1",
-				"loginmessage" : "loginmessage1"
-			},
-			{
-				"zhujiming" : "zhujiming2",
-				"xitong" : "xitong2",
-				"peizhi" : "peizhi2",
-				"cipan" : "cipan2",
-				"wangluo" : "wangluo2",
-				"zhuangtai" : "zhuangtai2",
-				"zhekou" : "zhekou2",
-				"jifei" : "jifei2",
-				"price" : "price2",
-				"lastdata" : "lastdata2",
-				"loginmessage" : "loginmessage2"
-			},{
-				"zhujiming" : "zhujiming3",
-				"xitong" : "xitong3",
-				"peizhi" : "peizhi3",
-				"cipan" : "cipan3",
-				"wangluo" : "wangluo3",
-				"zhuangtai" : "zhuangtai3",
-				"zhekou" : "zhekou3",
-				"jifei" : "jifei3",
-				"price" : "price3",
-				"lastdata" : "lastdata3",
-				"loginmessage" : "loginmessage3"
-			}
-		
-		]
 
 
 
-	var indexCur = '';
-$scope.updateSelection = function  (index,cloudhost) {
-	if(!indexCur == ''){
-		$scope.cloudhost[indexCur].onedata[0].checked = false;
-	}
-	if(indexCur == 0){
-		$scope.cloudhost[0].onedata[0].checked = false;
-	}
-	$scope.cloudhost[index].onedata[0].checked = true;
-	indexCur = index;
-}
-   
 
 
 }]);

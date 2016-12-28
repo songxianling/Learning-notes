@@ -15,4 +15,7 @@ input,select,textarea{ outline:none;  resize:none;}
 .clearfix {*zoom:1;}
 .lt,.left {float:left;}
 .rt,.right {float:right;}
+[ng-cloak]{
+	display: none !important;
+}
 	

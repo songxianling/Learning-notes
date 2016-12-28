@@ -115,16 +115,7 @@ $('.master_xiala ul li').on("click",function(){
 
 $(".control_btn").on("click","li",function(event){
 	$(this).addClass('cur').siblings().removeClass('cur')
-	 x=event.target; 
-	if (x.id=='indexpage') {
-		var n=1
-		$('.gdan span:eq(0)').html(n)
-	}else if (x.id=="prepage") {
-		var len = $('.mirror_list_main').length;
-		$('.gdan span:eq(1)').html(len-1)
-	}else if (x.id=="lastpage") {
-		alert("nishaya")
-	};
+	
 })
 
 
