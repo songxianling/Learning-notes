@@ -647,23 +647,27 @@ $jsYreduce.click(function  () {
 var jsCpuBox = $('#jsCpuBox');
 
 
-var data = {
-		"aliasName" :'xujianxiong',
-		"cpu":4,
-		"ram":4,
-		"imageId":"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
-		"password":"asd123",
-		"disk" :800,
-		"bandWidth":"aaa",
-		"payType" : '年付'
-    };
+
 $scope.nowBuy = function  () {
+	var _data = {
+		aliasName :$.trim($('#js-aliasname').val()),
+		cpu:parseFloat($('#jsCpuBox').find('.biao_button_active').html()),
+		ram:parseFloat($('#jsNcBox').find('.biao_button_active').html()),
+		imageId:"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
+		password:$.trim($('#js-pwd').val()),
+		disk :$('#bandwidthId').val(),
+		payType : $("select option:selected").eq(3).html()
+    };
+    if(isg){
+    	_data.bandWidth = parseFloat($('#daik-inp').val())
+    }
+    console.log(_data);
 	var  hostCloud = "";
 	var ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/createComputeCloudHost';
-	$rootScope.ngAxjx(ngurl_cpu,data,'hostCloud');
-	setTimeout(function() {
-		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
-	},3000)
+	$rootScope.ngAxjx(ngurl_cpu,_data,'hostCloud');
+//	setTimeout(function() {
+//		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
+//	},3000)
 }
 
 
