@@ -230,10 +230,10 @@
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul clearfix">
 														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingFF()" ng-cloak>
-															<option value="" ng-repeat="one in imagesImg" ng-cloak>{{one.imag}}</option>
+															<option value="" ng-repeat="one in imagesImg" ng-cloak>{{one.type_name}}</option>
 														</select>
-														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-cloak>
-															<option value="" ng-repeat="one in jxdetails_list" ng-cloak>{{one.details}}</option>
+														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingdel()"ng-cloak>
+															<option value="" ng-repeat="one in jxdetails_list" jj-id="{{one.id}}" ng-cloak>{{one.name}}</option>
 														</select>
 													</ul>	
 												</div>
@@ -287,7 +287,7 @@
 											<div class="new_con_pd clearfix">
 												<label for="" class="new_label"><span>类型</span></label>
 												<div class="new_step_trol">																									
-													<ul class="biao_button_ul clearfix">
+													<ul class="biao_button_ul clearfix" id="js-wltype">
 														<li class="biao_button biao_button_active basic">基础网络</li>
 														<li class="biao_button si_you">私有网络</li>
 													</ul>
@@ -402,7 +402,7 @@
 											<div class="new_con_pd clearfix">
 												<label for="" class="new_label"><span>管理员密码</span></label>
 												<div class="new_step_trol">																									
-													<input type="text" name="" id="" value="" />
+													<input type="text" name="" id="js-glpwd" value="" />
 												</div>
 											</div>
 										</li>

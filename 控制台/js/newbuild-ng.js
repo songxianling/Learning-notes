@@ -168,115 +168,77 @@ $scope.seleF = function  (i) {
 //模拟镜像的数据
 $scope.imagesImg = [
 	{
-		"imag":"CentOs",
-		"inum":[
-			{
-				"aid":"asdasd",
-				"details":"CentOS 6.5 64位"
-			},
-			{
-				"aid":"qweqwe",
-				"details":"CentOS 7.2 64位"
-			},
-			{
-				"aid":"rtyrty",
-				"details":"CentOS 7.2 64位"
-			},
-			{
-				"aid":"yuiyui",
-				"details":"CentOS 7.2 64位"
-			},
-			{
-				"aid":"uiouio",
-				"details":"CentOS 7.2 64位"
-			}
-			
-		]
-	},
+        "type_name":"centos",
+        "images":[
+            {
+                "id":"21051039-a548-4929-be38-d22722c72f34",
+                "name":"centos6"
+            },
+            {
+                "id":"790eea9e-b46e-4fe6-a883-361dd2274b71",
+                "name":"centos7.2"
+            }
+        ]
+    },
 	{
-		"imag":"Ubuntu",
-		"inum":[
-			{
-				"aid":"uiouio",
-				"details":"Ubuntu 14.04 32位"
-			},
-			{
-				"aid":"yuiyui",
-				"details":"Ubuntu 7.2 64位"
-			},
-			{
-				"aid":"rtyrty",
-				"details":"Ubuntu 7.2 64位"
-			},
-			{
-				"aid":"qweqwe",
-				"details":"Ubuntu 7.2 64位"
-			}
-		]
-	},
+        "type_name":"windows",
+        "images":[
+            {
+                "id":"21051039-a548-4929-be38-d22722c72f38",
+                "name":"windows32"
+            },
+            {
+                "id":"fae2f64b-381c-47e7-8255-76040cc10143",
+                "name":"window64"
+            }
+        ]
+    },
 	{
-		"imag":"Windows",
-		"inum":[
-			{
-				"aid":"uiouio",
-				"details":"Windows 14.04 32位"
-			},
-			{
-				"aid":"yuiyui",
-				"details":"Windows 7.2 64位"
-			},
-			{
-				"aid":"rtyrty",
-				"details":"Windows 7.2 64位"
-			},
-			{
-				"aid":"qweqwe",
-				"details":"Windows 7.2 64位"
-			}
-		]
-	},
-	{
-		"imag":"Debian",
-		"inum":[
-			{
-				"aid":"uiouio",
-				"details":"Debian 14.04 32位"
-			},
-			{
-				"aid":"yuiyui",
-				"details":"Debian 7.2 64位"
-			},
-			{
-				"aid":"rtyrty",
-				"details":"Debian 7.2 64位"
-			},
-			{
-				"aid":"qweqwe",
-				"details":"Debian 7.2 64位"
-			}
-		]
-	}
+        "type_name":"testdata",
+        "images":[
+            {
+                "id":"aaaa",
+                "name":"dsss"
+            }
+        ]
+  }
 ];
+//var jxArray = [];
+//for(var i = 0 ,l = $scope.imagesImg.length; i < l ; i++){
+//	jxArray.push(i+"="+$scope.imagesImg[i].type_name);
+//}
+//console.log(jxArray);
+//var jxArray2 = [];
+//for(var key in jxArray){
+//	console.log(jxArray[key],key,jxArray[key].split('=')[1])
+//	jxArray2.push(jxArray[key].split('=')[0])
+//}
+//console.log(jxArray2)
 
 var jxobj = {
-	o1:$scope.imagesImg[0].imag,
-	o2:$scope.imagesImg[1].imag,
-	o3:$scope.imagesImg[2].imag,
-	o4:$scope.imagesImg[3].imag,
+	o1:$scope.imagesImg[0].type_name,
+	o2:$scope.imagesImg[1].type_name,
+	o3:$scope.imagesImg[2].type_name
 }
 
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
 	$scope.jingFF = function  () {
-		$scope.jxdetails_list=$scope.imagesImg[0].inum;
+		$scope.jxdetails_list=$scope.imagesImg[0].images;
+		jingdel = $scope.imagesImg[0].images[0].id;
 		var opse = $("select option:selected").eq(0).html();
 			n = 0;
-		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : opse == jxobj.o3 ? 2 : 3;
-		$scope.jxdetails_list = $scope.imagesImg[n].inum;
+		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
+		$scope.jxdetails_list = $scope.imagesImg[n].images;
 	};
-$scope.jingFF();
+$scope.jingFF();	
 
+var jingdel = $("select option:selected").eq(1).attr('jj-id');;
+
+$scope.jingdel = function  () {
+		jingdel = $("select option:selected").eq(1).attr('jj-id');
+	};
 
 
 //这是每个页面的滚动条的方法;				
@@ -643,25 +605,51 @@ $jsYreduce.click(function  () {
 	jianNum($('#jsTsBox'),$(this));	
 });
 
-//获取用户选中的数据
-var jsCpuBox = $('#jsCpuBox');
 
-
+//获取数据
 
 $scope.nowBuy = function  () {
 	var _data = {
-		aliasName :$.trim($('#js-aliasname').val()),
-		cpu:parseFloat($('#jsCpuBox').find('.biao_button_active').html()),
-		ram:parseFloat($('#jsNcBox').find('.biao_button_active').html()),
-		imageId:"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
-		password:$.trim($('#js-pwd').val()),
-		disk :$('#bandwidthId').val(),
-		payType : $("select option:selected").eq(3).html()
+		userId : '',//用户的id
+		loginMessage : '',//登录信息
+		expireTime : '',//到期时间
+		discount : '',//折扣
+		modelType : '标准机型',//机型
+		cpu : parseFloat($('#jsCpuBox').find('.biao_button_active').html()),//云主机cpu
+		ram : parseFloat($('#jsNcBox').find('.biao_button_active').html()),//云主机ram内存
+		flavorId : '',//cpu和ram对应的flavorId
+		image :  $("select option:selected").eq(1).html(),//镜像名(系统)
+		imageId : $("select option:selected").eq(1).attr('jj-id'),//镜像id
+		systemDisk : "20G",//赠送的系统盘
+		disk : $('#bandwidthId').val(),//数据盘 0为无硬盘挂载
+		networkType : $('#js-wltype').find('.biao_button_active').html(),//网络类型
+		status : '',//云主机的状态
+		route : 'BGP',//线路
+		networkPayType : '带宽计费',//网络计费方式
+		fireWall : '',//防火墙
+		businessGroup : '',//业务组
+		aliasName : $.trim($('#js-aliasname').val()),//主机别名
+		realName :'',//主机真正的名字
+		defaultAdministrator : '',//默认管理员
+		password : $.trim($('#js-glpwd').val()),//管理员密码
+		rePassword : $.trim($('#js-pwd').val()),//确认密码
+		buyAmount : $.trim($('#jsTsBox').val()),//购买数量
+		payType : $("select option:selected").eq(3).html(),//付费方式
+		payTime : $("select option:selected").eq(4).html(),//付费时间
+		payMonth : parseFloat($("select option:selected").eq(4).html()),//用户选择时间对应的月数
+		totalMoney : parseFloat($('#allPrice').html())//合计费用
     };
     if(isg){
-    	_data.bandWidth = parseFloat($('#daik-inp').val())
+    	_data.bandWidth = $('#daik-inp').val();
+    	_data.floatIp =$('#daik-inp').val();//外网弹性IP null为无浮动IP绑定
+		_data.intranetIp = '';//云主机的内网IP值
+    	
+    }else{
+    	_data.bandWidth = '';
+    	_data.floatIp = 'null';//外网弹性IP null为无浮动IP绑定
+		_data.intranetIp = '';//云主机的内网IP值
     }
-    console.log(_data);
+    console.log(_data)
 	var  hostCloud = "";
 	var ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/createComputeCloudHost';
 	$rootScope.ngAxjx(ngurl_cpu,_data,'hostCloud');
@@ -669,9 +657,6 @@ $scope.nowBuy = function  () {
 //		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
 //	},3000)
 }
-
-
-
 
 
 }]);
