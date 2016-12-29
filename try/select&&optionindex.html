@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 <select name="" id="js-sel">
+		 </select>  
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var n = 0;
+		var html = '';
+		for(var i = 0,l = 10;i<l;i++){
+			html+='<option value="'+i+'">'+i+'</option>';
+		}
+		$('#js-sel').append(html);
+		
+		console.log()
+		$('#js-sel').change(function(){
+			alert($(this).get(0).selectedIndex);
+		})
+	</script>
+</html>

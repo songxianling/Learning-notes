@@ -220,16 +220,25 @@ var jxobj = {
 	o2:$scope.imagesImg[1].type_name,
 	o3:$scope.imagesImg[2].type_name
 }
-
+var jjn = true; 
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
 	$scope.jingFF = function  () {
+		
 		$scope.jxdetails_list=$scope.imagesImg[0].images;
 		jingdel = $scope.imagesImg[0].images[0].id;
 		var opse = $("select option:selected").eq(0).html();
+		if(jjn){
 			n = 0;
-		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
+			jjn = false;
+		}else{
+			n = $("select option:selected").eq(0).val()
+		}
+			
+//		console.log($("select option:selected").eq(0).val())	
+//		n = $(this).get(0).selectedIndex;
+//		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
 		$scope.jxdetails_list = $scope.imagesImg[n].images;
 	};
 $scope.jingFF();	

@@ -230,7 +230,7 @@
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul clearfix">
 														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingFF()" ng-cloak>
-															<option value="" ng-repeat="one in imagesImg" ng-cloak>{{one.type_name}}</option>
+															<option value="{{$index}}" ng-repeat="one in imagesImg" ng-cloak>{{one.type_name}}</option>
 														</select>
 														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingdel()"ng-cloak>
 															<option value="" ng-repeat="one in jxdetails_list" jj-id="{{one.id}}" ng-cloak>{{one.name}}</option>
