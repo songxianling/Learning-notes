@@ -212,16 +212,19 @@ $scope.imagesImg = [
     }
 ];
 
+
 //var jxobj = {
 //	o1:$scope.imagesImg[0].type_name,
 //	o2:$scope.imagesImg[1].type_name,
 //	o3:$scope.imagesImg[2].type_name
 //}
 var jxava = true;
+
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
 	$scope.jingFF = function  () {
+		
 		$scope.jxdetails_list=$scope.imagesImg[0].images;
 		jingdel = $scope.imagesImg[0].images[0].id;
 		var opse = $("select option:selected").eq(0).html();
@@ -231,7 +234,8 @@ var b = $scope.imagesImg[0].imag;
 		}else{
 			n = $("select option:selected").eq(0).val()
 		}
-//			n = 0;
+
+
 //		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
 		$scope.jxdetails_list = $scope.imagesImg[n].images;
 	};
