@@ -55,7 +55,7 @@ $scope.seleF = function  (i) {
 //付费方式数据
 	$scope.optionArr=[
 		{
-			"amode":"月付",
+			"amode":"按月",
 			"gnum":[
 				{
 			        "payTime": "1个月",
@@ -110,7 +110,7 @@ $scope.seleF = function  (i) {
 			]
 		},
 		{
-			 "amode": "年付",
+			 "amode": "按年",
 			 "gnum" : [
 			 	{
 			 		"payTime": "1年",
@@ -140,87 +140,84 @@ $scope.seleF = function  (i) {
 			]
 		}
 	]
-  
-  var ffobj = {
-  	f1:$scope.optionArr[0].amode,
-  	f2:$scope.optionArr[1].amode,
-  	f3:$scope.optionArr[2].amode,
-  };
-	
-  var a = $scope.optionArr['0'].amode;	  
-	    $scope.ffdetails_list = $scope.optionArr[0].gnum;
-		$scope.ffdenum = '1';
-	    $scope.changeff = function ()  {
-	    	var fftext = $("select option:selected").eq(3).html(),
-	    		n = 0;
-	    	n = fftext == ffobj.f1 ? 0 : fftext == ffobj.f2 ? 1 : 2;
-	    	$scope.ffdetails_list = $scope.optionArr[n].gnum; 
-	  		$scope.ffdenum = $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-	    	allPrices();
-	    	
-	    };
-	    $scope.changeffdeta = function () {	
-	    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-			$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
-			allPrices();
-	    };
+
+    var ffava = true,
+  		limitTnum = true;
+    $scope.ffdetails_list = $scope.optionArr[0].gnum;
+	$scope.ffdenum = '1';
+    $scope.changeff = function ()  {
+    	if(ffava){
+    		n = 0;
+    		ffava = false;
+    	}else{
+    		n = $("select option:selected").eq(3).val()
+    	}
+    	$scope.ffdetails_list = $scope.optionArr[n].gnum; 
+  		if($scope.ffyuedi == '购置月末'){
+  			$scope.ffyuedi = 'www';
+  			$scope.ffdenum = day/30;
+  		}else{
+  			$scope.ffdenum = $scope.ffdetails_list[0].price;
+  			$("#js-ffdeta option:first").prop("selected", 'selected');
+  		}
+  		
+  		if($scope.optionArr[n].amode == '按需'){
+  			limitTnum = false;
+  			if($('#jsTsBox').val() > 5){
+  				$('#jsTsBox').attr('value',5)
+  			}
+  		}else{
+  			limitTnum = true;
+  		}
+  		
+  		
+    	allPrices();
+    	
+    };
+    
+    $scope.changeffdeta = function () {	
+    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+		$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
+		allPrices();
+    };
 	    
 //模拟镜像的数据
 $scope.imagesImg = [
-	{
-        "type_name":"centos",
+    {
+        "type_name":"Ubuntu",
         "images":[
             {
-                "id":"21051039-a548-4929-be38-d22722c72f34",
-                "name":"centos6"
-            },
-            {
-                "id":"790eea9e-b46e-4fe6-a883-361dd2274b71",
-                "name":"centos7.2"
+                "id":"8ddcb6c5-58b6-4e50-9e1d-cf166ab4fa7b",
+                "name":"Ubuntu-16.10-x86_64"
             }
         ]
     },
-	{
-        "type_name":"windows",
+    {
+        "type_name":"CentOS",
         "images":[
             {
-                "id":"21051039-a548-4929-be38-d22722c72f38",
-                "name":"windows32"
-            },
-            {
-                "id":"fae2f64b-381c-47e7-8255-76040cc10143",
-                "name":"window64"
+                "id":"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
+                "name":"CentOS-7.2-x86_64"
             }
         ]
     },
-	{
-        "type_name":"testdata",
+    {
+        "type_name":"Debian",
         "images":[
             {
-                "id":"aaaa",
-                "name":"dsss"
+                "id":"c8954f5d-705b-4585-a250-5dbf9b5d019a",
+                "name":"Debian-8.6-x86_64"
             }
         ]
-  }
+    }
 ];
-//var jxArray = [];
-//for(var i = 0 ,l = $scope.imagesImg.length; i < l ; i++){
-//	jxArray.push(i+"="+$scope.imagesImg[i].type_name);
-//}
-//console.log(jxArray);
-//var jxArray2 = [];
-//for(var key in jxArray){
-//	console.log(jxArray[key],key,jxArray[key].split('=')[1])
-//	jxArray2.push(jxArray[key].split('=')[0])
-//}
-//console.log(jxArray2)
 
-var jxobj = {
-	o1:$scope.imagesImg[0].type_name,
-	o2:$scope.imagesImg[1].type_name,
-	o3:$scope.imagesImg[2].type_name
-}
-
+//var jxobj = {
+//	o1:$scope.imagesImg[0].type_name,
+//	o2:$scope.imagesImg[1].type_name,
+//	o3:$scope.imagesImg[2].type_name
+//}
+var jxava = true;
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
@@ -228,8 +225,14 @@ var b = $scope.imagesImg[0].imag;
 		$scope.jxdetails_list=$scope.imagesImg[0].images;
 		jingdel = $scope.imagesImg[0].images[0].id;
 		var opse = $("select option:selected").eq(0).html();
+		if(jxava){
 			n = 0;
-		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
+			jxava = false;
+		}else{
+			n = $("select option:selected").eq(0).val()
+		}
+//			n = 0;
+//		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
 		$scope.jxdetails_list = $scope.imagesImg[n].images;
 	};
 $scope.jingFF();	
@@ -536,11 +539,10 @@ timeDateM();
 $scope.yzjallP = 39.00;
 allPrices();
 function allPrices () {
-	var daik = 0,
-		cpuandnc = $scope.cpuprice*1,
+	var cpuandnc = $scope.cpuprice*1,
 		yjsInp = $('#bandwidthId').val()*1;
 		shujuqian = 0.26*yjsInp;  //这个0.26是从后台获取的数据盘1G的价格	
-		fftype = $scope.ffyuedi=='购置月末'? day/30:$scope.ffdenum*1;
+		ffnum = $scope.ffyuedi == '购置月末'? day/30:$scope.ffdenum*1;
 		Tnum = $('#jsTsBox').val();
 		$("#yunShowNumber").html(Tnum);//这个是云主机配额的数量展示的时候
 		$('#tanShowNumber').html(Tnum);//这个是弹性ip数量展示的时候
@@ -562,9 +564,10 @@ function allPrices () {
 	}else{
 		dkzong = 0;
 	}
-	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * fftype * Tnum);
+	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * ffnum * Tnum);
 	//$scope.yzjallP = yunallZ.toFixed(2);
 	$('#allPrice').html(yunallZ.toFixed(2)+'元');
+	//console.log(cpuandnc,shujuqian,dkzong,Tnum,fftype)
 }
 
 
@@ -572,9 +575,14 @@ function allPrices () {
 //台数的增加
  function jiaNum (inp,th) {
  	var tval = inp.attr('value');
- 	$scope.tval = tval;
- 	if(tval > 100){
- 		alert('最大的数量保持在100台以内');
+ 	var maxnum ;
+ 	if(!limitTnum){
+ 		maxnum = 5;
+ 	}else{
+ 		maxnum = 100;
+ 	}
+ 	if(tval >= maxnum){
+ 		alert('最大的数量保持在"'+maxnum+'"台以内');
  		return;
  	}
  	tval ++ ;
@@ -618,7 +626,7 @@ $scope.nowBuy = function  () {
 		cpu : parseFloat($('#jsCpuBox').find('.biao_button_active').html()),//云主机cpu
 		ram : parseFloat($('#jsNcBox').find('.biao_button_active').html()),//云主机ram内存
 		flavorId : '',//cpu和ram对应的flavorId
-		image :  $("select option:selected").eq(1).html(),//镜像名(系统)
+		image :  $("select option:selected").eq(0).html(),//镜像名(系统)
 		imageId : $("select option:selected").eq(1).attr('jj-id'),//镜像id
 		systemDisk : "20G",//赠送的系统盘
 		disk : $('#bandwidthId').val(),//数据盘 0为无硬盘挂载
@@ -635,7 +643,7 @@ $scope.nowBuy = function  () {
 		rePassword : $.trim($('#js-pwd').val()),//确认密码
 		buyAmount : $.trim($('#jsTsBox').val()),//购买数量
 		payType : $("select option:selected").eq(3).html(),//付费方式
-		payTime : $("select option:selected").eq(4).html(),//付费时间
+		payTime : parseFloat($("select option:selected").eq(4).html()),//付费时间
 		payMonth : parseFloat($("select option:selected").eq(4).html()),//用户选择时间对应的月数
 		totalMoney : parseFloat($('#allPrice').html())//合计费用
     };
@@ -650,12 +658,19 @@ $scope.nowBuy = function  () {
 		_data.intranetIp = '';//云主机的内网IP值
     }
     console.log(_data)
-	var  hostCloud = "";
+	
 	var ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/createComputeCloudHost';
-	$rootScope.ngAxjx(ngurl_cpu,_data,'hostCloud');
-//	setTimeout(function() {
+	$rootScope.ngAxjx(ngurl_cpu,_data,'',callback);
+	function callback (json) {
+		console.log(json)
+//		setTimeout(function() {
 //		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
-//	},3000)
+//		},3000)
+	}
+//	function errorCallback(data){
+//		alert(data)
+//	}
+//	
 }
 
 

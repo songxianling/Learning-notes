@@ -230,7 +230,7 @@
 												<div class="new_step_trol">																									
 													<ul class="biao_button_ul clearfix">
 														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingFF()" ng-cloak>
-															<option value="" ng-repeat="one in imagesImg" ng-cloak>{{one.type_name}}</option>
+															<option value="{{$index}}" ng-repeat="one in imagesImg" ng-cloak>{{one.type_name}}</option>
 														</select>
 														<select name="" style="width: 160px;height: 30px;border: 1px solid #ccc;" ng-click="jingdel()"ng-cloak>
 															<option value="" ng-repeat="one in jxdetails_list" jj-id="{{one.id}}" ng-cloak>{{one.name}}</option>
@@ -474,10 +474,10 @@
 									<label for="" class="new_label">付费方式</label>
 									<div class="method_sele">
 										<select class="method_sele_price" style="margin-bottom: 20px;" ng-click="changeff()" ng-cloak>
-	  			                               <option ng-repeat="one in optionArr" value="">{{one.amode}}</option>
+	  			                               <option ng-repeat="one in optionArr" value="{{$index}}">{{one.amode}}</option>
 	  		                            </select>
-								  		<select class="method_sele_price" ng-click="changeffdeta()" ng-cloak>
-								  			<option ng-repeat="one in ffdetails_list" value="{{one.ffdetaid}}">{{one.payTime}}</option>
+								  		<select class="method_sele_price" ng-click="changeffdeta()" ng-cloak id="js-ffdeta">
+								  			<option ng-repeat="one in ffdetails_list" value="{{$index}}">{{one.payTime}}</option>
 								  		</select>
 							  		</div>
 								</div>
