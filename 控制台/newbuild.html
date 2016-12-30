@@ -382,9 +382,9 @@
 										<li>
 											<div class="new_con_pd clearfix">
 												<label for="" class="new_label"><span>主机别名</span></label>
-												<div class="new_step_trol">																									
-													<input type="text" name="" id="js-aliasname" value="" />
-													<span style="color: red;">请按要求填写</span>
+												<div class="new_step_trol" >																									
+													<input type="text" name="" id="js-aliasname" value=""/>
+													<span style="color: red;display: none;" class="js-err">请按要求填写</span>
 													<p style="margin-top: 5px;color: #65a4fd;">以字母开头，仅包含字母、数字或下划线的5-10个字符</p>
 												</div>
 											</div>
@@ -404,8 +404,8 @@
 											<div class="new_con_pd clearfix">
 												<label for="" class="new_label"><span>管理员密码</span></label>
 												<div class="new_step_trol">																									
-													<input type="password" name="" id="js-glpwd" value="" />
-													<span style="color: red;">请按要求填写</span>
+													<input type="password" name="" id="js-glpwd" value="" class="js-pwdinp"/>
+													<span style="color: red;display: none;"class="js-err">请按要求填写</span>
 													<p style="margin-top: 5px;color: #65a4fd;">以字母开头，仅包含字母、数字或下划线的6-10个字符</p>
 												</div>
 											</div>
@@ -415,8 +415,8 @@
 											<div class="new_con_pd clearfix">
 												<label for="" class="new_label"><span>确认密码</span></label>
 												<div class="new_step_trol">	
-													<input type="password" name="" id="js-pwd" value="" />
-													<span style="color: red;">密码不一致，请重新输入</span>
+													<input type="password" name="" id="js-pwd" value="" class="js-pwdinp"/>
+													<span style="color: red;display: none;"class="js-err">密码不一致，请重新输入</span>
 												</div>
 											</div>
 										</li>

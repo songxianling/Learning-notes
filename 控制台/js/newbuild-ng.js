@@ -617,10 +617,52 @@ $jsYreduce.click(function  () {
 	jianNum($('#jsTsBox'),$(this));	
 });
 
+// 输入主机名 && 密码 的规则判断
 
+var errmsg = {
+	//错误信息的集合
+	m1 : '*请按要求填写*',
+	m2 : '*请输入相同的密码*',
+	m3 : '*请注意主机信息区域的填写是否完整*',
+	m4 : '*请注意主机信息区域的填写是否正确*'
+}
+
+
+var $zzname = $('#js-aliasname');
+$zzname.on('input',function () {
+	var va = $.trim($(this).val());
+	if(!/^[a-zA-Z][a-zA-Z0-9_]{4,10}$/.test(va)){
+		$(this).next('span').show();
+	}else{
+		$(this).next('span').hide();
+	}
+});
+
+var $pwdinp = $('.js-pwdinp');
+$pwdinp.on('input',function () {
+	var va = $.trim($(this).val());
+	if(!/^[a-zA-Z][a-zA-Z0-9_]{5,10}$/.test(va)){
+		$(this).next('span').html(errmsg.m1).show();
+	}else if(va !== $pwdinp.eq(0).val()){
+		$(this).next('span').html(errmsg.m2).show();
+	}else{
+		$(this).next('span').hide();
+	}
+});
 //获取数据
 
 $scope.nowBuy = function  () {
+	var $errinfo = $('.js-err');
+	if($zzname.val() == '' || $pwdinp.eq(0).val() == '' || $pwdinp.eq(1).val() == ''){
+		alert(errmsg.m3);
+		return;
+	}
+	if($errinfo.is(":visible")){
+		alert(errmsg.m4);
+		return;
+	}
+	
+	
 	var _data = {
 		userId : '',//用户的id
 		loginMessage : '',//登录信息
