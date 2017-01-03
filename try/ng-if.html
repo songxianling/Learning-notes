@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-controller="myCtrl">
+		<div>
+			<ul>
+				<li ng-repeat = "one in stateList" >
+					<span ng-if = "one.state == 'build'">正在创建</span>
+					<span ng-if = "one.state == 'active'">完成</span>
+					<span ng-if = "one.state == 'err'">数据异常</span>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var A = angular.module('myApp', []);
+		A.controller('myCtrl', ['$scope', function($scope) {
+		    $scope.stateList= [
+	        {  
+	            "state": "build"
+	        },{  
+	            "state": "active"
+	        },{  
+	            "state": "err"
+	        },{  
+	            "state": "build"
+	        },{  
+	            "state": "active"
+	        },{  
+	            "state": "err"
+	        }]		    
+		}]);
+	</script>
+</html>
