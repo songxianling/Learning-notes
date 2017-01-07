@@ -1,203 +1,66 @@
+
+setTimeout(function() {
+	$('.control_main_center li .zong').eq(0).click();
+},100);
 //模拟数据
-
 sspaas.controller('myCtrl', ['$scope','$rootScope','$http', function($scope,$rootScope,$http){
-//cpu 内存模拟数据
-$scope.cpudataList = [ 
-	{
-		cpuName: '1',						
-		gnum:[{gn:'1',price:'39'},{gn:'2',price:'73'},{gn:'4',price:'127'}]
-	},{
-		cpuName: '2',
-		gnum:[{gn:'2',price:'126'},{gn:'4',price:'171'},{gn:'6',price:'261'}]
-	},{
-		cpuName: '4',
-		gnum:[{gn:'4',price:'250'},{gn:'8',price:'340'},{gn:'16',price:'520'}]
-	},{
-		cpuName: '8',
-		gnum:[{gn:'8',price:'510'},{gn:'16',price:'690'},{gn:'32',price:'1050'}]
-	},{
-		cpuName: '12',
-		gnum:[{gn:'16',price:'885'},{gn:'24',price:'1065'},{gn:'32',price:'1245'}]
-	},{
-		cpuName: '16',
-		gnum:[{gn:'16',price:'1015'},{gn:'32',price:'1375'},{gn:'64',price:'2095'}]
-	}
-];
+
+$rootScope.cpudataList ="";
 //核数点击的时候
-
-$scope.cpuprice = 39; // 默认核数对应G数的价格 （1核1G）
-$scope.selectFun = function  (i) {
-	$scope.dataInfo = $scope.cpudataList[i].gnum;
-	$scope.hNum = $scope.cpudataList[1].cpuName;
-	$('#jsCpuBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
-	 angular.forEach($scope.cpudataList,function  (item, index) {
-	 	if(i==index){
-	 		$scope.cpuprice = $scope.dataInfo[0].price;
-	 	}
-	 });
-	 allPrices();
-};
-$scope.selectFun(0);
-
-//G数点击的时候
-$scope.seleF = function  (i) {
-	$('#jsNcBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
-	$scope.ncNum = $scope.dataInfo[i].gn;
-	angular.forEach($scope.dataInfo,function  (item, index) {
-		if(i == index){
-			$scope.cpuprice = $scope.dataInfo[i].price;
-		}
-	})
-	allPrices();
-};
-		
-/*----------------------------------------------------------------------------*/
-//付费方式数据
-	$scope.optionArr=[
-		{
-			"amode":"按月",
-			"gnum":[
-				{
-			        "payTime": "1个月",
-			        "ffdetaid":"0",
-			        "price": "1"
-		        },
-		         {
-			        "payTime": "2个月",
-			        "ffdetaid":"1",
-			        "price": "2"
-		        },
-		         {
-			        "payTime": "3个月",
-			        "ffdetaid":"2",
-			        "price": "3"
-		        },
-		         {
-			        "payTime": "4个月",
-			        "ffdetaid":"3",
-			        "price": "4"
-		        },
-		         {
-			        "payTime": "5个月",
-			        "ffdetaid":"4",
-			        "price": "5"
-		        },
-		         {
-			        "payTime": "6个月",
-			        "ffdetaid":"5",
-			        "price": "6"
-		        },
-		         {
-			        "payTime": "7个月",
-			        "ffdetaid":"6",
-			        "price": "7"
-		        },
-		         {
-			        "payTime": "8个月",
-			        "ffdetaid":"7",
-			        "price": "8"
-		        },
-		         {
-			        "payTime": "9个月",
-			        "ffdetaid":"8",
-			        "price": "9"
-		        },
-		        {
-					"payTime":"购置月末",
-					"ffdetaid":"9",
-					"price":"0.05"
-				}
-			]
-		},
-		{
-			 "amode": "按年",
-			 "gnum" : [
-			 	{
-			 		"payTime": "1年",
-			 		"ffdetaid":"0",
-			        "price": "10"
-			 	},
-			 	{
-			 		"payTime": "2年",
-			 		"ffdetaid":"1",
-			        "price": "18"
-			 	},
-			 	{
-			 		"payTime": "3年",
-			 		"ffdetaid":"2",
-			        "price": "27"
-			 	}
-			 ]
-		},
-		{
-			"amode":"按需",
-			"gnum":[
-				{
-					"payTime":"小时",
-					"ffdetaid":"0",
-					"price":"0.0013888"
-				}
-			]
-		}
-	]
-
-    var ffava = true,
-  		limitTnum = true;
-    $scope.ffdetails_list = $scope.optionArr[0].gnum;
-	$scope.ffdenum = '1';
-    $scope.changeff = function ()  {
-    	if(ffava){
-    		n = 0;
-    		ffava = false;
-    	}else{
-    		n = $("select option:selected").eq(3).val()
-    	}
-    	$scope.ffdetails_list = $scope.optionArr[n].gnum; 
-  		if($scope.ffyuedi == '购置月末'){
-  			$scope.ffyuedi = 'www';
-  			$scope.ffdenum = day/30;
-  		}else{
-  			$scope.ffdenum = $scope.ffdetails_list[0].price;
-  			$("#js-ffdeta option:first").prop("selected", 'selected');
-  		}
-  		
-  		if($scope.optionArr[n].amode == '按需'){
-  			limitTnum = false;
-  			if($('#jsTsBox').val() > 5){
-  				$('#jsTsBox').attr('value',5)
-  			}
-  		}else{
-  			limitTnum = true;
-  		}
-  		
-  		
-    	allPrices();
-    	
-    };
-    
-    $scope.changeffdeta = function () {	
-    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
-		$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
+var data1 = {};
+$scope.ngurl_cpu1 = 'http://cms.docker.sspaas.net/querydata/queryCpuAndRamTypePriceList';
+$rootScope.ngAxjx($scope.ngurl_cpu1,data1,'cpudataList',callback); 
+function callback (json) {
+	$rootScope.cpudataList =json;
+	$scope.cpuprice = 39.00; // 默认核数对应G数的价格 （1核1G）
+	$scope.selectFun = function(i){
+		$scope.dataInfo = $rootScope.cpudataList[i].gnum;
+		$scope.hNum = $rootScope.cpudataList[1].cpuName;
+		$('#jsCpuBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
+		 angular.forEach($rootScope.cpudataList,function  (item, index) {
+		 	if(i==index){
+		 		$scope.cpuprice = $scope.dataInfo[0].price;
+		 	}
+		 });
+		 allPrices();
+	};
+	$scope.selectFun(0);
+	
+	//G数点击的时候
+	$scope.seleF = function  (i) {
+		$('#jsNcBox li').eq(i).addClass('biao_button_active').siblings().removeClass('biao_button_active');	
+		$scope.ncNum = $scope.dataInfo[i].gn;
+		angular.forEach($scope.dataInfo,function  (item, index) {
+			if(i == index){
+				$scope.cpuprice = $scope.dataInfo[i].price;
+			}
+		})
 		allPrices();
-    };
-	    
+	};
+}
+		
+/*----------------------------------------------------------*/
 //模拟镜像的数据
 $scope.imagesImg = [
+    {
+        "type_name":"centos",
+        "images":[
+            {
+                "id":"74cbee6b-fba8-4beb-88e5-e1208f787925",
+                "name":"test-centos6-test"
+            },
+            {
+                "id":"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
+                "name":"CentOS-7.2-x86_64"
+            }
+        ]
+    },
     {
         "type_name":"Ubuntu",
         "images":[
             {
                 "id":"8ddcb6c5-58b6-4e50-9e1d-cf166ab4fa7b",
                 "name":"Ubuntu-16.10-x86_64"
-            }
-        ]
-    },
-    {
-        "type_name":"CentOS",
-        "images":[
-            {
-                "id":"b1befea3-73ad-4be5-a0d8-ed5f2eb52e19",
-                "name":"CentOS-7.2-x86_64"
             }
         ]
     },
@@ -213,18 +76,11 @@ $scope.imagesImg = [
 ];
 
 
-//var jxobj = {
-//	o1:$scope.imagesImg[0].type_name,
-//	o2:$scope.imagesImg[1].type_name,
-//	o3:$scope.imagesImg[2].type_name
-//}
 var jxava = true;
-
 var b = $scope.imagesImg[0].imag;
 	$scope.xxx=b;
 	$scope.jxdetails_list = null;
 	$scope.jingFF = function  () {
-		
 		$scope.jxdetails_list=$scope.imagesImg[0].images;
 		jingdel = $scope.imagesImg[0].images[0].id;
 		var opse = $("select option:selected").eq(0).html();
@@ -234,19 +90,36 @@ var b = $scope.imagesImg[0].imag;
 		}else{
 			n = $("select option:selected").eq(0).val()
 		}
-
-
-//		n=opse=="非Web服务器推荐(22，3389)"?0:opse == jxobj.o1 ? 0 : opse == jxobj.o2 ? 1 : 2;
 		$scope.jxdetails_list = $scope.imagesImg[n].images;
 	};
-$scope.jingFF();	
+	$scope.jingFF();	
 
-var jingdel = $("select option:selected").eq(1).attr('jj-id');;
-
+var jingdel = $("select option:selected").eq(1).attr('jj-id');
 $scope.jingdel = function  () {
 		jingdel = $("select option:selected").eq(1).attr('jj-id');
 	};
 
+
+
+/*-------------------------------------------------------------------------*/
+//安全组的数据
+$rootScope.anquanQroup ="";
+var dataAn = {};
+$scope.ngurl_cpuAn = 'http://192.168.10.240:8001/securityGroup/getSelectGroup';
+$rootScope.ngAxjx($scope.ngurl_cpuAn,dataAn,'anquanQroup',callback1); 
+function callback1 (data) {
+	$rootScope.anquanQroup = data;
+	console.log(data);
+	$scope.QroupDetail = $rootScope.anquanQroup.list;
+}
+		
+		
+		
+		
+		
+/*----------------------------------------------------------------------------*/
+
+	    
 
 //这是每个页面的滚动条的方法;				
 $scope.genal={
@@ -388,12 +261,14 @@ $scope.scrollbar={
 		var pris = $(".unfold:eq("+index+") .price");
 		var mini = $(".unfold:eq("+index+") .mini");
 		if(index==0){		
-			var price =Math.round(per*max);
+			var price = Math.round(Math.round(per*max)/10)*10;
+			if(price < 100 && price !== 0){
+				price = 100;
+			}
 			pris.children("div").remove();			
 			mini.attr('value',price);		
 			$scope.sjpNum = price;
 			allPrices();
-
 		}
 		if(index==1){
 			var price =Math.round(per*max);
@@ -441,6 +316,12 @@ var $yjsInp = $('#bandwidthId'),
 	$daikinp = $('#daik-inp');
 getOldNum($yjsInp);
 getOldNum($daikinp);
+
+
+
+
+
+
 
 //这里是带宽模拟数据
 $scope.daidprice = [
@@ -500,7 +381,7 @@ $scope.daidprice = [
             "updatedTime":"2016-11-16"
         }
     }
-]
+];
 var oneP_1, oneP_2, oneP_3, oneP_4, oneP_5, oneP_6, oneP_6_detail;
 angular.forEach($scope.daidprice, function(item, index) {
 			oneP_1 = item['1']['minIpBroadBandPrice'];
@@ -515,6 +396,55 @@ angular.forEach($scope.daidprice, function(item, index) {
 
 //----------------------------------------------------------------------------------------------------------
 	
+//付费方式数据
+$rootScope.optionArr="";
+var dataff={};
+$scope.ffUrl = "http://cms.docker.sspaas.net/querydata/queryConsolePayTypeList";
+$rootScope.ngAxjx($scope.ffUrl,dataff,'optionArr',callback2); 
+function callback2 (dataff) {
+	$rootScope.optionArr = dataff;
+	console.log(dataff)
+	var ffava = true,
+		 limitTnum = true;
+    $scope.ffdetails_list = $rootScope.optionArr[0].gnum;
+	$scope.ffdenum = '1';
+    $scope.changeff = function ()  {
+    	if(ffava){
+    		n = 0;
+    		ffava = false;
+    	}else{
+    		n = $("select option:selected").eq(3).val()
+    	}
+    	$scope.ffdetails_list = $rootScope.optionArr[n].gnum; 
+    	
+		if($scope.ffyuedi == '购置月末'){
+			$scope.ffyuedi = 'www';
+			$scope.ffdenum = day/30;
+		}else{
+			$scope.ffdenum = $scope.ffdetails_list[0].price;
+			$("#js-ffdeta option:first").prop("selected", 'selected');
+		}
+		
+		if($rootScope.optionArr[n].amode == '按需'){
+			limitTnum = false;
+			if($('#jsTsBox').val() > 5){
+				$('#jsTsBox').attr('value',5)
+			}
+		}else{
+			limitTnum = true;
+		}
+		$("#js-ffdeta").selectedIndex = 1;
+    	allPrices();
+    };
+    $scope.changeffdeta = function () {	
+    	$scope.ffdenum =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].price;
+		$scope.ffyuedi =  $scope.ffdetails_list[$("select option:selected").eq(4).val()].payTime;
+		allPrices();
+    };
+}
+   
+	
+
 //点击增加类
 var isg = true;
 function eleActive (ele) {
@@ -536,7 +466,8 @@ function timeDateM() {
 		day = (30 - curTime) + 1;
 	}
 timeDateM();
-	
+var a = (day/30)*145.15;
+
 /**
  * allPrices {function} -> 计算价格 的函数
  */
@@ -546,7 +477,7 @@ function allPrices () {
 	var cpuandnc = $scope.cpuprice*1,
 		yjsInp = $('#bandwidthId').val()*1;
 		shujuqian = 0.26*yjsInp;  //这个0.26是从后台获取的数据盘1G的价格	
-		ffnum = $scope.ffyuedi == '购置月末'? day/30:$scope.ffdenum*1;
+		ffnum = $scope.ffyuedi == '购置月末'? day/30 : $scope.ffdenum*1;
 		Tnum = $('#jsTsBox').val();
 		$("#yunShowNumber").html(Tnum);//这个是云主机配额的数量展示的时候
 		$('#tanShowNumber').html(Tnum);//这个是弹性ip数量展示的时候
@@ -571,10 +502,9 @@ function allPrices () {
 	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * ffnum * Tnum);
 	//$scope.yzjallP = yunallZ.toFixed(2);
 	$('#allPrice').html(yunallZ.toFixed(2)+'元');
-	//console.log(cpuandnc,shujuqian,dkzong,Tnum,fftype)
+	//console.log(cpuandnc,shujuqian,dkzong,ffnum)
+	
 }
-
-
 	
 //台数的增加
  function jiaNum (inp,th) {
@@ -617,6 +547,7 @@ $jsYreduce.click(function  () {
 	jianNum($('#jsTsBox'),$(this));	
 });
 
+
 // 输入主机名 && 密码 的规则判断
 
 var errmsg = {
@@ -624,10 +555,9 @@ var errmsg = {
 	m1 : '*请按要求填写*',
 	m2 : '*请输入相同的密码*',
 	m3 : '*请注意主机信息区域的填写是否完整*',
-	m4 : '*请注意主机信息区域的填写是否正确*'
+	m4 : '*请注意主机信息区域的填写是否正确*',
+	m5 : '正则创建云主机,请稍后...'
 }
-
-
 var $zzname = $('#js-aliasname');
 $zzname.on('input',function () {
 	var va = $.trim($(this).val());
@@ -649,20 +579,21 @@ $pwdinp.on('input',function () {
 		$(this).next('span').hide();
 	}
 });
-//获取数据
 
+var $mark = $('#js-mark'); //遮罩层
+//获取数据
 $scope.nowBuy = function  () {
 	var $errinfo = $('.js-err');
 	if($zzname.val() == '' || $pwdinp.eq(0).val() == '' || $pwdinp.eq(1).val() == ''){
-		alert(errmsg.m3);
+		layer.alert(errmsg.m3);
 		return;
-	}
-	if($errinfo.is(":visible")){
-		alert(errmsg.m4);
+	}else if($errinfo.is(":visible")){
+		layer.alert(errmsg.m4);
 		return;
 	}
 	
 	
+
 	var _data = {
 		userId : '',//用户的id
 		loginMessage : '',//登录信息
@@ -672,7 +603,7 @@ $scope.nowBuy = function  () {
 		cpu : parseFloat($('#jsCpuBox').find('.biao_button_active').html()),//云主机cpu
 		ram : parseFloat($('#jsNcBox').find('.biao_button_active').html()),//云主机ram内存
 		flavorId : '',//cpu和ram对应的flavorId
-		image :  $("select option:selected").eq(0).html(),//镜像名(系统)
+		image :  $("select option:selected").eq(1).html(),//镜像名(系统)
 		imageId : $("select option:selected").eq(1).attr('jj-id'),//镜像id
 		systemDisk : "20G",//赠送的系统盘
 		disk : $('#bandwidthId').val(),//数据盘 0为无硬盘挂载
@@ -680,7 +611,7 @@ $scope.nowBuy = function  () {
 		status : '',//云主机的状态
 		route : 'BGP',//线路
 		networkPayType : '带宽计费',//网络计费方式
-		fireWall : '',//防火墙
+		fireWall :$("select option:selected").eq(2).attr("datacode"),//安全组
 		businessGroup : '',//业务组
 		aliasName : $.trim($('#js-aliasname').val()),//主机别名
 		realName :'',//主机真正的名字
@@ -689,35 +620,34 @@ $scope.nowBuy = function  () {
 		rePassword : $.trim($('#js-pwd').val()),//确认密码
 		buyAmount : $.trim($('#jsTsBox').val()),//购买数量
 		payType : $("select option:selected").eq(3).html(),//付费方式
-		payTime : parseFloat($("select option:selected").eq(4).html()),//付费时间
-		payMonth : parseFloat($("select option:selected").eq(4).html()),//用户选择时间对应的月数
-		totalMoney : parseFloat($('#allPrice').html())//合计费用
+		payTime : $("select option:selected").eq(4).attr("data-payTime"),//付费时间
+		payMonth : parseFloat($("select option:selected").eq(4).attr("data-price")),//用户选择时间对应的月数
+		totalMoney : parseFloat($('#allPrice').html()).toFixed(2)//合计费用
     };
     if(isg){
     	_data.bandWidth = $('#daik-inp').val();
-    	_data.floatIp =$('#daik-inp').val();//外网弹性IP null为无浮动IP绑定
+    	_data.floatIp ='';//外网弹性IP null为无浮动IP绑定
 		_data.intranetIp = '';//云主机的内网IP值
     	
     }else{
     	_data.bandWidth = '';
-    	_data.floatIp = 'null';//外网弹性IP null为无浮动IP绑定
+    	_data.floatIp = '';//外网弹性IP null为无浮动IP绑定
 		_data.intranetIp = '';//云主机的内网IP值
     }
+    $mark.show();
     console.log(_data)
-	
 	var ngurl_cpu = 'http://192.168.10.240:8001/computeCloudHost/createComputeCloudHost';
 	$rootScope.ngAxjx(ngurl_cpu,_data,'',callback);
-	function callback (json) {
-		console.log(json)
-//		setTimeout(function() {
-//		window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
-//		},3000)
+	function callback (json){
+		console.log(json);
+		$mark.hide();
+		if(json.code == 200){
+			window.location.href = 'http://127.0.0.1/sspaas/file/secondary/console/compute/cloudhost.html';
+		}else{
+			layer.alert(json.message);
+			return;
+		}
+		
 	}
-//	function errorCallback(data){
-//		alert(data)
-//	}
-//	
 }
-
-
 }]);

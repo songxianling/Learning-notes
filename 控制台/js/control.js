@@ -1,9 +1,8 @@
 $(document).ready(function(){
 // 折页
-	$(".computer").click();
-var $zongList = $(".zong")
+	
+var $zongList = $(".zong");
 $zongList.click(function(){	
-
     $(this).addClass("cur").next().slideToggle(500)
     .parent().siblings().children(".zong").removeClass("cur").next().slideUp(500);
 
@@ -23,6 +22,7 @@ $zongList.click(function(){
     }
     
  })
+$zongList.eq(1).click();
 
     $('.second').on('click',"li",function(){
     	$(this).addClass("zhe_change").siblings().removeClass("zhe_change")
