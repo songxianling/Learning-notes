@@ -481,8 +481,10 @@
 										<select class="method_sele_price" style="margin-bottom: 20px;" ng-click="changeff()" ng-cloak>
 	  			                               <option ng-repeat="one in optionArr" value="{{$index}}">{{one.amode}}</option>
 	  		                            </select>
+	  		                            <!--<select class="method_sele_price" ng-click="changeffdeta()" ng-cloak id="js-ffdeta" ng-options = "one.payTime as one for one in ffdetails_list" ng-model = "payTime">
+								  		</select>-->
 								  		<select class="method_sele_price" ng-click="changeffdeta()" ng-cloak id="js-ffdeta">
-								  			<option ng-repeat="one in ffdetails_list" value="{{$index}}">{{one.payTime}}</option>
+								  			<option ng-repeat="one in ffdetails_list" value="{{$index}}" ng-model = 'payTime'>{{one.payTime}}</option>
 								  		</select>
 							  		</div>
 								</div>

@@ -397,6 +397,9 @@ angular.forEach($scope.daidprice, function(item, index) {
 //----------------------------------------------------------------------------------------------------------
 	
 //付费方式数据
+console.log($("#js-ffdeta").find('option').length)
+//$scope.payTime = '1个月';
+$("#js-ffdeta").selectedIndex = 1;
 $rootScope.optionArr="";
 var dataff={};
 $scope.ffUrl = "http://cms.docker.sspaas.net/querydata/queryConsolePayTypeList";
@@ -408,6 +411,7 @@ function callback2 (dataff) {
 		 limitTnum = true;
     $scope.ffdetails_list = $rootScope.optionArr[0].gnum;
 	$scope.ffdenum = '1';
+	$scope.ffyuedi = '购置月末';
     $scope.changeff = function ()  {
     	if(ffava){
     		n = 0;
@@ -416,11 +420,11 @@ function callback2 (dataff) {
     		n = $("select option:selected").eq(3).val()
     	}
     	$scope.ffdetails_list = $rootScope.optionArr[n].gnum; 
-    	
 		if($scope.ffyuedi == '购置月末'){
 			$scope.ffyuedi = 'www';
 			$scope.ffdenum = day/30;
 		}else{
+			$scope.ffyuedi = $scope.ffdetails_list[0].payTime;
 			$scope.ffdenum = $scope.ffdetails_list[0].price;
 			$("#js-ffdeta option:first").prop("selected", 'selected');
 		}
@@ -433,7 +437,7 @@ function callback2 (dataff) {
 		}else{
 			limitTnum = true;
 		}
-		$("#js-ffdeta").selectedIndex = 1;
+		$scope.changeffdeta();
     	allPrices();
     };
     $scope.changeffdeta = function () {	
@@ -499,6 +503,7 @@ function allPrices () {
 	}else{
 		dkzong = 0;
 	}
+//	console.log(ffnum,$scope.ffyuedi == '购置月末');
 	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * ffnum * Tnum);
 	//$scope.yzjallP = yunallZ.toFixed(2);
 	$('#allPrice').html(yunallZ.toFixed(2)+'元');
