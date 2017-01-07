@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="###" id="js-me">click me</a>
+		<input type="text" id="js-num" value="1" />
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#js-me').on('click',function () {
+			var num = $('#js-num').val();
+			num ++ ;
+			$('#js-num').val(num);
+			if(num == 3){
+				var w = window.open();
+			}
+		});
+		
+	</script>
+</html>
