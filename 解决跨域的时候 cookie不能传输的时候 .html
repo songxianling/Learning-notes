@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+	<body>
+		<script type="text/javascript" charset="utf-8">
+			//使用跨域的时候，后台用了cors以后，虽然能获取但是cookie不能跨域传输，在ajax里面添加了
+			function comreajax(u, data, callback) {
+				$.ajax({
+					url: u,
+					data: data,
+					type: 'post',
+					xhrFields: {
+						withCredentials: true
+					},
+					dataType: "json",
+					success: function(data) {
+						callback(data);
+					}
+				})
+			}
+			xhrFields: {
+					withCredentials: true
+				},
+				//解决了跨域的时候不能用cookie的现象，是否开启cookie跨域
+		//什么是跨域   笼统地说就是不同域之间的联系
+		  //是浏览器对于javascript同源策略的限制  例如baidu.com不同调用jd.com的对象和数据， 因为是不同的域。
+		</script>
+	</body>
+
+</html>

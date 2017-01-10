@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>学习笔记</title>
+</head>
+<body>
+<h1>这只是个学习笔记,笔记都在别的分支</h1>
+<!--在ng绑定中  有两种方式 >
+	
+<!--ng-bind="xxx.aaa"-->
+<div ng-bind="xxx.aaa"></div>
+
+<!--在页面中直接{{xxx.aaa}}   这种方式中需要用ng-cloak  来解决-->
+<div ng-cloak>{{xxx.aaa}}娃哈哈</div>
+
+<script type="text/javascript">
+	//ng-bind和{{}}的区别
+	//{{}} 页面加载的时候 通常是先加载index.html  这时候数据还没有渲染出来  未被渲染的模版就会被客户看到
+	//ng-bind 页面正常加载  如果数据没有渲染出来    这个时候 未被渲染的模版 就不会被客户看到 
+	
+	//最大的区别就是ng-bind不能在html中不能写汉字  而{{}}后面就能加汉字
+</script>
+</body>
+</html>

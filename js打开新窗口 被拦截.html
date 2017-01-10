@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//从后台请求回来的message（url），需要新的窗口中打开  但是如果直接用windown.location.href
+	 //就或被地址栏拦截  这时候就可以用以下的解决方案（这个是ng的请求）
+	$rootScope.win = window.open();//首先打开一个新的窗口
+    $scope.ngUrl='http://192.168.10.240:8001/computeCloudHost/vncComputeCloudHost;
+		$rootScope.ngAxjx($scope.ngUrl,{'serverId':uuid},"",callback);
+	        function callback (json) {
+	        	console.log(json)
+	        	if(json.code == 200){
+	        		//这个时候再把地址放在url地址栏中  就会打开
+	        		$rootScope.win.location = json.message;
+	        		
+	        	}else{
+	        		$rootScope.win.close();
+	        	}
+	        }
+</script>
+</body>
+</html>
