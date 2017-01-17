@@ -506,6 +506,12 @@ function allPrices () {
 //	console.log(ffnum,$scope.ffyuedi == '购置月末');
 	var yunallZ = parseFloat((cpuandnc + shujuqian + dkzong) * ffnum * Tnum);
 	//$scope.yzjallP = yunallZ.toFixed(2);
+	if(yunallZ.toString() == 'NaN'){
+		$('.get_new_in').addClass('no-click');
+		yunallZ = 0;
+	}else{
+		$('.get_new_in').removeClass('no-click');
+	}
 	$('#allPrice').html(yunallZ.toFixed(2)+'元');
 	//console.log(cpuandnc,shujuqian,dkzong,ffnum)
 	
