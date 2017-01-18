@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0,maximum-scale=1.0">
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				font-weight: normal;
+			}
+			
+			input,
+			button,
+			select,
+			textarea {
+				outline: none;
+				vertical-align: middle
+			}
+			
+			input::-moz-focus-inner {
+				border: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none
+			}
+			
+			em,
+			i {
+				font-style: normal;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #333;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				-moz-tap-highlight-color: rgba(0, 0, 0, 0);
+				-ms-tap-highlight-color: rgba(0, 0, 0, 0);
+				-o-tap-highlight-color: rgba(0, 0, 0, 0);
+				tap-highlight-color: rgba(0, 0, 0, 0)
+			}
+			
+			img {
+				border: none
+			}
+			
+			textarea {
+				resize: none
+			}
+			
+			body {
+				color: #404040;
+				text-align: center;
+				font-family: "microsoft yahei", Verdana;
+				min-width: 320px;
+				height: 100%;
+			}
+			
+			html {
+				max-width: 768px;
+				min-width: 320px;
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+			}
+			
+			.box {
+				max-width: 768px;
+				min-width: 320px;
+				width: 100%;
+				min-height: 100%;
+				margin: 0 auto;
+				position: relative;
+				background: #f3f3f3;
+			}
+			
+			.clearfix:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+			
+			.clearfix {
+				zoom: 1;
+			}
+			/*device-width*/
+			
+			@media only screen and (max-width: 359px) {
+				html {
+					font-size: 85%;
+				}
+			}
+			
+			@media only screen and (min-width: 360px) and (max-width: 399px) {
+				html {
+					font-size: 100%;
+				}
+			}
+			
+			@media only screen and (min-width: 400px) and (max-width: 479px) {
+				html {
+					font-size: 112.5%;
+				}
+			}
+			
+			@media only screen and (min-width: 480px) and (max-width: 539px) {
+				html {
+					font-size: 125%;
+				}
+			}
+			
+			@media only screen and (min-width: 540px) and (max-width: 599px) {
+				html {
+					font-size: 150%;
+				}
+			}
+			
+			@media only screen and (min-width: 600px) and (max-width: 639px) {
+				html {
+					font-size: 165%;
+				}
+			}
+			
+			@media only screen and (min-width: 640px) and (max-width: 719px) {
+				html {
+					font-size: 177.5%;
+				}
+			}
+			
+			@media only screen and (min-width: 720px) and (max-width: 767px) {
+				html {
+					font-size: 200%;
+				}
+			}
+			
+			@media only screen and (min-width: 768px) {
+				html {
+					font-size: 200%;
+				}
+			}
+			
+			/*title css start*/
+			.box .title{
+				position: fixed;
+				width: 100%;
+				height: 3.06rem;
+				background: #020F20;
+			}
+			.box .title div{
+				float: left;
+				width: 6.25rem;
+			    height: 1.781rem;
+			    padding-top: 0.48rem;
+			    padding-left: 0.625rem;
+			}
+			.box .title div a img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			/*title css end*/
+			
+			/*content css start*/
+			.box .tg-con{
+				padding-top: 3.06rem;
+				background: #d6dce2;
+			}
+			.box .tg-con .con-one{
+				position: relative;
+				width: 23.5rem;
+				height: 21.25rem;
+				background: url(img/con-pix.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.box .tg-con .con-one .dow{
+				position: absolute;
+				top: 10rem;
+				right: .813rem;
+			}
+			.box .tg-con .con-one .dow img{
+				float: left;
+				width: 2.938rem;
+				height: 2.938rem;
+			}
+			.box .tg-con .con-one .dow div{
+				float: left;
+				margin-left: .688rem;
+			}
+			.box .tg-con .con-one .dow div a{
+				display: block;
+				width: 5.531rem;
+				height: 1.25rem;
+				line-height: 1.25rem;
+				border-radius: 2px;
+			}
+			.box .tg-con .con-one .dow div a:nth-child(1){
+				background: #000;
+			 	text-align: center;
+				font-size: .781rem;
+				color: #f9f1d5;
+			}
+			.box .tg-con .con-one .dow div a:nth-child(2){
+				background: #dd1c13;
+			 	text-align: center;
+				font-size: .581rem;
+				color: #fff;
+				margin-top: .438rem;
+			}
+			.box .tg-con .con-one .gift{
+				position: absolute;
+				width: 21rem;
+				height: 5.5rem;
+				padding: .3rem .837rem;
+				box-sizing: border-box;
+				background: url(img/gift-pic.png) no-repeat;
+				background-size: 100% 100%;
+				top: 13.5rem;
+				left: 1rem;
+			}
+			.box .tg-con .con-one .gift a{
+				float: left;
+				margin-right: .469rem;
+				width: 3.75rem;
+				height: 3.75rem;
+				
+			}
+			.box .tg-con .con-one .gift a:nth-child(1){
+				background: url(img/gift-one.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.box .tg-con .con-one .gift a:nth-child(2){
+				background: url(img/gift-two.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.box .tg-con .con-one .gift a:nth-child(3){
+				background: url(img/gift-three.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			/*content css end*/
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="title clearfix">
+					<div>
+						<a href="http://9.taoshouyou.com/">
+							<img src="img/logo_new.png" alt="">
+						</a>
+					</div>
+			</div>
+			<div class="tg-con">
+				<div class="con-one">
+					<div class="dow">
+						<img src="img/ewm-pic.png" alt="" />
+						<div>
+							<a href="###">安卓下载</a>
+							<a href="###">官方PC模拟器</a>
+						</div>
+					</div>
+					<div class="gift">
+						<a href="###"></a>
+						<a href="###"></a>
+						<a href="###"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
