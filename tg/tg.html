@@ -7,35 +7,14 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			body,
-			html {
+			*{
 				margin: 0;
 				padding: 0;
 				font-weight: normal;
 			}
-			
-			input,
-			button,
-			select,
-			textarea {
-				outline: none;
-				vertical-align: middle
-			}
-			
-			input::-moz-focus-inner {
-				border: 0;
-				padding: 0;
-			}
-			
-			li {
+			ul,li {
 				list-style: none
 			}
-			
-			em,
-			i {
-				font-style: normal;
-			}
-			
 			a {
 				text-decoration: none;
 				color: #333;
@@ -49,11 +28,6 @@
 			img {
 				border: none
 			}
-			
-			textarea {
-				resize: none
-			}
-			
 			body {
 				color: #404040;
 				text-align: center;
@@ -154,6 +128,7 @@
 				width: 100%;
 				height: 3.06rem;
 				background: #020F20;
+				z-index: 11;
 			}
 			.box .title div{
 				float: left;
@@ -172,11 +147,11 @@
 			/*content css start*/
 			.box .tg-con{
 				padding-top: 3.06rem;
-				background: #d6dce2;
+				
 			}
 			.box .tg-con .con-one{
 				position: relative;
-				width: 23.5rem;
+				width: 23rem;
 				height: 21.25rem;
 				background: url(img/con-pix.png) no-repeat;
 				background-size: 100% 100%;
@@ -219,7 +194,7 @@
 				position: absolute;
 				width: 21rem;
 				height: 5.5rem;
-				padding: .3rem .837rem;
+				padding: .3rem .537rem;
 				box-sizing: border-box;
 				background: url(img/gift-pic.png) no-repeat;
 				background-size: 100% 100%;
@@ -228,7 +203,6 @@
 			}
 			.box .tg-con .con-one .gift a{
 				float: left;
-				margin-right: .469rem;
 				width: 3.75rem;
 				height: 3.75rem;
 				
@@ -238,6 +212,7 @@
 				background-size: 100% 100%;
 			}
 			.box .tg-con .con-one .gift a:nth-child(2){
+				margin:0 .469rem;
 				background: url(img/gift-two.png) no-repeat;
 				background-size: 100% 100%;
 			}
@@ -245,8 +220,76 @@
 				background: url(img/gift-three.png) no-repeat;
 				background-size: 100% 100%;
 			}
+			.box .tg-con .con-one .gift a:nth-child(4){
+				float: right;
+				width: 6.906rem;
+				height: 2.5rem;
+				background: url(img/tsy-zsgift.png)no-repeat;
+				background-size: 100% 100%;
+				margin: .7rem 0 0 .2rem;
+			}
 			
 			/*content css end*/
+			
+			/*content two css start*/
+			.con-two{
+				margin-top: 0 !important;
+				padding-bottom: 1.906rem;
+				width: 100%;
+				background: url(img/con-two-bg.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two ul li{
+				width: 16.438rem;
+				height: 12.594rem;
+				margin: 0 auto .844rem;
+				padding: 3.218rem 1.656rem 0;
+				box-sizing: border-box;
+				font-size: .875rem;
+				text-align: left;
+				
+			}
+			.con-two ul li:nth-child(1){
+				background: url(img/act-one.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two ul li:nth-child(2){
+				background: url(img/act-two.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two ul li:nth-child(3){
+				background: url(img/act-three.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two ul li:nth-child(4){
+				background: url(img/act-four.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two ul li:nth-child(5){
+				background: url(img/act-five.png)no-repeat;
+				background-size: 100% 100%;
+			}
+			.con-two img{
+				display: block;
+				margin: .938rem auto 0;
+				width: 9.906rem;
+				height: 1.25rem;
+			}
+			.con-two a{
+				display: block;
+				width: 9.906rem;
+				height: 1.375rem;
+				line-height: 1.375rem;
+				text-align: center;
+				margin: .375rem auto 0;
+				font-size: .688rem;
+				border-radius: 2px;
+				background: #e5291c;
+				color: #fff;
+			}
+			
+			/*content two css end*/
+			
 			
 		</style>
 	</head>
@@ -265,15 +308,40 @@
 					<div class="dow">
 						<img src="img/ewm-pic.png" alt="" />
 						<div>
-							<a href="###">安卓下载</a>
-							<a href="###">官方PC模拟器</a>
+							<a href="http://gamepkg.taoshouyou.com/agent_game/198/android/zhenmoqu-1070586_0_0_0.apk">安卓下载</a>
+							<a href="http://g60.gdl.netease.com/zmq_mobile.exe">官方PC模拟器</a>
 						</div>
 					</div>
 					<div class="gift">
-						<a href="###"></a>
-						<a href="###"></a>
-						<a href="###"></a>
+						<a href="http://9.taoshouyou.com/libao/zhenmoqu-198-163"></a>
+						<a href="http://9.taoshouyou.com/libao/zhenmoqu-198-165"></a>
+						<a href="http://9.taoshouyou.com/libao/zhenmoqu-198-164"></a>
+						<a href="http://9.taoshouyou.com/libao/zhenmoqu-198"></a>
 					</div>
+				</div>
+				
+				<!--活动介绍区域-->
+				<div class="con-two">
+					<ul>
+						<li>
+							<p>使用淘手游端游进入游戏创建“TSY丶”开头公会，并在开区后第一次帮派战中获得第一名的团队，可获得人民币2000元。（PS:获奖帮派内必须有20人以上使用淘手游客服端，帮主必须使用淘手游客服端）</p>
+						</li>
+						<li>
+							<p>使用淘手游客服端，在游戏开区7天后，获得综合实力榜第一名，灵兽榜第一名，人物战力榜第一名各获得人民币500元(PS:本活动可累计) </p>
+						</li>
+						<li>
+							<p>使用淘手游客服端进入游戏取名“TSY丶**”，在该服务器开区7天后，获得灵兽榜第一名可获得2000元宝（可充值任意淘手游端镇魔曲账号）。（PS:本活动可累计）</p>
+						</li>
+						<li>
+							<p>使用淘手游客服端进入游戏取名“TSY丶**”，在该服务器开区7天后，获得人物等级榜第一名可获得2000元宝（可充值任意淘手游端镇魔曲账号）。（PS:本活动可累计）</p>
+						</li>
+						<li>
+							<p>使用淘手游客服端进入游戏创建“TSY丶”开头帮会，并在开区3日后，帮派繁荣点排行第一名，获得人民币500元。</p>
+						</li>
+						
+					</ul>
+					<img src="img/act-six.png" alt="" />
+						<a href="###">联系QQ：877889956 </a>
 				</div>
 			</div>
 		</div>

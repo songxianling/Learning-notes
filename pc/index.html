@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="淘手游,淘手游交易平台,淘手游官网,淘手游手游交易平台,手游交易,手游交易平台,手游交易网,手机游戏交易,手机游戏交易平台" name="description">
+		<meta content="淘手游（http://m.taoshouyou.com/）专业的手游交易平台：提供有性价比的游戏账号、首充号、金币、装备、道具、手游代充等服务，自由买卖，担保寄售交易，安全便捷！淘手游交易平台。" name="keywords">
+		<title>欢度大鸡年</title>
+		<style>
+			body,
+			p,
+			ul {
+				margin: 0;
+				padding: 0;
+				font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+			
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: none;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			.clear {
+				zoom: 1;
+			}
+			
+			.clear:after {
+				content: '';
+				clear: both;
+				height: 0;
+				visibility: hidden;
+				display: block;
+			}
+			
+			#header {
+				background: #303030;
+				height: 50px;
+				font-size: 16px;
+			}
+			
+			.logo-panel1 {
+				width: 100%;
+				height: 77px;
+				color: #333333;
+				font-size: 12px;
+				background: rgba(0, 0, 0, 0.5);
+				position: absolute;
+				top: 0;
+				z-index: 100;
+			}
+			
+			.logo-panel1 .logo-panel {
+				height: 100%;
+				width: 1200px;
+				margin: 0 auto;
+			}
+			
+			.logo-panel1 .logo-panel p {
+				line-height: 36px;
+			}
+			
+			.logo-panel1 .logo-panel p.left {
+				width: 220px;
+				height: 80px;
+				float: left;
+				background: url(img/new_logo.png?__sprite);
+				position: relative;
+			}
+			
+			.logo-panel1 .logo-panel p.left a {
+				position: absolute;
+				display: block;
+				width: 100%;
+				cursor: pointer;
+			}
+			
+			.logo-panel1 .logo-panel p.left .top {
+				top: 0;
+				height: 55px;
+			}
+			
+			.logo-panel1 .logo-panel p.left .bottom {
+				bottom: 0;
+				height: 25px;
+				width: 90px;
+				right: 0;
+			}
+			
+			.logo-panel1 .logo-panel .center {
+				width: 786px;
+				height: 80px;
+				float: left;
+				margin-left: 42px;
+			}
+			
+			.logo-panel1 .logo-panel .center ul {
+				float: left;
+			}
+			
+			.logo-panel1 .logo-panel .center li {
+				float: left;
+				padding: 0 25px;
+			}
+			
+			.logo-panel1 .logo-panel .center li a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				font-size: 16px;
+				color: #fff;
+				line-height: 77px;
+			}
+			
+			.logo-panel1 .logo-panel .center li a:hover {
+				color: #e14104;
+			}
+			
+			.logo-panel1 .logo-panel .center li.cur a {
+				color: #e14104;
+				border-bottom: 3px solid #e14104;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search {
+				float: right;
+				width: 250px;
+				height: 40px;
+				margin-top: 20px;
+				background: rgba(145, 151, 150, 0.7);
+				margin-left: 20px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft {
+				float: left;
+				width: 60px;
+				margin-top: 10px;
+				font-size: 14px;
+				color: #fff;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft p {
+				width: 50px;
+				height: 20px;
+				line-height: 20px;
+				border-right: 1px solid #ccc;
+				cursor: pointer;
+				margin-left: 10px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft p i {
+				display: block;
+				float: right;
+				width: 8px;
+				height: 4px;
+				background: url(jiantou.png?__sprite);
+				margin-top: 8px;
+				margin-right: 12px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft ul {
+				display: none;
+				width: 50px;
+				background: #fff;
+				padding-left: 10px;
+				margin-top: 10px;
+				height: 43px;
+				line-height: 43px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft ul:hover {
+				background: #42b3fb;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft ul:hover li a {
+				color: #fff;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft ul li {
+				width: 100%;
+				height: 43px;
+				line-height: 43px;
+				padding: 0;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchleft ul li a {
+				display: block;
+				line-height: 43px;
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				color: #282828;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .inputbox {
+				width: 155px;
+				height: 20px;
+				line-height: 20px;
+				float: left;
+				margin-top: 10px;
+				margin-left: 5px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .inputbox input {
+				background: rgba(0, 0, 0, 0);
+				border: none;
+				outline: none;
+				color: #fff;
+				width: 155px;
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchbtn {
+				float: right;
+				width: 18px;
+				height: 18px;
+				margin-top: 11px;
+				margin-right: 10px;
+				background: url(searchbtn.png?__sprite);
+			}
+			
+			.logo-panel1 .logo-panel .center div.search .searchbtn a {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.logo-panel1 .logo-panel p.right {
+				float: right;
+				height: 40px;
+			}
+			
+			.logo-panel1 .logo-panel p.right span {
+				display: block;
+				height: 20px;
+				line-height: 20px;
+				margin-top: 30px;
+			}
+			
+			.logo-panel1 .logo-panel p.right a {
+				padding: 0 18px;
+				font-size: 16px;
+				display: block;
+				float: left;
+			}
+			
+			.logo-panel1 .logo-panel p.right span a:nth-child(1) {
+				max-width: 55px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				color: #ffffff;
+			}
+			
+			.logo-panel1 .logo-panel p.right span a:nth-child(2) {
+				padding: 0 8px;
+				color: #009cff;
+			}
+			
+			.logo-panel1 .logo-panel p.left a {
+				color: #e14104;
+			}
+			
+			.img1 {
+				width: 100%;
+				min-width: 1200px;
+				height: auto;
+				margin-top: 77px;
+				position: relative;
+			}
+			
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+			
+			.dh-box,
+			.dh-box2 {
+				position: absolute;
+				top: 1222px;
+				left: 636px;
+				width: 536px;
+				height: 190px;
+				padding: 30px 60px;
+				box-sizing: border-box;
+				font-size: 12px;
+			}
+			
+			.dh-box {
+				background: url(img/textbg-pic.png)no-repeat;
+				background-size: 100% 100%;
+				opacity: 0.6;
+			}
+			
+			.dh-box2 p span:nth-child(1) {
+				display: inline-block;
+				width: 30%;
+			}
+			
+			.dh-box2 p span:nth-child(2) {
+				display: inline-block;
+				width: 60%;
+				margin-left: 4%;
+			}
+			
+			.dh-box3 {
+				position: absolute;
+				top: 1725px;
+				left: 515px;
+				width: 536px;
+				height: 190px;
+				padding: 30px 60px;
+				box-sizing: border-box;
+				background: url(img/textbg-pic.png)no-repeat;
+				background-size: 100% 100%;
+				opacity: 0.6;
+			}
+			
+			.dh-box4 {
+				position: absolute;
+				top: 1725px;
+				left: 515px;
+				width: 536px;
+				height: 190px;
+				padding: 30px 60px;
+				box-sizing: border-box;
+				font-size: 12px;
+			}
+			
+			.dh-box4 p {
+				width: 100%;
+			}
+			
+			.img1 a {
+				position: absolute;
+				bottom: 300px;
+				left: 666px;
+				padding: 6px 25px;
+				border-radius: 3px;
+				background: #e22318;
+				color: #fff;
+				font-size: 14px;
+			}
+			
+			.txtMarquee-top {
+				position: absolute;
+				top: 1556px;
+				left: 888px;
+				overflow: hidden;
+			}
+			.bird{
+				position: fixed;
+				top: 222px;
+				left: 222px;
+				width: 80px;
+				height: 75px;
+				animation: yAxis 2.5s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+			}
+			@-webkit-keyframes yAxis {
+			  50% {
+			    -webkit-animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
+			    animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
+			    -webkit-transform: translateY(-200px);
+			    transform: translateY(-200px);
+			  }
+			}
+			@keyframes yAxis {
+			  50% {
+			    -webkit-animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
+			    animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
+			    -webkit-transform: translateY(-200px);
+			    transform: translateY(-200px);
+			  }
+			}
+			@-webkit-keyframes xAxis {
+			  50% {
+			    -webkit-animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
+			    animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
+			    -webkit-transform: translateX(200px);
+			    transform: translateX(200px);
+			  }
+			}
+			@keyframes xAxis {
+			  50% {
+			    -webkit-animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
+			    animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
+			    -webkit-transform: translateX(200px);
+			    transform: translateX(200px);
+			  }
+			}
+			.bird2{
+				position: fixed;
+				top: 222px;
+				width: 80px;
+				height: 75px;
+				right: 222px;
+				animation: straightLine  2.5s infinite linear;
+			}
+			@keyframes straightLine {
+			  50% {
+			    transform: translate3D(100px, -100px, 0);
+			  }
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="logo-panel1" id="logo-panel">
+				<div class="logo-panel">
+					<p class="left">
+						<a target="_blank" class="top sc_index_topnav" data-sc="global_nav_gamecenter_index" href="http://9.taoshouyou.com/" title="游戏中心"></a>
+						<a target="_blank" class="bottom sc_index_topnav" data-sc="global_nav_tsy_index" href="http://www.taoshouyou.com/" title="淘手游首页" target="_blank"></a>
+					</p>
+
+					<div class="center">
+						<ul>
+							<li>
+								<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gamecenter_index" href="http://9.taoshouyou.com/">首页</a>
+							</li>
+							<li>
+								<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gamelist" href="http://9.taoshouyou.com/game">游戏列表</a>
+							</li>
+							<li>
+								<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gift_index" href="http://9.taoshouyou.com/libao">超级礼包</a>
+							</li>
+							<li>
+								<a target="_blank" class="sc_index_topnav" data-sc="global_nav_customer_service" target="_blank" href="http://crm2.qq.com/page/portalpage/wpa.php?uin=800121288&aty=0&a=0&curl=&ty=1">联系客服</a>
+							</li>
+							<li>
+								<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gamecenter_help" href="http://9.taoshouyou.com/help">帮助</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- 		<p class="right">
+
+					<span>
+						<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gamecenter_loginbtn" href="http://9.taoshouyou.com/siteauth/auth/login" id="js-logo-panel1-btn" >登录</a>
+						<a target="_blank" class="sc_index_topnav" data-sc="global_nav_gamecenter_regbtn" href="http://9.taoshouyou.com/siteauth/reg">注册</a>
+					</span>
+					
+					
+					
+				</p> -->
+				</div>
+			</div>
+			<div class="img1">
+				<img src="img/bird.gif" alt="" class="bird"/>
+				<img src="img/bird.gif" alt="" class="bird2"/>
+				<img src="img/bg-pic.png" alt="">
+				<div class="dh-box"></div>
+				<div class="dh-box2">
+					<p><span>40000积分</span><span>iPhone 7 Plus 128G</span></p>
+					<p><span>25000积分</span><span>iPhone 7  32G</span></p>
+					<p><span>20000积分</span><span>iPhone SE 4G</span></p>
+					<p><span>15000积分</span><span>魔声钻石之泪耳机/双电升级版代步体感车</span></p>
+					<p><span>10000积分</span><span>iPad mini/二合一平板电脑/小米平板</span></p>
+					<p><span>5000积分</span><span> 傲风电竞椅/法国派诺特无人机</span></p>
+					<p><span>3000积分</span><span>zippo打火机/美国网件企业级无线路由器</span></p>
+					<p><span>1000积分</span><span>小米蓝牙音箱/小米智能二代手环</span></p>
+					<p><span>500积分</span><span>旋转吊灯/保温杯</span></p>
+				</div>
+				<!--2222-->
+				<div class="dh-box3"></div>
+				<div class="dh-box4">
+					<p>1.通过淘手游游戏中心下载游戏的新老玩家。（使用返现券充值的玩家不能参与）</p>
+					<p>2.每个玩家可参加多款游戏，积分可累计。（公会用户和首续充用户不能参与）</p>
+					<p>3.玩家可自由组合积分兑换不同档位礼品，剩余积分可兑换其他档位礼品，兑换礼物后扣除相应积分。</p>
+					<p>4.累计积分于2月6日统计,2月10日清零。</p>
+					<p>5.本活动最终解释权归淘手游所有。</p>
+				</div>
+				<div class="txtMarquee-top">
+					<div class="hd">
+						<a class="next"></a>
+						<a class="prev"></a>
+					</div>
+					<div class="bd">
+						<div class="tempWrap" style="overflow:hidden; position:relative; height:30px">
+							<ul class="infoList" style="height: 30px; position: relative; padding: 0px; margin: 0px; top: -131px;">
+								<li>手机尾号4353用户领取了保温杯</li>
+								<li>手机尾号6454用户领取了旋转吊灯</li>
+								<li>手机尾号9847用户领取了小米蓝牙音响</li>
+								<li>手机尾号7267用户领取了ipad mini</li>
+								<li>手机尾号7353用户领取了zippo打火机</li>
+								<li>手机尾号3533用户领取了保温杯</li>
+								<li>手机尾号6459用户领取了小米智能二代手环</li>
+								<li>手机尾号8337用户领取了ipad mini</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+				<a href="http://crm2.qq.com/page/portalpage/wpa.php?uin=800121288&aty=0&a=0&curl=&ty=1">联系QQ：800121288
+				</a>
+			</div>
+
+		</div>
+	</body>
+	<script src="jquery1.42.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.txtMarquee-top').slide({
+			mainCell: ".bd ul",
+			autoPlay: true,
+			effect: "topMarquee",
+			vis: 5,
+			interTime: 50,
+			trigger: "click"
+		});
+		
+		
+	</script>
+	
+
+</html>
