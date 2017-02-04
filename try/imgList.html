@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="js/lightGallery/lightGallery.css"/>
+	
+	<body>
+		<div class="b-game-detail-print">
+		    <div class="b-common-gameimg-left">
+		    	<p class="top"><i></i><em>游戏</em>截图</p>
+		    	<div class="imgbox">
+		    		<div class="left js-b-common-gameimg-btn "><img src="img/left.png" alt=""></div>
+		    		<div class="right js-b-common-gameimg-btn cur"><img src="img/right.png" alt=""></div>
+		    		<div class="imglist js-b-common-gameimg-imglist">
+		    			<ul class="js-b-common-gameimg-list" id="lightGallery">
+		                        <li data-src="{$ImageServerHost}{$game.gamepic[$smarty.foreach.foo.index]}" {if $smarty.foreach.foo.last} class="last"{/if}>
+		                            <a href=""><img src="{$ImageServerHost}{$game.gamepic[$smarty.foreach.foo.index]}" alt=""></a>
+		                        </li>
+		    			</ul>
+		    		</div>
+		    		
+		    	</div>
+		    </div>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/lightGallery/lightGallery_min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/print.js" type="text/javascript" charset="utf-8"></script>
+</html>
