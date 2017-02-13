@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>当前浏览器窗口的位置</title>
+<!--如果有个css文件需要引进来-->
+<!--这句话的意思就是在html文件里面引入了css的外部样式链接  必不可少的部分-->
+<link rel="stylesheet" type="text/css" href=""/>
+</head>
+<body>
+<script type="text/javascript">
+//判断当前窗口是否是最高层窗口与（windown.top）
+if(window.top !== window.self){ window.top.location = window.location;}
+
+</script>	
+
+
+</body>
+</html>

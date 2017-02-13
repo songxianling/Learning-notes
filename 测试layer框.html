@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div id="nameq">点击</div>
+	<script src="js/jquery-2.1.0.js"></script>
+	<script src="js/layer.js"></script>
+	<script type="text/javascript">
+		$('#nameq').click(function() {
+			/*console.log('uiui')*/
+//			layer.open({
+//				
+//				content: '<input />'
+//			})
+
+			layer.confirm('是否关机<input />',function(index) {
+      				layer.close(index);
+      	    })
+		})
+	</script>
+</body>
+</html>

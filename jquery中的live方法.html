@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<p>这是一个段落</p>
+	<p>点击任意的p元素会令其消失 包括本段落</p>
+	<button>在当前的按钮的后面添加上一个p标签</button>
+	<div class="js-box">
+		
+	</div>
+	<p><b>注释:</b>live()方法和bind()方法虽有相识之处 但是bind()方法中新生成的p标签是不会消失的</p>
+</body>
+<script src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+//		$("p").live("click",function() {
+//			$(this).slideToggle();
+//		});
+		$("button").click(function() {
+			$('.js-box').append("<p>这是个新的段落11</p>");
+//			$("<p>这是个新的段落11</p>").insertAfter("button");
+		});
+		$('.js-box').on('click','p',function () {
+			$(this).slideToggle();
+		})
+//		$('p').on('click',function() {
+//			$(this).slideToggle();
+//		})
+		
+		//下面就是注释中的bind方法  新生成的p标签是不会消失的
+//		$('p').bind('click',function() {
+//			$(this).slideToggle();
+//		})
+		//哈哈 这个时候就尴尬了  因为jquery1.8.3之前的版本 支持live事件  之后的版本都改成了on事件；
+		
+	})
+	
+	
+</script>
+</html>
+
+
+
+
