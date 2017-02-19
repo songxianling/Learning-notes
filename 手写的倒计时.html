@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!--这里做的是限制input框只能输入数字-->
+	<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+	<script src="js/jquery-2.1.0.js"></script>
+	<script src="js/layer.js"></script>
+	<script type="text/javascript">
+        // 获取验证码倒计时
+			var timer,
+				wati = 60 ;
+			function time (ele) {
+				if(wati == 0){
+					ele.removeClass('no-click');
+					wati = 60;
+					ele.val('重新获取');
+					yzm_va = true;
+					clearTimeout(timer);
+				}else{
+					ele.addClass('no-click');
+					wati--;
+					ele.val(wati + 's后重试');
+					timer = setTimeout(function () {
+						time(ele);
+					},1000)
+				}
+			}
+			var $gsms = $('#js-gsms'),
+				yzm_va = true; 
+    		
+    		//点击获取短信验证码
+    		var $gsms = $('#js-gsms');
+    		$gsms.on("click",function  () {
+    			if(yzm_va){
+    				yzm_va = false;
+    			}
+    			//这里是请求后台的接口的地方
+				time($gsms);
+				function callback (json){
+					if(json.code==200){}
+				}
+    		})
+	</script>
+</body>
+</html>

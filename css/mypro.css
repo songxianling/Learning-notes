@@ -1,0 +1,161 @@
+.mypro_box{
+	width: 100%;
+	min-width: 1050px;
+}
+.mypro_box .tab_box{
+	position: relative;
+	width: 100%;
+	height: 57px;
+	line-height: 57px;
+	background: #f8f8f8;
+	border-bottom: 1px solid #e2e9ef;
+}
+.mypro_box .tab_box ul li{
+	float: left;
+	width: 113px;
+	height: 57px;
+	line-height: 57px;
+	text-align: center;
+	color: #707070;
+	font-size: 14px;
+	cursor: pointer;
+}
+.mypro_box .tab_box ul li.active{
+	border-bottom: 3px solid #276bbe;
+	color: #276bbe;
+}
+.mypro_box .tab_box .search_box{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 290px;
+	height: 20px;
+	
+}
+.mypro_box .tab_box .search_box input{
+	position: absolute;
+	left: 0;
+	width: 267px;
+	height: 23px;
+	line-height: 23px;
+	padding-left: 10px;
+	box-sizing: border-box;
+	border: 1px solid #d1e0ed;	
+	color: #9b9b9b;
+	font-size: 12px;
+}
+.mypro_box .tab_box .search_box span{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 23px;
+	height: 23px;
+	background: url(../img/mypro-search-pic.png)no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+
+/*内容区域css start*/
+.mypro_box .con_box{
+	
+}
+.mypro_box .con_box .onecon>p{
+	width: 100%;
+	height: 50px;
+}
+.mypro_box .con_box .onecon>p span{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 12px;
+	color: #405263;
+	font-weight: bold;
+}
+.mypro_box .con_box .onecon>p span:nth-child(1){
+	margin-left: 60px;
+}
+.mypro_box .con_box .onecon>p span:nth-child(2){
+	margin-left: 79%;
+}
+.mypro_box .con_box .onecon ul{
+	width: 100%;
+	border-top: 1px solid #94b6ff;
+	border-bottom: 1px solid #94b6ff;
+}
+.mypro_box .con_box .onecon ul li{
+	position: relative;
+	width: 100%;
+	height: 58px;
+	padding: 11px 93px 11px 61px;
+	box-sizing: border-box;
+	border-top: 1px solid #dbe6ff;
+}
+.mypro_box .con_box .onecon ul li:hover{
+	cursor: pointer;
+	border-top: 1px solid #94b6ff;
+	background: #f0f4fb;
+}
+.mypro_box .con_box .onecon ul li:nth-child(1){
+	border-top: none;
+}
+.mypro_box .con_box .onecon ul li>img{
+	display: inline-block;
+	width: 37px;
+	height: 37px;
+	margin-right: 10px;
+}
+.mypro_box .con_box .onecon ul li .info{
+	position: relative;
+	height: 37px;
+	width: 60%;
+	display: inline-block;
+}
+.mypro_box .con_box .onecon ul li .info p{
+	height: 20px;
+	line-height: 20px;
+}
+.mypro_box .con_box .onecon ul li .info p:nth-child(1){
+	position: absolute;
+	top: 0;
+	font-size: 14px;
+	color: #3e3e3e;
+}
+.mypro_box .con_box .onecon ul li .info p:nth-child(2){
+	position: absolute;
+	bottom: 0px;
+	font-size: 12px;
+	color: #808080;
+}
+.mypro_box .con_box .onecon ul li .oper{
+	position: absolute;
+	right: 93px;
+	top: 18px;
+}
+.mypro_box .con_box .onecon ul li .oper span{
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	text-align: center;
+	border: 1px solid transparent;
+}
+.mypro_box .con_box .onecon ul li .oper span:hover{
+	border: 1px solid #dce1e8;
+	background: #e9eef5;
+}
+.mypro_box .con_box .onecon ul li .oper span:nth-child(2){
+	margin: 0 6px;;
+}
+.mypro_box .con_box .onecon ul li .oper span img:nth-child(1){
+	width: 16px;
+	height: 17px;
+}
+.mypro_box .con_box .onecon ul li .oper span img:nth-child(2){
+	width: 16px;
+	height: 16px;
+}
+.mypro_box .con_box .onecon ul li .oper span img:nth-child(3){
+	width: 13px;
+	height: 16px;
+}
+
+
