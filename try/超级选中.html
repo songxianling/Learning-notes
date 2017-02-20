@@ -23,7 +23,37 @@
 				return;
 			}
 			$(this).attr('isClick','true');
-			$("input[type='checkbox']").prop('checked','ok');			
+			$("input[type='checkbox']").prop('checked','ok');
+			
+		});
+		$('.one').on('click',function () {
+			
+			if($(this).hasClass('ok')){
+				$(this).removeClass('ok');
+			}else{
+				$(this).addClass('ok');
+			}
+			console.log($('.one').filter('.ok').length , $('.one').length)
+			if($('.one').filter('.ok').length == $('.one').length){
+				$('.Aa').val('全选')
+			}else{
+				$('.Aa').val('不全选')
+			}
+			
+			$('.one').each(function () {
+//				console.log($(this).prop('checked'));
+//				if($('.one').prop('checked')){
+//					console.log('全选')
+//				}
+//				if(!$(this).prop('checked')){
+//					$('.Aa').val('不全选')
+//				}else{
+//					$('.Aa').val('全选')
+//				}
+
+				
+			});
+			
 		});
 	</script>
 	
