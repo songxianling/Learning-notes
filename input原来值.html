@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="js-inp" value="123" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+		<div id="js-click" style="margin-top: 100px;">click me</div>
+		<div id="js-calc" style="margin-top: 100px;">价格</div>
+	</body>
+</html>
+<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	function getOldNum(ele) {
+		var sjNUm;
+		ele.on('focus', function() {
+			sjNUm = $(this).val()*1;
+		});
+		ele.on('input', function() {
+			var hanZiXiu = $(this).val();
+			$calc.html('价格为='+hanZiXiu * 3);
+		});
+		ele.on('blur', function() {
+			var hanZiXiu = $(this).val();
+			if(hanZiXiu == ''){
+				ele.val(sjNUm);
+				$calc.html('价格为='+sjNUm * 3);
+			}
+		});
+	};	
+getOldNum($('#js-inp'));
+
+
+var $click = $('#js-click'),
+	$calc = $('#js-calc');
+	
+$click.on('click',function () {
+	
+	var va = $('#js-inp').val() * 3 ;
+	$calc.html('价格为='+va);
+});	
+</script>
