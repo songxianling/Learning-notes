@@ -1,0 +1,27 @@
+::-webkit-scrollbar{width:0px}
+.b-game-detail-panel .print{
+	height:20rem;
+	padding:1.28rem 0;
+	width:100%;
+}
+.print-box{
+	/*height:21.56rem;*/
+	width:100%;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+.print-box ul{
+	height:20rem;
+	width:2000px;
+}
+.print-box ul li{
+	float:left;
+	height:20rem;
+	width:12.5rem;
+	margin-right:0.625rem;
+}
+.print-box ul li img{
+	height:20rem;
+	width:12.5rem;
+	background-color:#ddd;
+}
