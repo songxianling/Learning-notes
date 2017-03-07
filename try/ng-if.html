@@ -8,6 +8,7 @@
 		<div>
 			<ul>
 				<li ng-repeat = "one in stateList" >
+					<span ng-click="fun1(one.state)">{{one.state}}</span>
 					<span ng-if = "one.state == 'build'">正在创建</span>
 					<span ng-if = "one.state == 'active'">完成</span>
 					<span ng-if = "one.state == 'err'">数据异常</span>
@@ -33,7 +34,12 @@
 	            "state": "active"
 	        },{  
 	            "state": "err"
-	        }]		    
+	        }]
+		    
+		    
+		     $scope.fun1 = function (it) {
+		    	console.log(it)
+		    }
 		}]);
 	</script>
 </html>
