@@ -1,0 +1,66 @@
+.tsy-downloadapp-box{
+	width: 100%;
+	height: 3rem;
+	background: rgba(0,0,0,0.7);
+	position: fixed;
+	bottom: 0;
+	max-width: 768px;
+	min-width: 320px;
+	display: none;
+	z-index: 1000;
+}
+.tsy-downloadapp-box .left{
+	float: left;
+	width: auto;
+	height: auto;
+}
+.tsy-downloadapp-box .left img{
+	display: block;
+	width: 2.5rem;
+	height: auto;
+	margin-left: 0.5rem;
+	margin-top: 0.25rem;
+}
+.tsy-downloadapp-box .text-cont{
+	position: absolute;
+	left: 3.5rem;
+	top:0.2rem;
+	height: 2.6rem;
+	line-height: 1.3rem;
+	text-align: left;
+	font-size: 0.7rem;
+	color: #fff;
+	right: 5rem;
+}
+.tsy-downloadapp-box .right{
+	width: 5rem;
+	float: right;
+}
+.tsy-downloadapp-box .right span{
+	display: block;
+	float: left;
+	width: 2.5rem;
+}
+.tsy-downloadapp-box .right .btn{
+	background: #fbab21;
+	color: #fff;
+	font-size: 0.8rem;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	margin-top: 0.75rem;
+}
+.tsy-downloadapp-box .right .btn a{
+	color: #fff;
+}
+.tsy-downloadapp-box .right .closebtn{
+	display: block;
+	width: 1rem;
+}
+.tsy-downloadapp-box .right .closebtn img{
+	display: block;
+	width: 100%;
+	height: auto;
+	margin-left: 0.5rem;
+	margin-top: 1rem;
+}
