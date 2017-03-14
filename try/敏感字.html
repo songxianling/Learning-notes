@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta charset="UTF-8 ">
+		<title></title>
+		<style type="text/css">
+			.red{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="con">王保贵电脑测绘师诶符合伏虎五丰合物，而无或覅而物或负你</p>
+	</body>
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var content = $('#con').html();
+
+		var arr = ["保", "电脑"];
+
+		for(var i = 0; i < arr.length; i++) {
+			var reg = new RegExp(arr[i]);
+			content = content.replace(reg, "<span class='red'>"+arr[i]+"</span>");
+			$('#con').html(content);
+		}
+		console.log(content);
+		
+	</script>
+
+</html>
+
+</script>
+
+</html>
