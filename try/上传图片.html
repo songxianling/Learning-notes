@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta content="yes" name="apple-mobile-web-app-capable">
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	    <meta content="telephone=no" name="format-detection">
+		<title>意见反馈</title>
+	</head>
+	<style>
+	    body{
+	background: #ccc;
+}
+.wrapper{
+    height:700px;
+    background:#F2F3F4;
+    width:540px;
+    margin:0 auto;
+    overflow:hidden;
+}
+input[type="file"]{
+	opacity: 0;
+	position:absolute;
+	width:100%; 
+	height: 100%;
+	border:none
+	z-index:1;
+	left:0;
+	cursor:pointer;
+}
+.photo-container{
+	padding:4% 3% 2% 3%;
+	background: #FFFFFF;
+	font-size: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.pushPhoto{
+	width: 20%;
+	height: 100px;
+	margin:0 2%;
+	position: relative;
+	border:1px solid #dcdcdc;
+	font-size:50px;
+	text-align:center;
+	line-height:100px;
+	
+}
+.pushPhoto>img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width:0%;
+	height: 0%;
+	
+}
+.close-btn{
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #555;
+	font-size: 0.8rem;
+	background:#dcdcdc;
+	padding: 5%;
+	height:20px;
+	width:20px;
+	line-height:20px;
+	z-index: 2;
+	cursor:pointer;
+}
+.pushPhoto{
+	background: url(../img/advice_pic_btn.png) no-repeat center center;
+	background-size: contain;
+}
+.top-container{
+	padding: 3%;
+	position: relative;
+	background: #FFFFFF;
+}
+
+.top-container:after,.top-container:before{
+	content: "";
+	position: absolute;
+	width: 200%;
+	height: 0;
+	left: -100%;
+	border-bottom: 1px solid #DCDCDC;
+	z-index: 1;
+}
+.top-container:before{
+	top: 0;
+}
+.top-container:after{
+	top: 100%;
+}
+.top-container textarea{
+	width: 100%;
+	height: 10rem;
+	resize: none;
+	outline: none;
+	font-size: 18px;
+	border: none;
+	overflow: scroll;
+}
+.photo-box{
+	background: #DFE1EF;
+}
+.photo-container>div{
+	display: inline-block;
+}
+.line-container{
+	background: #FFFFFF;
+	margin: 8% 0;
+	padding: 3%;
+}
+.line-container>input{
+    border:none;
+	width: 90%;
+	font-size: 18px;
+}
+.btn{
+    border:none;
+	display: block;
+	width: 95%;
+	margin:0% auto;
+	margin-top: 9%;
+	background: #368CFC;
+	color: #FFFFFF;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 3% 0;
+	font-size: 20px;
+outline:none;
+}
+.btn:active{
+	background: #88bcff;
+}
+
+.photo-container .photo-tips{
+	display: block;
+	width: 20%;
+	margin:0 2.5%;
+	text-align: center;
+	font-size: 1.36rem;
+	color: #555;
+	padding:1% 0;
+}
+
+	</style>
+	<body>
+		<div class="wrapper">
+			<form id="fm_feedBack" enctype="multipart/form-data" method="post">
+				<div class="top-container">
+				<textarea name="content" id="adviceContent" name="" rows="" cols="" placeholder="把你使用过程的感受、意见告诉我们吧，我们会努力改进的！"></textarea>
+			</div>
+			<div class="photo-container">
+				<div class="pushPhoto"  style="position: relative;">
+				+
+					<span class="close-btn" onclick="delImg(this)">X</span>
+					<img />
+				    <input name="adviceImga" type="file" accept="image/*"  value="+" capture="camera"  onchange="imgPreview(this)">
+				</div>
+				<span class="photo-tips">上传截图</span>
+			</div>
+			<div class="line-container">
+				<input type="tel" name="phoneNo" id="contactMethod" value="" placeholder="请填写您的联系方式"/>
+			</div>
+			<button type="button" class="btn" onclick="submitAddAdvice()">提交反馈</button>
+			</form>
+		</div>
+	</body>
+ <script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+    //上传图片
+var pushPhotoLength = 4;
+//图片上传框
+var txt = '<div class="pushPhoto"  style="position: relative;">+<span class="close-btn" onclick="delImg(this)">X</span><img /><input type="file" accept="image/*"  value="+" capture="camera"  onchange="imgPreview(this)"></div>';
+var data = {"result":"意见提交成功","resultCode":1};
+	function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = $(fileDom).prev();
+            var closeBtn = $(img).prev();
+            	var pushPhoto = $(".pushPhoto");
+            $(img).attr("src",e.target.result);
+             $(img).css({
+             	"width":"100%",
+             	"height":"100%"
+             })
+            closeBtn.show();
+            if(pushPhoto.length != 4){
+            		$(fileDom).parent().after(txt);
+            }else{
+            		pushPhotoLength = 0;
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+//删除上传的图片
+
+function delImg(obj){
+	var pushPhoto = $(".pushPhoto");
+	if(pushPhoto.length == 4 && pushPhotoLength == 0){
+		$(obj).parent().remove();
+		pushPhoto = $(".pushPhoto");
+		$(pushPhoto[2]).after(txt);
+		pushPhotoLength = $(".pushPhoto").length;
+	}else if(pushPhoto.length == 1){
+		$(obj).hide();
+		$(obj).next("img").css("height","0");
+	}else{
+		$(obj).parent().remove();
+	}
+}
+
+//提交反馈
+function submitAddAdvice(){
+	var phoneNo = $("#contactMethod").val();
+	var content = $("#adviceContent").val();
+	if(content =="" || content == null || content == undefined){
+		alert("请您先填写反馈意见");
+		return false;
+	}else if(phoneNo =="" || phoneNo == null || phoneNo == undefined){
+		alert("请您先填写联系方式");
+		return false;
+	}else{
+       if(data.resultCode==1){
+    	  alert(data.result);
+       }
+	}
+}
+
+</script>
+
+</html>
+
