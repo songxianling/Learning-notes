@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+ul{ overflow:hidden; width:630px; margin:100px auto;}
+ul li{ float:left; position:relative; width:200px; height:200px; background:#ccc; margin:5px; overflow:hidden;}
+ul li span{ position:absolute; width:100%; height:100%; background:rgba(255,0,0,0.3); left:-200px; top:0;}
+</style>
+<script>
+function getStyle(obj,sName){
+//获取样式函数
+	return (obj.currentStyle||getComputedStyle(obj,false))[sName];
+}
+function move(obj,json,options){
+//自定义move函数 类似jquery animation
+	options = options||{};
+//放运动完成执行函数 这里用不到
+	options.duration = options.duration||700;
+//函数执行的时间
+	options.easing = options.easing||'ease-out';
+//设置默认运动类型(默认先快后慢)
+	var start = {};
+	var dis = {};
+	for(var name in json){
+		start[name] = parseFloat(getStyle(obj,name));
+		dis[name] = json[name]-start[name];
+	}
+//start表示运动开始样式的状态(数值),dis表示完成动画需要执行的样式数值
+	var count = Math.floor(options.duration/30);
+//整个运动在700毫秒内分多少步(帧)
+	var n = 0;
+//帧数
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		n++;
+		for(var name in json){
+			switch(options.easing){
+				case 'linear':
+//线性运动函数
+					var cur = start[name]+dis[name]*n/count;
+					break;
+				case 'ease-in':
+//加速运动
+					var a = n/count;
+					var cur = start[name]+dis[name]*Math.pow(a,3);
+					break;
+				case 'ease-out':
+//减速运动
+					var a = 1-n/count;
+					var cur = start[name]+dis[name]*(1-Math.pow(a,3));
+					break;
+			}
+			if(name=='opacity'){
+//透明度的运算
+				obj.style.opacity = cur;
+				obj.style.filter = 'alpha(opacity:'+cur*100+')';
+			}else{
+				obj.style[name] = cur+'px';
+			}
+		}
+		if(n==count){
+//完成时清除定时器并且运行传入函数
+			clearInterval(obj.timer);
+			options.complete&&options.complete();
+		}
+	},30);
+}
+function a2d(n){
+//弧度转换为角度
+	return n*180/Math.PI;
+}
+function hoverDir(ev,obj){
+//判断鼠标位于每个方形区域的角度（相对于方形中心）
+	var a = ev.clientX-obj.offsetLeft-obj.offsetWidth/2;
+	var b = obj.offsetTop+obj.offsetHeight/2-ev.clientY;
+	
+	return Math.round((a2d(Math.atan2(b,a))+180)/90)%4;
+}
+function through(obj){
+//穿墙函数
+	var oS = obj.children[0];
+	obj.onmouseenter = function(ev){
+		var oEvent = ev||event;
+		var dir = hoverDir(oEvent,obj);
+//鼠标进入区域时判断鼠标进入的方向
+		switch(dir){
+			case 0:
+				//左
+				oS.style.left = '-200px';
+				oS.style.top = 0;
+				break;
+			case 1:
+				//下
+				oS.style.left = 0;
+				oS.style.top = '200px';
+				break;
+			case 2:
+				//右
+				oS.style.left = '200px';
+				oS.style.top = 0;
+				break;
+			case 3:
+				//上
+				oS.style.left = 0;
+				oS.style.top = '-200px';
+				break;
+		}
+		move(oS,{left:0,top:0});
+//将隐藏的穿墙块(红色方块)移动到0,0位置
+	};
+	obj.onmouseleave = function(ev){
+		var oEvent = ev||event;
+		var dir = hoverDir(oEvent,obj);
+//同上，判断好方向后移动到相应方向的相应位置
+		switch(dir){
+			case 0:
+				move(oS,{left:-200,top:0});
+				break;
+			case 1:
+				move(oS,{left:0,top:200});
+				break;
+			case 2:
+				move(oS,{left:200,top:0});
+				break;
+			case 3:
+				move(oS,{left:0,top:-200});
+				break;
+		}
+	};
+}
+window.onload = function(){
+	var aLi = document.getElementsByTagName('li');
+	for(var i=0;i<aLi.length;i++){
+		through(aLi[i]);
+	}
+};
+</script>
+</head>
+
+<body>
+	<ul>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+	</ul>
+</body>
+</html>

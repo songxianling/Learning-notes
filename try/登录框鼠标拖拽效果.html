@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录框鼠标拖拽效果</title>
+    <style type="text/css">
+        body {
+            background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488778794834&di=e97c96dfe7860297d1968c30adc862a2&imgtype=0&src=http%3A%2F%2Fpic1.5442.com%3A82%2F2015%2F0409%2F01%2F15.jpg%2521960.jpg") no-repeat top center #ffffff;
+            background-size: 100%;
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+            font-family: "微软雅黑", sans-serif;
+        }
+        .ui-dialog {
+            width: 380px;
+            position: absolute;
+            z-index: 9000;
+            top: 100px;
+            left: 100px;
+            border: 1px solid #d5d5d5;
+            background-color: #ffffff;
+            /*display: none;*/
+        }
+        .ui-dialog-title {
+            height: 48px;
+            line-height: 48px;
+            padding-left: 20px;
+            color: #535353;
+            font-size: 16px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #efefef;
+            cursor: move;
+        }
+        .ui-dialog-title-closebutton {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            color: #000;
+            text-decoration: unset;
+        }
+        .ui-dialog-title-closebutton:hover {
+           color: #4ca8ff;
+        }
+        .ui-dialog-content {
+            padding: 15px 20px;
+        }
+        .ui-dialog-pt15 {
+            padding-top: 15px;
+        }
+        .ui-dialog-l40 {
+            height: 40px;
+            line-height: 40px;
+            text-align: right;
+        }
+        .ui-dialog-input {
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+            border:1px solid #d5d5d5;
+            font-size: 16px;
+            color: #c1c1c1;
+            text-indent: 25px;
+            outline: none;
+        }
+        .ui-dialog-input-username {
+            background: url("images/input_username.png") no-repeat 2px;
+        }
+        .ui-dialog-input-password {
+            background: url("images/input_password.png") no-repeat 2px;
+        }
+        .ui-dialog-submit {
+            width: 100%;
+            height: 50px;
+            background: #3b7ae3;
+            border: none;
+            font-size: 16px;
+            color: #ffffff;
+            outline: none;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            line-height: 50px;
+        }
+        .ui-dialog-submit:hover {
+            background: #3f81b0;
+        }
+        .ui-mask {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.4;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 8000;
+            display: none;
+        }
+        .link {
+            text-align: right;
+            line-height: 20px;
+            padding-right: 40px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="ui-dialog" id="dialog">
+        <div class="ui-dialog-title" id="dialogTitle">
+            登录
+            <!-- 右上角的关闭按钮 -->
+            <a href="javascript:hideDialog();" class="ui-dialog-title-closebutton">X</a>
+        </div>
+        <div class="ui-dialog-content">
+            <div class="ui-dialog-l40 ui-dialog-pt15">
+                <input class="ui-dialog-input ui-dialog-input-username" type="input" placeholder="手机/邮箱/用户名" />
+            </div>
+            <div class="ui-dialog-l40 ui-dialog-pt15">
+                <input class="ui-dialog-input ui-dialog-input-password" type="input" placeholder="密码" />
+            </div>
+            <div class="ui-dialog-l40">
+                <a href="#">忘记密码</a>
+            </div>
+            <div>
+                <a class="ui-dialog-submit" href="#">登录</a>
+            </div>
+            <div class="ui-dialog-l40">
+                <a href="#">立即注册</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-mask" id="mask"></div>
+    <div class="link">
+        <a href="javascript:showDialog();" style=" text-decoration: unset;color: #4ca8ff">登录</a>
+    </div>
+
+    <script type="text/javascript">
+        // 获取元素对象
+        function g(id) {
+            return document.getElementById(id);
+        }
+        // 自动居中函数 -- 登录浮层
+        // el {Element}
+        function autoCenter(el) {
+            // 获得可视区域的宽和高
+            var bodyW = document.documentElement.clientWidth;
+            var bodyH = document.documentElement.clientHeight;
+            // 获得元素 el 的宽和高
+            var elW = el.offsetWidth;
+            var elH = el.offsetHeight;
+            // 设置元素的 style 样式
+            el.style.left = (bodyW - elW) / 2 + 'px';
+            el.style.top = (bodyH - elH) / 2 + 'px';
+        }
+        // 扩展元素到整个可视区域 -- 遮罩层
+        // el {Element}
+        function fillToBody(el) {
+            // 将元素的宽和高设置的和可视区域一样
+            el.style.width = document.documentElement.clientWidth + 'px';
+            el.style.height = document.documentElement.clientHeight + 'px';
+        }
+        // 定义全局变量
+        var mouseOffsetX = 0;
+        var mouseOffsetY = 0;
+        var isDragging = false;
+        // 鼠标事件1 -- 在标题栏上按下
+        // 计算鼠标相对拖拽元素的的左上角的坐标， 并且标记元素为可拖动
+        g('dialogTitle').addEventListener('mousedown', function(e) {
+            var e = e || window.event;
+            // 用鼠标按下时的坐标减去 dialog 的左上角坐标
+            mouseOffsetX = e.pageX - g('dialog').offsetLeft;
+            mouseOffsetY = e.pageY - g('dialog').offsetTop;
+            isDragging = true;
+        });
+        // 鼠标事件2 -- 鼠标移动
+        document.onmousemove = function(e) {
+            var e = e || window.event;
+            // 鼠标当前位置
+            var mouseX = e.pageX;
+            var mouseY = e.pageY;
+            // 鼠标从单击时至当前时刻移动的距离
+            var moveX = 0;
+            var moveY = 0;
+            if (isDragging === true) {
+                moveX = mouseX - mouseOffsetX;
+                moveY = mouseY - mouseOffsetY;
+                // 范围限定
+                // moveX > 0 且 moveX < (页面最大宽度 - 浮层宽度)
+                // moveY > 0 且 moveY < (页面最大宽度 - 浮层高度)
+                var pageWidth = document.documentElement.clientWidth;
+                var pageHeight = document.documentElement.clientHeight;
+                // 登录浮层的宽、高
+                var dialogWidth = g('dialog').offsetWidth;
+                var dialogHeight = g('dialog').offsetHeight;
+                var maxX = pageWidth - dialogWidth;
+                var maxY = pageHeight - dialogHeight;
+                moveX = Math.min(maxX, Math.max(0, moveX));
+                moveY = Math.min(maxY, Math.max(0, moveY));
+                g('dialog').style.left = moveX + 'px';
+                g('dialog').style.top = moveY + 'px';
+            }
+        };
+        // 鼠标事件3 -- 鼠标松开
+        document.onmouseup = function() {
+            isDragging = false;
+        };
+        // 展现登录浮层
+        function showDialog() {
+            g('dialog').style.display = 'block';
+            g('mask').style.display = 'block';
+            autoCenter(g('dialog'));
+            fillToBody(g('mask'));
+        }
+        // 隐藏登录浮层
+        function hideDialog() {
+            g('dialog').style.display = 'none';
+            g('mask').style.display = 'none';
+        }
+        window.onresize = function() {
+            autoCenter(g('dialog'));
+            fillToBody(g('mask'));
+        };
+        showDialog();
+        autoCenter(g('dialog'));
+    </script>
+
+</body>
+</html>
