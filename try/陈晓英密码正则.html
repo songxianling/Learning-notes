@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+		var re = /^[a-zA-Z0-9]*[_]+[a-zA-Z0-9]+$/g;
+//		var re = /^[a-zA-Z0-9_]+[A-Za-z0-9]$/g;
+		var va = 'aa1_3123_';
+//		console.log(re.test(va),va.indexOf("_") > 0);
+		
+		if(re.test(va) && va.length > 5 && va.length < 11){
+			console.log('我有下划线哦');
+		}else{
+			console.log('没有下划线不行')
+		}
+		
+		
+	</script>
+</html>
