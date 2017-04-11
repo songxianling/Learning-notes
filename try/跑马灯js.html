@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+
+	<body>
+		<style type="text/css">
+			.b-index-notice-box {
+				height: 46px;
+				margin-top: 8px;
+				padding: 10px 0 10px 19px;
+				border: 1px solid #e4e0df;
+				box-sizing: border-box;
+				overflow: hidden;
+				font-size: 16px;
+			}
+			
+			.b-index-notice-box i {
+				float: left;
+				width: 24px;
+				height: 23px;
+				margin-right: 17px;
+				background: url(images/laba.png)no-repeat;
+				background-size: 100% 100%;
+				vertical-align: bottom;
+			}
+			
+			.b-index-notice-box div.outer-box {
+				width: 688px;
+				overflow: hidden;
+			}
+			
+			.b-index-notice-box div.outer-box .inner-box {
+				width: 2000px;
+			}
+			
+			.b-index-notice-box .outer-box .inner-box div {
+				float: left;
+			}
+			
+			.b-index-notice-box .outer-box .inner-box .one {}
+			
+			.b-index-notice-box .outer-box .inner-box p {
+				display: inline-block;
+				height: 23px;
+				line-height: 23px;
+			}
+			
+			.b-index-notice-box .outer-box .inner-box p span {
+				display: inline-block;
+				color: #eb2332;
+				margin: 0 3px;
+			}
+		</style>
+		<div class="b-index-notice-box">
+			<i></i>
+			<div class="outer-box" id="js-paopao">
+				<div class="inner-box">
+					<div class="one" id="js-paopao-one">
+						<p>淘亲亲们，淘手游客服使用的均为 <span>营销QQ和企业QQ</span>，只能在QQ生活服务里搜索，任何以私人QQ要求<span>“提供验证码”</span>均为骗子</p>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+					<div class="two" id="js-paopao-two"></div>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			var paopaoBox = document.getElementById("js-paopao"),
+				paopaoOne = document.getElementById("js-paopao-one"),
+				paopaoTwo = document.getElementById("js-paopao-two");
+			paopaoTwo.innerHTML = paopaoOne.innerHTML;
+
+			function Marquee() {
+				if(paopaoBox.scrollLeft - paopaoTwo.offsetWidth >= 0) {
+					paopaoBox.scrollLeft -= paopaoOne.offsetWidth;
+				} else {
+					paopaoBox.scrollLeft++;
+				}
+			}
+			var myvar = setInterval(Marquee, 30);
+			paopaoBox.onmouseout = function() { myvar = setInterval(Marquee, 30); }
+			paopaoBox.onmouseover = function() { clearInterval(myvar); }
+		</script>
+	</body>
+
+</html>
