@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			#header {
+				position: fixed;
+				width: 100%;
+				height: 2rem;
+				line-height: 2rem;
+			}
+			
+			#box {
+				height: 200rem;
+				width: 100%;
+				background: #009F95;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="header">
+			我的背景是可以渐变的
+		</div>
+		<div id="box">
+
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#header").css('background', 'rgba(222, 67, 26, 0)');
+
+		$(document).ready(function() {
+			function touchMove(e) { //滑动  
+				var h = Number($(window).scrollTop()) || 0.1;
+				var rate = h / $('#box')[0].offsetHeight;
+				if(rate > 1) {
+					rate = 1;
+				}
+				$("#header").css('background','rgba(222, 67, 26, ' + rate + ')');       
+			}
+			$(".ui-page").on('touchmove', touchMove);
+			$(window).on('scroll', touchMove);
+
+		})
+	</script>
+
+</html>
