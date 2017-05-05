@@ -9,6 +9,7 @@
 				width: 200px;
 				height: 200px;
 				margin: 0 10px 10px 0;
+				background: url(images/laba.png)no-repeat;
 			}
 		</style>
 		<script>
@@ -23,14 +24,12 @@
 				var val = url;
 				var img = new Image();
 				if(Browser.ie) {
-					console.log(1);
 					img.onreadystatechange = function() {
 						if(img.readyState == "complete" || img.readyState == "loaded") {
 							callback(img, imgid);
 						}
 					}
 				} else if(Browser.Moz) {
-					console.log(2);
 					img.onload = function() {
 						if(img.complete == true) {
 							callback(img, imgid);
@@ -42,12 +41,15 @@
 					img.src = "http://www.86y.org/images/failed.png"
 				}
 				img.src = val;
+				
 			}
 
 			//显示图片
 			function checkimg(obj, imgid) {
+				console.log(obj.src);
 				document.getElementById(imgid).style.cssText = "";
-				document.getElementById(imgid).src = obj.src;
+				document.getElementById(imgid).style.backgroundImage = 'url('+obj.src+')';
+				
 			}
 			//初始化需要显示的图片，并且指定显示的位置
 			window.onload = function() {
@@ -60,7 +62,7 @@
 			}
 		</script>
 		<div id="imagelist">
-			<img data="http://www.smashingapps.com/wp-content/uploads/2013/05/uikitsforwebmobile17s.jpg" />
+			<img data="http://img-test.taoshouyou.com/img/2016-11-10/2/6f3714d0af22febcccb14edd1e609321.jpg" />
 			<img data="http://www.smashingapps.com/wp-content/uploads/2013/05/uikitsforwebmobile13.jpg" />
 			<img data="http://www.smashingapps.com/wp-content/uploads/2013/05/uikitsforwebmobile39.jpg" />
 			<img data="http://www.smashingapps.com/wp-content/uploads/2013/05/uikitsforwebmobile10.jpg" />
