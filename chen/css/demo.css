@@ -1,0 +1,16 @@
+.con-box{
+	position: relative;
+	background: #fff;
+}
+.con-box .p-img{
+	display: block;
+	width: 100%;
+}
+.con-box .top-tit-banner{
+	position: absolute;
+	left: 2.941rem;
+	top: .735rem;
+	width: 17.537rem;
+	height: 1.618rem;
+	margin: 0 auto;
+}
