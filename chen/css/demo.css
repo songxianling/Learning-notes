@@ -14,3 +14,9 @@
 	height: 1.618rem;
 	margin: 0 auto;
 }
+.con-box div{
+	font-size: .882rem;
+	height: 3rem;
+	line-height: 3rem;
+	background: red;
+}

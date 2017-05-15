@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title></title>
+	</head>
+
+	<body>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+		<p style="height: 50px;">123</p>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var windowTop = 0; //初始话可视区域距离页面顶端的距离
+		$(window).scroll(function() {
+			var scrolls = $(this).scrollTop(); //获取当前可视区域距离页面顶端的距离
+			if(scrolls >= windowTop) { //当B>A时，表示页面在向下滑动
+				//需要执行的操作
+				windowTop = scrolls;
+			} else { //当B<A时，表示页面在向上滑动
+				//需要执行的操作
+				alert(1)
+				windowTop = scrolls;
+			}
+		});
+	</script>
+
+</html>
