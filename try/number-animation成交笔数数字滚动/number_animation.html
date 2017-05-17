@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.more {
+				height: 25px;
+				line-height: 25px;
+				text-align: center;
+				padding: 14px 4px;
+				font-size: 14px;
+				color: #333;
+				background: #fbfbfb;
+				border-bottom: 1px solid #e5e5e5;
+			}
+			
+			.more span.more-wrap {
+				position: relative;
+				z-index: 2;
+				background-color: #fff;
+			}
+			
+			.more span.more-nums {
+				display: inline-block;
+				/*width: 186px;*/
+				height: 25px;
+				overflow: hidden;
+				vertical-align: top;
+			}
+			
+			.more em {
+				display: inline-block;
+				height: 25px;
+				line-height: 25px;
+				font-size: 18px;
+				background: #f74b3d;
+				color: #fff;
+				padding: 0 14px 0 8px;
+				margin: 0 1px;
+				background: #f40 url(img/number.png) no-repeat;
+				background-position: 0 0;
+				text-indent: -999em;
+			}
+			
+			.more em:first-child {
+				margin-left: 6px;
+			}
+			
+			.more em:last-child {
+				margin-right: 6px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="more">
+			<span class="more-wrap">安全成交
+				<span class="more-nums" id="js-more-nums">
+					<em class="price"></em>
+					<em class="price"></em>
+					<em class="price"></em>
+					<em class="price"></em>
+					<em class="price"></em>
+				</span> 笔交易
+			</span>
+			<input type="hidden" id="cur_num" value="98767431">
+		</div>
+
+	</body>
+	<script src="js/jquery_2_1_3_min.js"></script>
+	<script src="js/animateBackground-plugin.js"></script>
+	<script>
+		var $moreNum = $("#js-more-nums"),
+			$allNum = $("#cur_num");
+		
+		console.log($allNum.val().length)
+		$moreNum.width(25 * ($allNum.val().length+1) +'px');
+		//交易笔数数字效果展示
+		function show_num(n) {
+			var it = $moreNum.find("em");
+			var len = String(n).length;
+
+			for(var i = 0; i < len; i++) {
+				if(it.length <= i) {
+					$moreNum.append("<em></em>");
+				}
+				var num = String(n).charAt(i);
+				var y = -(parseInt(num) * 25);
+				var obj = $moreNum.find("em").eq(i);
+				//console.log(String(y));
+				obj.animate({
+					backgroundPositionY: String(y) + 'px'
+				}, 'slow', 'swing', function() {});
+			}
+		};
+		//小屏滚动
+
+		window.onload = function() {
+			var m = 6,
+				winHeight = $(window).height(), //窗口的高度
+				boxHeight = $('.more').offset().top - ($(document).scrollTop()); // 盒子距离窗口顶部的距离
+
+			/*
+			 * 成交笔数旋转的函数
+			 */
+			function rollFun() {
+				var time1;
+				time1 = setInterval(function() {
+					m--;
+					if(m > 0) {
+						sNum = m % 2 ? $allNum.val() / m : $allNum.val() * m;
+						show_num(parseInt(sNum));
+					} else {
+						//console.log('ok+'+$allNum.val());
+						show_num(parseInt($allNum.val()));
+						clearInterval(time1)
+					}
+
+				}, 100);
+			};
+
+			if(boxHeight > winHeight) {
+				// 盒子未出現在第一屏的時候
+				window.onscroll = function() {
+					// 当前元素是否出现在屏幕中（浏览器高度 + 滚动条滚动的高度 - 盒子距离浏览器的高度）
+					var scrollTop = $('#js-more-nums').offset().top,
+						a = (winHeight + $(document).scrollTop()) - scrollTop;
+					//console.log(a);
+					if(a > 0) {
+						rollFun();
+					}
+				}
+			} else {
+				rollFun();
+			}
+
+					setTimeout(function () {
+						alert(1);
+						$allNum.val(98767437);
+						rollFun();
+					},5000)
+
+		}
+	</script>
+
+</html>

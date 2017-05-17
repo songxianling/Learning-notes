@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="js-i" value="" />
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#js-i').on('input',function () {
+			var r  = /^[a-zA-Z]\w{7,19}$/g;
+			var v = $(this).val();
+			if(r.test(v)){
+				console.log('1')
+			}else{
+				console.log('2')
+			}
+		});
+	</script>
+</html>

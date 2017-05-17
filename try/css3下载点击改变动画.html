@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			
+			.box {
+				width: 100%;
+				text-align: center;
+				padding: 30px 0;
+			}
+			
+			.load_btn {
+				display: inline-block;
+				width: 200px;
+				height: 50px;
+				line-height: 50px;
+				border-radius: 8px;
+				background: lightblue;
+				color: #fff;
+				border: 1px solid #000;
+				text-align: center;
+				cursor: pointer;
+			}
+			
+			
+			.download_ing {
+				min-width: 50px;
+				width: 50px;
+				background-color: transparent;
+				transition: all .3s;
+				border: 1px solid #000;
+				border-radius: 50%;
+				border-top-color: transparent;
+				border-left-color: transparent;
+				animation: moveover .3s linear infinite;
+			}
+			
+			@-webkit-keyframes moveover {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			
+			
+			.download-page-ing {
+				color: #fff;
+				bottom: 70px;
+				background: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<span class="load_btn">立即下载(免越狱版)</span>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".load_btn").on('click', function() {
+			$('.load_btn').text('');
+			$('.load_btn').addClass('download_ing');
+			var timer = setTimeout(function() {
+				$('.box').addClass('download-page-ing').text('正在安装，请按 Home 键在桌面查看');
+			}, 2000);
+		});
+	</script>
+
+</html>
