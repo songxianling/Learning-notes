@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<input type="text" name="" id="" value="" class="js-pwdinp"/>
+		<span></span>
+		<input type="text" name="" id="" value="" class="js-pwdinp"/>
+		<span></span>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		var errmsg = {
+			m1 : '正则错误',
+			m2 : '不相等'
+		}
+		
+		var $pwdinp = $('.js-pwdinp');
+		$pwdinp.on('input', function() {
+			var va = $(this).val();
+			var re = /^[a-zA-Z][a-zA-Z0-9]*[_]+[a-zA-Z0-9]+$/g;
+			var str;
+			if($(this).index() == 0) {
+				console.log('1111')
+				// 这时候说明是第一个密码input,就和第二个密码input对比
+				if(!re.test(va) || va.length < 6 || va.length > 10) {
+					$(this).next('span').html(errmsg.m1).show();
+				} else if(va !== $pwdinp.eq(1).val()) {
+					$(this).next('span').html(errmsg.m2).show();
+				} else {
+					$(this).next('span').hide();
+					$pwdinp.eq(1).next('span').hide();
+				}
+			} else {
+				console.log('2222')
+				// 非第一个密码input,就和第一个密码input对比
+				if(!re.test(va) || va.length < 6 || va.length > 10) {
+					$(this).next('span').html(errmsg.m1).show();
+				} else if(va !== $pwdinp.eq(0).val()) {
+					$(this).next('span').html(errmsg.m2).show();
+				} else {
+					$(this).next('span').hide();
+					$pwdinp.eq(0).next('span').hide();
+				}
+			}
+		});
+	</script>
+
+</html>

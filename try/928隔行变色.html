@@ -45,5 +45,33 @@
 		alert($(window).height()); 
 		
 		
+		var $pwdinp = $('.js-pwdinp');
+		$pwdinp.on('input',function () {
+			var va = $(this).val();
+			var re = /^[a-zA-Z][a-zA-Z0-9]*[_]+[a-zA-Z0-9]+$/g;
+			var str;
+			if($(this).index() == 0){
+				// 这时候说明是第一个密码input,就和第二个密码input对比
+				if(!re.test(va) || va.length < 6 || va.length > 10){
+					$(this).next('span').html(errmsg.m1).show();
+				}else if(va !== $pwdinp.eq(1).val();){
+					$(this).next('span').html(errmsg.m2).show();
+				}else{
+					$(this).next('span').hide();
+				}
+			}else{
+				// 非第一个密码input,就和第一个密码input对比
+				if(!re.test(va) || va.length < 6 || va.length > 10){
+					$(this).next('span').html(errmsg.m1).show();
+				}else if(va !== $pwdinp.eq(0).val();){
+					$(this).next('span').html(errmsg.m2).show();
+				}else{
+					$(this).next('span').hide();
+				}
+			}
+		});
+		
+		
+		
 	</script>
 </html>

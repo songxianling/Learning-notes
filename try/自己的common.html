@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	</head>
+	<body>
+		<button id="js-but">点我弹窗</button>
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery_blockUI.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/commonme.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#js-but').on('click',function () {
+			commonClass.showTips({
+				body:'我是内容',
+				time:2000,
+				okBtnCallBcak:true, //queding
+				cancelBtn:true, //是否有取消按钮
+				status: 3 // 控制title
+			});
+		});
+		console.log(commonClass);
+	</script>
+</html>
