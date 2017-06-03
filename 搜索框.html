@@ -1,10 +1,12 @@
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/common.css"/>
-		<link rel="stylesheet" type="text/css" href="css/search.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/search.css" />
 	</head>
+
 	<body>
 		<!--搜索框-->
 		<div class="search_box" id="js-search-box">
@@ -17,12 +19,63 @@
 				</ul>
 			</div>
 			<div class="search_inp" id="js-search-inp">
-				<input id="" value="" placeholder="请输入"/>
+				<input id="" value="" placeholder="请输入" />
 				<span class="search_btn" id="js-search-btn"><i></i></span>
 			</div>
 		</div>
-	
+
 	</body>
 	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/search.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var str = "Hello world!"
+		document.write(str.charAt(1))
+		console.log(str.charAt(1))
+	</script>
+	<script>
+		$(function() {
+			var strings = "yasfyoquywjavgcdfaghfdjavcbnzxc";
+			var obj = new Object();
+			for(var i = 0; i < strings.length; i++) {
+				var value = strings.charAt(i);
+				if(obj[value] > 0) {
+					obj[value]++;
+				} else {
+					obj[value] = 1;
+				}
+			}
+			for(var a in obj) {
+//				console.log('第二个')
+//				console.log(a + "======" + obj[a]);
+			}
+
+		});
+	</script>
+	
+	<script type="text/javascript">
+		var str ="aaaabbbccccddfgh";
+		var obj  ={};
+		for(var i=0;i<str.length;i++){
+		    var v = str.charAt(i);
+		    console.log(v)
+		    if(obj[v]&& obj[v].value == v){
+		        obj[v].count =++ obj[v].count;
+		    }else{
+		        obj[v]={};
+		        obj[v].count =1;
+		        obj[v].value = v;
+		        console.log(obj[v],obj[v].value)
+		    }
+		}
+		for(key in obj){
+//		    document.write(obj[key].value +'='+obj[key].count+' ');// a=4  b=3  c=4  d=2  f=1  g=1  h=1 
+		}
+	</script>
+	<script type="text/javascript">
+		var str = "12345678";
+		var strOk = changeStr(str);
+		//输出测试
+		console.log(strOk);
+	</script>
+
 </html>
