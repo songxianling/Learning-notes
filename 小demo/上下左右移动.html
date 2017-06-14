@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.active{
+			background: #ccc;
+		}
+	</style>
+	<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function(){
+			//上移
+			var $Up=$(".up");
+			$Up.click(function(){
+					var $oP=$(this).parents("p");
+					$oP.fadeOut().fadeIn();
+					$oP.addClass("active").siblings().removeClass("active");
+					$oP.prev().before($oP);
+				});
+
+			//下移
+			var $Down=$(".down");
+			$Down.click(function(){
+					var $oP=$(this).parents("p");
+					$oP.fadeOut().fadeIn();
+					$oP.addClass("active").siblings().removeClass("active");
+					$oP.next().after($oP);
+				})
+
+			//置顶
+			var $Top=$(".top");
+			$Top.click(function(){
+					var $oP=$(this).parents("p");
+					$oP.fadeOut().fadeIn();
+					$oP.addClass("active").siblings().removeClass("active");
+					$("div").prepend($oP);
+				});
+
+			//置底
+			var $Bottom=$(".bottom");
+			$Bottom.click(function(){
+					var $oP=$(this).parents("p");
+					$oP.fadeOut().fadeIn();
+					$oP.addClass("active").siblings().removeClass("active");
+					$("#main").append($oP);
+				})
+
+			//删除
+			var $Delete=$(".delete");
+			$Delete.click(function(){
+				var $oP=$(this).parents("p");
+				$oP.fadeOut().fadeIn();
+				$oP.addClass("active").siblings().removeClass("active");
+				$oP.remove();
+				});
+			
+			//全选
+			$("button").eq(0).click(function(){
+				$("input").attr("checked",true);
+			});
+
+			//不选
+			$("button").eq(1).click(function(){
+				$("input").attr("checked",false);
+			});
+
+			//反选
+			$("button").eq(2).click(function(){
+				$("input").each(function(){
+					$(this).attr("checked",!$(this).attr("checked"));
+				})
+			});
+			
+			//删除
+			$("button").eq(3).click(function(){
+				$("input[checked]").parents("p").remove();
+			})
+		})		
+	</script>
+</head>
+<body>
+	<span>
+		<button>全选</button>
+		<button>不选</button>
+		<button>反选</button>
+		<button>删除</button>
+	</span>
+	<div id="main">
+		<p>
+			<input type="checkbox">
+			<span class="nav">用玻璃做个椒盐饼？这是新技术展示</span>
+			<a href="javascript:;" class="up" javascript:;>上移</a>
+			<a href="javascript:;" class="down">下移</a>
+			<a href="javascript:;" class="top">置顶</a>
+			<a href="javascript:;" class="bottom">置底</a>
+			<a href="javascript:;" class="delete">删除</a>
+		</p>
+		<p>
+			<input type="checkbox">
+			<span class="nav">为什么迷信也是民俗的研究对象之一？</span>
+			<a href="javascript:;"class="up">上移</a>
+			<a href="javascript:;"class="down">下移</a>
+			<a href="javascript:;"class="top">置顶</a>
+			<a href="javascript:;" class="bottom">置底</a>
+			<a href="javascript:;" class="delete">删除</a>
+		</p>
+		<p>
+			<input type="checkbox">
+			<span class="nav">地铁会被暴雨淹没吗？如何自救？</span>
+			<a href="javascript:;"class="up">上移</a>
+			<a href="javascript:;"class="down">下移</a>
+			<a href="javascript:;"class="top">置顶</a>
+			<a href="javascript:;" class="bottom">置底</a>
+			<a href="javascript:;" class="delete">删除</a>
+		</p>
+		<p>
+			<input type="checkbox">
+			<span class="nav">如何优雅地成为德意志古典哲学的追随者</span>
+			<a href="javascript:;"class="up">上移</a>
+			<a href="javascript:;"class="down">下移</a>
+			<a href="javascript:;"class="top">置顶</a>
+			<a href="javascript:;" class="bottom">置底</a>
+			<a href="javascript:;" class="delete">删除</a>
+		</p>
+		<p>
+			<input type="checkbox">
+			<span class="nav">什么？你把瓷器上的图案抹掉了?</span>
+			<a href="javascript:;"class="up">上移</a>
+			<a href="javascript:;"class="down">下移</a>
+			<a href="javascript:;"class="top">置顶</a>
+			<a href="javascript:;" class="bottom">置底</a>
+			<a href="javascript:;" class="delete">删除</a>
+		</p>
+	</div>
+</body>
+</html>
+

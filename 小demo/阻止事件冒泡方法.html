@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+//	下面分享一个兼容常用的三种浏览器阻止事件冒泡的方法。
+//	注意：这里调用方法（）中间千万不要填写event，不填写即可。
+		function preventBubble(event){  
+		  	var e=arguments.callee.caller.arguments[0]||event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容  
+		 	 if (e && e.stopPropagation) {  
+		  	  e.stopPropagation();  
+		 	 } else if (window.event) {  
+		   	 window.event.cancelBubble = true;  
+		  }  
+		};
+		//那个地方需要用到阻止冒泡时间的  直接用；
+	</script>
+</html>
