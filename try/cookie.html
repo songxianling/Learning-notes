@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+
 	<body>
 	</body>
 	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/commonme.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		
 		var comCookie = comCookie;
 		console.log(comCookie);
-		
+
 		// 注册cookie信息
-		if(!comCookie.getCookie('demo')){
+		if(!comCookie.getCookie('demo')) {
 			alert('没有存储cookie');
-			comCookie.setCookie('demo','1',1);
-		}else{
+			comCookie.setCookie('demo', '1', 1);
+		} else {
 			alert('存在cookie');
 		}
-		
-		
-		
+
+		// 从cookies获取用户名
+//		var login_info = $.cookie("login_info") || {};
+//		if(login_info) {
+//			try {
+//				login_info = JSON.parse(login_info);
+//			} catch(e) {
+//				login_info = {};
+//			}
+//		}
+//		if(login_info.name) {
+//			$unameIpt.val(login_info.name);
+//		};
+//		if(login_info.tel) {
+//			$telIpt.val(login_info.tel);
+//		};
 	</script>
+
 </html>
