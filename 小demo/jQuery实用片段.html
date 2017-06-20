@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--如何使用jquery来切换样式表-->
+		$('link[media='scree']').attr('href','chen.css');
+		
+		<!--使用has()来检查某个元素是否包含某个元素或是某个类-->
+		$('input').has('.email').addClass('.email_icon');
+		
+		<!--如何正确使用toggleClass-->
+		a.hasClass('blue')?a.removeClass('blue'):a.addClass('.blue');
+		   <!--toggleClass允许使用下面的语句来很容易做到这一点-->
+		   a.toggleClass('blue');
+		   
+		<!--如何使用jquery来代替一个元素-->
+		$('#thisdiv').replaceWith('fnuh');
+		
+	</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteApp"/>
+		<meta name="renderer" content="webkit"/>
+		<meta name="author" content="钟李俊"/>
+		<title>商品详情轮播+放大镜</title>
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+		<!-- 先引入 Vue -->
+  		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<!-- 引入组件库 -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.js"></script>
+		
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: #cccccc;
+			}
+			.shell{
+				width: 1230px;
+				box-sizing: border-box;
+				padding: 10px;
+				margin: 50px auto;
+				background-color: #fff;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.gallery{
+				width: 400px;
+				height: 400px;
+				float: left;
+				border: 1px solid red;
+				margin-right:5px ;
+				position: relative;
+			}
+			.content{
+				float: left;
+				width: 800px;
+				height: 500px;
+			}
+			.min-gallery{
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+				width: 400px;
+				height: 80px;
+				border: 1px solid red ;
+			}
+			
+			.el-carousel__indicators--outside{
+			  	margin-top: 20px;
+			  	height: 80px;
+			}
+			
+			/*蒙版*/
+			#gallery-mask{
+			    width: 175px;
+			    height: 175px;
+			    background: #9ABCF2;
+			    opacity: 0.5;
+			    position: absolute;
+			    left: 0px;
+			    top: 0px;
+			    z-index: 10;
+			    /*display: none;*/
+			}
+			.el-carousel__item img{
+				background-size: 400px 400px;
+			}
+			#max-gallery{
+				width: 400px;
+			    height: 400px;
+			    border: 1px solid red;
+			    position: absolute;
+			    left: 420px;
+			    top: 10px;
+			    overflow: hidden;
+			    /*display: none;*/
+			}
+			.el-carousel__indicators--outside button{
+				width: 78px;
+				height:78px;
+				background: url(../vue1/src/assets/logo.png) 0px 0px no-repeat;
+				background-size: 80px 80px;
+				opacity: 1;
+				box-sizing: border-box;
+			}
+			.el-carousel__indicator{
+				padding: 0px;
+				margin:0px 5px;
+				box-sizing: border-box;
+			}
+			.el-carousel__indicator.is-active{
+				border: 1px solid red;
+			}
+			.el-carousel{
+				overflow-y:hidden ;
+			}
+			#max-gallery img{
+				position:absolute;
+				left: 0px;
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="shell">
+				<div class="gallery">
+					<el-carousel height="400px" :autoplay="false" arrow="never" indicator-position="outside">
+				      	<el-carousel-item v-for="item in Gallery" :key="item">
+				      		<img :src="item.src" @mouseenter.stop="enter($event.target),isshow()" @mousemove.stop="move($event)" @mouseleave.stop="leave()"/>
+				      	</el-carousel-item>
+				    </el-carousel>
+				    <p id="gallery-mask" @mouseenter.stop="isshow()" @mousemove.stop="move($event)" @mouseleave.stop="leave()" v-show = "istrue" v-bind:style="{top:maskTop +'px' , left:maskLeft +'px'}"></p>
+				</div>
+				<div id="max-gallery"  v-show = "istrue">
+					<img :src="Gallery[max_index].maximg"  v-bind:style="{top:-maxTop +'px' , left: -maxLeft +'px'}"/>
+				</div>
+				<div class="content">
+					<img src="msg.png"/>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				Gallery:[
+					{
+						src:"https://gd1.alicdn.com/imgextra/i4/1998529822/TB2p7NtoXXXXXabXXXXXXXXXXXX_!!1998529822.jpg_400x400.jpg_.webp",
+						minimg:"http://gd1.alicdn.com/imgextra/i4/1998529822/TB2p7NtoXXXXXabXXXXXXXXXXXX_!!1998529822.jpg_80x80.jpg_.webp",
+						maximg:"http://gd1.alicdn.com/imgextra/i4/1998529822/TB2p7NtoXXXXXabXXXXXXXXXXXX_!!1998529822.jpg_800x800.jpg_.webp"
+					},
+					{
+						src:"https://gd1.alicdn.com/imgextra/i8/TB1dPdTJVXXXXXvXFXXYXGcGpXX_M2.SS2_400x400.jpg_.webp",
+						minimg:"https://gd1.alicdn.com/imgextra/i8/TB1dPdTJVXXXXXvXFXXYXGcGpXX_M2.SS2_80x80.jpg",
+						maximg:"https://gd1.alicdn.com/imgextra/i8/TB1dPdTJVXXXXXvXFXXYXGcGpXX_M2.SS2_800x800.jpg_.webp"
+					},
+					{
+						src:"https://gd1.alicdn.com/imgextra/i3/TB13lVLJVXXXXXbXVXXYXGcGpXX_M2.SS2_400x400.jpg_.webp",
+						minimg:"http://gd1.alicdn.com/imgextra/i3/TB13lVLJVXXXXXbXVXXYXGcGpXX_M2.SS2_80x80.jpg",
+						maximg:"https://gd1.alicdn.com/imgextra/i3/TB13lVLJVXXXXXbXVXXYXGcGpXX_M2.SS2_800x800.jpg_.webp"
+					},
+					{
+						src:"https://img.alicdn.com/bao/uploaded/i1/TB1SXWWPpXXXXavXXXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg",
+						minimg:"http://img.alicdn.com/bao/uploaded/i1/TB1SXWWPpXXXXavXXXXXXXXXXXX_!!0-item_pic.jpg_80x80q90.jpg",
+						maximg:"https://img.alicdn.com/bao/uploaded/i1/TB1SXWWPpXXXXavXXXXXXXXXXXX_!!0-item_pic.jpg_800x800q90.jpg"
+					}
+				],
+				max_index : 0 ,
+				maxLeft : 0 ,
+				maxTop : 0 ,
+				maskLeft : 0,
+				maskTop : 0,
+				istrue : false
+			},
+			mounted :function(){
+				var vm=this;
+				(function minimg(){
+					var btns=document.getElementsByClassName("el-carousel__button");
+					//给btn的背景赋值
+					setTimeout(function(){
+						for(var i = 0;i < btns.length;i++){
+							btns[i].style.background="url("+vm.Gallery[i].minimg+")";
+						}
+					})
+				})();
+			},
+			methods:{
+				isshow:function(){
+					this.istrue = true ;
+				},
+				enter:function(target){
+					this.max_index=$(target).parent().index();
+				},
+				move:function(ev){
+//					debugger;
+					var vm=this;
+					var min_box = document.getElementsByClassName('gallery')[0];
+					var max_box = document.querySelectorAll("#max-gallery img")[0];
+					var Mask = document.getElementById('gallery-mask');
+					var e=ev||window.event;
+					var MaskW=e.clientX-vm.offset(min_box).left-Mask.offsetWidth/2;
+					var MaskH=e.clientY-vm.offset(min_box).top-Mask.offsetHeight/2;
+					var MaskT=min_box.offsetHeight-Mask.offsetHeight;
+					var MaskL=min_box.offsetWidth-Mask.offsetWidth;
+					if (MaskW<0) {
+						MaskW=0;
+					}else if (MaskW>=MaskL) {
+						MaskW=MaskL;
+					}
+					if (MaskH<0) {
+						MaskH=0;
+					}else if(MaskH>=MaskT){
+						MaskH=MaskT;
+					}
+					vm.maskLeft=MaskW;
+					vm.maskTop=MaskH;
+					var bili=max_box.offsetWidth/(min_box.offsetWidth+vm.offset(min_box).top);
+					vm.maxLeft = MaskW*bili;
+					vm.maxTop = MaskH*bili;
+				},
+				leave:function(){
+					this.istrue = false ;
+				},
+				offset:function (obj){
+//					debugger;
+					var i=0,j=0;
+					while (obj){
+						i+=obj.offsetLeft;
+						j+=obj.offsetTop;
+						obj=obj.offsetParent;
+					}
+					return{left:i,top:j};
+				}
+			}
+		})
+	</script>
+</html>

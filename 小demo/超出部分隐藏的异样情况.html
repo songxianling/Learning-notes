@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			li{
+				width: 100px;
+				height: 20px;
+				border: 1px solid #ccc;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				
+			}
+			.a:before{
+				content: " ";
+			}
+		</style>
+	</head>
+	<body>
+		<!--现在出现的情况是这样的 溢出去的部分会出现... 但是有的时候会出现在中间的位置-->
+		<div id="">
+			<ul>
+				<li class="a">这里是内容123</li>
+				<li>1这里是内容呀23</li>
+				<li>d这里是内容123</li>
+			</ul>
+		</div>
+		<!--解决方法：js对所有的该类元素，innerText前追加英文空格   推荐用伪类元素:before 添加英文空格就可以了 -->
+	</body>
+</html>
