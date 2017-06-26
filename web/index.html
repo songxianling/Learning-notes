@@ -1,87 +1,200 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="reset.css"/>
 		<style type="text/css">
-			* {
-				margin: 0;
-				padding: 0;
+			body{
+				background: #f1f1f1;
 			}
-			
-			img {
-				display: block;
-				margin: 20px auto;
-				cursor: pointer;
+			h3.top{
+				font-size: 2rem;
+				color: red;
+				text-align: center;
+				background: #0DCECB;
+				
+				
+			}
+			ul{
+				
+			}
+			ul li{
+				width: 98%;
+				margin: .3rem 1%;
+				padding: .4rem;
+				background: #fff;
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+			ul li a img{
+				float: left;
+				width: 33%;
+			}
+			ul li a h3{
+				float: right;
+				width: 61%;
+				font-size: 1rem;
+				margin-top: .8rem;
+				color: #000;
+				text-align: left;
+				font-weight: bold;
+			}
+			ul li a p{
+				float: right;
+				color: #999;
+				margin-top: 1rem;
 			}
 		</style>
 	</head>
-
 	<body>
-		<a href="" id="js-a" target="_blank">
-			<img src="timg.jpg" />
-		</a>
-	</body>
-	<script src="jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		var hrefObj = {
-			'0': 'http://www.baidu.com',
-			'1': 'http://www.taobao.com',
-			'2': 'http://www.tmall.com',
-			'3': 'http://www.jd.com',
-			'4': 'http://www.autohome.com.cn'
-		};
-
-		// cookie
-		var comCookie = {
-			setCookie: function(name, value, days) {
-
-				days = days ? days : 30;
-				var date = new Date();
-				date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); //过期日期
-				document.cookie = name + '=' + escape(value) + ';expires=' + date.toUTCString();
-				//escape 进行编码  能将一些特殊符号或汉字用16进制表示
-			},
-			//获取cookie
-			getCookie: function(name) {
-
-				var cookies = document.cookie;
-				var arr = cookies.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
-				if(arr != null) return unescape(arr[2]);
-				return "";
-				//unescape解译escape编译过得对象
-			},
-			//删除cookie 不能直接删除  设置cookie的时间过期
-			delCookie: function(name) {
-
-				var date = new Date();
-				date.setTime(date.getTime() - 1);
-				document.cookie = name + '=' + getCookie(name) + ';expires=' + date.toUTCString();
-
-			}
-		}
-		var cUrl = 'http://www.baidu.com';
-		$('#js-a').on('click', function() {
-			if(!comCookie.getCookie("log")){
-	            comCookie.setCookie("log","1",1);
-	            var w = window.open();
-				$.ajax({
-					url: '/log.php',
-					data: '',
-					type: 'get',
-					success: function(data) {
-						data = eval(data);
-						cUrl = hrefObj[data];
-						w.location = hrefObj[data];
-					}
-				})
-	        }else{
-	        	var w = window.open();
-	        	w.location = cUrl;
-	        }
+		<h3 class="top">点击进入广告</h3>
+		<ul>
+			<li>
+				<a href="http://www.c7.gg/b72f" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000PKX7me1-Ys7LZT9l6.jpg"/>
+					<h3>骨科医生骨科医生北京股骨头专科医院</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7zu" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5pUyQhDD6ccbnkg6.jpg"/>
+					<h3>建筑资质代办专业工装平台免费设计及报价.</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7z3" class="clearfix">
+					<img src="timg.jpg"/>
+					<h3>哪家医院专治皮肤病</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7z6" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000ji6GcoL5jbqKlS1p0.jpg"/>
+					<h3>投资移民去那个国家好澳大利亚移民 高福利 免雅思</h3>
+					<p>广告</p>
+				</a>
+			</li>
 			
-		});
-	</script>
-
+			<li>
+				<a href="http://www.c7.gg/b7z7" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000PKX7me1-Ys7LZT9l6.jpg"/>
+					<h3>出国生宝宝有介绍中介吗</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7zB" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000ZtbOfSfHkdcKBdlZf.jpg"/>
+					<h3>水光针补水效果怎么样美白多少钱?</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7zD" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000FT7LhccR2GwJiAy70.jpg"/>
+					<h3>隆胸北京艺星医疗——十五连城医院</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b7zH" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000FT7LhccR2GwJiAy70.jpg"/>
+					<h3>阴道收缩手术</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			
+			<li>
+				<a href="http://www.c7.gg/b7zY" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000PKX7me1-Ys7LZT9l6.jpg"/>
+					<h3>阳痿治疗方法阳痿治疗方法</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72b" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000FT7LhccR2GwJiAy70.jpg"/>
+					<h3>超声刀北京艺星医疗——十五连城医院</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72j" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f0000JlCrJrMMV_Catljf.jpg"/>
+					<h3>精神科医生治精神分裂 电话:01083980777</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72k" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000cbTHZRW9Jgmk3-oA6.jpg"/>
+					<h3>留学好不好学习谷-日本留学权威机构</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			
+			<li>
+				<a href="http://www.c7.gg/b72p" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f0007cX4_puDNYB4pMEY0.jpg"/>
+					<h3>小黄圈-靠谱的就餐指南</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72t" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f00002zAyj8JCQafkL1H0.jpg"/>
+					<h3>欧式双眼皮眼角整形多少钱?眼睛太小</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72z" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000ZtbOixviMVFKBdlnf.jpg"/>
+					<h3>出国留学「锐晋医疗」医师海外进修咨询</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b726" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f0007igj_6Lk0faFI8jc0.jpg"/>
+					<h3>面膜全国五谷杂粮面膜加盟总部</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			
+			<li>
+				<a href="http://www.c7.gg/b72B" class="clearfix">
+					<img src="https://ubmcmm.baidustatic.com/media/v1/0f000aUSmeRM8fNIM1wfvf.jpg"/>
+					<h3>祛痘面膜韩医生"21周年庆典"99元特惠</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72C" class="clearfix">
+					<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/slpbiz/w%3D800/sign=76be6e8732c79f3d8fe1e9308aa0cdbc/e7cd7b899e510fb3b0a75cefd033c895d1430c0f.jpg"/>
+					<h3>膏药哪家好，更低价格更高利润</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72L" class="clearfix">
+					<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/slpbiz/w%3D800/sign=76be6e8732c79f3d8fe1e9308aa0cdbc/e7cd7b899e510fb3b0a75cefd033c895d1430c0f.jpg"/>
+					<h3>风湿关节疼痛?风湿关节全解读-</h3>
+					<p>广告</p>
+				</a>
+			</li>
+			<li>
+				<a href="http://www.c7.gg/b72B" class="clearfix">
+					<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/slpbiz/w%3D800/sign=76be6e8732c79f3d8fe1e9308aa0cdbc/e7cd7b899e510fb3b0a75cefd033c895d1430c0f.jpg"/>
+					<h3>膏药那个好膏药那个好</h3>
+					<p>广告</p>
+				</a>
+			</li>
+		</ul>
+	</body>
 </html>

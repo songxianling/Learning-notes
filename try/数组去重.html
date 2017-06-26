@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//数组去重方法1 
+		Array.prototype.arrUnique = function() {
+			this.sort(); //先将数组排序
+			var arr = [this[0]]; //定义一个新数组从排序后的数组的第一个开始接收值
+			for(var i = 1; i < this.length; i++) { //从第二个值开始比较
+				if(this[i] !== arr[arr.length - 1]) arr.push(this[i]); //比较相邻的值不一样时，新数组接收值，达到去重效果
+			}
+			return arr;
+		};
+
+		//数组去重方法2 （不能判断类型）
+		Array.prototype.uniqueArr = function() {
+			var arr = [];
+			var obj = {};
+			for(var i = 0; i < this.length; i++) {
+				if(!obj[this[i]]) {
+					arr.push(this[i]);
+					obj[this[i]] = this[i];
+				}
+			}
+			return arr;
+		};
+
+		//数组去重方法3 （不能判断类型）
+		Array.prototype.uniqueArr2 = function() {
+			var arr = [];
+			for(var i = 0; i < this.length; i++) {
+				if(this[i] === '') this[i] = "★";
+				if(!RegExp(this[i], "g").test(arr.join(","))) {
+					if(this[i] == "★") this[i] = '';
+					arr.push(this[i]);
+				}
+			}
+			return arr;
+		};
+
+		//数组去重方法4
+		Array.prototype.unique = function() {
+			var arr = [];
+			var map = new Map();
+			for(var i = 0; i < this.length; i++) {
+				if(!map.has(this[i])) {
+					arr.push(this[i]);
+					map.set(this[i], true)
+				}
+			}
+			return arr;
+		};
+
+		Array.prototype.unique2 = function() {
+			var arr = [];
+			var set = new Set(this);
+			set.forEach(function(item) {
+				arr.push(item);
+			});
+			return arr;
+		};
+		
+		var arr1 = [7,1,2,3,5,5,6,5,7,4,4,4,8,4];
+		
+		console.log(arr1.arrUnique());
+		
+		
+	</script>
+
+</html>

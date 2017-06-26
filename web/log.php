@@ -1,5 +1,5 @@
 <?php
-	$max = 5; //最大支持数
+	$max = 20; //最大支持数
     $file = './log.txt';
     $num = file_get_contents($file);
     if($num<0){
