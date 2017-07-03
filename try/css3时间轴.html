@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0,width=device-width">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>CSS3时间轴</title>
+	</head>
+	<style>
+		html *{margin:0;padding:0;-webkit-font-smoothing: antialiased;font-family:'微软雅黑','Microsoft YaHei',Verdana,Helvetica,Arial;font-size: 14px;color: #2d2d2d;}
+		body{background: #f2f1f1;}
+		ul,ul li{list-style:none;}
+		a:link {color: #2d2d2d;text-decoration: none;}
+		a:visited {color: #2d2d2d;text-decoration: none;}
+		a:hover {color: #09C;text-decoration: none;}
+		a:active {color: #09C;text-decoration: none;}
+		
+		/*start*/
+		.time-axis{box-sizing:border-box;width: 800px;overflow: hidden;margin: 0 auto;position: relative;}
+		.time-axis-border{width: 1px;height: 100%;position: absolute;top: 0;left: 50%;margin-left: -0.5px;background-color: #9e9b9b;}
+		.time-axis-con{box-sizing: border-box;width: 100%;overflow: hidden;margin-bottom: 15px;}
+		.time-axis-date{font-size: 12px;color: #aaa;margin-bottom: 5px;}
+		.time-axis-detail{box-sizing: border-box;width: 50%;padding:0 10px;}
+		.time-axis-detail p{word-break: break-all;}
+		.time-axis-con:nth-of-type(odd) .time-axis-detail{text-align: left;float: right;}
+		.time-axis-con:nth-of-type(even) .time-axis-detail{text-align: right;float: left;}		
+		.time-axis-dot span{width: 10px;height: 10px;border-radius:50%;margin: 10px auto;background-color:#9e9b9b;display: block;}		
+	</style>
+	<body>
+		<!--
+        	作者：dyyzht
+        	时间：2017-06-23
+        	描述：none
+        -->
+		<h1 style="text-align: center;margin: 20px;">CSS3时间轴</h1>
+		
+		<div class="time-axis">
+			<div class="time-axis-border"></div>
+			<div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-23</div>
+					<div>
+						<a href="#">百度编辑器是个大坑</a>
+					</div>
+				</div>
+			</div>
+			<div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-22</div>
+					<div>
+						<p>我本凡夫俗子，何需附庸风雅，故作姿态。</p>						
+					</div>
+				</div>
+			</div><div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-23</div>
+					<div>
+						<a href="#">百度编辑器是个大坑</a>
+					</div>
+				</div>
+			</div>
+			<div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-22</div>
+					<div>
+						<p>我本凡夫俗子，何需附庸风雅，故作姿态。</p>						
+					</div>
+				</div>
+			</div>
+			<div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-23</div>
+					<div>
+						<a href="#">百度编辑器是个大坑</a>
+					</div>
+				</div>
+			</div>
+			<div class="time-axis-con">
+				<div class="time-axis-dot"><span></span></div>				
+				<div class="time-axis-detail">
+					<div class="time-axis-date">2017-6-22</div>
+					<div>
+						<p>我本凡夫俗子，何需附庸风雅，故作姿态。</p>						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h1 style="text-align: center;margin: 20px;">CSS3时间轴</h1>
+	</body>
+</html>

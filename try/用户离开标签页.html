@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>页面激活</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var hiddenProperty = 'hidden' in document ? 'hidden' :
+			'webkitHidden' in document ? 'webkitHidden' :
+			'mozHidden' in document ? 'mozHidden' :
+			null;
+		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+		var onVisibilityChange = function() {
+			if(!document[hiddenProperty]) {
+				document.title = '页面激活';
+			} else {
+				document.title = '页面非激活';
+			}
+		}
+		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	</script>
+
+</html>
