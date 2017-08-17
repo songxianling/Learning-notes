@@ -1,0 +1,148 @@
+/*通用的样式包含部分common模块css*/
+
+#cnzz_stat_icon_1261323737{
+    display: none;
+}
+/*模态窗口*/
+.gb-modaldialog{
+	border: 1px solid #999;
+	border-radius: 4px;
+	background-color: #fff;
+	position: relative;
+	padding: 0;
+	min-width: 320px;
+}
+.gb-modaldialog .gb-modaldialog-title{
+	text-align: center;
+	font-size: 16px;
+	color: #999;
+	position: relative;
+	margin: 0;
+	line-height: 44px;
+	border-bottom: 1px solid #ececec;
+}
+.gb-modaldialog .gb-modaldialog-title:before{content: "";display: block;position: absolute;width: 50px;top: 12px;left: 70px;}
+.gb-modaldialog .gb-modaldialog-title:after{content: "";display: block;position: absolute;width: 50px;top: 12px;right: 70px;}
+.gb-modaldialog .gb-modaldialog-content{padding:15px 30px;word-break: break-all;}
+.gb-modaldialog .gb-modaldialog-closebtn{
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+}
+.gb-modaldialog .gb-modaldialog-closebtn i{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -10px 0 0 -10px;
+	background: url(../img/msg_close.png) 0 0 no-repeat;
+}
+.gb-modaldialog .gb-modaldialog-closebtn:hover i{
+	background-position:0px -30px;
+}
+.gb-modaldialog-btnwrap{
+	text-align: center;
+	padding: 0 10px 20px 10px;
+}
+.gb-modaldialog-btnwrap span{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	cursor: pointer;
+}
+.gb-modaldialog-btnwrap em{
+	width: 150px;
+	display: inline-block;
+}
+.gb-modaldialog-btnwrap .btncancel{
+	background-color: #ffb340;
+	color: #fff;
+}
+.gb-modaldialog-btnwrap .btnok{
+	background-color: #e14104;
+	color: #fff;
+}
+
+/*新登录浮层*/
+.gb-layout-base-login{
+    display: none;
+} 
+
+.gb-new-pop{
+    width: 432px;
+    height: 200px;
+    border: 1px solid #bdbdbd;
+    border-radius: 2px ;
+    position: fixed;
+    top: 50%;
+    margin-top: -100px;
+    left: 50%;
+    margin-left: -216px;
+    z-index: 100;
+    background: #fff;
+    overflow: hidden;
+    /*display: none;*/
+}
+.gb-new-pop .tit{
+    height: 50px;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 50px;
+    font-size: 12px;
+    color: #7f7f7f;
+}
+.gb-new-pop .tit span{
+    display: block;
+    float: left;
+    position: absolute;
+    top:25px;
+    background: #e0e0e0;
+    width: 100px;
+    height: 1px;
+}
+.gb-new-pop .tit span:nth-child(1){
+    left:20px;
+}
+.gb-new-pop .tit span:nth-child(2){
+    right:20px;
+}
+.gb-new-pop .close-btn{
+    width: 13px;
+    height: 13px;
+    background: url(common:static/img/closebtn.png?__sprite) no-repeat;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+.gb-new-pop .cont{
+    width: 190px;
+    height: 40px;
+    margin: 20px auto;
+}
+.gb-new-pop .cont span{
+    display: block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+}
+.gb-new-pop .cont span:nth-child(1){
+    width: 42px;
+    height: 40px;
+    background: url(common:static/img/notixian.png?__sprite);
+}
+.gb-new-pop .msg{
+    font-size: 12px ;
+    color: #ff3201;
+    text-align: center;
+    line-height: 20px;
+    width: 90%;
+    margin: 0 auto;
+} 

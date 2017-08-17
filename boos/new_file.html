@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.box {
+			width: 98%;
+			margin: 0 1%;
+		}
+	</style>
+
+	<body>
+		<div class="box">
+			<table class="table table-bordered table-striped text-center">
+				<caption>基本的表格布局</caption>
+				<thead>
+					<tr class="text-center">
+						<th class="text-center">标题</th>
+						<th class="text-center">描述</th>
+						<th class="text-center">内容</th>
+						<th class="text-center">时间</th>
+						<th class="text-center">
+							操作<button type="button" class="btn btn-success">更多+</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Tanmay</td>
+						<td>Bangalore</td>
+						<td>Bangalore</td>
+						<td>Bangalore</td>
+						<td>
+							<a href="">查看</a>
+							<a href="">编辑</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div>
+				<!--中间区域-->
+				<table class="table table-bordered table-striped text-center" style="width: 49%;float: left;">
+					<caption>产品知识区</caption>
+					<thead>
+						<tr class="text-center">
+							<th class="text-center">标题</th>
+							<th class="text-center">描述</th>
+							<th class="text-center">内容</th>
+							<th class="text-center">时间</th>
+							<th class="text-center">
+								操作<button type="button" class="btn btn-success">更多+</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Tanmay</td>
+							<td>Bangalore</td>
+							<td>Bangalore</td>
+							<td>Bangalore</td>
+							<td>
+								<a href="">查看</a>
+								<a href="">编辑</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div style="width: 49%;float: right;">
+							<ul id="myTab" class="nav nav-tabs">
+								<li class="active">
+									<a href="#peixun" data-toggle="tab">产品培训</a>
+								</li>
+								<li>
+									<a href="#xiaoshou" data-toggle="tab">产品销售</a>
+								</li>
+								<li>
+									<a href="#luxian" data-toggle="tab">产品路线</a>
+								</li>
+								<li>
+									<a href="#kaoshi" data-toggle="tab">考试</a>
+								</li>
+								<li>
+									<a href="#shoumai" data-toggle="tab">售卖</a>
+								</li>
+							</ul>
+						<tbody>
+							<div id="myTabContent" class="tab-content">
+								<!--培训-->
+								<div class="tab-pane fade in active" id="peixun">
+									<table class="table table-bordered table-striped text-center">
+										<thead>
+											<tr class="text-center">
+												<th class="text-center">培训标题</th>
+												<th class="text-center">培训描述</th>
+												<th class="text-center">培训内容</th>
+												<th class="text-center">培训时间</th>
+												<th class="text-center">
+													培训操作<button type="button" class="btn btn-success">更多+</button>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>培训</td>
+												<td>培训</td>
+												<td>培训</td>
+												<td>培训</td>
+												<td>
+													<a href="">查看</a>
+													<a href="">编辑</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--销售-->
+								<div class="tab-pane fade" id="xiaoshou">
+									<table class="table table-bordered table-striped text-center">
+										<thead>
+											<tr class="text-center">
+												<th class="text-center">销售标题</th>
+												<th class="text-center">销售描述</th>
+												<th class="text-center">销售内容</th>
+												<th class="text-center">销售时间</th>
+												<th class="text-center">
+													销售操作<button type="button" class="btn btn-success">更多+</button>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>销售</td>
+												<td>销售</td>
+												<td>销售</td>
+												<td>销售</td>
+												<td>
+													<a href="">查看</a>
+													<a href="">编辑</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--路线-->
+								<div class="tab-pane fade" id="luxian">
+									<table class="table table-bordered table-striped text-center">
+										<thead>
+											<tr class="text-center">
+												<th class="text-center">路线标题</th>
+												<th class="text-center">路线描述</th>
+												<th class="text-center">路线内容</th>
+												<th class="text-center">路线时间</th>
+												<th class="text-center">
+													路线操作<button type="button" class="btn btn-success">更多+</button>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>路线</td>
+												<td>路线</td>
+												<td>路线</td>
+												<td>路线</td>
+												<td>
+													<a href="">查看</a>
+													<a href="">编辑</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--考试-->
+								<div class="tab-pane fade" id="kaoshi">
+									<table class="table table-bordered table-striped text-center">
+										<thead>
+											<tr class="text-center">
+												<th class="text-center">考试标题</th>
+												<th class="text-center">考试描述</th>
+												<th class="text-center">考试内容</th>
+												<th class="text-center">考试时间</th>
+												<th class="text-center">
+													考试操作<button type="button" class="btn btn-success">更多+</button>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>考试</td>
+												<td>考试</td>
+												<td>考试</td>
+												<td>考试</td>
+												<td>
+													<a href="">查看</a>
+													<a href="">编辑</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--售卖-->
+								<div class="tab-pane fade" id="shoumai">
+									<table class="table table-bordered table-striped text-center">
+										<thead>
+											<tr class="text-center">
+												<th class="text-center">售卖标题</th>
+												<th class="text-center">售卖描述</th>
+												<th class="text-center">售卖内容</th>
+												<th class="text-center">售卖时间</th>
+												<th class="text-center">
+													售卖操作<button type="button" class="btn btn-success">更多+</button>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>售卖</td>
+												<td>售卖</td>
+												<td>售卖</td>
+												<td>售卖</td>
+												<td>
+													<a href="">查看</a>
+													<a href="">编辑</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								
+							</div>
+						</tbody>
+				</div>
+			</div>
+		</div>
+	</body>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+			$('#myTab li:eq(0) a').tab('show');
+		});
+	</script>
+
+</html>
