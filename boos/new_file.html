@@ -17,49 +17,79 @@
 			width: 98%;
 			margin: 0 1%;
 		}
+		
+		.z-left {
+			margin-top: 6px;
+		}
+		
+		.col-one {
+			padding-left: 10px;
+			box-sizing: border-box;
+			background-color: #3c8dbc;
+			color: #fff;
+		}
+		
+		.col-one>li>a {
+			color: #fff;
+		}
+		
+		.top-box {
+			/*border: 1px solid #ddd;*/
+		}
+		
+		.top-box .ac-p {
+			padding-top: 8px;
+			padding-bottom: 8px;
+			margin: 0;
+			text-align: left;
+			padding-left: 10px;
+			box-sizing: border-box;
+			background-color: #3c8dbc;
+			color: #fff;
+		}
+		
+		.form-group {
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+			margin: 0;
+			overflow: hidden;
+		}
+		
+		.form-group .lab {
+			float: left;
+			width: 10%;
+			height: 34px;
+			line-height: 34px;
+			margin: 0;
+			padding-left: 10px;
+			box-sizing: border-box;
+		}
 	</style>
 
 	<body>
 		<div class="box">
-			<table class="table table-bordered table-striped text-center">
-				<caption>基本的表格布局</caption>
-				<thead>
-					<tr class="text-center">
-						<th class="text-center">标题</th>
-						<th class="text-center">描述</th>
-						<th class="text-center">内容</th>
-						<th class="text-center">时间</th>
-						<th class="text-center">
-							操作<button type="button" class="btn btn-success">更多+</button>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Tanmay</td>
-						<td>Bangalore</td>
-						<td>Bangalore</td>
-						<td>Bangalore</td>
-						<td>
-							<a href="">查看</a>
-							<a href="">编辑</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div>
-				<!--中间区域-->
-				<table class="table table-bordered table-striped text-center" style="width: 49%;float: left;">
-					<caption>产品知识区</caption>
+			<div class="top-box">
+				<p class="ac-p">基本的表格布局</p>
+				<table class="table table-bordered table-striped text-center">
 					<thead>
+						<div class="form-group">
+							<label for="name" class="lab">选择列表</label>
+							<select class="form-control" style="float: left;width: 60%;">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
 						<tr class="text-center">
+
 							<th class="text-center">标题</th>
 							<th class="text-center">描述</th>
 							<th class="text-center">内容</th>
 							<th class="text-center">时间</th>
 							<th class="text-center">
-								操作<button type="button" class="btn btn-success">更多+</button>
+								<button type="button" class="btn btn-danger">更多+</button>
 							</th>
 						</tr>
 					</thead>
@@ -70,176 +100,321 @@
 							<td>Bangalore</td>
 							<td>Bangalore</td>
 							<td>
-								<a href="">查看</a>
-								<a href="">编辑</a>
+								<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+								<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div>
+				<!--中间区域-->
+				<!--中间左侧区域-->
+				<table class="table table-bordered table-striped text-center z-left" style="width: 49%;float: left;">
+					<caption class="col-one">产品知识区</caption>
+					<thead>
+						<tr class="text-center">
+							<th class="text-center">标题</th>
+							<th class="text-center">描述</th>
+							<th class="text-center">内容</th>
+							<th class="text-center">时间</th>
+							<th class="text-center">
+								<button type="button" class="btn btn-danger">更多+</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Tanmay</td>
+							<td>Bangalore</td>
+							<td>Bangalore</td>
+							<td>Bangalore</td>
+							<td>
+								<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+								<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--中间右侧区域-->
 				<div style="width: 49%;float: right;">
-							<ul id="myTab" class="nav nav-tabs">
-								<li class="active">
-									<a href="#peixun" data-toggle="tab">产品培训</a>
-								</li>
-								<li>
-									<a href="#xiaoshou" data-toggle="tab">产品销售</a>
-								</li>
-								<li>
-									<a href="#luxian" data-toggle="tab">产品路线</a>
-								</li>
-								<li>
-									<a href="#kaoshi" data-toggle="tab">考试</a>
-								</li>
-								<li>
-									<a href="#shoumai" data-toggle="tab">售卖</a>
-								</li>
-							</ul>
-						<tbody>
-							<div id="myTabContent" class="tab-content">
-								<!--培训-->
-								<div class="tab-pane fade in active" id="peixun">
-									<table class="table table-bordered table-striped text-center">
-										<thead>
-											<tr class="text-center">
-												<th class="text-center">培训标题</th>
-												<th class="text-center">培训描述</th>
-												<th class="text-center">培训内容</th>
-												<th class="text-center">培训时间</th>
-												<th class="text-center">
-													培训操作<button type="button" class="btn btn-success">更多+</button>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>培训</td>
-												<td>培训</td>
-												<td>培训</td>
-												<td>培训</td>
-												<td>
-													<a href="">查看</a>
-													<a href="">编辑</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!--销售-->
-								<div class="tab-pane fade" id="xiaoshou">
-									<table class="table table-bordered table-striped text-center">
-										<thead>
-											<tr class="text-center">
-												<th class="text-center">销售标题</th>
-												<th class="text-center">销售描述</th>
-												<th class="text-center">销售内容</th>
-												<th class="text-center">销售时间</th>
-												<th class="text-center">
-													销售操作<button type="button" class="btn btn-success">更多+</button>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>销售</td>
-												<td>销售</td>
-												<td>销售</td>
-												<td>销售</td>
-												<td>
-													<a href="">查看</a>
-													<a href="">编辑</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!--路线-->
-								<div class="tab-pane fade" id="luxian">
-									<table class="table table-bordered table-striped text-center">
-										<thead>
-											<tr class="text-center">
-												<th class="text-center">路线标题</th>
-												<th class="text-center">路线描述</th>
-												<th class="text-center">路线内容</th>
-												<th class="text-center">路线时间</th>
-												<th class="text-center">
-													路线操作<button type="button" class="btn btn-success">更多+</button>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>路线</td>
-												<td>路线</td>
-												<td>路线</td>
-												<td>路线</td>
-												<td>
-													<a href="">查看</a>
-													<a href="">编辑</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!--考试-->
-								<div class="tab-pane fade" id="kaoshi">
-									<table class="table table-bordered table-striped text-center">
-										<thead>
-											<tr class="text-center">
-												<th class="text-center">考试标题</th>
-												<th class="text-center">考试描述</th>
-												<th class="text-center">考试内容</th>
-												<th class="text-center">考试时间</th>
-												<th class="text-center">
-													考试操作<button type="button" class="btn btn-success">更多+</button>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>考试</td>
-												<td>考试</td>
-												<td>考试</td>
-												<td>考试</td>
-												<td>
-													<a href="">查看</a>
-													<a href="">编辑</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!--售卖-->
-								<div class="tab-pane fade" id="shoumai">
-									<table class="table table-bordered table-striped text-center">
-										<thead>
-											<tr class="text-center">
-												<th class="text-center">售卖标题</th>
-												<th class="text-center">售卖描述</th>
-												<th class="text-center">售卖内容</th>
-												<th class="text-center">售卖时间</th>
-												<th class="text-center">
-													售卖操作<button type="button" class="btn btn-success">更多+</button>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>售卖</td>
-												<td>售卖</td>
-												<td>售卖</td>
-												<td>售卖</td>
-												<td>
-													<a href="">查看</a>
-													<a href="">编辑</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								
-								
+					<ul id="myTab" class="nav nav-tabs col-one">
+						<li class="active">
+							<a href="#peixun" data-toggle="tab">产品培训</a>
+						</li>
+						<li>
+							<a href="#xiaoshou" data-toggle="tab">产品销售</a>
+						</li>
+						<li>
+							<a href="#luxian" data-toggle="tab">产品路线</a>
+						</li>
+						<li>
+							<a href="#kaoshi" data-toggle="tab">考试</a>
+						</li>
+						<li>
+							<a href="#shoumai" data-toggle="tab">售卖</a>
+						</li>
+					</ul>
+					<tbody>
+						<div id="myTabContent" class="tab-content">
+							<!--培训-->
+							<div class="tab-pane fade in active" id="peixun">
+								<table class="table table-bordered table-striped text-center">
+									<thead>
+										<tr class="text-center">
+											<th class="text-center">培训标题</th>
+											<th class="text-center">培训描述</th>
+											<th class="text-center">培训内容</th>
+											<th class="text-center">培训时间</th>
+											<th class="text-center">
+												<button type="button" class="btn btn-danger">更多+</button>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>培训</td>
+											<td>培训</td>
+											<td>培训</td>
+											<td>培训</td>
+											<td>
+												<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+												<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
+							<!--销售-->
+							<div class="tab-pane fade" id="xiaoshou">
+								<table class="table table-bordered table-striped text-center">
+									<thead>
+										<tr class="text-center">
+											<th class="text-center">销售标题</th>
+											<th class="text-center">销售描述</th>
+											<th class="text-center">销售内容</th>
+											<th class="text-center">销售时间</th>
+											<th class="text-center">
+												<button type="button" class="btn btn-danger">更多+</button>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>销售</td>
+											<td>销售</td>
+											<td>销售</td>
+											<td>销售</td>
+											<td>
+												<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+												<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--路线-->
+							<div class="tab-pane fade" id="luxian">
+								<table class="table table-bordered table-striped text-center">
+									<thead>
+										<tr class="text-center">
+											<th class="text-center">路线标题</th>
+											<th class="text-center">路线描述</th>
+											<th class="text-center">路线内容</th>
+											<th class="text-center">路线时间</th>
+											<th class="text-center">
+												<button type="button" class="btn btn-danger">更多+</button>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>路线</td>
+											<td>路线</td>
+											<td>路线</td>
+											<td>路线</td>
+											<td>
+												<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+												<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--考试-->
+							<div class="tab-pane fade" id="kaoshi">
+								<table class="table table-bordered table-striped text-center">
+									<thead>
+										<tr class="text-center">
+											<th class="text-center">考试标题</th>
+											<th class="text-center">考试描述</th>
+											<th class="text-center">考试内容</th>
+											<th class="text-center">考试时间</th>
+											<th class="text-center">
+												<button type="button" class="btn btn-danger">更多+</button>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>考试</td>
+											<td>考试</td>
+											<td>考试</td>
+											<td>考试</td>
+											<td>
+												<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+												<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--售卖-->
+							<div class="tab-pane fade" id="shoumai">
+								<table class="table table-bordered table-striped text-center">
+									<thead>
+										<tr class="text-center">
+											<th class="text-center">售卖标题</th>
+											<th class="text-center">售卖描述</th>
+											<th class="text-center">售卖内容</th>
+											<th class="text-center">售卖时间</th>
+											<th class="text-center">
+												<button type="button" class="btn btn-danger">更多+</button>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>售卖</td>
+											<td>售卖</td>
+											<td>售卖</td>
+											<td>售卖</td>
+											<td>
+												<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+												<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</tbody>
+				</div>
+
+				<!--中间第二区域 -->
+				<div>
+					<table class="table table-bordered table-striped text-center z-left" style="width: 49%;float: left;">
+						<caption class="col-one">问题解决仪表板</caption>
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">标题</th>
+								<th class="text-center">描述</th>
+								<th class="text-center">内容</th>
+								<th class="text-center">时间</th>
+								<th class="text-center">
+									<button type="button" class="btn btn-danger">更多+</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>
+									<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+									<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+								</td>
+							</tr>
 						</tbody>
+					</table>
+					<!--中二右边-->
+					<table class="table table-bordered table-striped text-center z-left" style="width: 49%;float: right;">
+						<caption class="col-one">SLA问题解决仪表板</caption>
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">标题</th>
+								<th class="text-center">描述</th>
+								<th class="text-center">内容</th>
+								<th class="text-center">时间</th>
+								<th class="text-center">
+									<button type="button" class="btn btn-danger">更多+</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>
+									<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+									<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+				<!--下方区域-->
+				<div>
+					<table class="table table-bordered table-striped text-center z-left" style="width: 49%;float: left;">
+						<caption class="col-one">数据报告区</caption>
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">标题</th>
+								<th class="text-center">描述</th>
+								<th class="text-center">内容</th>
+								<th class="text-center">时间</th>
+								<th class="text-center">
+									<button type="button" class="btn btn-danger">更多+</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>
+									<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+									<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--中二右边-->
+					<table class="table table-bordered table-striped text-center z-left" style="width: 49%;float: right;">
+						<caption class="col-one">解决方案区</caption>
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">标题</th>
+								<th class="text-center">描述</th>
+								<th class="text-center">内容</th>
+								<th class="text-center">时间</th>
+								<th class="text-center">
+									<button type="button" class="btn btn-danger">更多+</button>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>Bangalore</td>
+								<td>
+									<a href="">查看<span style="margin-left: 1%;" class="glyphicon glyphicon-eye-open"></span></a>
+									<a href="" style="margin-left: 2%;">编辑<span style="margin-left: 1%;" class="glyphicon glyphicon-cog"></span></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
 				</div>
 			</div>
 		</div>
