@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        body {
+            font-size: 12px;
+            -webkit-user-select: none;
+            -webkit-text-size-adjust: none;
+            font-family: helvetica;
+        }
+
+
+        #wrapper {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #666;
+            overflow: auto;
+        }
+
+        #scroller {
+            position: absolute;
+            z-index: 1;
+            /*	-webkit-touch-callout:none;*/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            width: 100%;
+            padding: 0;
+        }
+
+       
+        .f-con {
+            /* position: fixed; */
+            background: #fff;
+            padding: 0 20px;
+        }
+
+        .f-con .title {
+            font-weight: 700;
+            color: #000;
+            font-size: 2rem;
+            text-align: left;
+        }
+
+        .f-con .info {
+            padding: 16px 0;
+            font-size: .3rem;
+        }
+
+        .f-con .info span {
+            color: red;
+        }
+
+        .f-con .con-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+        }
+
+        .bg-xh-author {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+        }
+    </style>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper" style="overflow: hidden;">
+        <div id="scroller" style="transform-origin: 0px 0px 0px; position: absolute; top: -10px; left: 0px;">
+            <div class="bg-xh-author">香哈网</div>
+            <ul id="thelist">
+                <div class="f-con">
+                    <div class="title">{{vtitle}}</div>
+                    <div class="info clearfix">
+                            2017-11-07
+                            <span>香哈</span>
+                    </div>
+                    <img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+                    <img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
+                    <div class="info clearfix">
+                        <span class="time">2017-11-07</span>
+                        <span class="author">香哈</span>
+                    </div>
+                </div>
+            </ul>
+        </div>
+
+
+
+
+
+</body>
+<script>
+    var myScroll;
+
+    function loaded() {
+        myScroll = new iScroll('wrapper');
+        // $('#wrapper').css('top', '-15px');
+        $('.f-con').css('position', 'fixed');
+    }
+
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(loaded, 200);
+    }, false);
+
+
+    new Vue({
+        el: '#wrapper',
+
+        data: {
+            items: [],
+            vtitle: '香哈网香哈网香哈网香哈网10000'
+        },
+
+        mounted: function () {
+
+        },
+
+        methods: {
+
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/vueIscroll.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/iscroll.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="scroller">
+            <div id="pullDown">
+                xiangha
+            </div>
+            <ul id="thelist">
+                <li>
+                        
+                </li>
+                <li>Pretty row 2</li>
+                <li>Pretty row 3</li>
+                <li>Pretty row 4</li>
+                <li>Pretty row 5</li>
+                <li>Pretty row 6</li>
+                <li>Pretty row 7</li>
+                <li>Pretty row 8</li>
+                <li>Pretty row 9</li>
+                <li>Pretty row 10</li>
+                <li>Pretty row 11</li>
+                <li>Pretty row 12</li>
+                <li>Pretty row 13</li>
+                <li>Pretty row 14</li>
+                <li>Pretty row 15</li>
+                <li>Pretty row 16</li>
+                <li>Pretty row 17</li>
+                <li>Pretty row 4</li>
+                <li>Pretty row 5</li>
+                <li>Pretty row 6</li>
+                <li>Pretty row 7</li>
+                <li>Pretty row 8</li>
+                <li>Pretty row 9</li>
+                <li>Pretty row 10</li>
+                <li>Pretty row 11</li>
+                <li>Pretty row 12</li>
+                <li>Pretty row 13</li>
+                <li>Pretty row 14</li>
+                <li>Pretty row 15</li>
+                <li>Pretty row 16</li>
+                <li>Pretty row 17</li>
+            </ul>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    new Vue({
+        el: '#wrapper',
+
+        data: {
+            items: [],
+            vtitle: '香哈网香哈网香哈网香哈网10000'
+        },
+
+        mounted: function () {
+
+        },
+
+        methods: {
+
+        }
+    });
+
+    var myScroll,
+        pullDownEl, pullDownOffset,
+        generatedCount = 0;
+
+    
+
+    function loaded() {
+        pullDownEl = document.getElementById('pullDown');
+        pullDownOffset = pullDownEl.offsetHeight;
+        myScroll = new iScroll('wrapper', {
+            useTransition: true,
+            topOffset: pullDownOffset,
+            onRefresh: function () {
+                if (pullDownEl.className.match('loading')) {
+                    pullDownEl.className = '';
+                }
+            },
+            onScrollMove: function () {
+                if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'flip';
+                    this.minScrollY = 0;
+                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                    pullDownEl.className = '';
+                    this.minScrollY = -pullDownOffset;
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'loading';
+                    // pullDownAction();
+                }
+            }
+        });
+
+        setTimeout(function () {
+            document.getElementById('wrapper').style.left = '0';
+        }, 800);
+    }
+
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(loaded, 200);
+    }, false);
+</script>
+
+</html>
