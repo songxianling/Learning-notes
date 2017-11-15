@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-scroller.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+          <h1 class="title">Refresh & Infinite</h1>
+        </div>
+        <scroller :on-refresh="refresh"
+                  :on-infinite="infinite"
+                  style="padding-top: 44px;">
+          <div v-for="(item, index) in items" class="row" :class="{'grey-bg': index % 2 == 0}">
+            {{ item }}
+          </div>
+        </scroller>
+      </div>
+
+</body>
+<script>
+    new Vue({
+        el: '#app',
+      
+        data: {
+          items: []
+        },
+      
+        mounted: function () {
+          for (var i = 1; i <= 20; i++) {
+            this.items.push(i + ' - keep walking, be 2 with you.');
+          }
+          this.top = 1;
+          this.bottom = 20;
+        },
+      
+        methods: {
+          refresh: function (done) {
+            var self = this
+            setTimeout(function () {
+              // var start = self.top - 1
+              // for (var i = start; i > start - 10; i--) {
+              //   self.items.splice(0, 0, i + ' - keep walking, be 2 with you.');
+              // }
+              // self.top = self.top - 10;
+              alert('我刷新了~~');
+              done();
+            }, 1500)
+          },
+      
+          infinite: function (done) {
+            var self = this
+            console.log('123')
+            setTimeout(function () {
+
+              var start = self.bottom + 1;
+              for (var i = start; i < start + 10; i++) {
+                self.items.push(i + ' - keep walking, be 2 with you.');
+              }
+              self.bottom = self.bottom + 50;
+              done();
+            }, 1500)
+          }
+        }
+      });
+</script>
+
+</html>
