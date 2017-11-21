@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>window.PointerEvent = undefined</script>
     <style>
         body,
         ul,
@@ -60,11 +61,11 @@
 
         .f-con .info {
             padding: 16px 0;
-            font-size: .3rem;
+            font-size: .5rem;
         }
 
         .f-con .info span {
-            color: red;
+            color: rgb(98, 89, 230);
         }
 
         .f-con .con-img {
@@ -73,11 +74,27 @@
             height: 100%;
             margin-bottom: 10px;
         }
+        .f-con .footer-con{
+
+        }
+        .f-con .footer-con a{
+            float: left;
+            text-decoration: none;
+            color: rgb(98, 89, 230);
+        }
+        .f-con .footer-con span{
+            float: left;
+            
+        }
 
         .bg-xh-author {
             position: fixed;
+            width: 80%;
             top: 10px;
             left: 50%;
+            margin-left: -40%;
+            text-align: center;
+            display: none;
         }
     </style>
     <script src="js/jquery-2.1.1.min.js"></script>
@@ -87,8 +104,8 @@
 
 <body>
     <div id="wrapper" style="overflow: hidden;">
-        <div id="scroller" style="transform-origin: 0px 0px 0px; position: absolute; top: -10px; left: 0px;">
-            <div class="bg-xh-author">香哈网</div>
+        <div id="scroller">
+            <div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
             <ul id="thelist">
                 <div class="f-con">
                     <div class="title">{{vtitle}}</div>
@@ -99,8 +116,14 @@
                     <img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
                     <img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
                     <div class="info clearfix">
-                        <span class="time">2017-11-07</span>
-                        <span class="author">香哈</span>
+                        2017-11-07
+                        <span>香哈</span>
+                    </div>
+                    <div class="footer-con">
+                        <a href="#">阅读原文</a>
+                        <span>阅读100000+</span>
+                        <span><i></i>10000+</span>
+                        <span>投诉</span>
                     </div>
                 </div>
             </ul>
@@ -112,41 +135,46 @@
 
 </body>
 <script>
-    var myScroll,
+		var myScroll,
         pullDownEl, pullDownOffset,
         generatedCount = 0;
 
-    function loaded() {
-        myScroll = new iScroll('wrapper');
-        // $('#wrapper').css('top', '-15px');
-        $('.f-con').css('position', 'fixed');
-    }
-
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
-
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(loaded, 200);
-    }, false);
-
-
-    new Vue({
-        el: '#wrapper',
-
-        data: {
-            items: [],
-            vtitle: '香哈网香哈网香哈网香哈网10000'
-        },
-
-        mounted: function () {
-
-        },
-
-        methods: {
-
-        }
-    });
+	    function loaded() {
+	        myScroll = new iScroll('wrapper',{
+	        	momentum: true
+	        });
+	        // $('#wrapper').css('top', '-15px');
+	        $('.f-con').css('position', 'fixed');
+	        $('.js-author').show();
+	    }
+	
+	    document.addEventListener('touchmove', function (e) {
+	        e.preventDefault();
+	    }, false);
+	
+	    document.addEventListener('DOMContentLoaded', function () {
+	        setTimeout(loaded, 500);
+	    }, false);
+	
+	
+	    new Vue({
+	        el: '#wrapper',
+	
+	        data: {
+	            items: [],
+	            vtitle: '香哈网香哈网香哈网香哈网10000'
+	        },
+	
+	        mounted: function () {
+	
+	        },
+	
+	        methods: {
+	
+	        }
+	    });	
+	
+    
 </script>
 
 </html>
