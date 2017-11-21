@@ -6,24 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
     <script>window.PointerEvent = undefined</script>
     <style>
-        body,
-        ul,
-        li {
-            padding: 0;
-            margin: 0;
-            border: 0;
-        }
-
-        body {
-            font-size: 12px;
-            -webkit-user-select: none;
-            -webkit-text-size-adjust: none;
-            font-family: helvetica;
-        }
-
-
+        
         #wrapper {
             position: absolute;
             z-index: 2;
@@ -46,47 +32,80 @@
         }
 
 
-        .f-con {
+        .first-con {
             /* position: fixed; */
             background: #fff;
             padding: 0 20px;
         }
 
-        .f-con .title {
+        .first-con .title {
             font-weight: 700;
             color: #000;
             font-size: 2rem;
             text-align: left;
         }
 
-        .f-con .info {
+        .first-con .info {
             padding: 16px 0;
             font-size: .5rem;
         }
 
-        .f-con .info span {
+        .first-con .info span {
             color: rgb(98, 89, 230);
         }
 
-        .f-con .con-img {
+        .first-con .con-img {
             display: block;
             width: 100%;
             height: 100%;
             margin-bottom: 10px;
         }
-        .f-con .footer-con{
+        .first-con .footer-con{
 
         }
-        .f-con .footer-con a{
+        .first-con .footer-con a{
             float: left;
             text-decoration: none;
             color: rgb(98, 89, 230);
         }
-        .f-con .footer-con span{
+        .first-con .footer-con>span{
             float: left;
-            
+            font-size: .7rem;
         }
-
+        .first-con .footer-con>span:nth-last-child(1){
+            float: right;
+        }
+        .complaint-con{
+        	position: fixed;
+        	width: 100%;
+        	height: 100%;
+        	background: #fff;
+        	/*display: none;*/
+        	text-align: left;
+        }
+        .complaint-con p{
+        	color: #999;
+        	height: 2rem;
+        	line-height: 2rem;
+        	font-size: 1rem;
+        	padding: 0 .625rem;
+        	margin: 0;
+        	
+        	background: #ccc;
+        }
+        .complaint-con ul{
+        	padding: 0 .625rem;
+        	border-bottom: 1px solid #ddd;
+        	border-top: 1px solid #ddd;
+        }
+        .complaint-con ul li{
+        	height: 2.2rem;
+        	line-height: 2.2rem;
+        	border-bottom: 1px solid #ddd;
+        }
+        .complaint-con ul li:nth-last-child(1){
+        	border-bottom: none;
+        }
         .bg-xh-author {
             position: fixed;
             width: 80%;
@@ -99,7 +118,6 @@
     </style>
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/iscroll.js"></script>
-    <script src="js/vue.min.js"></script>
 </head>
 
 <body>
@@ -107,8 +125,8 @@
         <div id="scroller">
             <div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
             <ul id="thelist">
-                <div class="f-con">
-                    <div class="title">{{vtitle}}</div>
+                <!--<div class="first-con js-first-box">
+                    <div class="title">香哈网香哈网香哈网香哈网10000</div>
                     <div class="info clearfix">
                         2017-11-07
                         <span>香哈</span>
@@ -119,12 +137,24 @@
                         2017-11-07
                         <span>香哈</span>
                     </div>
-                    <div class="footer-con">
+                    <div class="footer-con clearfix">
                         <a href="#">阅读原文</a>
-                        <span>阅读100000+</span>
-                        <span><i></i>10000+</span>
-                        <span>投诉</span>
+                        <span>阅读100000+ <i>按钮</i>10000+</span>
+                        <span class="js-complaint-btn">投诉</span>
                     </div>
+                </div>-->
+                <!--投诉con-->
+                <div class="complaint-con js-complaint-con-box">
+                	<p>请选择投诉原因</p>
+                    <ul>
+                    	<li>1</li>
+                    	<li>2</li>
+                    	<li>3</li>
+                    	<li>4</li>
+                    	<li>5</li>
+                    	<li>6</li>
+                    	<li>7</li>
+                    </ul>
                 </div>
             </ul>
         </div>
@@ -138,41 +168,38 @@
 		var myScroll,
         pullDownEl, pullDownOffset,
         generatedCount = 0;
-
+		
+		var $firstBox = $('.js-first-box'); // 第一个盒子
+		var $complaintBox = $('.js-complaint-con-box');	// 投诉盒子
+		var $complaintBtn = $('.js-complaint-btn');	// 第一盒子中的投诉按钮
+		var $author = $('.js-author');	// 提供者
+		
+		
+		
 	    function loaded() {
-	        myScroll = new iScroll('wrapper',{
-	        	momentum: true
+	        myScroll = new iScroll('wrapper',{ 
+	        	mouseWheel: true, 
+	        	click: true, 
+	        	tap: true 
 	        });
 	        // $('#wrapper').css('top', '-15px');
-	        $('.f-con').css('position', 'fixed');
-	        $('.js-author').show();
+	        $firstBox.css('position', 'fixed');
+	        $author.show();
 	    }
 	
 	    document.addEventListener('touchmove', function (e) {
 	        e.preventDefault();
 	    }, false);
-	
 	    document.addEventListener('DOMContentLoaded', function () {
 	        setTimeout(loaded, 500);
 	    }, false);
+		$complaintBtn.on('click',function () {
+			$firstBox.hide();
+			$complaintBox.show();
+			$('#scroller').css('top','0');
+		});
 	
-	
-	    new Vue({
-	        el: '#wrapper',
-	
-	        data: {
-	            items: [],
-	            vtitle: '香哈网香哈网香哈网香哈网10000'
-	        },
-	
-	        mounted: function () {
-	
-	        },
-	
-	        methods: {
-	
-	        }
-	    });	
+	    
 	
     
 </script>
