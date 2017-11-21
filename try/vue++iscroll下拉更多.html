@@ -8,20 +8,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/vueIscroll.css">
+    <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/iscroll.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
+    <div id="wrapper" v-clock>
         <div id="scroller">
             <div id="pullDown">
-                xiangha
+                {{vtitle}}
             </div>
-            <ul id="thelist">
-                <li>
-                        
-                </li>
+            <ul id="thelist">              
                 <li>Pretty row 2</li>
                 <li>Pretty row 3</li>
                 <li>Pretty row 4</li>
@@ -114,13 +112,15 @@
             document.getElementById('wrapper').style.left = '0';
         }, 800);
     }
-
+    // 下拉
     document.addEventListener('touchmove', function (e) {
         e.preventDefault();
+        $('#pullDown').css('position','fixed');
     }, false);
 
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(loaded, 200);
+        console.log('2')
     }, false);
 </script>
 

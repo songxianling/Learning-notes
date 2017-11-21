@@ -44,7 +44,7 @@
             padding: 0;
         }
 
-       
+
         .f-con {
             /* position: fixed; */
             background: #fff;
@@ -93,8 +93,8 @@
                 <div class="f-con">
                     <div class="title">{{vtitle}}</div>
                     <div class="info clearfix">
-                            2017-11-07
-                            <span>香哈</span>
+                        2017-11-07
+                        <span>香哈</span>
                     </div>
                     <img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
                     <img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
@@ -112,7 +112,9 @@
 
 </body>
 <script>
-    var myScroll;
+    var myScroll,
+        pullDownEl, pullDownOffset,
+        generatedCount = 0;
 
     function loaded() {
         myScroll = new iScroll('wrapper');
