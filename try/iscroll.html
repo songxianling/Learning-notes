@@ -1,207 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
-    <script>window.PointerEvent = undefined</script>
-    <style>
-        
-        #wrapper {
-            position: absolute;
-            z-index: 2;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #666;
-            overflow: auto;
-        }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script>
+			window.PointerEvent = undefined
+		</script>
+		<style>
+			#wrapper {
+				position: absolute;
+				z-index: 2;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				/*height: 100%;*/
+				background: #666;
+				overflow: auto;
+			}
+			
+			#scroller {
+				position: absolute;
+				z-index: 1;
+				/*	-webkit-touch-callout:none;*/
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				width: 100%;
+				padding: 0;
+			}
+			
+			#wrapperTwo {
+				position: absolute;
+				z-index: 2;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: #666;
+				overflow: auto;
+			}
+			#scrollerTwo {
+				position: absolute;
+				z-index: 1;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				width: 100%;
+				padding: 0;
+			}
+			
+			#wrapperThree {
+				position: absolute;
+				z-index: 2;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: #666;
+				overflow: auto;
+			}
+			#scrollerThree {
+				position: absolute;
+				z-index: 1;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				width: 100%;
+				padding: 0;
+			}
+			.first-con {
+				/* position: fixed; */
+				background: #fff;
+				padding: 0 20px;
+				text-align: left;
+				/*display: none;*/
+			}
+			
+			.first-con .title {
+				font-weight: 700;
+				color: #000;
+				font-size: 2rem;
+				text-align: left;
+			}
+			
+			.first-con .info {
+				padding: 16px 0;
+				font-size: 1rem;
+			}
+			
+			.first-con .info span {
+				color: rgb(98, 89, 230);
+			}
+			
+			.first-con .con-img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				;
+				margin-bottom: 10px;
+			}
+			
+			.first-con .footer-con {
+				padding-bottom: .5rem;
+			}
+			
+			.first-con .footer-con a {
+				float: left;
+				text-decoration: none;
+				color: rgb(98, 89, 230);
+				font-size: 1rem;
+			}
+			
+			.first-con .footer-con>span {
+				float: left;
+				font-size: 1rem;
+			}
+			
+			.first-con .footer-con>span:nth-last-child(1) {
+				float: right;
+			}
+			/*投诉内容盒子*/
+			
+			.complaint-box {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				background: #fff;
+				display: none;
+				text-align: left;
+			}
+			
+			.complaint-box p {
+				color: #999;
+				height: 2.813rem;
+				line-height: 2.813rem;
+				font-size: 1rem;
+				padding: 0 .625rem;
+				margin: 0;
+				background: #ccc;
+			}
+			
+			.complaint-box ul {
+				padding: 0 .625rem;
+				border-bottom: 1px solid #ddd;
+				border-top: 1px solid #ddd;
+			}
+			
+			.complaint-box ul li {
+				height: 2.813rem;
+				line-height: 2.813rem;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.complaint-box ul li:nth-last-child(1) {
+				border-bottom: none;
+			}
+			/*投诉结果页*/
+			
+			.complaint-results-box {
+				display: none;
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				padding: .625rem;
+				box-sizing: border-box;
+				background: #BDBDBD;
+			}
+			
+			.complaint-results-box p:nth-of-type(1) {
+				font-size: 1.1rem;
+				font-weight: 700;
+			}
+			
+			.complaint-results-box p:nth-of-type(2) {
+				margin: .6rem 0;
+				font-size: 1rem;
 
-        #scroller {
-            position: absolute;
-            z-index: 1;
-            /*	-webkit-touch-callout:none;*/
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            width: 100%;
-            padding: 0;
-        }
+			}
+			.complaint-results-box a{
+				display: block;
+				width: 100%;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				border-radius: 5px;
+				text-align: center;
+				color: #fff;
+				background: #67B168;
+			}
+			/*底部背景*/
+			
+			.bg-xh-author {
+				position: fixed;
+				width: 80%;
+				top: 10px;
+				left: 50%;
+				margin-left: -40%;
+				text-align: center;
+				display: none;
+			}
+		</style>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/iscroll.js"></script>
+	</head>
 
+	<body>
+		<div id="wrapper" style="overflow: hidden;">
+			<div id="scroller">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+					<div class="first-con js-first-box">
+						<div class="title">本网页由本网页由本网页由</div>
+						<div class="info clearfix">
+							2017-11-07
+							<span>哈哈</span>
+						</div>
+						<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+						<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
+						<div class="info clearfix">
+							2017-11-07
+							<span>哈哈</span>
+						</div>
+						<div class="footer-con clearfix">
+							<a href="#">阅读原文</a>
+							<span>阅读100000+ <i>按钮</i>10000+</span>
+							<span class="js-complaint-btn">投诉</span>
+						</div>
+					</div>
+			</div>
+		</div>
+		<!--投诉页面-->
+		<div id="wrapperTwo" style="overflow: hidden;display: none;">
+			<div id="scrollerTwo">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+					<!--投诉con-->
+					<div class="complaint-box js-complaint-box">
+						<p>请选择投诉原因</p>
+						<ul>
+							<li>欺诈</li>
+							<li>色情</li>
+							<li>诱导行为</li>
+							<li>不实信息</li>
+							<li>违法犯罪</li>
+							<li>骚扰</li>
+							<li>违规声明原创</li>
+							<li>未经授权的文章内容</li>
+							<li>其他</li>
+						</ul>
+					</div>
+			</div>
+		</div>
+		
+		<!--投诉结果页面-->
+		<div id="wrapperThree" style="overflow: hidden;display: none;">
+			<div id="scrollerThree">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+					<!--投诉结果页-->
+					<div class="complaint-results-box js-complaint-results-box">
+						<i></i>
+						<p>已提交</p>
+						<p>你的投诉已提交审核，投诉单号：77667777，我们会在7个工作日内处理，感谢你对平台的支持</p>
+						<a href="###">确定</a>
+					</div>
+			</div>
+		</div>
 
-        .first-con {
-            /* position: fixed; */
-            background: #fff;
-            padding: 0 20px;
-        }
-
-        .first-con .title {
-            font-weight: 700;
-            color: #000;
-            font-size: 2rem;
-            text-align: left;
-        }
-
-        .first-con .info {
-            padding: 16px 0;
-            font-size: .5rem;
-        }
-
-        .first-con .info span {
-            color: rgb(98, 89, 230);
-        }
-
-        .first-con .con-img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            margin-bottom: 10px;
-        }
-        .first-con .footer-con{
-
-        }
-        .first-con .footer-con a{
-            float: left;
-            text-decoration: none;
-            color: rgb(98, 89, 230);
-        }
-        .first-con .footer-con>span{
-            float: left;
-            font-size: .7rem;
-        }
-        .first-con .footer-con>span:nth-last-child(1){
-            float: right;
-        }
-        .complaint-con{
-        	position: fixed;
-        	width: 100%;
-        	height: 100%;
-        	background: #fff;
-        	/*display: none;*/
-        	text-align: left;
-        }
-        .complaint-con p{
-        	color: #999;
-        	height: 2rem;
-        	line-height: 2rem;
-        	font-size: 1rem;
-        	padding: 0 .625rem;
-        	margin: 0;
-        	
-        	background: #ccc;
-        }
-        .complaint-con ul{
-        	padding: 0 .625rem;
-        	border-bottom: 1px solid #ddd;
-        	border-top: 1px solid #ddd;
-        }
-        .complaint-con ul li{
-        	height: 2.2rem;
-        	line-height: 2.2rem;
-        	border-bottom: 1px solid #ddd;
-        }
-        .complaint-con ul li:nth-last-child(1){
-        	border-bottom: none;
-        }
-        .bg-xh-author {
-            position: fixed;
-            width: 80%;
-            top: 10px;
-            left: 50%;
-            margin-left: -40%;
-            text-align: center;
-            display: none;
-        }
-    </style>
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/iscroll.js"></script>
-</head>
-
-<body>
-    <div id="wrapper" style="overflow: hidden;">
-        <div id="scroller">
-            <div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
-            <ul id="thelist">
-                <!--<div class="first-con js-first-box">
-                    <div class="title">香哈网香哈网香哈网香哈网10000</div>
-                    <div class="info clearfix">
-                        2017-11-07
-                        <span>香哈</span>
-                    </div>
-                    <img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
-                    <img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
-                    <div class="info clearfix">
-                        2017-11-07
-                        <span>香哈</span>
-                    </div>
-                    <div class="footer-con clearfix">
-                        <a href="#">阅读原文</a>
-                        <span>阅读100000+ <i>按钮</i>10000+</span>
-                        <span class="js-complaint-btn">投诉</span>
-                    </div>
-                </div>-->
-                <!--投诉con-->
-                <div class="complaint-con js-complaint-con-box">
-                	<p>请选择投诉原因</p>
-                    <ul>
-                    	<li>1</li>
-                    	<li>2</li>
-                    	<li>3</li>
-                    	<li>4</li>
-                    	<li>5</li>
-                    	<li>6</li>
-                    	<li>7</li>
-                    </ul>
-                </div>
-            </ul>
-        </div>
-
-
-
-
-
-</body>
-<script>
+	</body>
+	<script>
 		var myScroll,
-        pullDownEl, pullDownOffset,
-        generatedCount = 0;
-		
+			pullDownEl, pullDownOffset,
+			generatedCount = 0;
+			
+		var $author = $('.js-author'); // 提供者
 		var $firstBox = $('.js-first-box'); // 第一个盒子
-		var $complaintBox = $('.js-complaint-con-box');	// 投诉盒子
-		var $complaintBtn = $('.js-complaint-btn');	// 第一盒子中的投诉按钮
-		var $author = $('.js-author');	// 提供者
+		var $complaintBtn = $('.js-complaint-btn'); // 第一盒子中的投诉按钮
+		var $complaintBox = $('.js-complaint-box'); // 投诉盒子
+		var $complaintResultsBox = $('.js-complaint-results-box'); // 投诉结果盒子
 		
 		
+
+		function loaded() {
+			myScroll = new iScroll('wrapper', {
+				mouseWheel: true,
+				click: true,
+				tap: true
+			});
+			$firstBox.css('position', 'fixed');
+			$author.show();
+		}
 		
-	    function loaded() {
-	        myScroll = new iScroll('wrapper',{ 
-	        	mouseWheel: true, 
-	        	click: true, 
-	        	tap: true 
-	        });
-	        // $('#wrapper').css('top', '-15px');
-	        $firstBox.css('position', 'fixed');
-	        $author.show();
-	    }
-	
-	    document.addEventListener('touchmove', function (e) {
+		
+		function loadedTwo() {
+			myScroll = new iScroll('wrapperTwo', {
+				mouseWheel: true,
+				click: true,
+				tap: true
+			});
+			$author.show();
+		}
+		
+		function loadedThree() {
+			myScroll = new iScroll('wrapperThree', {
+				mouseWheel: true,
+				click: true,
+				tap: true
+			});
+			$author.show();
+		}
+		document.addEventListener('touchmove', function (e) {
 	        e.preventDefault();
 	    }, false);
-	    document.addEventListener('DOMContentLoaded', function () {
-	        setTimeout(loaded, 500);
-	    }, false);
-		$complaintBtn.on('click',function () {
-			$firstBox.hide();
+		document.addEventListener('DOMContentLoaded', function() {
+			setTimeout(function () {
+				loaded();
+				loadedTwo();
+				loadedThree();
+			},500);
+		}, false);
+		/* 投诉按钮点击 */
+		$complaintBtn.on('click', function() {
+			document.title = '投诉';
+			$('#wrapper').hide();
+			$('#wrapperTwo').show();
 			$complaintBox.show();
-			$('#scroller').css('top','0');
 		});
-	
-	    
-	
-    
-</script>
+		
+		$complaintBox.on('click','li',function () {
+			$('#wrapperTwo').hide();
+			$('#wrapperThree').show();
+			$complaintResultsBox.show();
+		});
+	</script>
 
 </html>
