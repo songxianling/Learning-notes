@@ -52,12 +52,6 @@
 
 		var $author = $('.js-author'); /*提供者*/
 		var $firstBox = $('.js-first-box'); /*第一个盒子*/
-		var $complaintBtn = $('.js-complaint-btn'); /*第一盒子中的投诉按钮*/
-		var $complaintBox = $('.js-complaint-box'); /*投诉盒子*/
-		var $complaintResultsBox = $('.js-complaint-results-box'); /*投诉结果盒子*/
-		var $warpperOne = $('#wrapper'); /*第一个warpper*/
-		var $warpperTwo = $('#wrapperTwo'); /*第二个warpper*/
-		var $warpperThree = $('#wrapperThree'); /*第三个warpper*/
 
 		/* 弹窗  */
 		var $popWrapper = $('.js-pop-wrapper'); /* 弹层 */
@@ -102,25 +96,25 @@
 			}, 500);
 		}, false);
 
-//		var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in
-//			document ? 'mozHidden' : null;
-//		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-//		var onVisibilityChange = function() {
-//			if(!document[hiddenProperty]) {
-//				console.log('页面非激活');
-//				if(ns > 0) {
-//					$popWrapper.show();
-//				} else {
-//					$conOne.hide();
-//					$conTwo.show();
-//					$popWrapper.show();
-//				}
-//			} else {
-//				console.log('页面激活');
-//			}
-//		};
-//		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-//		
+		var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in
+			document ? 'mozHidden' : null;
+		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+		var onVisibilityChange = function() {
+			if(!document[hiddenProperty]) {
+				console.log('页面非激活');
+				if(ns > 0) {
+					$popWrapper.show();
+				} else {
+					$conOne.hide();
+					$conTwo.show();
+					$popWrapper.show();
+				}
+			} else {
+				console.log('页面激活');
+			}
+		};
+		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+		
 		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
 		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 			WeixinJSBridge.call('hideOptionMenu');
