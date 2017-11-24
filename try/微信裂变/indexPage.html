@@ -31,12 +31,12 @@
 							<p>2、每个微信号只能领取一次</p>
 							<p>3、礼包剩余数量：<span class="num">7373</span>个</p>
 						</div>
-						<a class="lq-btn" href="###">点击这里免费领取</a>
+						<a class="lq-btn" href="/Learning-notes/try/微信裂变/sharePage.html">点击这里免费领取</a>
 					</setion>
 					<!--底部盒子-->
 					<div class="footer-box clearfix">
 						<a href="#">阅读原文</a>
-						<span>阅读100000+ <i class="js-likes-btn">按钮10000+</i></span>
+						<p><span>阅读100000+</span><span class="js-likes-btn" style="margin-left: .2rem;"><i></i>10000+</span></p>
 						<span class="js-complaint-btn">投诉</span>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 		/* 盒子初始化 */
 		function loaded(n) {
 			if(n == 1) {
-				myScroll = new iScroll('wrapper');
+				myScroll = new iScroll('wrapper',{vScroller:false});
 				$firstBox.css('position', 'fixed');
 			} else if(n == 2) {
 				myScroll = new iScroll('wrapperTwo');
@@ -121,7 +121,7 @@
 		
 		// 点赞操作
 		$likeBtn.on('click',function () {
-			$(this).toggleClass('like');
+			$(this).find('i').toggleClass('like');
 		});
 		
 		/* 投诉按钮点击 */

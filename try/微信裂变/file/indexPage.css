@@ -76,6 +76,7 @@
 .first-box .info {
     font-size: 1rem;
     color: #8f8f8f;
+    margin-bottom: 1rem;
 }
 
 .first-box .info span {
@@ -152,18 +153,24 @@
     color: #4c7ba7;
     margin-right: .813rem;
 }
-.first-box .footer-box>span {
+.first-box .footer-box>p {
     float: left;
     color: #868686;
 }
-.first-box .footer-box>span i{
-	background: blue;
+.first-box .footer-box>p i{
+	display: inline-block;
+	width: .813rem;
+	height: .813rem;
+	background: url(like-off.png) no-repeat;
+	background-size: 100% 100%;
 }
-.first-box .footer-box>span i.like{
-	background: red;
+.first-box .footer-box>p i.like{
+	background: url(like-on.png) no-repeat;
+	background-size: 100% 100%;
 }
 .first-box .footer-box>span:nth-last-child(1) {
     float: right;
+    color: #868686;
 }
 /*投诉内容盒子*/
 
