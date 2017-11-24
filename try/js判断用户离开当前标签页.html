@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>页面激活</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 获取浏览器是否支持visibilityChange
+		var hiddenProperty = 'hidden' in document ? 'hidden' :
+			'webkitHidden' in document ? 'webkitHidden' :
+			'mozHidden' in document ? 'mozHidden' :
+			null;
+		console.log(hiddenProperty); // hidden	
+		// 只要有字符串hidden的都视为兼容,都可以绑定visibilityChange事件
+		// visibilityChange事件：当文档从可见变为不可见或者从不可见变为可见时，会触发该事件
+		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+		var onVisibilityChange = function() {
+			// 监控标签页的显示和隐藏
+			// ！没有就是标签页发生了显示在当前的操作
+			// document.hidden：表示页面是否隐藏的布尔值
+			// 在当前页时   document["hidden"];  false
+			
+			if(!document[hiddenProperty]) {
+				// 在当前页了
+				document.title = '页面激活';
+				// 动画开始
+			} else {
+				// 离开当前页了
+				document.title = '页面非激活';
+				// 动画暂停
+			}
+		}
+		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+	
+		// http://www.css88.com/archives/6103
+	
+	</script>
+
+</html>

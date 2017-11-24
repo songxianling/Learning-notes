@@ -141,28 +141,28 @@
 	color: #fff;
 	font-size: 1.125rem;
 }
-.first-box .footer-con {
+.first-box .footer-box {
     padding: 1.906rem 0 1.5rem;
     font-size: 1.062rem;
 }
 
-.first-box .footer-con a {
+.first-box .footer-box a {
     float: left;
     text-decoration: none;
     color: #4c7ba7;
     margin-right: .813rem;
 }
-.first-box .footer-con>span {
+.first-box .footer-box>span {
     float: left;
     color: #868686;
 }
-.first-box .footer-con>span i{
+.first-box .footer-box>span i{
 	background: blue;
 }
-.first-box .footer-con>span i.like{
+.first-box .footer-box>span i.like{
 	background: red;
 }
-.first-box .footer-con>span:nth-last-child(1) {
+.first-box .footer-box>span:nth-last-child(1) {
     float: right;
 }
 /*投诉内容盒子*/

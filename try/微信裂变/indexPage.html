@@ -20,6 +20,10 @@
 						2017-11-07
 						<span>哈哈</span>
 					</div>
+					
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
+					<!--领取盒子-->
 					<setion class="lq-box">
 						<span class="lq-way">领取方式</span>
 						<div class="lq-con">
@@ -29,12 +33,10 @@
 						</div>
 						<a class="lq-btn" href="###">点击这里免费领取</a>
 					</setion>
-					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
-					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
-					
-					<div class="footer-con clearfix">
+					<!--底部盒子-->
+					<div class="footer-box clearfix">
 						<a href="#">阅读原文</a>
-						<span>阅读100000+ <i class="js-likes-btn">按钮</i>10000+</span>
+						<span>阅读100000+ <i class="js-likes-btn">按钮10000+</i></span>
 						<span class="js-complaint-btn">投诉</span>
 					</div>
 				</div>
@@ -137,6 +139,7 @@
 			$complaintResultsBox.show();
 			loaded(3);
 		});
+		
 		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
 		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 			WeixinJSBridge.call('hideOptionMenu');
