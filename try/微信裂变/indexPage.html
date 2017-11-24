@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="file/reset.css" />
+		<link rel="stylesheet" type="text/css" href="file/indexPage.css" />
+	</head>
+
+	<body>
+		<div id="wrapper" style="overflow: hidden;">
+			<div id="scroller">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<div class="first-box js-first-box">
+					<div class="title">本网页由本网页由本网页由</div>
+					<div class="info clearfix">
+						2017-11-07
+						<span>哈哈</span>
+					</div>
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
+					<setion class="lq-box">
+						<span class="lq-way">领取方式</span>
+						<div class="lq-con">
+							<p>1、活动结束时间：<span class="time">2017年12月12日</span></p>
+							<p>2、每个微信号只能领取一次</p>
+							<p>3、礼包剩余数量：<span class="num">7373</span>个</p>
+						</div>
+						<a class="lq-btn" href="###">点击这里免费领取</a>
+					</setion>
+					<div class="footer-con clearfix">
+						<a href="#">阅读原文</a>
+						<span>阅读100000+ <i>按钮</i>10000+</span>
+						<span class="js-complaint-btn">投诉</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--投诉页面-->
+		<div id="wrapperTwo" style="overflow: hidden;display: none;">
+			<div id="scrollerTwo">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<!--投诉con-->
+				<div class="complaint-box js-complaint-box">
+					<p>请选择投诉原因</p>
+					<ul>
+						<li>欺诈</li>
+						<li>色情</li>
+						<li>诱导行为<span></span></li>
+						<li>不实信息<span></span></li>
+						<li>违法犯罪</li>
+						<li>骚扰</li>
+						<li>违规声明原创</li>
+						<li>未经授权的文章内容</li>
+						<li>其他</li>
+					</ul>
+					<p>个人/企业等民事主体被诽谤侮辱、人身权或知识产权等被侵犯请选择“侵权”投诉。</p>
+					<li class="last">侵权（冒充他人、侵犯名誉等）</li>
+					<div class="placeholder"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--投诉结果页面-->
+		<div id="wrapperThree" style="overflow: hidden;display: none;">
+			<div id="scrollerThree">
+				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<!--投诉结果页-->
+				<div class="complaint-results-box js-complaint-results-box">
+					<i></i>
+					<p>已提交</p>
+					<p>你的投诉已提交审核，投诉单号：77667777，我们会在7个工作日内处理，感谢你对平台的支持</p>
+					<a href="###">确定</a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="file/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="file/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var myScroll;
+
+		var $author = $('.js-author'); // 提供者
+		var $firstBox = $('.js-first-box'); // 第一个盒子
+		var $complaintBtn = $('.js-complaint-btn'); // 第一盒子中的投诉按钮
+		var $complaintBox = $('.js-complaint-box'); // 投诉盒子
+		var $complaintResultsBox = $('.js-complaint-results-box'); // 投诉结果盒子
+		var $warpperOne = $('#wrapper'); //   第一个warpper
+		var $warpperTwo = $('#wrapperTwo'); //   第二个warpper
+		var $warpperThree = $('#wrapperThree'); //   第三个warpper
+
+		/* 盒子初始化 */
+		function loaded(n) {
+			if(n == 1) {
+				myScroll = new iScroll('wrapper');
+				$firstBox.css('position', 'fixed');
+			} else if(n == 2) {
+				myScroll = new iScroll('wrapperTwo');
+				$complaintBox.css('position', 'fixed');
+			} else {
+				myScroll = new iScroll('wrapperThree');
+			}
+			$author.show();
+		}
+		document.addEventListener('touchmove', function(e) {
+			e.preventDefault();
+		}, false);
+		document.addEventListener('DOMContentLoaded', function() {
+			setTimeout(function() {
+				loaded(1);
+			}, 500);
+		}, false);
+		/* 投诉按钮点击 */
+		$complaintBtn.on('click', function() {
+			document.title = '投诉';
+			$warpperOne.hide();
+			$warpperTwo.show();
+			$complaintBox.show();
+			loaded(2);
+		});
+		/* 投诉盒子内点击 */
+		$complaintBox.on('click', 'li', function() {
+			$warpperTwo.hide();
+			$warpperThree.show();
+			$complaintResultsBox.show();
+			loaded(3);
+		});
+		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+			WeixinJSBridge.call('hideOptionMenu');
+		});
+	</script>
+
+</html>

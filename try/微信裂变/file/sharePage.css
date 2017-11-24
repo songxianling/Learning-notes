@@ -1,0 +1,134 @@
+#wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*height: 100%;*/
+    background: #2e3132;
+    overflow: auto;
+}
+
+#scroller {
+	
+    position: absolute;
+    z-index: 1;
+    /*	-webkit-touch-callout:none;*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: #fff;
+}
+
+.first-con {
+    /* position: fixed; */
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    text-align: left;
+    padding: 0 1.188rem ;
+    box-sizing: border-box;
+    /*display: none;*/
+}
+.first-con .prompt-t{
+    margin: 2.188rem 0 .75rem;
+    color: #ce0a0c;
+    font-size: 1.125rem;
+    font-weight: bold;
+
+}
+.first-con .prompt-con{
+    font-size: .938rem;
+    color: #000000;
+    font-weight: bold;
+}
+.first-con .prompt-con span{
+    color: #ce0a0c;
+}
+/* 弹窗 */
+.pop-wrapper{
+	/*display: none;*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: rgba(0, 0, 0, .6);
+}
+.pop-wrapper .con{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+    width: 17.438rem;
+    height: 18.063rem;
+    margin: auto;
+    background: #fff;
+    border-radius: .438rem;
+}
+.pop-wrapper .con.con-two{
+	display: none;
+}
+.pop-wrapper .con i{
+	display: block;
+    width: 2.938rem;
+    height: 2.938rem;
+    margin: 2rem auto 1.563rem;
+    background: url(/images/m5/Wechat/Fission/chengg.png) no-repeat;
+    background-size: 100%;
+}
+.pop-wrapper .con span.result{
+	display: block;
+	margin: 0 auto;
+	color: #333333;
+	font-size: 1.063rem;
+	font-weight: bold;
+}
+.pop-wrapper .con p.ts{
+	margin: 1.75rem auto 0;
+	color: #333333;
+	font-size: .938rem;
+}
+.pop-wrapper .con.con-two p.ts{
+	margin: 0 auto;
+}
+.pop-wrapper .con p.ts span{
+	font-size: 1.063rem;
+	color: #ff0000;
+	margin: 0 .2rem;
+}
+.pop-wrapper .con.con-two span.ts{
+	display: block;
+	margin: 1.875rem auto 0;
+}
+.pop-wrapper .con span.ts{
+	margin: 0 auto;
+	font-size: .938rem;
+	color: #333333;
+}
+.pop-wrapper .con .ok-btn{
+	display: block;
+	width: 10.313rem;
+	height: 2.375rem;
+	line-height: 2.375rem;
+	margin: 1.688rem auto 0;
+	border-radius: .188rem;
+	background: #04be01;
+	color: #ffffff;
+	font-size: 1.063rem;
+}
+/*底部背景*/
+
+.bg-xh-author {
+    position: fixed;
+    width: 80%;
+    top: 15px;
+    left: 50%;
+    margin-left: -40%;
+    font-size: .75rem;
+    text-align: center;
+    color: #6f7476;
+    display: none;
+}
