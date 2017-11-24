@@ -3,8 +3,12 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>分享领取</title>
 	</head>
+	<link rel="stylesheet" type="text/css" href="file/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="file/sharePage.css"/>
 
 	<body>
 		<div id="wrapper" style="overflow: hidden;">
@@ -13,7 +17,10 @@
 				<div class="first-con js-first-box">
 					<p class="prompt-t">温馨提示：</p>
 					<p class="prompt-con">长按下图，选择
-						<span>发送给朋友-分享到群</span>即可领取！</p>
+						<span>发送给朋友-分享到群</span>即可领取！
+					</p>
+					<img class="" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+					<p class="prompt-bot">[长按上图分享到群领取]</p>
 				</div>
 			</div>
 		</div>
@@ -31,13 +38,15 @@
 			<div class="con con-two js-con-two">
 				<i></i>
 				<span class="result">恭喜你，成功获得领取资格</span>
-				<span class="ts">奖品剩<span class="js-sy-num">103</span>份，凭领奖码尽快领取</span>
+				<span class="ts">奖品剩<span class="js-sy-num">103</span>份,凭领奖码尽快领取</span>
 				<p class="ts">您的领奖号码是：<span class="js-lj-num">777777</span></p>
 				<span class="ok-btn">去领取</span>
 			</div>
 		</div>
 
 	</body>
+	<script src="file/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="file/iscroll.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var myScroll;
 
@@ -93,25 +102,25 @@
 			}, 500);
 		}, false);
 
-		var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in
-			document ? 'mozHidden' : null;
-		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-		var onVisibilityChange = function() {
-			if(!document[hiddenProperty]) {
-				console.log('页面非激活');
-				if(ns > 0) {
-					$popWrapper.show();
-				} else {
-					$conOne.hide();
-					$conTwo.show();
-					$popWrapper.show();
-				}
-			} else {
-				console.log('页面激活');
-			}
-		};
-		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-		
+//		var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in
+//			document ? 'mozHidden' : null;
+//		var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+//		var onVisibilityChange = function() {
+//			if(!document[hiddenProperty]) {
+//				console.log('页面非激活');
+//				if(ns > 0) {
+//					$popWrapper.show();
+//				} else {
+//					$conOne.hide();
+//					$conTwo.show();
+//					$popWrapper.show();
+//				}
+//			} else {
+//				console.log('页面激活');
+//			}
+//		};
+//		document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+//		
 		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
 		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 			WeixinJSBridge.call('hideOptionMenu');

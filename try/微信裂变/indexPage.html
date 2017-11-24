@@ -20,8 +20,6 @@
 						2017-11-07
 						<span>哈哈</span>
 					</div>
-					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
-					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
 					<setion class="lq-box">
 						<span class="lq-way">领取方式</span>
 						<div class="lq-con">
@@ -31,9 +29,12 @@
 						</div>
 						<a class="lq-btn" href="###">点击这里免费领取</a>
 					</setion>
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/sections/breakfast_wb-20150521050044.jpg" alt="">
+					<img class="con-img" src="https://www.starbucks.com.cn/assets/img/resized/kv-nitro-mobile-r-q100-m111111.jpg" alt="">
+					
 					<div class="footer-con clearfix">
 						<a href="#">阅读原文</a>
-						<span>阅读100000+ <i>按钮</i>10000+</span>
+						<span>阅读100000+ <i class="js-likes-btn">按钮</i>10000+</span>
 						<span class="js-complaint-btn">投诉</span>
 					</div>
 				</div>
@@ -87,6 +88,7 @@
 		var $author = $('.js-author'); // 提供者
 		var $firstBox = $('.js-first-box'); // 第一个盒子
 		var $complaintBtn = $('.js-complaint-btn'); // 第一盒子中的投诉按钮
+		var $likeBtn = $('.js-likes-btn');	// 点赞按钮  
 		var $complaintBox = $('.js-complaint-box'); // 投诉盒子
 		var $complaintResultsBox = $('.js-complaint-results-box'); // 投诉结果盒子
 		var $warpperOne = $('#wrapper'); //   第一个warpper
@@ -114,6 +116,12 @@
 				loaded(1);
 			}, 500);
 		}, false);
+		
+		// 点赞操作
+		$likeBtn.on('click',function () {
+			$(this).toggleClass('like');
+		});
+		
 		/* 投诉按钮点击 */
 		$complaintBtn.on('click', function() {
 			document.title = '投诉';

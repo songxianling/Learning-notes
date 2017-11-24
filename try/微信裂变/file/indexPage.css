@@ -93,8 +93,7 @@
 .first-box .lq-box{
 	position: relative;
 	display: block;
-	width: 100%;
-	margin: 20px auto;
+	margin: 3.34rem .625rem;
     padding: .625rem;
     box-sizing: border-box;
     border: 1px dashed rgb(204, 204, 204);
@@ -103,38 +102,44 @@
 }
 .first-box .lq-box .lq-way{
 	position: absolute;
-	top: -1rem;
-	width: 4rem;
-	padding: 5px;
-    background: rgb(0, 0, 0);
+	top: -1.09rem;
+	left: .375rem;
+	width: 5.5rem;
+	height: 2.188rem;
+	line-height: 2.188rem;
+	text-align: center;
+    background: #000;
     color: #fff;
+    font-size: 1.094rem;
     box-shadow: #2f4a29 4px 4px 2px;
 }
 .first-box .lq-box .lq-con{
-	margin-top: 1.7rem;
+	margin: 1.7rem 0;
+	font-size: 1rem;
+	color: #3c3c3c;
 }
 .first-box .lq-box .lq-con p{
-	
+	padding: 0 .3rem;
 }
 .first-box .lq-box .lq-con p:nth-child(2){
-	margin: .7rem 0;
+	margin: 1rem 0;
 }
 .first-box .lq-box .lq-con p .time{
-	
+	color: #438af6;
 }
 .first-box .lq-box .lq-con p .num{
-	
+	color: #ff0012;
 }
 .first-box .lq-box .lq-btn{
 	display: block;
 	width: 100%;
-	height: 2.36rem;
-	line-height: 2.36rem;
-	margin-top: .7rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
 	text-align: center;
-	border-radius: 10px;
-	background: #04BE01;
+	border-radius: .188rem;
+	background: #1aad19;
 	color: #fff;
+	font-size: 1.125rem;
 }
 .first-box .footer-con {
     padding: 1.906rem 0 1.5rem;
@@ -151,7 +156,12 @@
     float: left;
     color: #868686;
 }
-
+.first-box .footer-con>span i{
+	background: blue;
+}
+.first-box .footer-con>span i.like{
+	background: red;
+}
 .first-box .footer-con>span:nth-last-child(1) {
     float: right;
 }
