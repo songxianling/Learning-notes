@@ -35,7 +35,7 @@
 										</section>
 									</section>
 								</section>
-								<section style="width:100%;clear:both;height:10px;margin-top:10px;" data-width="100%"><img style="display: block; width: auto !important; height: auto !important; visibility: visible !important;" src="file/title-2.png" ></section>
+								<section style="width:100%;clear:both;height:10px;margin-top:10px;" data-width="100%"><img style="display: block; width: auto !important; height: auto !important; visibility: visible !important;" src="file/title-2.png"></section>
 								<section style="width:100%;font-size:14px;color:#573c27;" data-width="100%">
 									<p style="line-height: 3em;"><span style="font-size: 14px;">这是由吃对啦<span style="font-size: 16px;"><strong>联合小米电器</strong></span>送给大家的冬日大礼包。</span>
 									</p>
@@ -171,87 +171,86 @@
 	<script src="file/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="file/iscroll.js" type="text/javascript" charset="utf-8"></script>
 	<script>
-		var myScroll;
+			var myScroll;
 
-		var $author = $('.js-author'); // 提供者
-		var $firstBox = $('.js-first-box'); // 第一个盒子
-		var $complaintBtn = $('.js-complaint-btn'); // 第一盒子中的投诉按钮
-		var $likeBtn = $('.js-likes-btn'); // 点赞按钮
-		var $complaintBox = $('.js-complaint-box'); // 投诉盒子
-		var $complaintResultsBox = $('.js-complaint-results-box'); // 投诉结果盒子
-		var $warpperOne = $('#wrapper'); //   第一个warpper
-		var $warpperTwo = $('#wrapperTwo'); //   第二个warpper
-		var $warpperThree = $('#wrapperThree'); //   第三个warpper
-		var $tsBox = $('.js-ts-num'); // 投诉单号
+			var $author = $('.js-author'); // 提供者
+			var $firstBox = $('.js-first-box'); // 第一个盒子
+			var $complaintBtn = $('.js-complaint-btn'); // 第一盒子中的投诉按钮
+			var $likeBtn = $('.js-likes-btn'); // 点赞按钮
+			var $complaintBox = $('.js-complaint-box'); // 投诉盒子
+			var $complaintResultsBox = $('.js-complaint-results-box'); // 投诉结果盒子
+			var $warpperOne = $('#wrapper'); //   第一个warpper
+			var $warpperTwo = $('#wrapperTwo'); //   第二个warpper
+			var $warpperThree = $('#wrapperThree'); //   第三个warpper
+			var $tsBox = $('.js-ts-num'); // 投诉单号
 
-		/* 盒子初始化 */
-		function loaded(n) {
-			if(n == 1) {
-				myScroll = new iScroll('wrapper', {hScrollbar:false, vScrollbar:false});
-				$firstBox.css('position', 'fixed');
-			} else if(n == 2) {
-				myScroll = new iScroll('wrapperTwo',{hScrollbar:false, vScrollbar:false});
-				$complaintBox.css('position', 'fixed');
-			} else {
-				myScroll = new iScroll('wrapperThree',{hScrollbar:false, vScrollbar:false});
-			}
-			$author.show();
-		}
-		document.addEventListener('touchmove', function(e) {
-			e.preventDefault();
-		}, false);
-		document.addEventListener('DOMContentLoaded', function() {
-			setTimeout(function() {
-				loaded(1);
-			}, 500);
-		}, false);
-
-		// 针对iscroll 的click事件点击触发两次的解决方案（不修改源码）
-		var tone = null;
-
-		function myClick(_this) {
-			if(tone == null) {
-				tone = new Date().getTime();
-			} else {
-				var ttwo = new Date().getTime();
-				if(ttwo - tone < 500) {
-					tone = ttwo;
-					return;
+			/* 盒子初始化 */
+			function loaded(n) {
+				if(n == 1) {
+					myScroll = new iScroll('wrapper', { hScrollbar: false, vScrollbar: false });
+					$firstBox.css('position', 'fixed');
+				} else if(n == 2) {
+					myScroll = new iScroll('wrapperTwo', { hScrollbar: false, vScrollbar: false });
+					$complaintBox.css('position', 'fixed');
 				} else {
-					tone = ttwo;
+					myScroll = new iScroll('wrapperThree', { hScrollbar: false, vScrollbar: false });
 				}
+				$author.show();
 			}
-			_this.find('i').toggleClass('like');
-		}
-		// 点赞操作
-		$likeBtn.on('click', function() {
-			myClick($(this));
-		});
+			document.addEventListener('touchmove', function(e) {
+				e.preventDefault();
+			}, false);
+			document.addEventListener('DOMContentLoaded', function() {
+				setTimeout(function() {
+					loaded(1);
+				}, 500);
+			}, false);
 
-		/* 投诉按钮点击 */
-		$complaintBtn.on('click', function() {
-			document.title = '投诉';
-			$warpperOne.hide();
-			$warpperTwo.show();
-			$complaintBox.show();
-			loaded(2);
-		});
-		/* 投诉盒子内点击 */
-		$complaintBox.on('click', 'li', function() {
-			$warpperTwo.hide();
-			$warpperThree.show();
-			$complaintResultsBox.show();
-			loaded(3);
-		});
-		
-		var toushuNum = parseInt(Math.random() * (99999999 - 10000000 + 1) + 99999999, 10); /* 投诉单号 */
-		$tsBox.html(toushuNum);
-		
+			// 针对iscroll 的click事件点击触发两次的解决方案（不修改源码）
+			var tone = null;
 
-		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
-		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-			WeixinJSBridge.call('hideOptionMenu');
-		});
+			function myClick(_this) {
+				if(tone == null) {
+					tone = new Date().getTime();
+				} else {
+					var ttwo = new Date().getTime();
+					if(ttwo - tone < 500) {
+						tone = ttwo;
+						return;
+					} else {
+						tone = ttwo;
+					}
+				}
+				_this.find('i').toggleClass('like');
+			}
+			// 点赞操作
+			$likeBtn.on('click', function() {
+				myClick($(this));
+			});
+
+			/* 投诉按钮点击 */
+			$complaintBtn.on('click', function() {
+				document.title = '投诉';
+				$warpperOne.hide();
+				$warpperTwo.show();
+				$complaintBox.show();
+				loaded(2);
+			});
+			/* 投诉盒子内点击 */
+			$complaintBox.on('click', 'li', function() {
+				$warpperTwo.hide();
+				$warpperThree.show();
+				$complaintResultsBox.show();
+				loaded(3);
+			});
+
+			var toushuNum = parseInt(Math.random() * (99999999 - 10000000 + 1) + 99999999, 10); /* 投诉单号 */
+			$tsBox.html(toushuNum);
+
+			/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
+			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+				WeixinJSBridge.call('hideOptionMenu');
+			});
 	</script>
 
 </html>
