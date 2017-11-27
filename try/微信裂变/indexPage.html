@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>Document</title>
+		<title>0元购新款小米空气净化器</title>
 		<link rel="stylesheet" type="text/css" href="file/reset.css" />
 		<link rel="stylesheet" type="text/css" href="file/indexPage.css" />
 	</head>
@@ -12,7 +12,7 @@
 	<body>
 		<div id="wrapper" style="overflow: hidden;">
 			<div id="scroller">
-				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<div class="bg-xh-author js-author">本网页由mp.weixin.qq.com提供</div>
 				<div class="first-box js-first-box">
 					<div class="title">0元新款小米空气净化器，等你来拿</div>
 					<div class="info clearfix">
@@ -60,7 +60,7 @@
 
 					<!--了解详情-->
 					<section class="" data-tools="135编辑器" data-id="86352" style="border-width: 0px;border-style: none;border-color: initial;">
-						<section style="margin: 5px auto;width: 50%;text-align: center;" class="" data-width="50%">
+						<section style="margin: 15px auto;width: 50%;text-align: center;" class="" data-width="50%">
 							<p style="text-align: center;"><br></p>
 							<p style="text-align: center;"><br></p>
 							<section style="display:inline-block;background-color:rgb(192,163,123);line-height:0em;"></section>
@@ -93,7 +93,6 @@
 						</section>
 					</section>
 					<!---->
-					<img class="con-img" src="file/con-2.jpg" alt="">
 					<img class="con-img" src="file/con-3.jpg" alt="">
 					<img class="con-img" src="file/con-4.jpg" alt="">
 					<img class="con-img" src="file/con-5.jpg" alt="">
@@ -116,7 +115,7 @@
 						<div class="lq-con">
 							<p>1、活动结束时间：<span class="time">2017年12月12日</span></p>
 							<p>2、每个微信号只能领取一次</p>
-							<p>3、礼包剩余数量：<span class="num">7373</span>个</p>
+							<p>3、礼包剩余数量：<span class="num">990</span>个</p>
 						</div>
 						<a class="lq-btn" href="/Learning-notes/try/微信裂变/sharePage.html">点击这里免费领取</a>
 					</setion>
@@ -132,7 +131,7 @@
 		<!--投诉页面-->
 		<div id="wrapperTwo" style="overflow: hidden;display: none;">
 			<div id="scrollerTwo">
-				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<div class="bg-xh-author js-author">本网页由mp.weixin.qq.com提供</div>
 				<!--投诉con-->
 				<div class="complaint-box js-complaint-box">
 					<p>请选择投诉原因</p>
@@ -157,12 +156,12 @@
 		<!--投诉结果页面-->
 		<div id="wrapperThree" style="overflow: hidden;display: none;">
 			<div id="scrollerThree">
-				<div class="bg-xh-author js-author">本网页由www.starbucks.com.cn提供</div>
+				<div class="bg-xh-author js-author">本网页由mp.weixin.qq.com提供</div>
 				<!--投诉结果页-->
 				<div class="complaint-results-box js-complaint-results-box">
 					<i></i>
 					<p>已提交</p>
-					<p>你的投诉已提交审核，投诉单号：77667777，我们会在7个工作日内处理，感谢你对平台的支持</p>
+					<p>你的投诉已提交审核，投诉单号：<span class="js-ts-num">77667777</span>，我们会在7个工作日内处理，感谢你对平台的支持</p>
 					<a href="###">确定</a>
 				</div>
 			</div>
@@ -183,17 +182,18 @@
 		var $warpperOne = $('#wrapper'); //   第一个warpper
 		var $warpperTwo = $('#wrapperTwo'); //   第二个warpper
 		var $warpperThree = $('#wrapperThree'); //   第三个warpper
+		var $tsBox = $('.js-ts-num'); // 投诉单号
 
 		/* 盒子初始化 */
 		function loaded(n) {
 			if(n == 1) {
-				myScroll = new iScroll('wrapper', { vScroller: false });
+				myScroll = new iScroll('wrapper', {hScrollbar:false, vScrollbar:false});
 				$firstBox.css('position', 'fixed');
 			} else if(n == 2) {
-				myScroll = new iScroll('wrapperTwo');
+				myScroll = new iScroll('wrapperTwo',{hScrollbar:false, vScrollbar:false});
 				$complaintBox.css('position', 'fixed');
 			} else {
-				myScroll = new iScroll('wrapperThree');
+				myScroll = new iScroll('wrapperThree',{hScrollbar:false, vScrollbar:false});
 			}
 			$author.show();
 		}
@@ -243,6 +243,10 @@
 			$complaintResultsBox.show();
 			loaded(3);
 		});
+		
+		var toushuNum = parseInt(Math.random() * (99999999 - 10000000 + 1) + 99999999, 10); /* 投诉单号 */
+		$tsBox.html(toushuNum);
+		
 
 		/* 不需要引用；直接使用即可禁用微信内右上角里面的所有分享 */
 		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
