@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min.js"></script>
+
+	<body>
+		<div id="app">
+			<p>{{count}}
+				<button @click="inc">+</button>
+				<button @click="dec">-</button>
+			</p>
+		</div>
+	</body>
+	<script>
+		// 区别
+		
+		const store = new Vuex.Store({
+			state: {
+				count: 0
+			},
+			mutations: {
+				inc: state => state.count++,
+				dec: state => state.count--
+			}
+		})
+
+		const app = new Vue({
+			el: '#app',
+			computed: {
+				// count也不再是一个data函数的对象属性了;而是通过计算字段返回的;
+				// 同样也不是自己计算的；也是转发给store对象
+				count() {
+					return store.state.count
+				}
+			},
+			// 区别methods还是两个fn;和之前是一样的；但是里面的计算逻辑;不是在函数内进行了;
+			// 而是提交给store对象（新对象）
+			
+			methods: {
+				inc() {
+					store.commit('inc')
+				},
+				dec() {
+					store.commit('dec')
+				}
+			}
+		})
+	</script>
+
+</html>

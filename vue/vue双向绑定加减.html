@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<body>
+		<div id="app">
+			<p>{{count}}
+				<button @click="inc">+</button>
+				<button @click="dec">-</button>
+			</p>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el: '#app',
+			data() {
+				return {
+					count: 0
+				}
+			},
+			methods: {
+				inc() {
+					this.count++
+				},
+				dec() {
+					this.count--
+				}
+			}
+		})
+	</script>
+
+</html>
