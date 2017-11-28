@@ -33,9 +33,9 @@
     /*display: none;*/
 }
 .first-con .prompt-t{
-    margin: 2.188rem 0 .75rem;
+    margin: 1.9rem 0 .36rem;
     color: #ce0a0c;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: bold;
 
 }
@@ -48,20 +48,24 @@
     color: #ce0a0c;
 }
 .first-con .prompt-bot{
-	margin: 1rem auto 0;
+	margin: .8rem auto 0;
 	height: 1;
 	text-align: center;
 	color: #e0140c;
 	font-size: 1.188rem;
+	letter-spacing: -.03rem;
 }
 .first-con img{
 	display: block;
 	width: 15.625rem;
-	margin: .938rem auto;
+	margin: .813rem auto .5rem;
+	box-sizing: border-box;
+	border: .625rem solid #4c4c4c;
+	border-radius: .625rem;
 }
 /* 弹窗 */
 .pop-wrapper{
-	display: none;
+	/*display: none;*/
     position: fixed;
     top: 0;
     left: 0;
@@ -71,6 +75,7 @@
     background: rgba(0, 0, 0, .6);
 }
 .pop-wrapper .con{
+	display: block;
 	position: absolute;
 	left: 0;
 	top: 0;
