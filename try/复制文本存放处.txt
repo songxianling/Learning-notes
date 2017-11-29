@@ -1,0 +1,4 @@
+view/theme/default/stylesheet/m/home_ipad.css
+view/theme/default/stylesheet/m/product_info_ipad.css
+view/theme/default/template/m/v1/home.tpl
+view/theme/default/template/m/wechat/product_info.tpl
