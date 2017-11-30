@@ -3,71 +3,67 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>html音乐</title>
+		<title>陈晓英听歌房</title>
 	</head>
-	<link rel="stylesheet" type="text/css" href="smusic.css"/>
-	<body>
-		<div class="mn">
-			<div class="Framebox cl" style="padding: 0 0 10px 0;">
-				<div class="bm vw">
-					<div class="content_middle cl" style="padding: 0 20px;">
-
-						<div style="height:280px" class="grid-music-container f-usn">
-							<div class="m-music-play-wrap">
-								<div class="u-cover play"><img src="http://www.robotun.cn/assets/song/1/3.jpg" title="说英雄 -- 戎一 /陈小魂 /方块"></div>
-								<div class="m-now-info">
-									<h1 class="u-music-title"><strong>说英雄</strong><small>戎一 /陈小魂 /方块</small></h1>
-									<div class="m-now-controls">
-										<div class="u-control u-process">
-											<span class="buffer-process" style="width: 309.504px;"></span>
-											<span class="current-process" style="width: 220.31px;"></span>
-										</div>
-										<div class="u-control u-time">02:15/04:19</div>
-										<div class="u-control u-volume">
-											<div class="volume-process" data-volume="0.7">
-												<span class="volume-current" style="height: 35px;"></span>
-												<span class="volume-bar" style="bottom: 35px;"></span>
-												<span class="volume-event"></span>
-											</div>
-											<a class="volume-control"></a>
-										</div>
-									</div>
-									<div class="m-play-controls">
-										<a class="u-play-btn prev" title="上一曲"></a>
-										<a class="u-play-btn ctrl-play play" title="暂停"></a>
-										<a class="u-play-btn next" title="下一曲"></a>
-										<!--  <a class="u-play-btn mode mode-list current" title="列表循环"></a>
-                                          <a class="u-play-btn mode mode-random" title="随机播放"></a>-->
-										<a class="u-play-btn mode mode-single" title="单曲循环"></a>
-									</div>
-								</div>
-							</div>
-							<div class="f-cb">&nbsp;</div>
-							<div class="m-music-list-wrap">
-								<ul>
-									<li class="f-toe"><strong>樱花乱舞</strong> -- <small>弋江</small></li>
-									<li class="f-toe"><strong>花树未至</strong> -- <small>苏莘薇</small></li>
-									<li class="f-toe current"><strong>说英雄</strong> -- <small>戎一 /陈小魂 /方块</small></li>
-								</ul>
-							</div>
-						</div>
-
-						<ul class="muen3">
-							<li><em>1 </em>
-								<a href="lyrics.html?type=1&amp;s_id=1">樱花乱舞 <span>弋江</span></a>
-							</li>
-							<li><em>2 </em>
-								<a href="lyrics.html?type=1&amp;s_id=2">花树未至 <span>苏莘薇</span></a>
-							</li>
-							<li><em>3 </em>
-								<a href="lyrics.html?type=1&amp;s_id=3">说英雄 <span>戎一 /陈小魂 /方块</span></a>
-							</li>
-						</ul>
+	<link rel="stylesheet" type="text/css" href="file/smusic.css" />
+	<div class="grid-music-container f-usn">
+		<div class="m-music-play-wrap">
+			<div class="u-cover"></div>
+			<div class="m-now-info">
+				<h1 class="u-music-title"><strong>标题</strong><small>歌手</small></h1>
+				<div class="m-now-controls">
+					<div class="u-control u-process">
+						<span class="buffer-process"></span>
+						<span class="current-process"></span>
 					</div>
+					<div class="u-control u-time">00:00/00:00</div>
+					<div class="u-control u-volume">
+						<div class="volume-process" data-volume="0.50">
+							<span class="volume-current"></span>
+							<span class="volume-bar"></span>
+							<span class="volume-event"></span>
+						</div>
+						<a class="volume-control"></a>
+					</div>
+				</div>
+				<div class="m-play-controls">
+					<a class="u-play-btn prev" title="上一曲"></a>
+					<a class="u-play-btn ctrl-play play" title="暂停"></a>
+					<a class="u-play-btn next" title="下一曲"></a>
+					<a class="u-play-btn mode mode-list current" title="列表循环"></a>
+					<a class="u-play-btn mode mode-random" title="随机播放"></a>
+					<a class="u-play-btn mode mode-single" title="单曲循环"></a>
 				</div>
 			</div>
 		</div>
-	</body>
-	<script src="smusic.min.js" type="text/javascript" charset="utf-8"></script>
+		<div class="f-cb">&nbsp;</div>
+		<div class="m-music-list-wrap"></div>
+	</div>
+	<script src="file/smusic.min.js"></script>
+	<script>
+		var musicList = [{
+				title: '带你去旅行',
+				singer: '陈晓英',
+				cover: 'img/校长.jpg',
+				src: 'music/校长 - 带你去旅行.mp3'
+			},
+			{
+				title: '问',
+				singer: '李宗盛',
+				cover: 'img/李宗盛.jpg',
+				src: 'music/李宗盛 - 鬼迷心窍 - live.mp3'
+			},
+			{
+				title: '鬼迷心窍',
+				singer: '李宗盛',
+				cover: 'file/李宗盛.jpg',
+				src: '李宗盛 - 问 - 现场版.mp3'
+			}
+			
+		];
+		new SMusic({
+			musicList: musicList
+		});
+	</script>
 
 </html>
