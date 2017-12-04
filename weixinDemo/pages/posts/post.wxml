@@ -1,0 +1,26 @@
+<view>
+<!--轮播图  -->
+  <swiper class='swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circularData}}">
+    <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src='{{item}}'></image>
+        </swiper-item>
+    </block>  
+  </swiper>
+  <!--文章列表  -->
+  <view>
+    <view>
+      <image src='/images/avatar/1.png'></image>
+      <text>Nov 25 2016</text>
+    </view>
+    <text>正是虾肥蟹壮时</text>
+    <image src='/images/post/crab.png'></image>
+    <text>正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时</text>
+    <view>
+      <image src='../../images/icon/chat.png'></image>
+      <text></text>
+      <image></image>
+      <text></text>
+    </view>
+  </view>
+</view>
