@@ -1,7 +1,7 @@
 ## 目前打包后的文件不能超过2M，否则不能上传到微信服务器。
 #### 不支持的
 1.不支持sass语法
-2.不支持window/document,所以也不能使用jq
+2.不支持window/document,所以也不能使用jq   wx.createSelectorQuery
 3.不支持直接使用svg标签;但是可以放到image的src或则background-Image
 4.不支持阻止事件;没有preventDefault
 5.没有br标签
@@ -11,7 +11,7 @@
 1.img标签换成了image
 2.text标签内认\n换行;不能包裹<br/>会直接输出;类似textarea
 3.小程序中nth-child(n)是从0开始的
-4.switch标签;但是不能改变大小样式;想老的radio一样
+4.switch标签;但是不能改变大小样式;像老的radio一样
 5.picker标签;但是在开发者工具中选项不会循环
 6.scroll-view标签;有滚动条的盒子;想要在进入页面的时候自动滚动到某处;可以使用scroll-view的scroll-into-view属性;不过一定要在scroll-view存在后设置才会生效;尤其是通过template引用的时候;比如同事通过setData设置使用该template和scroll-init-view的值;并不会使滚动生效
 7.关于屏幕下拉露底;android不会;ios会;可以通过配置解决;disableScroll Boolean false设置为true则页面整体不能上下滚动;只在page.json中有效;无法在app.json中设置
