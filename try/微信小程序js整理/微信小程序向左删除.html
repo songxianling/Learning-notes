@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<view class="item-wrapper">
+			<view class="item-list" wx:for="{{itemData}}" wx:for-item="item" wx:for-index="index" wx:key="that">
+				<view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
+					<image class="info-img" src="{{item.img}}"></image>
+					<view class="info-wrapper">
+						<view class="info-desc">
+							<view class="name">{{item.name}}</view>
+							<view class="time">{{item.time}}</view>
+						</view>
+						<view class="info-content">{{item.info}}</view>
+					</view>
+				</view>
+				<view class="item-oper">
+					<view class="oper-delete" bindtap="itemDelete" data-index="{{index}}">删除</view>
+				</view>
+			</view>
+		</view>
+	</body>
+	<script type="text/javascript">
+		touchS: function(e) { // touchstart
+				let startX = App.Touches.getClientX(e)
+				startX && this.setData({ startX })
+			},
+			touchM: function(e) { // touchmove
+				let itemData = App.Touches.touchM(e, this.data.itemData, this.data.startX)
+				itemData && this.setData({ itemData })
+
+			},
+			touchE: function(e) { // touchend
+				const width = 150 // 定义操作列表宽度
+				let itemData = App.Touches.touchE(e, this.data.itemData, this.data.startX, width)
+				itemData && this.setData({ itemData })
+			},
+			itemDelete: function(e) { // itemDelete
+				let itemData = App.Touches.deleteItem(e, this.data.itemData)
+				itemData && this.setData({ itemData })
+			},
+			touchM(e, dataList, startX) { // touchmove 过程中更新列表数据
+				let list = this._resetData(dataList)
+				list[this._getIndex(e)].left = this._getMoveX(e, startX)
+				return list
+			}
+
+		touchE(e, dataList, startX, width) { // touchend 更新列表数据
+			let list = this._resetData(dataList)
+			let disX = this._getEndX(e, startX)
+			let left = 0
+
+			if(disX < 0) { // 判断滑动方向， （向左滑动）
+				// 滑动的距离大于删除宽度的一半就显示操作列表 否则不显示
+				Math.abs(disX) > width / 2 ? left = -width : left = 0
+			} else { // 向右滑动复位
+				left = 0
+			}
+
+			list[this._getIndex(e)].left = left
+			return list
+		}
+
+		deleteItem(e, dataList) { // 删除功能
+			dataList.splice(this._getIndex(e), 1)
+			return dataList
+		}
+	</script>
+
+</html>
