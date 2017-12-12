@@ -144,3 +144,17 @@ form {
   width: 100%;
   border-radius: 0px;
 }
+
+var mood = '开心';
+
+var ren = '陈晓英';
+
+if(ren === '陈晓英'){
+	goShoping('线上&&网上')
+}else if(mood === '开心'){
+	goShoping('线下')
+}else if(mood !== '开心'){
+	goShoping('网上')
+}else{
+	goShoping()
+}

@@ -23,3 +23,24 @@ upper: function(e) {
 onPullDownRefresh: function(){
     console.log('刷新')
   },
+  
+
+ //下拉刷新
+    onPullDownRefresh:function(){
+      var that = this
+      that.setData({
+        this_page:1
+      })
+      _function.getUserOrderList(wx.getStorageSync("utoken"),that.data.this_page,that.data.pagesize,that.initUserOrderListData,this)
+      setTimeout(()=>{
+        wx.stopPullDownRefresh()
+      },1000)
+    },
+    //滚动加载
+    indexscrolltolower:function(){
+      var that = this
+      var this_target = this.data.this_items
+      if(that.data.this_finish_page != that.data.this_page){
+          _function.getUserOrderList(wx.getStorageSync("utoken"),that.data.this_page + 1,that.data.pagesize,that.initUserOrderListLoadData,this)
+      }
+    },
