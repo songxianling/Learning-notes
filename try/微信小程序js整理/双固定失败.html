@@ -1,0 +1,409 @@
+<template>
+  <!-- 视频菜谱 -->
+<view class="video-caipu-box">
+  <searchBar></searchBar>
+  <view class="box">
+  <!-- tab滑动区域 -->
+  <scroll-view class="swiper-tab-box" scroll-x scroll-with-animation scroll-left="{{scrollLeft}}">
+    <view class="swiper-tab-item" wx:for="{{tabList}}" wx:key="{{item.key}}">
+      <label class="{{activeIndex == item.key ? 'active':''}}" bindtap="changeTab" data-index="{{item.key}}">
+        {{item.text}}
+      </label>
+    </view>
+  </scroll-view>
+  <!-- tab滑动内容区域 -->
+  <swiper current='{{activeIndex}}' bindchange="swiperTab" style="height:{{scH}}px">
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.hot}}" >
+        <image src="{{item.img}}" data-index="{{item.code}}" bindtap="goDetail"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.cool}}" data-index="{{item.code}}">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.fish}}" data-index="{{item.code}}">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.meat}}" data-index="{{item.code}}">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.dish}}" data-index="{{item.code}}">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item" wx:for="{{conList.rice}}" data-index="{{item.code}}">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+        <view class="swiper-item" wx:for="{{conList.reunion}}" data-index="{{item.code}}">
+          <image src="{{item.img}}"></image>
+          <text>{{item.text}}</text>
+        </view>
+      </swiper-item>
+  </swiper>
+  </view>
+</view>
+</template>
+<script>
+import wepy from "wepy";
+import SearchBar from "../components/searchBar";
+export default class Filter extends wepy.page {
+  config = {
+    navigationBarTitleText: "视频菜谱"
+  };
+  data = {
+    scH:'',
+    activeIndex: 0,
+    tabList: [
+      {
+        key: "0",
+        text: "本周热门"
+      },
+      {
+        key: "1",
+        text: "凉菜类"
+      },
+      {
+        key: "2",
+        text: "鱼类"
+      },
+      {
+        key: "3",
+        text: "肉类"
+      },
+      {
+        key: "4",
+        text: "素菜"
+      },
+      {
+        key: "5",
+        text: "下饭菜"
+      },
+      {
+        key: "6",
+        text: "团圆饭"
+      }
+    ],
+    conList: {
+      hot: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "香菇酱",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "香菇酱",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "香菇酱",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "香菇酱",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "香菇酱",
+          code: 5
+        }
+      ],
+      cool: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "凉菜类",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "凉菜类",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "凉菜类",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "凉菜类",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "凉菜类",
+          code: 5
+        }
+      ],
+      fish: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "鱼类",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "鱼类",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "鱼类",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "鱼类",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "鱼类",
+          code: 5
+        }
+      ],
+      meat: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "肉类",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "肉类",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "肉类",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "肉类",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "肉类",
+          code: 5
+        }
+      ],
+      dish: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "素菜",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "素菜",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "素菜",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "素菜",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "素菜",
+          code: 5
+        }
+      ],
+      rice: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "下饭菜",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "下饭菜",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "下饭菜",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "下饭菜",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "下饭菜",
+          code: 5
+        }
+      ],
+      reunion: [
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "团圆饭",
+          code: 1
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "团圆饭",
+          code: 2
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "团圆饭",
+          code: 3
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "团圆饭",
+          code: 4
+        },
+        {
+          img:
+            "https://s1.cdn.xiangha.com/ds/product/201706/1914/5947710246393.jpg/NTAweDA",
+          text: "团圆饭",
+          code: 5
+        }
+      ]
+    },
+    scrollLeft: 0
+  };
+  components = {
+    searchBar: SearchBar
+  };
+
+  onLoad() {
+    wx.getSystemInfo({
+      success:(res) => {
+        this.scH = res.windowHeight;
+      }
+    })
+    console.log(this.scH)
+  }
+  computed = {};
+  methods = {
+    changeTab(e) {
+      var index = e.target.dataset.index;
+      this.activeIndex = index;
+    },
+    swiperTab(e) {
+      var index = e.detail.current;
+      if (index > 3) {
+        this.scrollLeft = 500;
+      } else {
+        this.scrollLeft = 0;
+      }
+      this.activeIndex = index;
+    }
+  };
+
+  events = {};
+}
+</script>
+<style lang="less">
+.video-caipu-box {
+  margin-top: 170rpx;
+  .box {
+    // margin-top: 80rpx;
+    .swiper-tab-box {
+      position: fixed;
+      top: 80rpx;
+      width: 100%;
+      height: 90rpx;
+      line-height: 90rpx;
+      white-space: nowrap;
+      overflow: hidden;
+      border-bottom: 1rpx solid #ededed;
+    }
+    .swiper-tab-item {
+      display: inline-block;
+      width: 20%;
+      text-align: center;
+      font-size: 32rpx;
+      height: 90rpx;
+      color: black;
+      line-height: 90rpx;
+    }
+    .active {
+      border-bottom: 2px solid orange;
+    }
+
+    swiper {
+      // text-align: center;
+      // display: flex;
+      // justify-content: center;
+      // align-content: center;
+      // padding-top: 90rpx;
+      height: 100vh;
+    }
+
+    swiper-item {
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .active {
+      color: orange;
+    }
+  }
+}
+</style>

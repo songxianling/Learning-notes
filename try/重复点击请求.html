@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .no-click {
+        /* pointer-events: none; */
+        cursor: not-allowed;
+        /* background: #ccc !important; */
+    }
+    button:disabled{
+        cursor: not-allowed;
+    }
+</style>
+<script src="js/jquery-1.11.1.min.js"></script>
+<body>
+    <!-- <div class="js-btn">click me</div> -->
+    <button class="js-btn">click me</button>
+</body>
+<script>
+    let $btn = $('.js-btn');
+    // $btn.on('click', function () {
+    //     var that = $(this);
+    //     alert(1);
+    //     $(this).addClass('no-click');
+    //     setTimeout(function () {
+    //         that.removeClass('no-click');
+    //     }, 2000)
+    // })
+    $btn.on('click', function () {
+        $(this).attr('disabled', true);
+        alert(1);
+        setTimeout(() => {
+            $(this).removeAttr('disabled');
+        }, 5000)
+    })
+</script>
+
+</html>
