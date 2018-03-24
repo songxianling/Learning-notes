@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+<title>Canvas 水波纹</title>
+<meta charset="utf-8" />
+<style>
+*{margin: 0;padding: 0;}
+.waveBox{
+width: 100%;
+height: 200px;
+position: relative;
+overflow: hidden;
+background-color: #0077ff;
+}
+.waveBox canvas{
+position: absolute;
+top: 0;
+left: 0;
+}
+
+#myCanvas1{
+z-index: 1;
+}
+
+#myCanvas2{
+z-index: 2;
+}
+</style>
+</head>
+<body>
+<div class="waveBox">
+<canvas id="myCanvas1"  height="200">Your browser does not support the HTML5 canvas tag.</canvas>
+<canvas id="myCanvas2" height="200">Your browser does not support the HTML5 canvas tag.</canvas>
+<canvas id="myCanvas3" height="200">Your browser does not support the HTML5 canvas tag.</canvas>
+</div>
+
+<script>
+(function () {
+    wave2();wave3();
+})();
+
+    params = {
+        ctx :  document.getElementById("myCanvas1"),
+        waveHeight:30,//波浪高度
+        waveCount:6,//波浪个数
+        progress:100,//波浪位置的高度
+        // fillStyle:'#95cef7', //颜色
+        fillStyle:'rgba(222, 222, 222, 0.6)', //颜色
+    }
+    DrawBall(params)
+function DrawBall (Params){
+    var waveWidth = 3300, offset = 0, startX = -1000, startY = 200,   //canvas 高度
+    d2 = waveWidth / Params.waveCount,d = d2 / 2, hd = d / 2;
+    Params.ctx.width = 375
+    ctx = Params.ctx.getContext("2d");
+    function tick() {
+        offset -= 5;
+        if (-1 * offset === d2) offset = 0;
+        ctx.clearRect(0, 0, Params.ctx.width, Params.ctx.height);
+        ctx.fillStyle = Params.fillStyle;  
+        ctx.beginPath();
+        var offsetY = startY - Params.progress;
+        ctx.moveTo(startX - offset, offsetY);
+        for (var i = 0; i < Params.waveCount; i++) {
+            var dx = i * d2;
+            var offsetX = dx + startX - offset;
+            ctx.quadraticCurveTo(offsetX + hd, offsetY + Params.waveHeight, offsetX + d, offsetY);
+            ctx.quadraticCurveTo(offsetX + hd + d, offsetY - Params.waveHeight, offsetX + d2, offsetY);
+        }
+        ctx.lineTo(startX + waveWidth, 3000);
+        ctx.lineTo(startX, 3000);
+        ctx.fill();
+        requestAnimationFrame(tick);
+    }
+    tick();
+}
+ /* 第二条 */
+function wave2(){
+    var waveWidthB = 3300,
+    offsetB = 0,
+    waveHeightB = 25,  //波浪高度
+    waveCountB = 5,  //波浪个数
+    startXB = -1000,
+    startYB = 200,   //canvas 高度
+    progressB = 90,  //波浪位置的高度
+    d2B = waveWidthB / waveCountB,
+    dB = d2B / 2,
+    hdB = dB / 2,
+    cB = document.getElementById("myCanvas2");
+    cB.width = 375
+    ctxB = cB.getContext("2d");
+    function tickB() {
+        offsetB -= 5;
+        if (-1 * offsetB === d2B) offsetB = 0;
+        ctxB.clearRect(0, 0, cB.width, cB.height);
+        ctxB.fillStyle = 'rgba(222, 222, 222, 0.8)';  
+        ctxB.beginPath();
+        var offsetYB = startYB - progressB;  
+        ctxB.moveTo(startXB - offsetB, offsetYB);
+        for (var i = 0; i < waveCountB; i++) {
+            var dxB = i * d2B;
+            var offsetXB = dxB + startXB - offsetB;
+            ctxB.quadraticCurveTo(offsetXB + hdB, offsetYB + waveHeightB, offsetXB + dB, offsetYB);
+            ctxB.quadraticCurveTo(offsetXB + hdB + dB, offsetYB - waveHeightB, offsetXB + d2B, offsetYB);
+        }
+        ctxB.lineTo(startXB + waveWidthB, 3000);
+        ctxB.lineTo(startXB, 3000);
+        ctxB.fill();
+        // setTimeout(tickB,5000 / 60); //速度
+        requestAnimationFrame(tickB);
+    }
+    tickB();
+}
+ /* 第三条 */
+function wave3(){
+    var waveWidthC = 3300,
+    offsetC = 0,
+    waveHeightC = 28,  //波浪高度
+    waveCountC = 4,  //波浪个数
+    startXC = -1000,
+    startYC = 200,   //canvas 高度
+    progressC = 100,  //波浪位置的高度
+    d2C = waveWidthC / waveCountC,
+    dC = d2C / 2,
+    hdC = dC / 2,
+    cC = document.getElementById("myCanvas3");
+    cC.width = 375
+    ctxC = cC.getContext("2d");
+    function tickC() {
+        offsetC -= 5;
+        if (-1 * offsetC === d2C) offsetC = 0;
+        ctxC.clearRect(0, 0, cC.width, cC.height);
+        ctxC.fillStyle = 'rgba(222, 222, 222, 0.4)';  
+        ctxC.beginPath();
+        var offsetYC = startYC - progressC;  
+        ctxC.moveTo(startXC - offsetC, offsetYC);
+        for (var i = 0; i < waveCountC; i++) {
+            var dxC = i * d2C;
+            var offsetXC = dxC + startXC - offsetC;
+            ctxC.quadraticCurveTo(offsetXC + hdC, offsetYC + waveHeightC, offsetXC + dC, offsetYC);
+            ctxC.quadraticCurveTo(offsetXC + hdC + dC, offsetYC - waveHeightC, offsetXC + d2C, offsetYC);
+        }
+        ctxC.lineTo(startXC + waveWidthC, 3000);
+        ctxC.lineTo(startXC, 3000);
+        ctxC.fill();
+        // setTimeout(tickC,5000 / 60); //速度
+        requestAnimationFrame(tickC);
+    }
+    tickC();
+}
+
+</script>
+</body>
+</html> 

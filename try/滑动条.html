@@ -7,6 +7,42 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!-- 第1个(省的选择) -->
+    <div>
+    	<span>{{selectObjVal.country}}</span>
+    	<ul>
+    		// 此处传的item。name就是循环出来的内容 ； 如果要id就多传一个id;这个name是为了展示用的
+    		<li ng-click="handleSelect('country',{{item.name}})">中国</li>
+    		<li ng-click="handleSelect('country',{{item.name}})">美国</li>
+    	</ul>
+    </div>
+    <!-- 第2个(市的选择) -->
+    <div>
+    	<span>{{selectObjVal.city}}</span>
+    	<ul>
+    		<li ng-click="handleSelect('city',{{item.name}})">北京</li>
+    		<li ng-click="handleSelect('city',{{item.name}})">山东</li>
+    	</ul>
+    </div>
+    <!-- 第3个(区的选择) -->
+    <div>
+    	<span>{{selectObjVal.area}}</span>
+    	<ul>
+    		<li ng-click="handleSelect('area',{{item.name}})">朝阳</li>
+    		<li ng-click="handleSelect('area',{{item.name}})">海淀</li>
+    	</ul>
+    </div>  
 </body>
+<script>
+	// 所有选中框的值
+    $scope.selectObjVal = {
+        country:'北京',
+        city:'北京',
+        area:'朝阳',
+    }
+    $scope.handleSelect = function(type,name){
+        $scope.selectObjVal[type] = name;
+    }
+
+</script>
 </html>
