@@ -1,1 +1,0 @@
-import wxbarcode from "wxbarcode";
