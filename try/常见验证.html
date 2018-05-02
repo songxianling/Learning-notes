@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>表单验证</title>
+
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: 微软雅黑;
+		}
+		
+		#content {
+			width: 600px;
+			height: 400px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -300px;
+			margin-top: -200px;
+		}
+		
+		.ha {
+			position: relative;
+			font-size: 20px;
+			color: #333;
+			padding: 10px 0 10px 0;
+		}
+		
+		.ha input {
+			width: 200px;
+			height: 40px;
+			border: #B1B1B1 solid 1.5px;
+			padding-left: 10px;
+			line-height: 40px;
+			color: #B1B1B1;
+			font-size: 15px;
+		}
+		
+		.ha p {
+			font-size: 15px;
+			color: #930;
+			position: absolute;
+			left: 350px;
+			top: 20px;
+		}
+		
+		.active {
+			display: inline-block;
+			width: 50px;
+			height: 20px;
+			background-color: #C30;
+			float: left;
+			padding: 0 5px 0 5px;
+			text-align: center;
+			font-size: 13px;
+			color: #fff;
+			list-style: none;
+		}
+		
+		.activeN {
+			display: inline-block;
+			width: 50px;
+			height: 20px;
+			background-color: #CCC;
+			float: left;
+			padding: 0 5px 0 5px;
+			text-align: center;
+			font-size: 13px;
+			color: #fff;
+			list-style: none;
+		}
+		
+		.submitBtn {
+			width: 200px;
+			height: 50px;
+			background-color: #F60;
+			color: #fff;
+			font-size: 15px;
+			margin: 20px 0 0 80px;
+		}
+		
+		.ati {
+			background-image: url(../images/no.jpg);
+			width: 16px;
+			height: 21px;
+			display: inline-block;
+		}
+	</style>
+
+	<body>
+		<div id="content">
+			<form action="" method="">
+				<!--会员名-->
+				<div class="ha">
+					<label>
+                <span>会员名：</span>
+                <input type="text" style="margin-left: 20px">
+            </label>
+					<p class="msg"></p>
+					<!--<p class="msg"><i class="ati"></i>5-25个字符，一个汉字为2个字符，推荐使用中文会员名</p>-->
+				</div>
+				<div><label><span></span><b id="count"></b></label></div>
+				<!--<div><label><span></span><b id="count">0个字符</b></label></div>-->
+
+				<!--登陆密码-->
+				<div class="ha">
+					<label>
+                <span>登陆密码：</span>
+                <input type="password" class="text">
+            </label>
+					<p class="msg"></p>
+					<!-- <p class="msg"><i class="err"></i>5-25个字符，一个汉字为2个字符，推荐使用中文会员名</p>-->
+				</div>
+				<div style="margin:3px 0 10px 0;height: 30px;padding-left: 120px;"><label style="padding: 5px 0"><span style="display:block;width: 200px"><em class="active">弱</em><em class="activeN">中</em><em class="activeN">强</em></span></label></div>
+
+				<!--确认密码-->
+				<div class="ha" style="margin-bottom: 20px">
+					<label>
+                <span>确认密码：</span>
+                <input type="password" class="text" disabled="">
+            </label>
+					<!-- <p class="msg"></p>-->
+					<p class="msg" style="display: none"><i class="ati"></i>请再输入一次</p>
+				</div>
+
+				<!--验证码-->
+				<div class="ha">
+					<label>
+                <span>验证码：</span>
+                <input type="text" class="text" style="width:50px">
+                <img src="" width="100" height="30">
+                <a href="javascript:" class="changeImg" title="重新获取验证码"></a>
+            </label>
+				</div>
+
+				<div>
+					<input class="submitBtn btn" type="submit" value="同意协议并注册">
+				</div>
+			</form>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		function getLength(str) {
+			return str.replace(/[^\x00-xff]/g, "XX").length;
+		}
+
+		function findStr(str, n) {
+			var tmp = 0;
+			for(var i = 0; i < str.length; i++) {
+				if(str.charAt(i) == n) {
+					tmp++
+				}
+			}
+			return tmp;
+		}
+
+		/*获取元素*/
+
+		window.onload = function() {
+			var aInput = document.getElementsByTagName("input");
+			var oName = aInput[0]; /*会员名*/
+			var pwd = aInput[1]; /*密码*/
+			var pwd2 = aInput[2]; /*确认密码*/
+
+			var aP = document.getElementsByTagName("p");
+			var name_msg = aP[0]; /*会员名---后面提示语*/
+			var pwd_msg = aP[1]; /*密码P----后面提示语*/
+			var pwd2_msg = aP[2]; /*确认密码---后面提示语*/
+
+			var count = document.getElementById("count"); /*提示字符*/
+			var aEm = document.getElementsByTagName("em") /*提密码强度*/
+
+			var name_length = 0;
+
+			/*用户名的匹配
+			 * 1.数字字母（不区分大小写），汉字，下划线
+			 *
+			 * 2.5-25字符，推荐使用中文会员名
+			 *
+			 *
+			 * */
+
+			//一.用户名
+			//1.获取焦点
+			oName.onfocus = function() {
+				name_msg.style.display = "block";
+				name_msg.innerHTML = "<i class='ati'></i>请输入5-25个字符，一个汉字或者两个字符，推荐使用中文会员名。"
+			}
+			//2.抬起
+			oName.onkeyup = function() {
+				count.style.visibility = 'visible';
+				name_length = getLength(this.value);
+				count.innerHTML = name_length + "个字符";
+				if(name_length == 0) {
+					count.style.visibility = 'hidden';
+				}
+
+			}
+			//3.失去焦点
+			oName.onblur = function() {
+				//含有非法字符
+				var re = /[^\w\u4e00-\u9fa5]/g;
+				if(re.test(this.value)) {
+					name_msg.innerHTML = "<i class='ati'></i>含有非法字符"
+				}
+
+				//不能为空
+				else if(this.value == "") {
+					name_msg.innerHTML = "<i class='ati'></i>不能为空"
+				}
+
+				//长度超过25个字符
+				else if(name_length > 25) {
+					name_msg.innerHTML = "<i class='ati'></i>长度超过25个字符"
+				}
+				//长度少于6个字符
+				else if(name_length < 6) {
+					name_msg.innerHTML = "<i class='ati'></i>长度小于6个字符"
+				}
+				//ok
+				else {
+					name_msg.innerHTML = "<i class='ati'></i>ok"
+				}
+			}
+
+			//二.密码验证
+			pwd.onfocus = function() {
+				pwd_msg.style.display = "block";
+				pwd_msg.innerHTML = '<i class=\'ati\'></i>6-16个字符，请使用字母加数字加符号组成。'
+
+			}
+			pwd.onkeyup = function() {
+				//大于5个字符“中”
+				if(this.value.length > 5) {
+					aEm[1].className = 'active';
+					pwd2.removeAttribute("disabled");
+					pwd2_msg.style.display = "block"
+
+				} else {
+					aEm[1].className = 'activeN';
+					pwd2.setAttribute("disabled", 1);
+					pwd2_msg.style.display = "none"
+				}
+
+				//大于10个字符“强”
+				if(this.value.length > 10) {
+					aEm[2].className = 'active';
+					/*pwd2.removeAttribute("disabled");
+					pwd2_msg.style.display="block"*/
+
+				} else {
+					aEm[2].className = 'activeN';
+					/* pwd2.setAttribute("disabled",1);
+					 pwd2_msg.style.display="none"*/
+				}
+			}
+			pwd.onblur = function() {
+				var m = findStr(pwd.value, pwd.value[0]);
+				var re_n = /[^\d]/g; /*数字*/
+				var re_t = /[^a-zA-Z]/g; /*字母*/
+
+				//不能为空
+				if(this.value == "") {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>不能为空。'
+				}
+				//不能用相同字符
+				else if(m == this.value.length) {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>不能用相同字符。'
+				}
+
+				//长度应为6-16个字符
+				else if(this.value.length < 6 || this.value.length > 16) {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>长度应为6-16个字符。'
+				}
+				//不能全为数字
+				else if(!re_n.test(this.value)) {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>不能全为数字。'
+				}
+				//不能全为字母
+				else if(!re_t.test(this.value)) {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>不能全为字母。'
+				}
+				//ok
+				else {
+					pwd_msg.innerHTML = '<i class=\'ati\'></i>ok。'
+				}
+			}
+
+			//二.确认密码验证
+			pwd2.onblur = function() {
+				if(this.value != pwd.value) {
+					pwd2_msg.innerHTML = '<i class=\'ati\'></i>两次输入密码不一致啊。'
+				} else {
+					pwd2_msg.innerHTML = '<i class=\'ati\'></i>ok。'
+				}
+			}
+
+		}
+	</script>
+
+</html>

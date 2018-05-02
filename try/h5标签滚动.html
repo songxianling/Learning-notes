@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html >
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>process msmj</title>
+
+        <style>
+            div{
+                width: 400px;
+               display: inline-block;
+               margin-left: 50px;
+            }
+
+        </style>
+
+</head>
+
+    <body>
+
+      <marquee direction="up" scrollamount="1" style="width: 210px;height: 100px" id="">  
+    <a href="#">纤云弄巧，飞星传恨，银汉迢迢暗度。</a><br />  
+    <a href="#">金风玉露一相逢，便胜却、人间无数。</a><br />  
+    <a href="#">柔情似水，佳期如梦。忍顾鹊桥归路！</a><br />  
+    <a href="#">两情若是久长时，又岂在、朝朝暮暮。</a><br />  
+    <a href="#">千重劫，百世难，亘古匆匆，弹指间！</a><br />  
+    <a href="#">不死躯，不灭魂，震古烁今，无人敌！</a><br />  
+    <a href="#">待到阴阳逆乱时，以我魔血染青天！</a><br />  
+</marquee> 
+
+<div>
+    <marquee direction="left">我向左滚动</marquee>
+
+<marquee direction="right">我向右滚动</marquee>
+
+<marquee direction="up">我向上滚动</marquee>
+
+<marquee direction="down">我向下滚动</marquee>
+<!-- behavior="alternate"来回滚动 -->
+
+<marquee behavior="alternate">我来回滚动</marquee>
+<!-- behavior="scroll"单方向循环滚动 -->
+
+<marquee behavior="scroll">我单方向循环滚动</marquee>
+
+<marquee behavior="scroll" direction="up" height="30">我改单方向向上循环滚动</marquee>
+
+<marquee behavior="slide">我只滚动一次</marquee>
+
+<!-- behavior="slide"只滚动一次 -->
+<marquee behavior="slide" direction="up" height="30">我改向上只滚动一次了</marquee>
+<!-- loop="2"滚动2次   loop="infinite"无限循环滚动 loop="-1"无限循环滚动-->
+<marquee loop="2">我滚动2次。</marquee>
+<marquee loop="infinite">loop="infinite"无限循环滚动</marquee>
+<marquee loop="-2">loop="-1"无限循环滚动-</marquee>
+<!-- scrolldelay="30"小步前进 scrolldelay="50" 速度慢了些 scrolldelay="100" 速度很快 scrolldelay="1000" scrollamount="100"大步前进 scrollamount速度属性 scrolldelay 延时属性-->
+<marquee scrolldelay="1000" scrollamount="100">我大步前进。</marquee>
+
+<!-- hspace和vspace属性这两个属性决定滚动矩形区域距周围的空白区域。 -->
+<marquee width="300" height="30" vspace="10" hspace="10" bgcolor="red">我矩形边缘水平和垂直距周围各10像素。</marquee>
+
+<marquee width="300" height="30" vspace="50" hspace="50" bgcolor="red">我矩形边缘水平和垂直距周围各50像素。</marquee>
+
+<marquee onmouseover=this.stop() onmouseout=this.start()>表示当鼠标移上区域的时候滚动停止，当鼠标移开的时候又继续滚动。</marquee>
+
+<!-- valign表示元素的垂直对齐方式，值可以是top，middle，bottom，默认为middle。这个属性在TABLE标签的表格处理文字。 -->
+<marquee scrollAmount=3 behavior=alternate>
+
+<table borderColor=#003333  align=center border=1>
+<tbody>
+<tr><td> 这个属性在TABLE标签的表格处理文字。</td></tr>
+</tbody>
+</table>
+</marquee>
+<!-- align 表示元素的水平对齐方式，值可以是left，center，right，默认为left。这个属性决定滚动文字位于距形内边框的上下左右位置。 -->
+<marquee direction=up width="300" behavior=alternate height="200" bgcolor=#ccffff><P align=center>这个属性决定滚动文字位于距形内边框的上下左右位置。</P></marquee>
+4397.5-900
+</div>
+
+    </body>
+
+</html>
