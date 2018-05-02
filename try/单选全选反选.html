@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="total">全选</button>
+    <button id="choice">不选</button>   
+    <button id="reverse">反选</button><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id="">
+</body>
+<script>
+
+    var btn = document.getElementsByTagName("button");
+    var ins = document.getElementsByTagName("input");
+    for(var x in btn) { // 遍历 btn
+        btn[x].onclick = function(event) {
+            var btnId = event.target.id; // 声明 点击的事件id是哪个
+            for( var i = 0; i < ins.length; i++) {
+                if(btnId == "total") { // 全选
+                    ins[i].checked = true;
+                }else if(btnId == "choice") { // 不选
+                    ins[i].checked = false;
+                }else { // 反选
+                    ins[i].checked == true ? ins[i].checked = false : ins[i].checked = true;
+                }
+            }
+        }
+    }
+
+</script>
+</html>

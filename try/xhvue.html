@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" v-model="number">
+            <button type="button" v-click="increment">增加</button>
+        </form>
+        <h3 v-bind="number"></h3>
+    </div>
+</body>
+<script>
+    function xhVue(options) {
+        this._init(options);
+    }
+    xhVue.prototype._init = function (options) {
+        this.$options = options;
+        this.$el = document.querySelector(options.el);
+        this.$data = options.data;
+        this.$method = options.methods;
+
+        this._binding = {}; // _binding
+        this._xhob(this.$data);
+        this._xhcompile(this.$el);
+    }
+
+    xhVue.prototype._xhob = function (obj) {
+        var value;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                this._binding[key] = {
+                    _directives: []
+                }
+                value = obj[key];
+                if (typeof value === 'object') {
+                    this._xhob(value);
+                }
+                var binding = this._binding[key];
+                Object.defineProperty(this.$data, key, {
+                    enumerable: true,
+                    configurable: true,
+                    get: function () {
+                        console.log(`get${value}`)
+                        return value;
+                    },
+                    set: function (newVal) {
+                        if (value !== newVal) {
+                            value = newVal;
+                            console.log(`set${newVal}`)
+                            // 当number改变时；触发_binding[number]._directives中已绑定的xhWatcher更新
+                            binding._directives.forEach(function (item) {
+                                item.update();
+                            });
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    xhVue.prototype._xhcompile = function (root) {
+        // root是id为app的element的元素；也就是根元素
+        var _this = this;
+        var nodes = root.children;
+        for (var i = 0, len = nodes.length; i < len; i++) {
+            var node = nodes[i];
+            if (node.children.length) {
+                // 所有元素进行处理
+                this._xhcompile(node)
+            };
+            // 如果有v-click属性；我们监听他的click事件；触发increment事件，即number++
+            if (node.hasAttribute('v-click')) {
+                node.onclick = (function () {
+                    var attrVal = node.getAttribute('v-click');
+                    console.log(attrVal);
+                    // bind让data的作用域与method函数的作用域保持一致
+                    return _this.$method[attrVal].bind(_this.$data);
+                })();
+            };
+            // 如果有v-model属性；并且元素是input或者textrea；我们监听他的input事件
+            if (node.hasAttribute('v-model') && (node.tagName = 'INPUT' || node.tagName == 'TEXTAREA')) {
+                node.addEventListener('input', (function (key) {
+                    var attrVal = node.getAttribute('v-model');
+                    _this._binding[attrVal]._directives.push(new xhWatcher(
+                        'input',
+                        node,
+                        _this,
+                        attrVal,
+                        'value'
+                    ));
+                    return function () {
+                        // 让number的值和node的value保持一致；就实现了双向数据绑定
+                        _this.$data[attrVal] = nodes[key].value
+                    }
+                })(i));
+            };
+            // 如果有v-bind属性；我们要让node的值实时更新为data中number的值
+            if (node.hasAttribute('v-bind')) {
+                var attrVal = node.getAttribute('v-bind');
+                _this._binding[attrVal]._directives.push(new xhWatcher(
+                    'text',
+                    node,
+                    _this,
+                    attrVal,
+                    'innerHTML'
+                ))
+            }
+        }
+    }
+
+    function xhWatcher(name, el, vm, exp, attr) {
+        this.name = name; // 指令名称；对于文本节点；例如text
+        this.el = el; // 指令对应DOM元素
+        this.vm = vm; // 指令所属vue实例
+        this.exp = exp; // 指令对应的值；例如number
+        this.attr = attr; // 绑定的属性值；例如innerHTML
+        this.update();
+    }
+    xhWatcher.prototype.update = function () {
+        this.el[this.attr] = this.vm.$data[this.exp];
+        // 例如h3的innerHTML = this.data.number;当numner改变则会触发本update方法；保证对应的DOM实时更新
+    }
+    var app = new xhVue({
+        el: '#app',
+        data: {
+            number: 0
+        },
+        methods: {
+            increment: function () {
+                this.number++;
+            }
+        }
+    });
+</script>
+
+</html>

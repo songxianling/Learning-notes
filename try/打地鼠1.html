@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="container">
+			<canvas onmouseover="hideCursor(this)" onmouseout="showCursor" onmousemove="hammerMove(this);" onmousedown="hammerDown();" onmouseUp="hammerUp();" id="screen" width="700" height="500" style="border:1px solid #000"></canvas>
+		</div>
+		<div id="info"></div>
+	</body>
+	<script type="text/javascript">
+		 init()
+		function init() {
+			info = document.getElementById('info');
+			canvas = document.getElementById('screen');
+			ctx = canvas.getContext('2d');
+
+			bg = new Image();
+			bg.src = 'bg.jpg';
+			bg.onload = function() {};
+
+			var hamImg = new Image();
+			hamImg.src = 'hammer.png';
+			hamImg.onload = function() {
+				hammer = new HammerSprite(48, 48, 100, 100, hamImg);
+			}
+
+			var msImg = new Image();
+			msImg.src = 'mouse.gif';
+
+			msImg.onload = function() {
+				for(i = 0; i < 3; i++) {
+					var arr = [];
+					for(j = 0; j < 3; j++) {
+						var s = new Sprite(60, 70, 50 + 240 * i, 80 + 120 * j, 'hide', msImg);
+						arr[j] = s;
+					}
+					sprites[i] = arr;
+				}
+			}
+
+			var holeImg = new Image();
+			holeImg.src = 'hole.png';
+			holeImg.onload = function() {
+				for(i = 0; i < 3; i++) {
+					var arr = [];
+					for(j = 0; j < 3; j++) {
+						var s = new HoleSprite(80, 30, 40 + 240 * i, 140 + 120 * j, 'show', holeImg);
+						arr[j] = s;
+					}
+					holes[i] = arr;
+				}
+			}
+
+			setInterval(drawScreen, 30);
+			setInterval(updateLogic, 3000);
+
+		};
+		var Sprite = function(w, h, x, y, state, image) {
+			var self = this;
+			this.w = w;
+			this.h = h;
+			this.x = x;
+			this.y = y;
+			this.image = image;
+			this.state = state;
+
+			this.draw = function() {
+				if(this.state == 'show') {
+					ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+					setTimeout(function() {
+						self.state = 'hide';
+					}, 3000);
+				}
+			}
+		}
+		var HoleSprite = function(w, h, x, y, state, image) {
+			var self = this;
+			this.w = w;
+			this.h = h;
+			this.x = x;
+			this.y = y;
+			this.image = image;
+			this.state = state;
+
+			this.draw = function() {
+				if(this.state == 'show') {
+					ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+				}
+			}
+		}
+
+		function HammerSprite(w, h, x, y, image) {
+			HammerSprite.prototype.w = w;
+			HammerSprite.prototype.h = h;
+			HammerSprite.prototype.x = x;
+			HammerSprite.prototype.y = y;
+
+			HammerSprite.prototype.draw = function(isPress) {
+				if(isPress) {
+					ctx.save();
+
+					ctx.translate(this.x - 10, this.y + 34);
+					ctx.rotate(Math.PI / 180 * 330);
+					ctx.drawImage(image, 0, 0, w, h);
+
+					ctx.restore();
+				} else {
+					ctx.drawImage(image, this.x, this.y, w, h);
+				}
+
+			}
+		}
+//		ctx.font = "40px serif"
+//		ctx.strokeStyle = "#fff";
+//		ctx.strokeText("打地鼠", 50, 50);
+//		ctx.fillStyle = "#fff";
+//		ctx.fillText("打地鼠", 50, 50);
+//
+//		ctx.fillStyle = "#fff";
+//		ctx.fillText("你的得分:" + score, 450, 50);
+//		for(i = 0; i < 3; i++) {
+//			for(j = 0; j < 3; j++) {
+//				holes[i][j].draw();
+//			}
+//		}
+	</script>
+
+</html>
