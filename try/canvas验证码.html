@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>生成图片验证码</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        #verify {
+            height: 34px;
+            vertical-align: top;
+            font-size: 16px;
+        }
+
+        #code_img {
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body style="">
+    点击图片生成
+    <p>
+        <input type="text" class="topAlign" id="verify" name="verify" required="">
+        <canvas width="100" height="40" id="verifyCanvas" style="display: none;"></canvas>
+
+        <img id="code_img" src="data:image/png;base64,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">
+    </p>
+
+    <script>
+        var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+            'y', 'z'
+        ];
+
+        let sCode;
+
+        drawCode();
+        // 绘制验证码
+        function drawCode() {
+            var canvas = document.getElementById("verifyCanvas"); //获取HTML端画布
+            var context = canvas.getContext("2d"); //获取画布2D上下文
+            context.fillStyle = "cornflowerblue"; //画布填充色
+            context.fillRect(0, 0, canvas.width, canvas.height); //清空画布
+            context.fillStyle = "white"; //设置字体颜色
+            context.font = "25px Arial"; //设置字体
+            var rand = new Array();
+            var x = new Array();
+            var y = new Array();
+            for (var i = 0; i < 5; i++) {
+                rand[i] = nums[Math.floor(Math.random() * nums.length)]
+                x[i] = i * 16 + 10;
+                y[i] = Math.random() * 20 + 20;
+                context.fillText(rand[i], x[i], y[i]);
+            }
+            // 赋值sCode用作校验输入是否正确
+            sCode = rand.join('');
+            console.log(sCode);
+            //alert(rand);
+            //画3条随机线
+            for (var i = 0; i < 3; i++) {
+                drawline(canvas, context);
+            }
+
+            // 画30个随机点
+            for (var i = 0; i < 30; i++) {
+                drawDot(canvas, context);
+            }
+            convertCanvasToImage(canvas)
+        }
+
+        // 随机线
+        function drawline(canvas, context) {
+            context.moveTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的起点x坐标是画布x坐标0位置，y坐标是画布高度的随机数
+            context.lineTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的终点x坐标是画布宽度，y坐标是画布高度的随机数
+            context.lineWidth = 0.5; //随机线宽
+            context.strokeStyle = 'rgba(50,50,50,0.3)'; //随机线描边属性
+            context.stroke(); //描边，即起点描到终点
+        }
+        // 随机点(所谓画点其实就是画1px像素的线，方法不再赘述)
+        function drawDot(canvas, context) {
+            var px = Math.floor(Math.random() * canvas.width);
+            var py = Math.floor(Math.random() * canvas.height);
+            context.moveTo(px, py);
+            context.lineTo(px + 1, py + 1);
+            context.lineWidth = 0.2;
+            context.stroke();
+
+        }
+        // 绘制图片
+        function convertCanvasToImage(canvas) {
+            document.getElementById("verifyCanvas").style.display = "none";
+            var image = document.getElementById("code_img");
+            image.src = canvas.toDataURL("image/png");
+            return image;
+        }
+
+        // 点击图片刷新
+        document.getElementById('code_img').onclick = function () {
+            $('#verifyCanvas').remove();
+            $('#verify').after('<canvas width="100" height="40" id="verifyCanvas"></canvas>')
+            drawCode();
+        }
+    </script>
+</body>
+
+</html>
