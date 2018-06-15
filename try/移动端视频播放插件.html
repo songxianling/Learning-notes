@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chimee插件移动端</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/chimee-mobile-player.min.css">
+    <script src="./js/chimee-mobile-player.min.js"></script>
+    <style>
+        .s-video {
+            height: 80vh;
+        }
+
+        container,
+        video {
+            object-fit: fill;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 默认的是全屏高度的；但是如果自己需要自定义高度的时候；可能就会出现黑边的情况
+         为什么会出现黑边；可以自行百度；可以通过css来解决
+    -->
+    <div id="sVideo" class="s-video"></div>
+
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    let xsjVideo = new ChimeeMobilePlayer({
+        wrapper: '#sVideo', // video dom容器
+        box: 'native',
+        /*编解码容器 移动端用native,pc用hls*/
+        src: 'http://t1.cdn.ibuleng.com/dy/20180531/1913/s/201805311913373572.mp4',
+        poster: 'http://s1.cdn.ibuleng.com/imgs/201806/1216/5b1f893d23d1a.jpeg/MHgw?540_960',
+        controls: true,
+        playsInline: true,
+        preload: 'auto',
+        x5VideoPlayerFullscreen: true,
+        x5VideoOrientation: 'landscape|portrait',
+        xWebkitAirplay: true,
+        autoplay: false
+    });
+    // 简单实现点击视频区域进去暂停播放
+    let $sVideo = $('#sVideo');
+    let playIn = false;
+
+    $sVideo.on('click', function () {
+        handleVideo()
+    });
+    xsjVideo.on('ended', function () {
+        playIn = false;
+    })
+    xsjVideo.on('play', function () {
+        playIn = true;
+    })
+    xsjVideo.on('pause', function () {
+        playIn = false;
+    })
+
+    function handleVideo() {
+        if (playIn) {
+            xsjVideo.pause();
+        } else {
+            xsjVideo.play();
+        }
+    }
+</script>
+
+</html>
