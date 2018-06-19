@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手机端页面问题解决方案</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        1.解决页面使用overflow: scroll在iOS上滑动卡顿的问题?
+            首先你可能会给页面的html和body增加了height: 100%, 然后就可能造成IOS上页面滑动的卡顿问题。解决方案是：
+            (1) 看是否能把body和html的height: 100%去除掉。
+            (2) 在滚动的容器中增加：-webkit-overflow-scrolling: touch或者给body增加：body {overflow-x: hidden}。
+        2.IOS机型margin属性无效问题？
+            (1) 设置html body的高度为百分比时，margin-bottom在safari里失效
+            (2) 直接padding代替margin     
+        3.Ios绑定点击事件不执行？
+            (1)添加样式cursor ：pointer。点击后消除背景闪一下的css：-webkit-tap-highlight-color:transparent;       
+        4.jQuery对a标签点击事件不生效？  
+            出现这种情况的原因不明，有的朋友解释：我们平时都是点击的A标签中的文字了。 所以要想用JS模拟点击A标签事件，就得先往A标签中的文字添加能被JS捕获的元素，然后再用JS模拟点击该元素即可。但是我觉得不合理，虽然找不到原因但是解决办法还是有的。
+            (1)document.getElementById(“abc “).click();
+            (2)$(“#abc “)[0].click();   
+        5.ios对position: fixed不太友好，有时我们需要加点处理？
+            在安卓上面，点击页面底部的输入框，软键盘弹出，页面移动上移。
+            而ios上面，点击页面底部输入框，软键盘弹出，输入框看不到了。。。查资料说什么的都有，iscroll,jquery-moblie，absolute，fixe，static都非常复杂，要改很多。。。
+            让他弹出时让滚动条在最低部    
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isiOS) {
+                $('textarea').focus(function () {
+                    window.setTimeout('scrollBottom()', 500);
+                });
+            }
+            function scrollBottom() {
+                window.scrollTo(0, $('body').height());
+            }
+        6.Javascript：history.go()和history.back()的用法与区别？    
+            简单的说就是：go(-1):返回上一页，原页面表单中的内容会丢失；back():返回上一页，原页表表单中的内容会保留。history.go(-1):后退+刷新history.back():后退
+            之所以注意到这个区别，是因为不同的浏览器后退行为也是有区别的，而区别就跟javascript：history.go()和history.back()的区别类似。
+            Chrome和ff浏览器后退页面，会刷新后退的页面，若有数据请求也会提交数据申请。类似于history.go(-1);
+            而safari（包括桌面版和ipad版）的后退按钮则不会刷新页面，也不会提交数据申请。类似于javascript：history.back();   
+        7. Meta基础知识：
+            <meta name="viewport"content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+            // width    设置viewport宽度，为一个正整数，或字符串‘device-width’
+            // height   设置viewport高度，一般设置了宽度，会自动解析出高度，可以不用设置
+            // initial-scale    默认缩放比例，为一个数字，可以带小数
+            // minimum-scale    允许用户最小缩放比例，为一个数字，可以带小数
+            // maximum-scale    允许用户最大缩放比例，为一个数字，可以带小数
+            // user-scalable    是否允许手动缩放 
+            空白页基本meta标签
+            <!-- 设置缩放 -->
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+            <!-- 可隐藏地址栏，仅针对IOS的Safari（注：IOS7.0版本以后，safari上已看不到效果） -->
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+            <!-- IOS中禁用将数字识别为电话号码/忽略Android平台中对邮箱地址的识别 -->
+            <meta name="format-detection"content="telephone=no, email=no" />
+            其他meta标签
+            <!-- 启用360浏览器的极速模式(webkit) -->
+            <meta name="renderer" content="webkit">
+            <!-- 避免IE使用兼容模式 -->
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+            <meta name="HandheldFriendly" content="true">
+            <!-- 微软的老式浏览器 -->
+            <meta name="MobileOptimized" content="320">
+            <!-- uc强制竖屏 -->
+            <meta name="screen-orientation" content="portrait">
+            <!-- QQ强制竖屏 -->
+            <meta name="x5-orientation" content="portrait">
+            <!-- UC强制全屏 -->
+            <meta name="full-screen" content="yes">
+            <!-- QQ强制全屏 -->
+            <meta name="x5-fullscreen" content="true">
+            <!-- UC应用模式 -->
+            <meta name="browsermode" content="application">
+            <!-- QQ应用模式 -->
+            <meta name="x5-page-mode" content="app">
+            <!-- windows phone 点击无高光 -->
+            <meta name="msapplication-tap-highlight" content="no">        
+    */
+
+
+</script>
+</html>

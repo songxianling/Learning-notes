@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ios页面橡皮筋回弹遮挡页面选项卡</title>
+</head>
+
+<body>
+    <!-- 
+        (1) 有时body和html的height: 100%去除掉问题可能就没有了。
+        (2) 到达临界值的时候在阻止事件默认行为
+     -->
+</body>
+<script>
+    var startY, endY;
+    //记录手指触摸的起点坐标
+    $('body').on('touchstart', function (e) {
+        startY = e.touches[0].pageY;
+    });
+    $('body').on('touchmove', function (e) {
+        endY = e.touches[0].pageY; //记录手指触摸的移动中的坐标
+        //手指下滑，页面到达顶端不能继续下滑
+        if (endY > startY && $(window).scrollTop() <= 0) {
+            e.preventDefault();
+        }
+        //手指上滑，页面到达底部能继续上滑
+        if (endY < startY && $(window).scrollTop() +
+            $(window).height() >= $('body')[0].scrollHeight) {
+            e.preventDefault();
+        }
+    })
+    //有时也会碰见弹窗出来后两个层的橡皮筋效果出现问题，我们可以在弹出弹出时给底层
+</script>
+
+</html>
