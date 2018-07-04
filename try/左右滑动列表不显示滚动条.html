@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右滑动列表不显示滚动条</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        @charset "UTF-8";
+         .clearfix {
+            zoom: 1
+        }
+
+         .clearfix:after {
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+            content: ".";
+            font-size: 0
+        }
+
+         .hidden {
+            display: none
+        }
+
+         .author-list-wrap {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            overflow-y: scroll
+        }
+
+         .author-list-wrap::-webkit-scrollbar {
+            display: none
+        }
+
+         .author-list-wrap .author-video-item {
+            -webkit-box-flex: 0;
+            -webkit-flex-grow: 0;
+            flex-grow: 0;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            margin-left: .02rem;
+            width: 6rem;
+            height: 6rem;
+            overflow: hidden;
+            position: relative
+        }
+
+         .author-list-wrap .author-video-item img {
+            padding: .02rem;
+            width: 6rem;
+            min-height: 6rem;
+            background-position: center center
+        }
+
+         .author-list-wrap .author-video-item .mask-more {
+            display: none
+        }
+
+         .author-list-wrap .author-video-item .btn-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: .98rem;
+            width: .98rem;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background-image: url(//s3a.bytecdn.cn/ies/resource/falcon/douyin_falcon/static/image/reflow/play_4a92d1e.png);
+            background-size: 100%
+        }
+
+         .author-list-wrap .author-video-item:last-child .btn-play {
+            display: none
+        }
+
+         .author-list-wrap .author-video-item:last-child .mask-more {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3rem;
+            height: 3rem;
+            color: #fff;
+            text-align: center;
+            padding-top: 1.3rem;
+            background-color: rgba(0, 0, 0, .6)
+        }
+
+         .video-wrap .header {
+            position: relative;
+            margin: .5rem 0 .36rem;
+            font-size: 0;
+            color: #fff;
+            text-align: center
+        }
+
+         .video-wrap .header .title {
+            position: relative;
+            padding: .12rem;
+            font-size: .26rem;
+            background: #161823;
+            vertical-align: middle
+        }
+
+         .video-wrap .header .title .nickname {
+            vertical-align: middle;
+            line-height: .26rem;
+            display: inline-block;
+            max-width: 1.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+         .video-wrap .header:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: block;
+            width: 4.2rem;
+            height: 1px;
+            background-color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-wrap" id="authorVideoListNode">
+        <div class="header">
+            <span class="title">@
+                <span class="nickname">80后的委屈</span>的热门视频</span>
+        </div>
+        <div class="author-list-wrap">
+
+            <div class="author-video-item" data-id="6567975160790387982">
+
+                <img src="https://p3.pstatp.com/large/8f3700056e41d3d4a059.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+            <div class="author-video-item" data-id="6567974123727752461">
+
+                <img src="https://p9.pstatp.com/large/8f350006c258d9bb61da.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+            <div class="author-video-item" data-id="6567973772425432323">
+
+                <img src="https://p1.pstatp.com/large/8f34000ec51c8501ff9f.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+            <div class="author-video-item" data-id="6567973513552989447">
+
+                <img src="https://p3.pstatp.com/large/8f3800026f7f475971da.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+            <div class="author-video-item" data-id="6564965725553822983">
+
+                <img src="https://p3.pstatp.com/large/8c2700072ea39b180782.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+            <div class="author-video-item" data-id="6562762046973152519">
+
+                <img src="https://p3.pstatp.com/large/8a230004aab0c0b2ca99.jpg" alt="">
+
+                <div class="btn-play"></div>
+
+                <div class="mask-more">查看更多 &gt;</div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

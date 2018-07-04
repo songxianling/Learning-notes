@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右滑动列表不显示滚动条</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        @charset "UTF-8";
+         .author-hot-video .hot-list-box {
+            overflow: hidden;
+            width: 100%;
+            height: 10.3125rem;
+            /* height: 10.65625rem; */
+        }
+
+         .author-hot-video .hot-list-ul {
+            width: 100%;
+            height: 10.65625rem;
+            white-space: nowrap;
+            overflow-x: scroll;
+            /* overflow-y: hidden; */
+            -webkit-overflow-scrolling: touch;
+        }
+
+         .author-hot-video .hot-list-ul li {
+            position: relative;
+            display: inline-block;
+            width: 10.65625rem;
+            height: 10.65625rem;
+            margin-left: .0625rem;
+        }
+
+         .author-hot-video .hot-list-ul li .video-img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="author-hot-video">
+        <h3 class="title"> ─── 关注磊哥带你去看世界的热门视频 ───</h3>
+        <div class="hot-list-box">
+            <ul class="hot-list-ul clearfix js-open-app">
+                <li>
+                    <img src="http://s1.cdn.ibuleng.com/imgs/201806/1314/5b20b8499dcfc.jpeg/MHgw?540_960" alt="" class="video-img">
+                    <img src="/images/bf-icon.png" alt="" class="bf-btn ps-center">
+                </li>
+                <li>
+                    <img src="http://s1.cdn.ibuleng.com/imgs/201806/1314/5b20b8499dcfc.jpeg/MHgw?540_960" alt="" class="video-img">
+                    <img src="/images/bf-icon.png" alt="" class="bf-btn ps-center">
+                </li>
+                <li>
+                    <img src="http://s1.cdn.ibuleng.com/imgs/201806/1314/5b20b8499dcfc.jpeg/MHgw?540_960" alt="" class="video-img">
+                    <img src="/images/bf-icon.png" alt="" class="bf-btn ps-center">
+                </li>
+                <li>
+                    <img src="" alt="http://s1.cdn.ibuleng.com/imgs/201806/1314/5b20b8499dcfc.jpeg/MHgw?540_960" class="video-img">
+                    <img src="/images/bf-icon.png" alt="" class="bf-btn ps-center">
+                </li>
+                <li>
+                    <img src="http://s1.cdn.ibuleng.com/imgs/201806/1314/5b20b8499dcfc.jpeg/MHgw?540_960" alt="" class="video-img">
+                    <img src="/images/bf-icon.png" alt="" class="bf-btn ps-center">
+                </li>
+                <li>
+                    <img src="http://s1.cdn.ibuleng.com/imgs/201806/1216/5b1f88dda31d2.jpeg/MHgw?540_960" alt="" class="video-img">
+                    <div class="more-pop">点击查看更多</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
