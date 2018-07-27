@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .progress {
+            width: 80%;
+            height: 40px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            background: rgba(0, 0, 0, .25)
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background: red;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="progress">
+        <div class="progress-bar js-progress-bar"></div>
+    </div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script>
+    setTimeout(() => {
+        $('.js-progress-bar').animate({width:"70%"},1000)
+    }, 3000);
+
+    
+
+
+
+
+</script>
+
+</html>

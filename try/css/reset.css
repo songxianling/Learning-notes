@@ -13,7 +13,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 	input[type="button"], input[type="submit"], input[type="reset"] {-webkit-appearance: none;}
   .clearfix:after{ visibility:hidden; display:block; font-size:0; content:" "; clear:both; height:0;}
   .clearfix{ zoom:1;}
-
+  .ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+  .ellipsis-2 { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}
+  .ps-center { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;}
+  .back-img { background-repeat: no-repeat; background-size: 100% 100%;}
 
 /*device-width*/
  @media only screen and (max-width: 359px) { html { font-size:85%; } }
