@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 100%;
+            background: palevioletred;
+        }
+
+        .box2 {
+            width: 100%;
+            background: blueviolet;
+        }
+        .sp1{
+            display: inline-block;
+            width: 30%;
+            height: 33%;
+            margin-top: 10%;
+            margin-left: 33%;
+            background: lightgreen;
+        }
+        .sp2{
+            display: inline-block;
+            width: 20%;
+            height: 27%;
+            margin-top: 30%;
+            margin-left: 73%;
+            background: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1 js-box">
+        <span class="sp1">第一屏内容</span>
+    </div>
+    <div class="box2 js-box">
+        <span class="sp2">第一屏内容</span>
+    </div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 初始化设置盒子高度
+        $('.js-box').height($(window).height() + 'px');
+        // 监听浏览器窗口大小
+        $(window).resize(function () { //当浏览器大小变化时
+            $('.js-box').height($(window).height() + 'px');
+        });
+    });
+</script>
+
+</html>
