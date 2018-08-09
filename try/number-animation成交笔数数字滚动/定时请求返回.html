@@ -61,22 +61,21 @@
 <body>
 	<div class="more">
 		<span class="more-nums" id="js-more-nums">
-			<em class="price"></em>
-			<em class="price"></em>
-			<em class="price"></em>
-			<em class="price"></em>
-			<em class="price"></em>
-			<em class="price"></em>
+			<em class="price js-number"></em>
+			<em class="price js-number"></em>
+			<em class="price js-number"></em>
+			<em class="price js-number"></em>
+			<em class="price js-number"></em>
+			<em class="price js-number"></em>
 		</span>
 	</div>
 
 </body>
 <script src="js/jquery_2_1_3_min.js"></script>
+<script src="js/animateBackground-plugin.js"></script>
 <script>
-	var $moreNum = $("#js-more-nums"),
-		$allNum = $("#cur_num");
+	var $number = $(".js-number");
 
-	// 顺序滚动数字
 	/**
 	 *	顺序滚动数字
 	 *
@@ -88,23 +87,22 @@
 		if (last) {
 			var y = -(parseInt(num) * 25);
 		} else {
-			var y = -(parseInt(num) * 35);
+			var y = -(parseInt(num) * 25);
 		}
-
 		ele.animate({
 			backgroundPositionY: String(y) + 'px'
-		}, 'easeInOutCirc', 'swing', function () {});
+		}, 'easeInOutCirc', 'linear', function () {});
 	};
 	var m = 0;
 
 	// 构造一个对象来存储是否停止当前的动画；默认全部为false
 	var stopObj = {};
-	for (let i = 0; i < $('.price').length; i++) {
+	for (let i = 0; i < $number.length; i++) {
 		stopObj[i] = false;
 	}
 	// console.log(stopObj);
 
-	$('.price').each(function (params) {
+	$number.each(function (params) {
 		var that = $(this);
 		setInterval(function () {
 			sNum = Math.floor(Math.random() * 4 + 1);
@@ -119,7 +117,7 @@
 	// 模拟数据请求；5s之后得到第二个框里面的结果；从0开始
 	setTimeout(() => {
 		stopObj[1] = true;
-		showNum($('.price').eq(1), 2, 1);
+		showNum($number.eq(1), 2, 1);
 	}, 5000);
 </script>
 
