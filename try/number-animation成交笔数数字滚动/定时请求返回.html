@@ -60,15 +60,13 @@
 
 <body>
 	<div class="more">
-		<span class="more-wrap">安全成交
-			<span class="more-nums" id="js-more-nums">
-				<em class="price"></em>
-				<em class="price"></em>
-				<em class="price"></em>
-				<em class="price"></em>
-				<em class="price"></em>
-				<em class="price"></em>
-			</span> 笔交易
+		<span class="more-nums" id="js-more-nums">
+			<em class="price"></em>
+			<em class="price"></em>
+			<em class="price"></em>
+			<em class="price"></em>
+			<em class="price"></em>
+			<em class="price"></em>
 		</span>
 	</div>
 
@@ -78,39 +76,51 @@
 	var $moreNum = $("#js-more-nums"),
 		$allNum = $("#cur_num");
 
-	//交易笔数数字效果展示
-	function show_num(index,n) {
-		var it = $moreNum.find("em");
-		var len = String(n).length;
-
-
-		for (var i = 0; i < len; i++) {
-			if (it.length <= i) {
-				$moreNum.append("<em></em>");
-			}
-			var num = n;
-			// console.log(num);
-			
+	// 顺序滚动数字
+	/**
+	 *	顺序滚动数字
+	 *
+	 * @param {jquery对象} ele	 操作的元素
+	 * @param {number} num		滚动的位置	
+	 * @param {Boolean} last	是否为最后滚动	
+	 */
+	function showNum(ele, num, last) {
+		if (last) {
 			var y = -(parseInt(num) * 25);
-			var obj = $moreNum.find("em").eq(i);
-			//console.log(String(y));
-			obj.animate({
-				backgroundPositionY: String(y) + 'px'
-			}, 'slow', 'swing', function () {});
+		} else {
+			var y = -(parseInt(num) * 65);
 		}
-	};
 
-	function rollFun() {
-		var time1;
-		time1 = setInterval(function () {
-			sNum = Math.floor(Math.random()*4+1);
-			// console.log(sNum);
-			
-			show_num(1,parseInt(sNum));
-		}, 100);
+		ele.animate({
+			backgroundPositionY: String(y) + 'px'
+		}, 'easeInOutCirc', 'swing', function () {});
 	};
-	rollFun()
-	// show_num(123456)
+	var m = 0;
+
+	// 构造一个对象来存储是否停止当前的动画；默认全部为false
+	var stopObj = {};
+	for (let i = 0; i < $('.price').length; i++) {
+		stopObj[i] = false;
+	}
+	// console.log(stopObj);
+
+	$('.price').each(function (params) {
+		var that = $(this);
+		setInterval(function () {
+			sNum = Math.floor(Math.random() * 4 + 1);
+			m++;
+			if (m > 4) {
+				m = 0
+			}
+			if (stopObj[that.index()]) return;
+			showNum(that, m);
+		}, 300);
+	});
+	// 模拟数据请求；5s之后得到第二个框里面的结果；从0开始
+	setTimeout(() => {
+		stopObj[1] = true;
+		showNum($('.price').eq(1), 2, 1);
+	}, 5000);
 </script>
 
 </html>
