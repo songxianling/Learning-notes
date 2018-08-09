@@ -88,7 +88,7 @@
 		if (last) {
 			var y = -(parseInt(num) * 25);
 		} else {
-			var y = -(parseInt(num) * 65);
+			var y = -(parseInt(num) * 35);
 		}
 
 		ele.animate({
@@ -109,7 +109,7 @@
 		setInterval(function () {
 			sNum = Math.floor(Math.random() * 4 + 1);
 			m++;
-			if (m > 4) {
+			if (m > 24) {
 				m = 0
 			}
 			if (stopObj[that.index()]) return;
