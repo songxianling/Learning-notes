@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #da td a {
+            height: 30px;
+            line-height: 30px;
+            display: block;
+        }
+
+        table.result td a {
+            display: block;
+            padding: 5px 0 0 0;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        table.result td a div {
+            font-size: 12px;
+            color: #fff;
+            margin-top: 5px;
+        }
+
+        caption {
+            text-align: center;
+            line-height: 300%;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .tips {
+            position: absolute;
+            margin: 100px 0 0 530px;
+            width: 91px;
+            height: 94px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            border: 1px solid #eee;
+        }
+
+        .aqq div,
+        span.aqq {
+            background: #04dd98
+        }
+
+        .yjq div,
+        span.yjq {
+            background: #ffb935
+        }
+
+        .pnq div,
+        span.pnq {
+            background: #ff7373
+        }
+
+        .chk div,
+        span.chk {
+            background: #ff8000
+        }
+
+        .ann {
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .aqq div,
+        span.aqq,
+        span.yjq,
+        .yjq div,
+        span.pnq,
+        .pnq div,
+        .chk div,
+        span.chk {
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+        #da {
+            width: 100%
+        }
+    </style>
+    <link rel="stylesheet" href="./mobile.css">
+    <script src="./calendar.js"></script>
+</head>
+
+<body>
+    <div id="CalBody"></div>
+    <!-- <div class="box">
+        <div class="title">2018年8月</div>
+        <div class="cont">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="result noline center">
+                <tbody>
+                    <tr>
+                        <th>日</th>
+                        <th>一</th>
+                        <th>二</th>
+                        <th>三</th>
+                        <th>四</th>
+                        <th>五</th>
+                        <th>六</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="pnq">
+                            <a href="./2018-8-1.html" title="排卵期">1
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-2.html" title="排卵期">2
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-3.html" title="排卵期">3
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-4.html" title="排卵期">4
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pnq">
+                            <a href="./2018-8-5.html" title="排卵期">5
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-6.html" title="安全期">6
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-7.html" title="安全期">7
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-8.html" title="安全期">8
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-9.html" title="安全期">9
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-10.html" title="安全期">10
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-11.html" title="安全期">11
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="aqq">
+                            <a href="./2018-8-12.html" title="安全期">12
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-13.html" title="安全期">13
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-14.html" title="安全期">14
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="yjq chk">
+                            <a href="./2018-8-15.html" title="月经大量来潮第一天：月经期">15
+                                <div>月经期</div>
+                            </a>
+                        </td>
+                        <td class="yjq">
+                            <a href="./2018-8-16.html" title="月经大量来潮1天后：月经期">16
+                                <div>月经期</div>
+                            </a>
+                        </td>
+                        <td class="yjq">
+                            <a href="./2018-8-17.html" title="月经大量来潮2天后：月经期">17
+                                <div>月经期</div>
+                            </a>
+                        </td>
+                        <td class="yjq">
+                            <a href="./2018-8-18.html" title="月经大量来潮3天后：月经期">18
+                                <div>月经期</div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="yjq">
+                            <a href="./2018-8-19.html" title="月经大量来潮4天后：月经期">19
+                                <div>月经期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-20.html" title="月经大量来潮5天后：安全期">20
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-21.html" title="月经大量来潮6天后：安全期">21
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-22.html" title="月经大量来潮7天后：安全期">22
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="aqq">
+                            <a href="./2018-8-23.html" title="月经大量来潮8天后：安全期">23
+                                <div>安全期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-24.html" title="月经大量来潮9天后：排卵期">24
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-25.html" title="月经大量来潮10天后：排卵期">25
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pnq">
+                            <a href="./2018-8-26.html" title="月经大量来潮11天后：排卵期">26
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-27.html" title="月经大量来潮12天后：排卵期">27
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-28.html" title="月经大量来潮13天后：排卵期">28
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-29.html" title="月经大量来潮14天后：排卵期">29
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-30.html" title="月经大量来潮15天后：排卵期">30
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                        <td class="pnq">
+                            <a href="./2018-8-31.html" title="月经大量来潮16天后：排卵期">31
+                                <div>排卵期</div>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+</body>
+
+<script>
+    InitCalendar(2018, 7);
+</script>
+
+</html>
