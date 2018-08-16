@@ -8,35 +8,38 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="./index.css">
-    <script src="./xh-calendar.js"></script>
+    
 </head>
 
 <body>
     <!-- <div id="CalBody"></div> -->
-    <div class="xh-calendar-page">
-        <div class="calendar-title">
-            2018年8月
+    <div class="xh-calendar-page" id="js-xh-calendar-page">
+        <!-- <div class="xh-calendar-title">
+            <span><</span>
+            <span>2018年8月</span>  
+            <span>></span>  
+            <span>回今天</span>
         </div>
-        <div class="calendar-con">
-            <ul class="xh-calendar-week flex-ul clearfix">
-                <li class="item">日</li>
-                <li class="item">一</li>
-                <li class="item">二</li>
-                <li class="item">三</li>
-                <li class="item">四</li>
-                <li class="item">五</li>
-                <li class="item">六</li>
-            </ul>
-            <ul class="xh-calendar-date flex-ul clearfix" id="js-xh-calendar-date">
-                
-            </ul>
-        </div>
+        <ul class="xh-calendar-week flex-ul clearfix">
+            <li class="item">日</li>
+            <li class="item">一</li>
+            <li class="item">二</li>
+            <li class="item">三</li>
+            <li class="item">四</li>
+            <li class="item">五</li>
+            <li class="item">六</li>
+        </ul>
+        <div class="xh-calendar-date flex-ul clearfix" id="js-xh-calendar-date">
+            
+        </div> -->
     </div>
 
 </body>
-
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="./xh-calendar.js"></script>
 <script>
-    InitCalendar(2018, 8);
+    $('#js-xh-calendar-page').xhInitCalendar();
+    // InitCalendar(2018, 8);
 </script>
 
 </html>
