@@ -18,7 +18,7 @@
         this.defaults = {
             ifCurrYear: true, //是否只显示当年的日历
             switchMonth: true,// 是否切换月份
-            hoverDate: true,// hover是否显示当天信息
+            hoverDate: false,// hover是否显示当天信息
             backToday: true,// 是否返回当天
             holidayArray:[],//休息日列表默认不填写时为正常周末
             workingDayArray:[]//加班列表
@@ -77,15 +77,20 @@
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
-
+            // console.log(dateStr);
+            // console.log(this.$calendarDate_item);
+            
             this.$calendarTitle_text.text(year + '年' + dateStr.substr(4, 2)+'月');
-
+            
             this.$calendarDate_item.each(function(i) {
+                
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay()) , 
                     allDay_str = returnDateStr(allDay) ,
                     $itemThis = $(this);
-
+                    
+                console.log(allDay_str);
+                
                 $itemThis.text(allDay.getDate()).attr('data', allDay_str);
                 if (returnDateStr(new Date()) === allDay_str) {
                     $itemThis.attr('class', 'item item-curDay');
@@ -96,16 +101,16 @@
                 }
 
                 //设置所有周末为假期
-                var day = allDay.getDay();
-                if(day === 6 || day === 0){
-                    $itemThis.addClass('item-holiday');
-                }
-                if(opts.holidayArray.indexOf(parseInt(allDay_str))>-1){
-                    $itemThis.addClass('item-holiday');
-                }
-                if(opts.workingDayArray.indexOf(parseInt(allDay_str))>-1){
-                    $itemThis.removeClass('item-holiday');
-                }
+                // var day = allDay.getDay();
+                // if(day === 6 || day === 0){
+                //     $itemThis.addClass('item-holiday');
+                // }
+                // if(opts.holidayArray.indexOf(parseInt(allDay_str))>-1){
+                //     $itemThis.addClass('item-holiday');
+                // }
+                // if(opts.workingDayArray.indexOf(parseInt(allDay_str))>-1){
+                //     $itemThis.removeClass('item-holiday');
+                // }
 
             });
         },
@@ -136,8 +141,8 @@
                 '<p class="week"></p>';
 
             for (var i = 0; i < 6; i++) {
-                _dateStr += '<li class="item">26</li>' +
-                    '<li class="item">26</li>' +
+                _dateStr += '<li class="item">23</li>' +
+                    '<li class="item a1">26</li>' +
                     '<li class="item">26</li>' +
                     '<li class="item">26</li>' +
                     '<li class="item">26</li>' +
@@ -149,7 +154,6 @@
             this.$calendar_week.html(_weekStr);
             this.$calendar_date.html(_dateStr);
             this.$calendar_today.html(_dayStr);
-
             this.$calendar.append(this.$calendar_title, this.$calendar_week, this.$calendar_date, this.$calendar_today);
             this.$calendar.show();
         },
@@ -165,7 +169,8 @@
             self.$calendarDate_item = self.$calendar_date.find('.item');
             self.$calendarToday_date = self.$calendar_today.find('.date');
             self.$calendarToday_week = self.$calendar_today.find('.week');
-
+            
+            
             self.showCalendar(self.opts);
 
             if (self.opts.switchMonth) {
@@ -186,7 +191,6 @@
                     }
                     
                     dateObj.setDate(new Date(_date.getFullYear(), _month , 1));
-
                     self.showCalendar(self.opts);
                 });
 
@@ -207,7 +211,6 @@
                     }
                     
                     dateObj.setDate(new Date(_date.getFullYear(),_month, 1));
-
                     self.showCalendar(self.opts);
                 });
             }
@@ -227,7 +230,6 @@
                             }
                         }
                         dateObj.setDate(new Date());
-
                         self.showCalendar(self.opts);
                     }
                 });
@@ -273,7 +275,8 @@
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
-
+        // console.log(date);
+        
         month = month <= 9 ? ('0' + month) : ('' + month);
         day = day <= 9 ? ('0' + day) : ('' + day);
 

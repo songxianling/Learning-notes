@@ -1,0 +1,16 @@
+.xh-calendar-page{
+    width: 100%;
+    
+}
+
+.flex-ul li{
+    float: left;
+    width: 13%;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.flex-ul li.curDate{
+    border: 1px solid tomato;
+}
