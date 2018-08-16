@@ -200,7 +200,6 @@
 			setDate: function (date) {
 				sDate = date;
 				console.log(sDate,date);
-				
 			}
 		}
 	})();
