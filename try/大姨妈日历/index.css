@@ -3,7 +3,7 @@
     
 }
 
-.flex-ul li{
+.li-out-box li{
     float: left;
     width: 13%;
     height: 40px;
@@ -11,6 +11,10 @@
     border: 1px solid #ddd;
     box-sizing: border-box;
 }
-.flex-ul li.curDate{
+.li-out-box li.cur-date{
     border: 1px solid tomato;
+}
+.li-out-box li.begin-date{
+    background: #fbe9fe;
+    border: 1px solid rgb(240, 96, 204);
 }

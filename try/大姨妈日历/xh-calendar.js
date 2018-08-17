@@ -8,6 +8,9 @@
 		this.nowMonth = this.now.getMonth() + 1;
 		this.nowDay = this.now.getDate();
 		this.nowDate = this.nowYear + "-" + ((this.nowMonth < 10) ? ("0" + this.nowMonth) : this.nowMonth) + "-" + ((this.nowDay < 10) ? ("0" + this.nowDay) : this.nowDay);
+		this.dayParams = options;
+		console.log(options);
+
 
 	}
 	XhInitCalendar.prototype = {
@@ -17,7 +20,7 @@
 
 			that.titleText = that.xhCalendarBox.find('#js-today-text');
 			console.log(that.titleText);
-			
+
 			that.arrowPrev = that.xhCalendarBox.find('#js-arrow-prev');
 			that.arrowNext = that.xhCalendarBox.find('#js-arrow-next');
 			that.goToday = that.xhCalendarBox.find('#js-today-btn');
@@ -28,11 +31,11 @@
 
 				var curMonth = curDate.getMonth() - 1;
 				// console.log(curMonth);
-				
+
 				// curDate.getFullYear 获取完整的年份
 				// console.log(new Date(curDate.getFullYear(),curMonth, 1));
-				
-				xhDateObj.setDate(new Date(curDate.getFullYear(),curMonth, 1));
+
+				xhDateObj.setDate(new Date(curDate.getFullYear(), curMonth, 1));
 				that.replaceDom();
 
 			});
@@ -42,11 +45,11 @@
 
 				var curMonth = curDate.getMonth() + 1;
 				// console.log(curMonth);
-				
+
 				// curDate.getFullYear 获取完整的年份
 				// console.log(new Date(curDate.getFullYear(),curMonth, 1));
-				
-				xhDateObj.setDate(new Date(curDate.getFullYear(),curMonth, 1));
+
+				xhDateObj.setDate(new Date(curDate.getFullYear(), curMonth, 1));
 				that.replaceDom();
 
 			});
@@ -115,8 +118,8 @@
 
 			// 定义外围元素
 			that.xhCalendarTitle = $('<div class="xh-calendar-title"></div>');
-			that.xhCalendarWeek = $('<ul class="xh-calendar-week flex-ul clearfix"></ul>');
-			that.xhCalendarDate = $('<div class="xh-calendar-date flex-ul clearfix" id="js-xh-calendar-date"></div>');
+			that.xhCalendarWeek = $('<ul class="xh-calendar-week li-out-box clearfix"></ul>');
+			that.xhCalendarDate = $('<div class="xh-calendar-date li-out-box clearfix" id="js-xh-calendar-date"></div>');
 
 			// 定义实际元素字符串
 			var titleDomStr = '<span id="js-arrow-prev"><</span>' +
@@ -142,9 +145,9 @@
 			for (var j = 1; j <= dIm; j++) {
 				var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
 				if (strDate == that.nowDate) {
-					dateDomStr += '<li class="curDate">' + j + '</li>';
+					dateDomStr += '<li class="item-day cur-date">' + j + '</li>';
 				} else {
-					dateDomStr += '<li>' + j + '</li>';
+					dateDomStr += '<li class="item-day">' + j + '</li>';
 				}
 				if (weekI == 6) {
 					weekI = 0;
@@ -162,6 +165,22 @@
 			that.xhCalendarDate.html(dateDomStr);
 			that.xhCalendarBox.append(that.xhCalendarTitle, that.xhCalendarWeek, that.xhCalendarDate);
 			that.xhCalendarBox.show();
+			that.beautifyDomSty('201808');
+		},
+		// 美化dom样式渲染详细展示数据
+		beautifyDomSty: function (params) {
+			var that = this;
+			console.log('美化日历样式===>' + params);
+			that.allDateLi = that.xhCalendarDate.find('.item-day');
+			console.log(that.allDateLi.length);
+			for (var i = 0, len = that.allDateLi.length; i < len ; i++) {
+				var cur = that.allDateLi[i];
+				if(i == that.dayParams.beginDay){
+					that.allDateLi.eq(i).addClass('begin-date');
+					
+				}
+				
+			}
 		},
 		// 获取一个月有几天
 		getDayInMonth: function (year, month) {
@@ -199,7 +218,7 @@
 
 			setDate: function (date) {
 				sDate = date;
-				console.log(sDate,date);
+				console.log(sDate, date);
 			}
 		}
 	})();
