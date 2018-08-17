@@ -39,12 +39,19 @@
 <script src="./xh-calendar.js"></script>
 <script>
     $('#js-xh-calendar-page').xhInitCalendar({
-        beginDay: '17',
+        beginDay: 2,
+        dayNum: 5,
+        cycle: 26,
         handleFun: ajax
     });
 
     function ajax(params) {
-        return params;
+        return {
+            beginDay: 1,
+            dayNum: 3,
+            cycle: 20,
+        }
+        // return params;
     }
     // InitCalendar(2018, 8);
 </script>

@@ -4,6 +4,7 @@
 }
 
 .li-out-box li{
+    position: relative;
     float: left;
     width: 13%;
     height: 40px;
@@ -17,4 +18,22 @@
 .li-out-box li.begin-date{
     background: #fbe9fe;
     border: 1px solid rgb(240, 96, 204);
+}
+.li-out-box li.ovulate-date{
+    background: rgb(165, 45, 135);
+    border: 1px solid rgb(165, 45, 135);
+}
+.li-out-box li.ovulate-date.ovulate-cur-day{
+    color: #fff;
+}
+/* .li-out-box li.begin-date.ovulate-date{
+    background: #fbe9fe;
+    border: 1px solid rgb(240, 96, 204);
+} */
+.li-out-box li .lose-weight{
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+    line-height: 1;
+    font-size: 12px;
 }

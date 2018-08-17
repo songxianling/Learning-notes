@@ -8,6 +8,7 @@
 		this.nowMonth = this.now.getMonth() + 1;
 		this.nowDay = this.now.getDate();
 		this.nowDate = this.nowYear + "-" + ((this.nowMonth < 10) ? ("0" + this.nowMonth) : this.nowMonth) + "-" + ((this.nowDay < 10) ? ("0" + this.nowDay) : this.nowDay);
+		this.options = options;
 		this.dayParams = options;
 		console.log(options);
 
@@ -48,7 +49,14 @@
 
 				// curDate.getFullYear 获取完整的年份
 				// console.log(new Date(curDate.getFullYear(),curMonth, 1));
-
+				if(that.options){
+					if (typeof that.options.handleFun === 'function') {
+						var abc = that.options.handleFun('777');
+						console.log(abc);
+						that.dayParams = abc;
+	
+					}
+				}
 				xhDateObj.setDate(new Date(curDate.getFullYear(), curMonth, 1));
 				that.replaceDom();
 
@@ -79,9 +87,9 @@
 			for (var j = 1; j <= dIm; j++) {
 				var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
 				if (strDate == that.nowDate) {
-					dateDomStr += '<li class="curDate">' + j + '</li>';
+					dateDomStr += '<li class="item-day cur-date">' + j + '</li>';
 				} else {
-					dateDomStr += '<li>' + j + '</li>';
+					dateDomStr += '<li class="item-day">' + j + '</li>';
 				}
 				if (weekI == 6) {
 					weekI = 0;
@@ -92,7 +100,8 @@
 			for (k = weekI; k <= 6 && k > 0; k++) {
 				dateDomStr += "<li>&nbsp;</li>";
 			}
-			that.xhCalendarDate.html(dateDomStr)
+			that.xhCalendarDate.html(dateDomStr);
+			that.beautifyDomSty();
 
 		},
 
@@ -105,8 +114,6 @@
 				year = that.nowYear;
 				month = that.nowMonth;
 			}
-
-
 			// 获取循环周期
 			var dIm = that.getDayInMonth(year, month);
 			// 获得当前月份的第一天的标准时间
@@ -114,7 +121,6 @@
 			// 得到从周几开始填入内容(本月的第一天是周几);返回值是number
 			// 获取本月第一天是星期X(0-6,0代表星期天)
 			var week = standardTime.getDay();
-
 
 			// 定义外围元素
 			that.xhCalendarTitle = $('<div class="xh-calendar-title"></div>');
@@ -165,22 +171,67 @@
 			that.xhCalendarDate.html(dateDomStr);
 			that.xhCalendarBox.append(that.xhCalendarTitle, that.xhCalendarWeek, that.xhCalendarDate);
 			that.xhCalendarBox.show();
-			that.beautifyDomSty('201808');
+			that.beautifyDomSty();
 		},
 		// 美化dom样式渲染详细展示数据
-		beautifyDomSty: function (params) {
+		beautifyDomSty: function () {
 			var that = this;
-			console.log('美化日历样式===>' + params);
+			// 如果没有参数传递过来
+			if (!that.dayParams) {
+				return;
+			}
 			that.allDateLi = that.xhCalendarDate.find('.item-day');
 			console.log(that.allDateLi.length);
-			for (var i = 0, len = that.allDateLi.length; i < len ; i++) {
-				var cur = that.allDateLi[i];
-				if(i == that.dayParams.beginDay){
-					that.allDateLi.eq(i).addClass('begin-date');
-					
-				}
-				
+
+			// 渲染⭐️期
+			var ovulateDay = that.dayParams.cycle - 14; // ⭐️当天
+			// 新建一个数组为整个ovulate的日期
+			var ovulateCycle = [];
+			var ovulateBeginDay = ovulateDay - 4; // ⭐️开始的第一天
+			for (var i = 0; i < 10; i++) {
+				ovulateCycle.push(ovulateBeginDay++);
 			}
+			// console.log(ovulateCycle);
+			ovulateCycle.splice(ovulateCycle.indexOf(ovulateDay + 1), 1);
+			// console.log(ovulateCycle);
+			// 渲染⭐️当天元素 单独ovulate
+			that.allDateLi.eq(ovulateDay).addClass('ovulate-cur-day');
+			// 渲染⭐️期间丰胸的日期(10天内不包含ovulate当天的其他日期)
+			var breastDay = ovulateCycle[randomNum(9) - 1];
+			that.allDateLi.eq(breastDay).append('<span class="lose-weight">丰胸</span>');
+			// 后4天
+			for (var i = ovulateDay; i < ovulateDay + 5; i++) {
+				that.allDateLi.eq(i).addClass('ovulate-date');
+			}
+			// 前5天
+			for (var i = 0; i < 6; i++) {
+				that.allDateLi.eq(ovulateDay--).addClass('ovulate-date');
+			}
+
+			// 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前3天随机出)
+			var beautyDay = that.dayParams.beginDay - randomNum(3) - 1;
+			if (beautyDay >= 0) {
+				that.allDateLi.eq(beautyDay).append('<span class="lose-weight">敷面膜</span>');
+			}
+			// 渲染❤️元素
+			for (var i = 0, len = that.allDateLi.length; i < len; i++) {
+				if (i == that.dayParams.beginDay - 1) {
+					// that.allDateLi.eq(i).addClass('begin-date');
+					for (var j = 0; j < that.dayParams.dayNum; j++) {
+						that.allDateLi.eq(that.dayParams.beginDay + j - 1).addClass('begin-date');
+					}
+				}
+				if (i == that.dayParams.cycle) {
+					// that.allDateLi.eq(i).addClass('begin-date');
+					for (var k = that.dayParams.cycle; k < that.dayParams.dayNum + that.dayParams.cycle; k++) {
+						that.allDateLi.eq(that.dayParams.beginDay + k - 1).addClass('begin-date');
+					}
+				}
+
+			}
+			// 渲染燃脂（瘦身）元素 ❤️结束之后的随机3天内
+			// 本身超出1天+eq从0开始;所以减去2
+			that.allDateLi.eq(that.dayParams.beginDay + that.dayParams.dayNum + randomNum(3) - 2).append('<span class="lose-weight">燃脂</span>');
 		},
 		// 获取一个月有几天
 		getDayInMonth: function (year, month) {
@@ -222,5 +273,8 @@
 			}
 		}
 	})();
+	var randomNum = function (params) {
+		return Math.ceil(Math.random() * params);
+	}
 
 })(jQuery, window, document);
