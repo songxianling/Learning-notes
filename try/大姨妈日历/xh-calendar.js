@@ -20,7 +20,6 @@
 			that.buildDom();
 
 			that.titleText = that.xhCalendarBox.find('#js-today-text');
-			console.log(that.titleText);
 
 			that.arrowPrev = that.xhCalendarBox.find('#js-arrow-prev');
 			that.arrowNext = that.xhCalendarBox.find('#js-arrow-next');
