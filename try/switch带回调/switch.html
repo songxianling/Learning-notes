@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>switch</title>
+    <link rel="stylesheet" href="./switch.css">
+</head>
+
+<body>
+    <input type="checkbox" class="checkbox-switch" />
+    <input type="checkbox" class="checkbox-switch-2" />
+</body>
+<script src="./switch.js"></script>
+<script>
+    var el = document.querySelector('.checkbox-switch');
+    var el2 = document.querySelector('.checkbox-switch-2');
+    var mySwitch = new Switch(el, {
+        showText: true,
+        onText: 'Y',
+        offText: 'N',
+        onSwitchColor: '#64BD63',
+        offSwitchColor: '#fff',
+        onJackColor: '#fff',
+        offJackColor: '#fff',
+        showText: false,
+        disabled: false,
+        onInit: function () {},
+        beforeChange: function () {
+            console.log(11);
+        },
+        onChange: function () {
+            console.log(1);
+
+        },
+        beforeRemove: function () {
+            console.log(2);
+        },
+        onRemove: function () {
+            console.log(3);
+        },
+        beforeDestroy: function () {},
+        onDestroy: function () {}
+    });
+    var mySwitch = new Switch(el2, {
+        showText: true,
+        onText: 'O',
+        offText: 'X'
+    });
+</script>
+
+</html>
