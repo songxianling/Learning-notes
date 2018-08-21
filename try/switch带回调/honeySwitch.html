@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>switch</title>
+    <link rel="stylesheet" href="./honeySwitch.css">
+    <scritp src="../js/jquery-1.11.1.min.js"></scritp>
+</head>
+
+<body>
+    <span class="switch-off " id="js-switch"></span>
+</body>
+<script src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js'></script>
+<script src="./honeySwitch.js"></script>
+<script>
+    $(function (params) {
+        switchEvent("#js-switch", function () {
+            console.log(1);
+
+        }, function () {
+            console.log(2);
+
+        });
+        honeySwitch.showOff("#js-switch");
+    })
+</script>
+
+</html>
