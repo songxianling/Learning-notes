@@ -1,3 +1,5 @@
+
+
 ;
 (function ($, window, document, undefined) {
     var XhInitCalendar = function (ele, options) {
@@ -196,17 +198,19 @@
             // for (var i = 0; i < 10; i++) {
             //     ovulateCycle.push(ovulateBeginDay++);
             // }
-            // console.log(ovulateCycle);
-            ovulateCycle.splice(ovulateCycle.indexOf(ovulateDay + 1), 1);
-            // console.log(ovulateCycle);
-            // 渲染⭐️当天元素 单独ovulate
-            // 常规一个月一次的情况
-            console.log(ovulateDay);
+            // // console.log(ovulateCycle);
+            // ovulateCycle.splice(ovulateCycle.indexOf(ovulateDay + 1), 1);
+            // // console.log(ovulateCycle);
+            // // 渲染⭐️当天元素 单独ovulate
+            // // 常规一个月一次的情况
+            // console.log(ovulateDay);
 
-            that.allDateLi.eq(ovulateDay).addClass('ovulate-cur-date');
-            that.allDateLi.eq(ovulateDay).append('<span class="text">排卵日1</span>');
-            // 渲染⭐️期间丰胸的日期(10天内不包含ovulate当天的其他日期)
-            var breastDay = ovulateCycle[randomNum(9) - 1];
+            // that.allDateLi.eq(ovulateDay).addClass('ovulate-cur-date');
+            // that.allDateLi.eq(ovulateDay).append('<span class="text">排卵日1</span>');
+            // // 渲染⭐️期间丰胸的日期(10天内不包含ovulate当天的其他日期)
+            // var breastDay = ovulateCycle[randomNum(9) - 1];
+            // 渲染⭐️期间丰胸的日期(ovulate当天的后四天)
+            var breastDay = ovulateBeginDay + randomNum(4);
             that.allDateLi.eq(breastDay).append('<span class="text">丰胸</span>');
             // 后4天
             for (var i = ovulateDay; i < ovulateDay + 5; i++) {
@@ -248,6 +252,11 @@
                     }
                 }
                 if (i == that.dayParams.cycle) {
+                    // 两次
+                    var beautyDay2 = that.dayParams.cycle - randomNum(3) - 1;
+                    if (beautyDay2 >= 0) {
+                        that.allDateLi.eq(beautyDay2).append('<span class="text">敷面膜</span>');
+                    }
                     // that.allDateLi.eq(i).addClass('begin-date');
                     for (var k = that.dayParams.cycle; k < that.dayParams.dayNum + that.dayParams.cycle; k++) {
                         that.allDateLi.eq(that.dayParams.beginDay + k - 1).addClass('forecast-menses-date');
