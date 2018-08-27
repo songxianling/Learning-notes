@@ -87,9 +87,9 @@
                 var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
                 var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="'+itemDate+'" data-day="'+j+'"><span class="date">今</span></li>';
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '" data-day="' + j + '"><span class="date">今</span></li>';
                 } else {
-                    dateDomStr += '<li class="item-day js-item-day" data-time="'+itemDate+'" data-day="'+j+'">' + j + '</li>';
+                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '" data-day="' + j + '">' + j + '</li>';
                 }
                 if (weekI == 6) {
                     weekI = 0;
@@ -154,13 +154,13 @@
                 var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
                 var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
                 // console.log(strDate);
-                
+
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="'+itemDate+'" data-day="'+j+'">' +
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '" data-day="' + j + '">' +
                         '<span class="date">今</span>' +
                         '</li>';
                 } else {
-                    dateDomStr += '<li class="item-day js-item-day" data-time="'+itemDate+'" data-day="'+j+'">' +
+                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '" data-day="' + j + '">' +
                         '<span class="date">' + j + '</span>' +
                         '</li>';
                 }
@@ -219,6 +219,7 @@
             }
             // 一个月两次的情况
             if (that.dayParams.beginDay > 9) {
+
                 console.log(that.dayParams.beginDay - 9);
                 var ovulateDay2 = that.dayParams.beginDay - 9 - 1;
                 console.log(ovulateDay2);
@@ -259,6 +260,13 @@
                     }
                 }
 
+            }
+            // 当前开始的日期和周期是否符合2次❤️(上次)
+            var beginDay2 = that.dayParams.beginDay - that.dayParams.cycle - 1;
+            if (beginDay2 >= 0) {
+                for (var i = beginDay2, len = that.dayParams.dayNum; i < len; i++) {
+                    that.allDateLi.eq(i).addClass('forecast-menses-date');
+                }
             }
             // 渲染燃脂（瘦身）元素 ❤️结束之后的随机3天内
             // 本身超出1天+eq从0开始;所以减去2
