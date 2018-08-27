@@ -1,5 +1,3 @@
-
-
 ;
 (function ($, window, document, undefined) {
     var XhInitCalendar = function (ele, options) {
@@ -21,11 +19,11 @@
             var that = this;
             that.buildDom();
 
-            that.titleText = that.xhCalendarBox.find('#js-today-text');
+            that.titleText = that.xhCalendarBox.find('.js-today-text');
 
-            that.arrowPrev = that.xhCalendarBox.find('#js-arrow-prev');
-            that.arrowNext = that.xhCalendarBox.find('#js-arrow-next');
-            that.goToday = that.xhCalendarBox.find('#js-today-btn');
+            that.arrowPrev = that.xhCalendarBox.find('.js-arrow-prev');
+            that.arrowNext = that.xhCalendarBox.find('.js-arrow-next');
+            that.goToday = that.xhCalendarBox.find('.js-go-today-btn');
 
             that.arrowPrev.on('click', function () {
                 var curDate = xhDateObj.getDate();
@@ -87,10 +85,11 @@
 
             for (var j = 1; j <= dIm; j++) {
                 var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
+                var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day cur-date">' + j + '</li>';
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="'+itemDate+'" data-day="'+j+'"><span class="date">今</span></li>';
                 } else {
-                    dateDomStr += '<li class="item-day">' + j + '</li>';
+                    dateDomStr += '<li class="item-day js-item-day" data-time="'+itemDate+'" data-day="'+j+'">' + j + '</li>';
                 }
                 if (weekI == 6) {
                     weekI = 0;
@@ -130,9 +129,9 @@
 
             // 定义实际元素字符串
             var titleDomStr = '<div class="center-box">' +
-                '<span class="arrow-prev"></span>' +
-                '<span class="today-text">2018年8月</span>' +
-                '<span class="arrow-next"></span>' +
+                '<span class="arrow-prev js-arrow-prev"></span>' +
+                '<span class="today-text js-today-text">2018年8月</span>' +
+                '<span class="arrow-next js-arrow-next"></span>' +
                 '</div>' +
                 '<span class="today-btn js-go-today-btn">今天</span>';
             var weekDomStr = '<li class="week-item">周日</li>' +
@@ -147,18 +146,21 @@
             for (var i = 0, len = week; i < len; i++) {
                 dateDomStr += "<li>&nbsp;</li>";
             }
-            console.log(dIm);
+            // console.log(dIm);
             // 常量存储7天剩余
             var weekI = i;
 
             for (var j = 1; j <= dIm; j++) {
                 var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
+                var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
+                // console.log(strDate);
+                
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day cur-date">' +
-                        '<span class="date">' + j + '</span>' +
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="'+itemDate+'" data-day="'+j+'">' +
+                        '<span class="date">今</span>' +
                         '</li>';
                 } else {
-                    dateDomStr += '<li class="item-day">' +
+                    dateDomStr += '<li class="item-day js-item-day" data-time="'+itemDate+'" data-day="'+j+'">' +
                         '<span class="date">' + j + '</span>' +
                         '</li>';
                 }
@@ -192,35 +194,29 @@
 
             // 渲染⭐️期
             var ovulateDay = that.dayParams.beginDay + that.dayParams.cycle - 1 - 14; // ⭐️当天
-            // 新建一个数组为整个ovulate的日期
-            var ovulateCycle = [];
+
             var ovulateBeginDay = ovulateDay - 4; // ⭐️开始的第一天
-            // for (var i = 0; i < 10; i++) {
-            //     ovulateCycle.push(ovulateBeginDay++);
-            // }
-            // // console.log(ovulateCycle);
-            // ovulateCycle.splice(ovulateCycle.indexOf(ovulateDay + 1), 1);
-            // // console.log(ovulateCycle);
-            // // 渲染⭐️当天元素 单独ovulate
-            // // 常规一个月一次的情况
-            // console.log(ovulateDay);
 
-            // that.allDateLi.eq(ovulateDay).addClass('ovulate-cur-date');
-            // that.allDateLi.eq(ovulateDay).append('<span class="text">排卵日1</span>');
-            // // 渲染⭐️期间丰胸的日期(10天内不包含ovulate当天的其他日期)
-            // var breastDay = ovulateCycle[randomNum(9) - 1];
-            // 渲染⭐️期间丰胸的日期(ovulate当天的后四天)
-            var breastDay = ovulateBeginDay + randomNum(4);
-            that.allDateLi.eq(breastDay).append('<span class="text">丰胸</span>');
-            // 后4天
-            for (var i = ovulateDay; i < ovulateDay + 5; i++) {
-                that.allDateLi.eq(i).addClass('ovulate-date');
-            }
-            // 前5天
-            for (var i = 0; i < 6; i++) {
-                that.allDateLi.eq(ovulateDay--).addClass('ovulate-date');
-            }
 
+            // 渲染⭐️ 常规一个月一次的情况
+            // 如果周期减去天数小于14则不显示⭐️
+            if (that.dayParams.cycle - that.dayParams.dayNum > 14) {
+                // 渲染⭐️当天元素 单独ovulate
+                that.allDateLi.eq(ovulateDay).addClass('ovulate-cur-date');
+                that.allDateLi.eq(ovulateDay).append('<span class="text p-text">排卵日</span>');
+
+                // 渲染⭐️期间丰胸的日期(ovulate当天的后四天)
+                var breastDay = ovulateDay + randomNum(4);
+                that.allDateLi.eq(breastDay).append('<span class="text">丰胸</span>');
+                // 后4天
+                for (var i = ovulateDay; i < ovulateDay + 5; i++) {
+                    that.allDateLi.eq(i).addClass('ovulate-date');
+                }
+                // 前5天
+                for (var i = 0; i < 6; i++) {
+                    that.allDateLi.eq(ovulateDay--).addClass('ovulate-date');
+                }
+            }
             // 一个月两次的情况
             if (that.dayParams.beginDay > 9) {
                 console.log(that.dayParams.beginDay - 9);
@@ -231,7 +227,7 @@
                     if (ovulateDay2 >= 0) {
                         if (i == 5) {
                             that.allDateLi.eq(ovulateDay2).addClass('ovulate-cur-date');
-                            that.allDateLi.eq(ovulateDay2).append('<span class="text">排卵日33</span>');
+                            that.allDateLi.eq(ovulateDay2).append('<span class="text p-text">排卵日</span>');
                         }
                         that.allDateLi.eq(ovulateDay2).addClass('ovulate-date');
                     }
@@ -241,7 +237,7 @@
             // 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前3天随机出)
             var beautyDay = that.dayParams.beginDay - randomNum(3) - 1;
             if (beautyDay >= 0) {
-                that.allDateLi.eq(beautyDay).append('<span class="text">敷面膜</span>');
+                that.allDateLi.eq(beautyDay).append('<span class="text">敷面膜1</span>');
             }
             // 渲染❤️元素
             for (var i = 0, len = that.allDateLi.length; i < len; i++) {
@@ -253,9 +249,9 @@
                 }
                 if (i == that.dayParams.cycle) {
                     // 两次
-                    var beautyDay2 = that.dayParams.cycle - randomNum(3) - 1;
+                    var beautyDay2 = that.dayParams.beginDay + that.dayParams.cycle - randomNum(3) - 1;
                     if (beautyDay2 >= 0) {
-                        that.allDateLi.eq(beautyDay2).append('<span class="text">敷面膜</span>');
+                        that.allDateLi.eq(beautyDay2).append('<span class="text">敷面膜2</span>');
                     }
                     // that.allDateLi.eq(i).addClass('begin-date');
                     for (var k = that.dayParams.cycle; k < that.dayParams.dayNum + that.dayParams.cycle; k++) {
