@@ -1,39 +1,155 @@
-.xh-calendar-page{
-    width: 100%;
-    
+.xh-calendar-con-box {
+    width: 100%
 }
 
-.li-out-box li{
+.xh-calendar-con-box .xh-calendar-title {
     position: relative;
+    height: .272321rem;
+    line-height: .272321rem
+}
+
+.xh-calendar-con-box .xh-calendar-title .center-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1.160714rem;
+    height: .272321rem;
+    line-height: .272321rem;
+    font-size: .142857rem;
+    color: #333
+}
+
+.xh-calendar-con-box .xh-calendar-title .center-box .arrow-prev {
+    display: inline-block;
+    width: .040179rem;
+    height: .049107rem;
+    padding: .111607rem .089286rem;
+    background: url(../../../../../images/mo/webapp/menstrual/arrow-left-icon.png) no-repeat content-box;
+    background-size: 100% 100%
+}
+
+.xh-calendar-con-box .xh-calendar-title .center-box .arrow-next {
+    display: inline-block;
+    margin-left: -7px;
+    width: .040179rem;
+    height: .049107rem;
+    padding: .111607rem .089286rem;
+    background: url(../../../../../images/mo/webapp/menstrual/arrow-right-icon.png) no-repeat content-box;
+    background-size: 100% 100%
+}
+
+.xh-calendar-con-box .xh-calendar-title .center-box .today-text {
+    display: inline-block;
+    height: .272321rem;
+    line-height: .272321rem;
+    text-align: center;
+    font-size: .142857rem;
+    color: #333
+}
+
+.xh-calendar-con-box .xh-calendar-title .today-btn {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    height: .178571rem;
+    line-height: .178571rem
+}
+
+.xh-calendar-con-box .xh-calendar-week {
+    padding: .022321rem 0;
+    border-top: 1px solid #f1f1f1
+}
+
+.xh-calendar-con-box .xh-calendar-week .week-item {
     float: left;
-    width: 13%;
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #ddd;
+    width: 14.28%;
+    font-size: .089286rem;
+    color: #c9c9c9
+}
+
+.xh-calendar-con-box .xh-calendar-date li {
+    float: left;
+    width: 14.28%;
+    height: .357143rem;
+    margin-top: .089286rem
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day {
+    position: relative;
+    font-size: .160714rem;
+    color: #79de93
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.cur-date .date {
+    border: .013393rem solid #ff677f;
+    border-radius: 50%
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day .date {
+    display: inline-block;
+    width: 50%;
+    height: .223214rem;
+    line-height: .223214rem;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    border: .013393rem solid transparent;
+    border-radius: 50%
 }
-.li-out-box li.cur-date{
-    border: 1px solid tomato;
-}
-.li-out-box li.begin-date{
-    background: #fbe9fe;
-    border: 1px solid rgb(240, 96, 204);
-}
-.li-out-box li.ovulate-date{
-    background: rgb(165, 45, 135);
-    border: 1px solid rgb(165, 45, 135);
-}
-.li-out-box li.ovulate-date.ovulate-cur-day{
-    color: #fff;
-}
-/* .li-out-box li.begin-date.ovulate-date{
-    background: #fbe9fe;
-    border: 1px solid rgb(240, 96, 204);
-} */
-.li-out-box li .lose-weight{
+
+.xh-calendar-con-box .xh-calendar-date .item-day .text {
+    display: inline-block;
     position: absolute;
     bottom: 0;
-    left: 1px;
-    line-height: 1;
-    font-size: 12px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: .089286rem
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day .text.p-text {
+    z-index: 10;
+    background: #fff
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.forecast-menses-date {
+    color: #ffb9d5
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.forecast-menses-date.menses-date {
+    color: #ff677f
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date {
+    color: #d078ff
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date.forecast-menses-date {
+    color: #ffb9d5
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date.forecast-menses-date.menses-date {
+    color: #ff677f
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date.ovulate-cur-date {
+    color: #a33eff
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date.ovulate-cur-date.forecast-menses-date {
+    color: #ffb9d5
+}
+
+.xh-calendar-con-box .xh-calendar-date .item-day.ovulate-date.ovulate-cur-date.forecast-menses-date.menses-date {
+    color: #ff677f
 }
