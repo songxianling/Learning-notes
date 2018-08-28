@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+    <div class="calendar-box">
+        <div class="xh-calendar-con-box" id="js-xh-calendar">
+            <div class="xh-calendar-title">
+                <div class="center-box">
+                    <span class="arrow-prev"></span>
+                    <span class="today-text">2018年8月</span>
+                    <span class="arrow-next"></span>
+                </div>
+                <span class="today-btn js-go-today-btn">今天</span>
+            </div>
+            <ul class="xh-calendar-week clearfix">
+                <li class="week-item">周日</li>
+                <li class="week-item">周一</li>
+                <li class="week-item">周二</li>
+                <li class="week-item">周三</li>
+                <li class="week-item">周四</li>
+                <li class="week-item">周五</li>
+                <li class="week-item">周六</li>
+            </ul>
+            <div class="xh-calendar-date clearfix" id="js-xh-calendar-date">
+                <li> </li>
+                <li> </li>
+                <li> </li>
+                <li class="item-day cur-date">
+                    <span class="date">1</span>
+                    <span class="text">燃脂</span>
+                </li>
+                <li class="item-day forecast-menses-date">
+                    <span class="date">2</span>
+                </li>
+                <li class="item-day forecast-menses-date">
+                    <span class="date">2</span>
+                </li>
+                <li class="item-day forecast-menses-date menses-date">
+                    <span class="date">2</span>
+                </li>
+                <li class="item-day ovulate-date">
+                    <span class="date">22</span>
+                </li>
+                <li class="item-day ovulate-date ovulate-cur-date">
+                    <span class="date">2</span>
+                </li>
+                <li class="item-day ovulate-date">
+                    <span class="date">2</span>
+                </li>
+                <li class="item-day">
+                    <span class="date">2</span>
+                </li>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="./xh-calendar.js"></script>
+<script>
+    $('#js-xh-calendar-page').xhInitCalendar({
+        beginDay: 2,
+        dayNum: 5,
+        cycle: 26,
+        handleFun: ajax
+    });
+
+    function ajax(params) {
+        return {
+            beginDay: 1,
+            dayNum: 3,
+            cycle: 30,
+        }
+        // return params;
+    }
+    InitCalendar(2018, 8);
+</script>
+
+</html>
