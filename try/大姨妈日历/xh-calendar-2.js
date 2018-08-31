@@ -249,18 +249,18 @@
             // 当前开始的日期和周期是否符合2次❤️(上次)反向
             var beginDay2 = that.dayParams.beginDay - that.dayParams.cycle - 1;
             if (beginDay2 >= 0) {
-            console.log('反向第二次');
-            for (var i = beginDay2, len = that.dayParams.yyDayNum + beginDay2; i < len; i++) {
-                if(i >= 0){
-                    if(that.dayParams.beforeForecast){
-                        that.allDateLi.eq(i).addClass('forecast-menses-date');
-                    }else{
-                        that.allDateLi.eq(i).addClass('forecast-menses-date menses-date');
-                    }
+                console.log('反向第二次');
+                for (var i = beginDay2, len = that.dayParams.yyDayNum + beginDay2; i < len; i++) {
+                    if (i >= 0) {
+                        if (that.dayParams.beforeForecast) {
+                            that.allDateLi.eq(i).addClass('forecast-menses-date');
+                        } else {
+                            that.allDateLi.eq(i).addClass('forecast-menses-date menses-date');
+                        }
 
+                    }
                 }
             }
-            // }
             // 渲染燃脂（瘦身）元素 真正月经期结束之后的第3天
             // if (!that.dayParams.isForecast) {
             //     that.allDateLi.eq(that.dayParams.dayNum + that.dayParams.beginDay + 3 - 1).append('<span class="text">燃脂2s</span>');
@@ -324,7 +324,7 @@
             console.log(beginDay);
             if (isForecast) {
                 for (var i = 0; i <= that.dayParams.dayNum; i++) {
-                    
+
                     if (i == 0) {
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date forecast-menses-one');
                         // 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前第3天)
@@ -344,7 +344,7 @@
             } else {
                 // 如果当前不是预测；第一个增加switch开启标志
                 for (var i = 0; i <= that.dayParams.dayNum; i++) {
-                    
+
                     if (j == 0) {
                         console.log('确切的开始');
 
