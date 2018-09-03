@@ -107,7 +107,7 @@
 
             // 定义外围元素
             // that.xhCalendarTitle = $('<div class="xh-calendar-title"></div>');
-            that.xhCalendarWeek = $('<ul class="xh-calendar-week clearfix"></ul>');
+            // that.xhCalendarWeek = $('<ul class="xh-calendar-week clearfix"></ul>');
             that.xhCalendarDate = $('<div class="xh-calendar-date js-xh-calendar-date clearfix"></div>');
 
             // 定义实际元素字符串
@@ -116,13 +116,13 @@
             //     '<span class="arrow-next js-arrow-next"></span>' +
             //     '</div>' +
             //     '<span class="today-btn js-go-today-btn">回今天</span>';
-            var weekDomStr = '<li class="week-item">周日</li>' +
-                '<li class="week-item">周一</li>' +
-                '<li class="week-item">周二</li>' +
-                '<li class="week-item">周三</li>' +
-                '<li class="week-item">周四</li>' +
-                '<li class="week-item">周五</li>' +
-                '<li class="week-item">周六</li>';
+            // var weekDomStr = '<li class="week-item">周日</li>' +
+            //     '<li class="week-item">周一</li>' +
+            //     '<li class="week-item">周二</li>' +
+            //     '<li class="week-item">周三</li>' +
+            //     '<li class="week-item">周四</li>' +
+            //     '<li class="week-item">周五</li>' +
+            //     '<li class="week-item">周六</li>';
             var dateDomStr = '';
             // 每周7天；开始结束行尾补齐
             for (var i = 0, len = week; i < len; i++) {
@@ -159,7 +159,7 @@
 
             // 拼装内容
             // that.xhCalendarTitle.html(titleDomStr);
-            that.xhCalendarWeek.html(weekDomStr);
+            // that.xhCalendarWeek.html(weekDomStr);
             that.xhCalendarDate.html(dateDomStr);
             that.xhCalendarBox.html('');
             that.xhCalendarBox.append(that.xhCalendarTitle, that.xhCalendarWeek, that.xhCalendarDate);
@@ -170,7 +170,7 @@
         beautifyDomSty: function () {
             var that = this;
             // 如果没有参数传递过来
-            if (!that.dayParams) {
+            if (!that.dayParams || !that.dayParams.beginDay) {
                 return;
             }
             that.allDateLi = that.xhCalendarDate.find('.item-day');
@@ -183,7 +183,18 @@
                 // 当前是预测并且符合应该显示的要求
                 that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
             } else {
-                that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
+                if (that.dayParams.menstrualListTime && that.dayParams.menstrualListTime.length) {
+                    for (var i = 0; i < that.dayParams.menstrualListTime.length; i++) {
+                        var curNum = that.dayParams.menstrualListTime[i].num;
+                        var curBeginDay = Number(that.dayParams.menstrualListTime[i].beginTime.substring(8));
+                        console.log('设置的开始日期'+curBeginDay);
+                        
+                        that.renderMenstrualEle(curBeginDay, false, curNum);
+                    }
+                }else{
+                    that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
+                }
+                
             }
             // for (var j = 0; j < that.dayParams.dayNum; j++) {
             //     console.log('第一轮');
@@ -230,37 +241,57 @@
 
 
             // 如果有两次 正向 开始1+周期20 小于当月全部天数
-            // if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length) {
-            //     var beginDay2 = that.dayParams.cycle + that.dayParams.beginDay - 1;
-            //     if (beginDay2 >= 3) {
-            //         that.allDateLi.eq(beginDay2 - 3).append('<span class="text">敷面膜2</span>');
-            //     }
-            //     // that.allDateLi.eq(i).addClass('begin-date');
-            //     for (var k = 0; k <= that.dayParams.dayNum; k++) {
-            //         console.log('第二次预测经期');
-            //         if (k == 0) {
-            //             that.allDateLi.eq(beginDay2++).addClass('forecast-menses-date forecast-menses-two');
-            //         } else {
-            //             that.allDateLi.eq(beginDay2++).addClass('forecast-menses-date');
+            if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length) {
+                var afterBeginDay = that.dayParams.cycle + that.dayParams.beginDay;
+                console.log('往后预测第二次');
+                that.renderMenstrualEle(afterBeginDay, true)
+            }
+
+            // 当前开始的日期和周期是否符合2次❤️(上次)反向
+            if (that.dayParams.beginDay > that.dayParams.cycle) {
+                var agoBeginDay = that.dayParams.beginDay - that.dayParams.cycle - 1;
+                if (agoBeginDay >= 0 && agoBeginDay + that.dayParams.dayNum > 3) {
+                    console.log('往前预测第二次');
+                    var agoBeginDay = that.dayParams.beginDay - that.dayParams.cycle;
+                    that.renderMenstrualEle(agoBeginDay, true)
+                }
+            }
+
+            // 正向预测排卵期 跨越2个月的情况
+            if (that.dayParams.beginDay + that.dayParams.cycle > that.allDateLi.length) {
+                var afterMonthBegin = that.dayParams.beginDay + that.dayParams.cycle - that.allDateLi.length;
+                // 下月月经第一天距离上次排卵第一天的值为19
+                var moreDayNum = 19 - afterMonthBegin;
+                // 当月天数减去当月开始的那一天就是本月开始的日期
+                var nowOvuBegin = that.allDateLi.length - moreDayNum;
+
+                for (var i = 1; i <= 10; i++) {
+
+                    if (nowOvuBegin >= 0) {
+                        if (i == 5) {
+                            that.allDateLi.eq(nowOvuBegin).addClass('ovulate-cur-date');
+                            that.allDateLi.eq(nowOvuBegin).append('<span class="text p-text">排卵日2</span>');
+                        }
+                        that.allDateLi.eq(nowOvuBegin).addClass('ovulate-date');
+                    }
+                    nowOvuBegin++;
+                }
+            }
+
+            // var beginDay2 = that.dayParams.beginDay - that.dayParams.cycle - 1;
+            // if (beginDay2 >= 0) {
+            //     console.log('反向预测第二次');
+            //     for (var i = beginDay2, len = that.dayParams.yyDayNum + beginDay2; i < len; i++) {
+            //         if (i >= 0) {
+            //             if (that.dayParams.beforeForecast) {
+            //                 that.allDateLi.eq(i).addClass('forecast-menses-date');
+            //             } else {
+            //                 that.allDateLi.eq(i).addClass('forecast-menses-date menses-date');
+            //             }
+
             //         }
             //     }
             // }
-
-            // 当前开始的日期和周期是否符合2次❤️(上次)反向
-            var beginDay2 = that.dayParams.beginDay - that.dayParams.cycle - 1;
-            if (beginDay2 >= 0) {
-                console.log('反向第二次');
-                for (var i = beginDay2, len = that.dayParams.yyDayNum + beginDay2; i < len; i++) {
-                    if (i >= 0) {
-                        if (that.dayParams.beforeForecast) {
-                            that.allDateLi.eq(i).addClass('forecast-menses-date');
-                        } else {
-                            that.allDateLi.eq(i).addClass('forecast-menses-date menses-date');
-                        }
-
-                    }
-                }
-            }
             // 渲染燃脂（瘦身）元素 真正月经期结束之后的第3天
             // if (!that.dayParams.isForecast) {
             //     that.allDateLi.eq(that.dayParams.dayNum + that.dayParams.beginDay + 3 - 1).append('<span class="text">燃脂2s</span>');
@@ -314,41 +345,31 @@
             //         }
             //     }
             // }
+            // if (that.dayParams.menstrualListTime && that.dayParams.menstrualListTime.length) {
+            //     for (var i = 0; i < that.dayParams.menstrualListTime.length; i++) {
+            //         var cur = that.dayParams.menstrualListTime[i];
+            //         var oDayNum = 3;
+            //         that.renderMenstrualEle(1, false, oDayNum);
+            //     }
+
+            // }
 
 
 
         },
-        renderMenstrualEle: function (beginDay, isForecast) {
+        renderMenstrualEle: function (beginDay, isForecast, oDayNum) {
             var that = this;
             var beginDay = beginDay - 1;
             console.log(beginDay);
-            if (isForecast) {
-                for (var i = 0; i <= that.dayParams.dayNum; i++) {
-
-                    if (i == 0) {
-                        that.allDateLi.eq(beginDay).addClass('forecast-menses-date forecast-menses-one');
-                        // 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前第3天)
-                        that.allDateLi.eq(beginDay - 3).append('<span class="text">敷面膜11</span>');
-                        // 倒推排卵期
-                        var ovulateLastDay = beginDay - 10;
-                        console.log('预测排卵期最后一天' + ovulateLastDay);
-
-                        if (ovulateLastDay >= 0) {
-                            that.renderOvulateEle(ovulateLastDay)
-                        }
-                    } else {
-                        that.allDateLi.eq(beginDay).addClass('forecast-menses-date');
-                    }
-                    beginDay++;
-                }
-            } else {
-                // 如果当前不是预测；第一个增加switch开启标志
-                for (var i = 0; i <= that.dayParams.dayNum; i++) {
-
+            // 渲染手动设置
+            if (oDayNum) {
+                console.log('手动设置的');
+                console.log(oDayNum);
+                for (var j = 0; j < oDayNum; j++) {
                     if (j == 0) {
                         console.log('确切的开始');
 
-                        that.allDateLi.eq(beginDay).addClass(' menses-date set-open-day');
+                        that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-open-day');
                         // 倒推排卵期
                         var ovulateLastDay = beginDay - 10;
                         console.log('预测排卵期最后一天' + ovulateLastDay);
@@ -356,17 +377,67 @@
                         if (ovulateLastDay >= 0) {
                             that.renderOvulateEle(ovulateLastDay)
                         }
-                    } else if (j == that.dayParams.dayNum - 1) {
-                        that.allDateLi.eq(beginDay).addClass(' menses-date set-end-day');
+                    } else if (j == oDayNum - 1) {
+                        that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-end-day');
                         // 燃脂（瘦身）的日期(正式经期结束后第3天)
                         that.allDateLi.eq(beginDay + 3).append('<span class="text">燃脂</span>');
                     } else {
-                        that.allDateLi.eq(beginDay).addClass(' menses-date');
+                        that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date');
                     }
                     beginDay++;
                 }
+                return;
+            } else {
+                console.log('没有手动设置传过来');
+                
+                if (isForecast) {
+                    for (var i = 0; i < that.dayParams.dayNum; i++) {
+                        if (i == 0) {
+                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date forecast-menses-one');
+                            // 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前第3天)
+                            if (beginDay - 3 >= 0) {
+                                that.allDateLi.eq(beginDay - 3).append('<span class="text">敷面膜11</span>');
+                            }
 
+                            // 倒推排卵期
+                            var ovulateLastDay = beginDay - 10;
+                            console.log('预测排卵期最后一天' + ovulateLastDay);
+
+                            if (ovulateLastDay >= 0) {
+                                that.renderOvulateEle(ovulateLastDay)
+                            }
+                        } else {
+                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date');
+                        }
+                        beginDay++;
+                    }
+                } else {
+                    // 如果当前不是预测；第一个增加switch开启标志
+                    for (var j = 0; j < that.dayParams.dayNum; j++) {
+                        if (j == 0) {
+                            console.log('确切的开始');
+
+                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-open-day');
+                            // 倒推排卵期
+                            var ovulateLastDay = beginDay - 10;
+                            console.log('预测排卵期最后一天' + ovulateLastDay);
+
+                            if (ovulateLastDay >= 0) {
+                                that.renderOvulateEle(ovulateLastDay)
+                            }
+                        } else if (j == that.dayParams.dayNum - 1) {
+                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-end-day');
+                            // 燃脂（瘦身）的日期(正式经期结束后第3天)
+                            that.allDateLi.eq(beginDay + 3).append('<span class="text">燃脂2</span>');
+                        } else {
+                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date');
+                        }
+                        beginDay++;
+                    }
+
+                }
             }
+
 
         },
         // 渲染排卵期元素样式
@@ -409,10 +480,7 @@
         var xhInitCalendar = new XhInitCalendar(this, options);
         return xhInitCalendar.init();
     };
-    jQuery.loadCalendar = function (options) {
-        var xhInitCalendar = new XhInitCalendar(this, options);
-        return xhInitCalendar.replaceDom();
-    }
+
     // jQuery.loadCalendar = {
     //     loadCalendar: function (params) {
     //         var xhInitCalendar = new XhInitCalendar(this, options);
