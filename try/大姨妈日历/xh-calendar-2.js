@@ -61,12 +61,13 @@
             for (var j = 1; j <= dIm; j++) {
                 var strDate = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + ((j < 10) ? ("0" + j) : j);
                 var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
+                var ymfirst = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + "01";
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '"  data-ymfirst="' + ymfirst + '" data-ym="' + year + month + '" data-month="' + month + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
                         '<span class="date">今</span>' +
                         '</li>';
                 } else {
-                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
+                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '"  data-ymfirst="' + ymfirst + '" data-ym="' + year + month + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
                         '<span class="date">' + j + '</span>' +
                         '</li>';
                 }
@@ -137,13 +138,14 @@
 
                 var itemDate = year + ((month < 10) ? ("0" + month) : month) + ((j < 10) ? ("0" + j) : j);
                 // console.log(strDate);
+                var ymfirst = year + "-" + ((month < 10) ? ("0" + month) : month) + "-" + "01";
 
                 if (strDate == that.nowDate) {
-                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
+                    dateDomStr += '<li class="item-day js-item-day cur-date" data-time="' + strDate + '" data-ymfirst="' + ymfirst + '"  data-ym="' + year + month + '"  data-month="' + month + '"  data-day="' + j + '" data-index="' + (j - 1) + '">' +
                         '<span class="date">今</span>' +
                         '</li>';
                 } else {
-                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
+                    dateDomStr += '<li class="item-day js-item-day" data-time="' + strDate + '" data-ymfirst="' + ymfirst + '" data-ym="' + year + month + '" data-month="' + month + '" data-day="' + j + '" data-index="' + (j - 1) + '">' +
                         '<span class="date">' + j + '</span>' +
                         '</li>';
                 }
@@ -170,7 +172,8 @@
         beautifyDomSty: function () {
             var that = this;
             // 如果没有参数传递过来
-            if (!that.dayParams || !that.dayParams.beginDay) {
+            // if (!that.dayParams || !that.dayParams.beginDay) {
+            if (!that.dayParams) {
                 return;
             }
             that.allDateLi = that.xhCalendarDate.find('.item-day');
@@ -183,18 +186,24 @@
                 // 当前是预测并且符合应该显示的要求
                 that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
             } else {
+                console.log('传过来了设置');
+
+                console.log(that.dayParams.menstrualListTime, that.dayParams.menstrualListTime);
+
                 if (that.dayParams.menstrualListTime && that.dayParams.menstrualListTime.length) {
                     for (var i = 0; i < that.dayParams.menstrualListTime.length; i++) {
                         var curNum = that.dayParams.menstrualListTime[i].num;
                         var curBeginDay = Number(that.dayParams.menstrualListTime[i].beginTime.substring(8));
-                        console.log('设置的开始日期'+curBeginDay);
-                        
+                        console.log('设置的开始日期' + curBeginDay);
+
                         that.renderMenstrualEle(curBeginDay, false, curNum);
                     }
-                }else{
+                } else {
+                    console.log('没有list传过来了');
+
                     that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
                 }
-                
+
             }
             // for (var j = 0; j < that.dayParams.dayNum; j++) {
             //     console.log('第一轮');
@@ -241,14 +250,14 @@
 
 
             // 如果有两次 正向 开始1+周期20 小于当月全部天数
-            if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length) {
+            if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length && that.dayParams.calendarTimeMonth >= that.nowMonth) {
                 var afterBeginDay = that.dayParams.cycle + that.dayParams.beginDay;
                 console.log('往后预测第二次');
                 that.renderMenstrualEle(afterBeginDay, true)
             }
 
             // 当前开始的日期和周期是否符合2次❤️(上次)反向
-            if (that.dayParams.beginDay > that.dayParams.cycle) {
+            if (that.dayParams.beginDay > that.dayParams.cycle && that.dayParams.beforeForecast) {
                 var agoBeginDay = that.dayParams.beginDay - that.dayParams.cycle - 1;
                 if (agoBeginDay >= 0 && agoBeginDay + that.dayParams.dayNum > 3) {
                     console.log('往前预测第二次');
@@ -258,7 +267,7 @@
             }
 
             // 正向预测排卵期 跨越2个月的情况
-            if (that.dayParams.beginDay + that.dayParams.cycle > that.allDateLi.length) {
+            if (that.dayParams.beginDay + that.dayParams.cycle > that.allDateLi.length && that.dayParams.calendarTimeMonth >= that.nowMonth) {
                 var afterMonthBegin = that.dayParams.beginDay + that.dayParams.cycle - that.allDateLi.length;
                 // 下月月经第一天距离上次排卵第一天的值为19
                 var moreDayNum = 19 - afterMonthBegin;
@@ -359,6 +368,9 @@
         },
         renderMenstrualEle: function (beginDay, isForecast, oDayNum) {
             var that = this;
+            if (!beginDay) {
+                return;
+            }
             var beginDay = beginDay - 1;
             console.log(beginDay);
             // 渲染手动设置
@@ -372,8 +384,10 @@
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-open-day');
                         // 倒推排卵期
                         var ovulateLastDay = beginDay - 10;
-                        console.log('预测排卵期最后一天' + ovulateLastDay);
+                        // console.log('预测排卵期最后一天' + ovulateLastDay);
+                        console.log(that.dayParams.calendarTimeMonth, that.nowMonth);
 
+                        // if (ovulateLastDay >= 0 && that.dayParams.calendarTimeMonth >= that.nowMonth) {
                         if (ovulateLastDay >= 0) {
                             that.renderOvulateEle(ovulateLastDay)
                         }
@@ -389,7 +403,7 @@
                 return;
             } else {
                 console.log('没有手动设置传过来');
-                
+
                 if (isForecast) {
                     for (var i = 0; i < that.dayParams.dayNum; i++) {
                         if (i == 0) {
@@ -401,7 +415,7 @@
 
                             // 倒推排卵期
                             var ovulateLastDay = beginDay - 10;
-                            console.log('预测排卵期最后一天' + ovulateLastDay);
+                            // console.log('预测排卵期最后一天' + ovulateLastDay);
 
                             if (ovulateLastDay >= 0) {
                                 that.renderOvulateEle(ovulateLastDay)
@@ -416,11 +430,13 @@
                     for (var j = 0; j < that.dayParams.dayNum; j++) {
                         if (j == 0) {
                             console.log('确切的开始');
+                            console.log(that.allDateLi.length);
+                            console.log(beginDay);
 
-                            that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-open-day');
+                            that.allDateLi.eq(0).addClass('forecast-menses-date menses-date set-open-day');
                             // 倒推排卵期
                             var ovulateLastDay = beginDay - 10;
-                            console.log('预测排卵期最后一天' + ovulateLastDay);
+                            // console.log('预测排卵期最后一天' + ovulateLastDay);
 
                             if (ovulateLastDay >= 0) {
                                 that.renderOvulateEle(ovulateLastDay)
