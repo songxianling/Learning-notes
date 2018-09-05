@@ -1,90 +1,1044 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="./index.css">
-
-</head>
-
-<body>
-    <div class="calendar-box">
-        <div class="xh-calendar-con-box" id="js-xh-calendar">
-            <div class="xh-calendar-title">
-                <div class="center-box">
-                    <span class="arrow-prev"></span>
-                    <span class="today-text">2018年8月</span>
-                    <span class="arrow-next"></span>
-                </div>
-                <span class="today-btn js-go-today-btn">今天</span>
-            </div>
-            <ul class="xh-calendar-week clearfix">
-                <li class="week-item">周日</li>
-                <li class="week-item">周一</li>
-                <li class="week-item">周二</li>
-                <li class="week-item">周三</li>
-                <li class="week-item">周四</li>
-                <li class="week-item">周五</li>
-                <li class="week-item">周六</li>
+{extends file=$layout} {block name=pagecss}
+<link rel="stylesheet" href="{$smarty.const.__STATIC_CSS__}/mo/webapp/menstrual/index.css{$smarty.const.CSS_VERSION}7">
+<link rel="stylesheet" href="{$smarty.const.__STATIC_CSS__}/mo/webapp/menstrual/calendar.css{$smarty.const.CSS_VERSION}7">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+<link rel="stylesheet" href="{$smarty.const.__STATIC_CSS__}/mo/common/xh_popup.css{$smarty.const.CSS_VERSION}99"> {/block} {block name=content} {if $system==and}
+<header class="wallet_header and {if $data.appSystem >= '6.4.0'} wallet_header_white {/if}">
+    {else}
+    <header class="wallet_header {if $data.appSystem >= '6.4.0'} wallet_header_white {/if}">
+        {/if}
+        <span class="back"></span>
+        {if $data.status == 2}
+        <span class="center js-center">经期管家</span>
+        {else}
+        <span class="center js-center">经期设置</span>
+        {/if}
+    </header>
+    <div class="xh-menstrual-page-box">
+        <section class="menstrual-setting-box {if $data.status == 2} hide {/if}">
+            <ul>
+                <li class="setting-item">
+                    <p class="title">你一般两次月经相隔多少天</p>
+                    <div class="con">
+                        <span class="name">月经周期</span>
+                        <span class="select" id="js-select-cycle">请选择</span>
+                        <span class="arrow">></span>
+                    </div>
+                </li>
+                <li class="setting-item">
+                    <p class="title">你一般月经来多少天</p>
+                    <div class="con">
+                        <span class="name">你一般月经来多少天</span>
+                        <span class="select" id="js-select-number">请选择</span>
+                        <span class="arrow">></span>
+                    </div>
+                </li>
+                <li class="setting-item">
+                    <p class="title">最近一次来月经的日子是哪天</p>
+                    <div class="con">
+                        <span class="name">最近一次月经日期</span>
+                        <span class="select" id="js-select-lately">请选择</span>
+                        <span class="arrow">></span>
+                    </div>
+                </li>
             </ul>
-            <div class="xh-calendar-date clearfix" id="js-xh-calendar-date">
-                <li> </li>
-                <li> </li>
-                <li> </li>
-                <li class="item-day cur-date">
-                    <span class="date">1</span>
-                    <span class="text">燃脂</span>
-                </li>
-                <li class="item-day forecast-menses-date">
-                    <span class="date">2</span>
-                </li>
-                <li class="item-day forecast-menses-date">
-                    <span class="date">2</span>
-                </li>
-                <li class="item-day forecast-menses-date menses-date">
-                    <span class="date">2</span>
-                </li>
-                <li class="item-day ovulate-date">
-                    <span class="date">22</span>
-                </li>
-                <li class="item-day ovulate-date ovulate-cur-date">
-                    <span class="date">2</span>
-                </li>
-                <li class="item-day ovulate-date">
-                    <span class="date">2</span>
-                </li>
-                <li class="item-day">
-                    <span class="date">2</span>
-                </li>
+            <div class="complete-btn js-complete-btn">完成</div>
+        </section>
+        <!-- 管家内容 -->
+        <section class="housekeeper-box {if $data.status != 2} hide {/if}">
+            <div class="calendar-box">
+                <div class="xh-calendar-con-box" id="js-xh-calendar">
+                    <div class="xh-calendar-title">
+                        <div class="center-box">
+                            <span class="today-text js-select-date-box">2018年8月</span>
+                            <span class="arrow-bottom"></span>
+                        </div>
+                        <span class="today-btn js-go-today-btn">回今天</span>
+                    </div>
+                    <ul class="xh-calendar-week clearfix">
+                        <li class="week-item">周日</li>
+                        <li class="week-item">周一</li>
+                        <li class="week-item">周二</li>
+                        <li class="week-item">周三</li>
+                        <li class="week-item">周四</li>
+                        <li class="week-item">周五</li>
+                        <li class="week-item">周六</li>
+                    </ul>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper js-swiper-wrapper">
+                            <div class="js-xh-calendar-view js-xh-calendar-view-0 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-1 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-2 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-3 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-4 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-5 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-6 swiper-slide"></div>
+                            <!-- <div class="swiper-slide">Slide 1</div>
+                                <div class="swiper-slide">Slide 2</div>
+                                <div class="swiper-slide">Slide 3</div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="js-xh-calendar-view"></div> -->
+                    <!-- <div class="xh-calendar-date js-xh-calendar-date clearfix" id="js-xh-calendar-date">
+                        <li> </li>
+                        <li> </li>
+                        <li> </li>
+                        <li class="item-day cur-date">
+                            <span class="date">1</span>
+                            <span class="text">燃脂</span>
+                        </li>
+                        <li class="item-day forecast-menses-date">
+                            <span class="date">2</span>
+                        </li>
+                        <li class="item-day forecast-menses-date">
+                            <span class="date">2</span>
+                        </li>
+                        <li class="item-day forecast-menses-date menses-date">
+                            <span class="date">2</span>
+                        </li>
+                        <li class="item-day ovulate-date">
+                            <span class="date">22</span>
+                        </li>
+                        <li class="item-day ovulate-date ovulate-cur-date">
+                            <span class="date">2</span>
+                        </li>
+                        <li class="item-day ovulate-date">
+                            <span class="date">2</span>
+                        </li>
+                        <li class="item-day">
+                            <span class="date">2</span>
+                        </li>
 
+                    </div> -->
+                </div>
             </div>
-        </div>
+            <!-- 经期颜色介绍 -->
+            <div class="color-explain-box">
+                <a href="###">
+                    <span>
+                        <i></i>月经期</span>
+                    <span>
+                        <i></i>排卵期</span>
+                    <span>
+                        <i></i>安全期</span>
+                    <span>
+                        <i></i>预测经期</span>
+                </a>
+            </div>
+            <!-- 经期滑动设置 -->
+            <div class="scroll-set-box js-scroll-set-box">
+                <div class="item-scroll">
+                    <span class="img-icon begin"></span>
+                    <span class="text">经期开始</span>
+                    <div class="xh-men-switch js-switch-begin">
+                        <span class="switch-handler"></span>
+                    </div>
+                </div>
+                <div class="item-scroll">
+                    <span class="img-icon end"></span>
+                    <span class="text">经期结束</span>
+                    <div class="xh-men-switch js-switch-end">
+                        <span class="switch-handler"></span>
+                    </div>
+                </div>
+                <div class="item-scroll">
+                    <span class="img-icon remind"></span>
+                    <span class="text">经期提醒</span>
+                    <div class="xh-men-switch js-switch-remind">
+                        <span class="switch-handler"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 未来不能记录 -->
+            <div class="not-record-box js-not-record-box">未来不能记录哦~</div>
+            <!-- 温馨提示 -->
+            <div class="remind-box js-remind-box">
+                <p class="title">温馨提示</p>
+                <div class="con">
+                    今天是<span>燃脂</span>的好日子哦，快去与哈友一起吃出好健康身
+材，<a href="">传送门>></a>
+                </div>
+            </div>
+        </section>
     </div>
 
-</body>
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="./xh-calendar.js"></script>
-<script>
-    $('#js-xh-calendar-page').xhInitCalendar({
-        beginDay: 2,
-        dayNum: 5,
-        cycle: 26,
-        handleFun: ajax
-    });
+    {if $system==ios}
+    <script src="{$smarty.const.__STATIC_JS__}/hd/appNewIOS.js{$smarty.const.JS_VERSION}"></script>
+    {/if}
+    <script src="{$smarty.const.__STATIC_JS__}/mo/webapp/menstrual/mobileSelect.min.js{$smarty.const.JS_VERSION}3"></script>
+    <script src="{$smarty.const.__STATIC_JS__}/mo/webapp/menstrual/xhCalendar.js{$smarty.const.JS_VERSION}7"></script>
+    <script src="{$smarty.const.__STATIC_JS__}/vendor/xh_popup.js{$smarty.const.JS_VERSION}3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.0/js/swiper.min.js"></script>
+    <script>
+        $(function () {
 
-    function ajax(params) {
-        return {
-            beginDay: 1,
-            dayNum: 3,
-            cycle: 30,
-        }
-        // return params;
-    }
-    InitCalendar(2018, 8);
-</script>
+            var nowDateObj = getNowDate();
+            // console.log(nowDateObj);
+            var menstrualDays = ''; // 经期设置页面设置的天数
+            var menstrualCycle = '';
+            var menstrualLastDate = '';
+            var menstrualListTime = {$data.menstrualListTime|@json_encode};
+            console.log(menstrualListTime);
+            // for(var i = 0;i<menstrualListTime.length;i++){
+            //     console.log(menstrualListTime[i]);
 
-</html>
+            // }
+
+            var isSetting = "{$data.status}";
+            if (isSetting == 2) {
+                menstrualDays = Number("{$data.menstrualDays}");
+                menstrualCycle = Number("{$data.menstrualCycle}");
+                menstrualLastDate = "{$data.menstrualLastDate}";
+            } else {
+
+            }
+            // console.log('持续天数==>' + menstrualDays, '周期==>' + menstrualCycle, '最近一次==>' + menstrualLastDate);
+
+
+            // RD 
+            var rdBegin = Number("{$data.n_day}");
+
+            var isForecast = true;
+            // FE
+            var feYear = nowDateObj.year;
+            var feMonth = nowDateObj.month;
+            var calendarView = '.js-xh-calendar-view-0';
+
+            if (nowDateObj.month == Number(menstrualLastDate.substring(menstrualLastDate.length - 5,
+                    menstrualLastDate.length - 3))) {
+                rdBegin = Number(menstrualLastDate.substring(menstrualLastDate.length - 2))
+                isForecast = false;
+            }
+
+
+            var cycleArr = ['15天', '16天', '17天', '18天', '19天', '20天', '21天', '22天', '23天', '24天', '25天',
+                '26天', '27天', '28天', '29天', '30天', '31天', '32天', '33天', '34天', '35天', '36天', '37天', '38天',
+                '39天', '40天', '41天', '42天', '43天', '44天', '45天', '46天', '47天', '48天', '49天', '50天', '51天',
+                '52天', '53天', '54天', '55天', '56天', '57天', '58天', '59天', '60天', '61天', '62天', '63天', '64天',
+                '65天', '66天', '67天', '68天', '69天', '70天', '71天', '72天', '73天', '74天', '75天', '76天', '77天',
+                '78天', '79天', '80天', '81天', '82天', '83天', '84天', '85天', '86天', '87天', '88天', '89天', '90天',
+                '91天', '92天', '93天', '94天', '95天', '96天', '97天', '98天', '99天', '100天'
+            ];
+            var numberArr = ['2天', '3天', '4天', '5天', '6天', '7天', '8天',
+                '9天', '10天', '11天', '12天', '13天', '14天'
+            ];
+
+            var latelyArr = {$date};
+
+            var selectDateArr = {$date_2};
+
+            var $titleName = $('.js-center'); /* title */
+            var setParams = {
+                menstrualCycle:'',  /* 周期值 */
+                menstrualDays:'',   /* 多少天值*/
+                menstrualLastDate:''    /* 最近一次 */
+            }
+            var $selectCycle = $('#js-select-cycle'); /* 周期值数组 */
+            var $selectNumber = $('#js-select-number'); /* 多少天值数组 */
+            var $selectLately = $('#js-select-lately'); /* 最近一次数组 */
+            var $completeBtn = $('.js-complete-btn'); /* 完成按钮 */
+            var msgObj = {
+                m1: '月经周期',
+                m2: '经期天数',
+                m3: ' 最近一次月经日期',
+
+            };
+            var selectCycle = new MobileSelect({
+                trigger: '#js-select-cycle',
+                title: '月经周期',
+                wheels: [{
+                    data: cycleArr
+                }],
+                position: [13], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+                transitionEnd: function (indexArr, data) {
+                    //console.log(data);
+                },
+                callback: function (indexArr, data) {
+                    console.log(data);
+                    if (data) {
+                        setParams.menstrualCycle =  parseFloat($selectCycle.html())
+                        $selectCycle.addClass('on')
+                        canClick()
+                        console.log(setParams.menstrualCycle);
+
+                    }
+                }
+            });
+            var selectNumber = new MobileSelect({
+                trigger: '#js-select-number',
+                title: '你一般月经来多少天',
+                wheels: [{
+                    data: numberArr
+                }],
+                position: [4], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+                transitionEnd: function (indexArr, data) {
+                    //console.log(data);
+                },
+                callback: function (indexArr, data) {
+                    console.log(data);
+                    if (data) {
+                        setParams.menstrualDays = parseFloat($selectNumber.html())
+                        $selectNumber.addClass('on')
+                        canClick()
+                    }
+                }
+            });
+            var selectLately = new MobileSelect({
+                trigger: '#js-select-lately',
+                title: '最近一次月经日期',
+                wheels: [{
+                    data: latelyArr
+                }],
+                position: [1, 0], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+                transitionEnd: function (indexArr, data) {
+                    //console.log(data);
+                },
+                callback: function (indexArr, data) {
+                    console.log(data);
+                    if (data) {
+                        // setParams.menstrualLastDate = $selectLately.html()
+                        var sVal = $selectLately.html();
+                        setParams.menstrualLastDate = sVal.substring(0,4)+'-'+sVal.substring(6,8)+'-'+sVal.substring(10,12)
+                        $selectLately.addClass('on')
+                        canClick()
+                    }
+                }
+            });
+
+
+
+            /* 完成设置 */
+            $completeBtn.on('click', function () {
+                var that = $(this);
+                if (that.hasClass('on')) {
+                    // 可以成功设置
+                    comAjax('/menstrual/setMenstrualData', setParams, function (res) {
+                            console.log(res);
+                            if(res.state == 2){
+                                // location.reload()
+                            }else{
+                                alert(res.msg)
+                            }
+                        });
+                } else {
+                    if (!setParams.menstrualCycle) {
+                        alert('您还没有填写' + msgObj.m1 + '哦!')
+                    } else if (!setParams.menstrualDays) {
+                        alert('您还没有填写' + msgObj.m2 + '哦!')
+                    } else {
+                        alert('您还没有填写' + msgObj.m3 + '哦!')
+                    }
+                }
+            })
+            /* 日历管家逻辑 */
+            // 共7个
+            var sA = [];
+            var o = 9;
+            for(var n = 0 ; n < 7 ; n++){
+                if(n < 3){
+                    o -- ;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                if(n == 3){
+                    sA.sort()
+                    o = 9;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                if(n > 3){
+                    o ++ ;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                
+                sA.push(c)
+                
+            }
+            console.log(sA);
+            function fn(cur,index) {
+                comAjax('/menstrual/getStartDate', {
+                date: cur,
+                menstrualCycle: menstrualCycle,
+                menstrualLastDate: menstrualLastDate
+
+                        }, function (res) {
+                            console.log(res);
+                            var menstrualListTime = [];
+                            if(res.state == 2){
+                                menstrualListTime = res.menstrualListTime;
+                                console.log(menstrualListTime);
+                            }
+                            var sTime = res.time;
+                            console.log(index);
+                            
+                            $('.js-xh-calendar-view-'+index).xhInitCalendar({
+                                    calendarTimeYear: Number(sTime.substring(0,4)),
+                                    calendarTimeMonth: Number(sTime.substring(5,7)),
+                                    isForecast: false,
+                                    beginDay: '',
+                                    dayNum: menstrualDays,
+                                    cycle: menstrualCycle,
+                                    menstrualListTime: menstrualListTime,
+                                });
+                            
+                        });
+            }
+            for(var i = 0;i<sA.length;i++){
+                var cur = sA[i];
+                fn(cur,i)
+            }
+            // 第一个
+            // comAjax('/menstrual/getStartDate', {
+            //     date: '2018-08-01',
+            //     menstrualCycle: menstrualCycle,
+            //     menstrualLastDate: menstrualLastDate
+
+            //             }, function (res) {
+            //                 console.log(res);
+            //                 var menstrualListTime = [];
+            //                 if(res.state == 2){
+            //                     menstrualListTime = res.menstrualListTime;
+            //                     console.log(menstrualListTime);
+            //                 }
+            //                 $('.js-xh-calendar-view-0').xhInitCalendar({
+            //                         calendarTimeYear: feYear,
+            //                         calendarTimeMonth: Number(feMonth) - 1,
+            //                         isForecast: false,
+            //                         beginDay: '',
+            //                         dayNum: menstrualDays,
+            //                         cycle: menstrualCycle,
+            //                         menstrualListTime: menstrualListTime,
+            //                     });
+                            
+            //             });
+            // // 第二个
+            // comAjax('/menstrual/getStartDate', {
+            //     date: '2018-09-01',
+            //     menstrualCycle: menstrualCycle,
+            //     menstrualLastDate: menstrualLastDate
+
+            //             }, function (res) {
+            //                 console.log(res);
+            //                 var menstrualListTime = [];
+            //                 if(res.state == 2){
+            //                     menstrualListTime = res.menstrualListTime;
+            //                     console.log(menstrualListTime);
+            //                 }
+            //                 $('.js-xh-calendar-view-1').xhInitCalendar({
+            //                         calendarTimeYear: feYear,
+            //                         calendarTimeMonth: Number(feMonth),
+            //                         isForecast: true,
+            //                         beginDay: rdBegin,
+            //                         dayNum: menstrualDays,
+            //                         cycle: menstrualCycle,
+            //                         menstrualListTime: menstrualListTime,
+            //                     });
+                            
+            //             });
+            
+
+            // // 第三个
+            // comAjax('/menstrual/getStartDate', {
+            //     date: '2018-10-01',
+            //     menstrualCycle: menstrualCycle,
+            //     menstrualLastDate: menstrualLastDate
+
+            //             }, function (res) {
+            //                 console.log(res);
+            //                 var menstrualListTime = [];
+            //                 if(res.state == 2){
+            //                     menstrualListTime = res.menstrualListTime;
+            //                     console.log(menstrualListTime);
+            //                 }
+            //                 $('.js-xh-calendar-view-2').xhInitCalendar({
+            //                         calendarTimeYear: feYear,
+            //                         calendarTimeMonth: Number(feMonth)+1,
+            //                         isForecast: false,
+            //                         beginDay: '',
+            //                         dayNum: menstrualDays,
+            //                         cycle: menstrualCycle,
+            //                         menstrualListTime: menstrualListTime,
+            //                     });
+                            
+            //             });
+            
+
+
+
+            // 日历上方年月操作
+            var $selectDate = $('.js-select-date-box');
+            var showDate = nowDateObj.year + nowDateObj.month;
+            $selectDate.html(nowDateObj.year + '年' + nowDateObj.month + '月');
+            var selectLately = new MobileSelect({
+                trigger: '.js-select-date-box',
+                title: '选择日期',
+                wheels: [{
+                    data: selectDateArr
+                }],
+                position: [1, 0], //初始化定位 打开时默认选中的哪个 如果不填默认为0
+                transitionEnd: function (indexArr, data) {
+                    //console.log(data);
+                },
+                callback: function (indexArr, data) {
+                    // console.log(data);
+                    if (data) {
+                        $selectDate.html(data[0].value + data[1].value);
+                        showDate = parseInt(data[0].value).toString() + parseInt(data[1].value).toString();
+                        // console.log(showDate);
+                        feYear = parseInt(data[0].value).toString();
+                        feMonth = parseInt(data[1].value).toString();
+                        if (nowDateObj.month == Number(menstrualLastDate.substring(
+                                menstrualLastDate.length - 5,
+                                menstrualLastDate.length - 3))) {
+                            rdBegin = Number(menstrualLastDate.substring(menstrualLastDate.length -
+                                2))
+                            isForecast = false;
+                        }
+                        comAjax('/menstrual/getStartDate', {
+                            date: '2018-09-01',
+                            menstrualLastDate: menstrualLastDate,
+                            menstrualCycle: menstrualCycle
+                        }, function (res) {
+                            console.log(res);
+                            var date = res.date;
+                            feYear = Number(date.substring(0, 4));
+                            feMonth = Number(date.substring(date.length -
+                                5,
+                                date.length - 3));
+                            rdBegin = Number(date.substring(date.length -
+                                2));
+                            console.log('选择结束要显示的年月==>' + feYear, feMonth, rdBegin);
+
+                            $('.js-xh-calendar-view').xhInitCalendar({
+                                calendarTimeYear: feYear,
+                                calendarTimeMonth: feMonth,
+                                isForecast: isForecast,
+                                beginDay: rdBegin,
+                                dayNum: menstrualDays,
+
+                                cycle: menstrualCycle,
+                            });
+                        });
+
+
+                    }
+                }
+            });
+            var $todayBtn = $('.js-go-today-btn');
+            $todayBtn.on('click', function (params) {
+                // if (curMonth()) {
+                //     console.log('在当前');
+                //     return
+                // }
+                location.reload()
+                // $('.js-xh-calendar-view').xhInitCalendar({
+                //     calendarTimeYear: nowDateObj.year,
+                //     calendarTimeMonth: nowDateObj.month,
+                //     isForecast: false,
+                //     beginDay: rdBegin,
+                //     dayNum: menstrualDays,
+
+                //     cycle: menstrualCycle,
+                //     menstrualListTime:menstrualListTime
+                // });
+                // $switchSetBox.show();
+                // $selectDate.html(nowDateObj.year + '年' + nowDateObj.month + '月');
+                // showDate = nowDateObj.year + nowDateObj.month;
+                // console.log(showDate);
+
+            });
+
+            var first = true;
+            var swiper = new Swiper('.swiper-container', {
+                initialSlide: 3,
+                on: {
+                    slideChangeTransitionEnd: function () {
+                        calendarView = '.js-xh-calendar-view-' + this.realIndex;
+                        console.log(calendarView);
+                        // if (first) {
+                        //     first = false;
+                        // } else {
+                        //     if (this.realIndex > this.previousIndex) {
+                        //         nowDateObj.month++;
+                        //         $selectDate.html(nowDateObj.year + '年' + nowDateObj.month + '月');
+                        //         // showDate = nowDateObj.year + nowDateObj.month;
+
+                        //     } else {
+                        //         nowDateObj.month--;
+                        //         $selectDate.html(nowDateObj.year + '年' + nowDateObj.month + '月');
+                        //         console.log('往右滑前一张');
+                        //         // showDate = nowDateObj.year + nowDateObj.month;
+                        //     }
+                        // }
+
+                        // console.log('当前年月是'+showDate);
+                        // alert(sA[this.realIndex])
+
+                        $selectDate.html(sA[this.realIndex].substring(0,4) + '年' + sA[this.realIndex].substring(5,7) + '月');
+                        // alert(this.realIndex);//切换结束时，告诉我现在是第几个slide
+                        // alert(this.previousIndex);//切换结束时，告诉我现在是第几个slide
+                    },
+                    // slideChangeTransitionEnd: function(){
+                    //     alert('开始切换');
+                    // },
+                },
+            });
+
+            // 日历内的日期点击
+            var $xhCalendarView = $('.js-xh-calendar-view');
+            var $xhCalendarDate = $('.js-xh-calendar-date');
+            var selectTime = nowDateObj.nowDate; // 选择的时间2020-02-02
+            var selectDay = nowDateObj.day; //  选择的天日期 2
+            var menstrualEndSwitch = 1; //  经期结束按钮可点状态
+            $xhCalendarView.on('click', '.js-item-day', function () {
+                var that = $(this);
+                selectTime = that.data('time');
+                selectDay = that.data('day');
+                $xhCalendarView.find('li').removeClass('cur-date');
+                // that.siblings().removeClass('cur-date');
+                that.addClass('cur-date');
+                // console.log(selectTime, nowDate);
+                if (selectTime > nowDateObj.nowDate) {
+                    $switchSetBox.hide()
+                    $notRecord.show();
+                } else {
+                    $switchSetBox.show()
+                    $notRecord.hide()
+                }
+                // 显示提醒
+                if(that.find('span').hasClass('remind')){
+                    $remind.show()
+                    console.log(that.find('.remind').html());
+                    
+                    $remind.find('span').html(that.find('.remind').html())
+                }else{
+                    $remind.hide()
+                }
+                // 经期开始是否开启状态
+                if (that.hasClass('set-open-day')) {
+                    $switchBegin.addClass('active');
+                } else {
+                    $switchBegin.removeClass('active');
+                }
+                // 经期结束是否开启状态
+                if (that.hasClass('set-end-day')) {
+                    $switchEnd.addClass('active');
+                    $switchBegin.addClass('disabled')
+                } else {
+                    $switchEnd.removeClass('active');
+                    $switchBegin.removeClass('disabled')
+                }
+                // 经期结束
+                if (that.prevAll().hasClass('set-end-day')) {
+                    // 选中的日期前面有结束的日期
+                    menstrualEndSwitch = 1;
+
+                } else {
+                    // 前面没有结束的日期
+                    menstrualEndSwitch = 1;
+                }
+                
+                if (that.prevAll().hasClass('set-open-day')) {
+                    // 如果前面有开始的日期；并且选中的日期距离前面大于9天
+                    console.log(that.data('index'), that.parent().find('.set-open-day')
+                        .data('index'));
+
+                    if (that.data('index') - that.parent().find('.set-open-day')
+                        .data('index') >= 10) {
+                        console.log('3737');
+
+                        menstrualEndSwitch = 3;
+                    }
+                }
+                console.log(menstrualEndSwitch);
+
+
+            });
+
+            // 日历下方手动设置逻辑
+            var $switchSetBox = $('.js-scroll-set-box');
+            var $notRecord = $('.js-not-record-box');
+            var $remind = $('.js-remind-box');
+            var $switchBegin = $('.js-switch-begin');
+            var $switchEnd = $('.js-switch-end');
+            var $switchRemind = $('.js-switch-remind');
+            var setModal = '';
+            $switchBegin.on('click', function () {
+                var that = $(this);
+                if (that.hasClass('disabled')) {
+                    return;
+                }
+                // 如果当前显示的不是预测
+                if (that.hasClass('active')) {
+                    console.log('回复老样子');
+                    console.log($xhCalendarView.find('.cur-date')
+                        .data(
+                            'ym') , showDate);
+                    
+                    if ($xhCalendarView.find('.cur-date')
+                        .data(
+                            'time') < nowDateObj.nowDate && $xhCalendarView.find('.cur-date')
+                        .data(
+                            'ym') < showDate) {
+                        // 以前的日期
+
+                        comAjax('/menstrual/menstrualBeginEndData', {
+                            getDate: $xhCalendarView.find('.cur-date')
+                                .data(
+                                    'ymfirst'),
+                            begin: $xhCalendarView.find('.cur-date')
+                                .data(
+                                    'time'),
+                            num: menstrualDays,
+                            type:1
+
+                        }, function (res) {
+                            var menstrualListTime = [];
+                            if(res.state == 2){
+                                menstrualListTime = res.menstrualListTime;
+                            }
+                            $(calendarView).xhInitCalendar({
+                                calendarTimeYear: nowDateObj.year,
+                                calendarTimeMonth: nowDateObj.month,
+                                beforeForecast: false,
+                                isForecast: false,
+                                beginDay: '',
+                                dayNum: menstrualDays,
+                                cycle: menstrualCycle,
+                                menstrualListTime: menstrualListTime,
+                            });
+
+                        });
+                        
+                        
+
+
+                    }else{
+                        var menstrualListTime = [{
+                                
+
+                            }];
+                        $(calendarView).xhInitCalendar({
+                            calendarTimeYear: nowDateObj.year,
+                            calendarTimeMonth: nowDateObj.month,
+                            beforeForecast: false,
+                            isForecast: isForecast,
+                            beginDay: rdBegin,
+                            dayNum: menstrualDays,
+                            cycle: menstrualCycle,
+                            menstrualListTime: menstrualListTime,
+                        });
+
+                    }
+                    
+                    that.toggleClass('active')
+                } else {
+                    // 开启经期开始
+                    console.log($xhCalendarView.find('.cur-date')
+                        .data(
+                            'time'));
+                    if ($xhCalendarView.find('.cur-date')
+                        .data(
+                            'ym') < showDate) {
+                        // 当前选择时间小于现在年月日
+                        comAjax('/menstrual/menstrualBeginEndData', {
+                            getDate: '2018-08-01',
+                            begin: $xhCalendarView.find('.cur-date')
+                                .data(
+                                    'time'),
+                            num: menstrualDays
+
+                        }, function (res) {
+                            console.log(res);
+                            if(res.state == 2){
+                                var menstrualListTime = res.menstrualListTime;
+                                console.log(menstrualListTime);
+                                
+                                $(calendarView).xhInitCalendar({
+                                    calendarTimeYear: feYear,
+                                    calendarTimeMonth: nowDateObj.month,
+                                    isForecast: false,
+                                    beginDay: '',
+                                    dayNum: menstrualDays,
+                                    cycle: menstrualCycle,
+                                    menstrualListTime: menstrualListTime,
+                                });
+                            }
+                            // var date = res.date;
+                            // feYear = Number(date.substring(0, 4));
+                            // feMonth = Number(date.substring(date.length -
+                            //     5,
+                            //     date.length - 3));
+                            // rdBegin = Number(date.substring(date.length -
+                            //     2));
+                            // console.log('选择结束要显示的年月==>' + feYear, feMonth, rdBegin);
+                            // console.log(calendarView, $(calendarView));
+                            // var menstrualListTime = [{
+                            //     beginTime: $xhCalendarView.find('.cur-date')
+                            //         .data(
+                            //             'time'),
+                            //     num: menstrualDays
+
+                            // }];
+                            // $(calendarView).xhInitCalendar({
+                            //     calendarTimeYear: feYear,
+                            //     calendarTimeMonth: nowDateObj.month,
+                            //     isForecast: false,
+                            //     beginDay: selectDay,
+                            //     dayNum: menstrualDays,
+                            //     cycle: menstrualCycle,
+                            //     menstrualListTime: menstrualListTime,
+                            // });
+                            // $(calendarView).find('.item-day').eq(selectDay)
+                            appointEle(selectDay);
+                        });
+
+                        that.toggleClass('active')
+
+                    }else{
+                        // 在当前年月
+                        comAjax('/menstrual/menstrualBeginEndData', {
+                            getDate: $xhCalendarView.find('.cur-date')
+                                .data(
+                                    'ymfirst'),
+                            begin: $xhCalendarView.find('.cur-date')
+                                .data(
+                                    'time'),
+                            num: menstrualDays
+
+                        }, function (res) {
+                            console.log(res);
+                            if(res.state == 2){
+                                var menstrualListTime = res.menstrualListTime;
+                                console.log(menstrualListTime);
+                                
+                                $(calendarView).xhInitCalendar({
+                                    calendarTimeYear: feYear,
+                                    calendarTimeMonth: nowDateObj.month,
+                                    isForecast: false,
+                                    beginDay: selectDay,
+                                    dayNum: menstrualDays,
+                                    cycle: menstrualCycle,
+                                    menstrualListTime: menstrualListTime,
+                                });
+                            }
+                            appointEle(selectDay);
+                        });
+                    }
+                }
+                appointEle(selectDay);
+
+            });
+            // 经期结束按钮
+            $switchEnd.on('click', function () {
+                var that = $(this);
+                if (that.hasClass('active')) {
+                    console.log('点击结束回复老样子');
+                    comAjax('/menstrual/menstrualBeginEndData', {
+                            getDate: $(calendarView).find('.cur-date')
+                                .data(
+                                    'ymfirst'),
+                            end: $(calendarView).find('.cur-date').data(
+                                'time'),
+                            num: selectDay - $(calendarView).find('.set-open-day').data(
+                                'day') + 1,
+                            type:1    
+                            
+                        }, function (res) {
+                            console.log(res);
+                            
+                            var menstrualListTime = [];
+                            if(res.state == 2){
+                                menstrualListTime = res.menstrualListTime
+                            }
+                            $(calendarView).xhInitCalendar({
+                                calendarTimeYear: feYear,
+                                calendarTimeMonth: nowDateObj.month,
+                                isForecast: false,
+                                beginDay: '',
+                                dayNum: menstrualDays,
+                                cycle: menstrualCycle,
+                                menstrualListTime: menstrualListTime,
+
+                            });
+                            appointEle(selectDay);
+                        });
+                    
+                    that.toggleClass('active')
+                    $switchBegin.addClass('disabled')
+                } else {
+                    if (menstrualEndSwitch == 2) {
+                        // 之前是关闭状态
+                        alert('请先设置【经期开始】')
+                    } else if (menstrualEndSwitch == 3) {
+                        setModal = initModal({
+                            type: 'alert',
+                            title: '温馨提示',
+                            message: '亲爱的，本次经期持续时间有点儿长哦，建议及早去医院检查哦',
+                            confirmButtonText: '确认',
+                            confirmCallback: function () {
+                                var arr = [];
+                                    for(var j = 0;j<$(calendarView).find('.set-open-day').length;j++){
+                                        arr.push($(calendarView).find('.set-open-day').eq(j).data(
+                                        'day'))
+                                    }
+                                    var newlyDay = Math.max.apply(null, arr);
+                                    console.log(newlyDay);
+                                comAjax('/menstrual/menstrualBeginEndData', {
+                                    getDate: $(calendarView).find('.cur-date')
+                                        .data(
+                                            'ymfirst'),
+                                    begin: $(calendarView).find('.js-item-day').eq(newlyDay-1).data(
+                                        'time'),    
+                                    // end: $(calendarView).find('.cur-date').data(
+                                    //     'time'),
+                                    num: selectDay - newlyDay + 1,
+                                    type:2    
+                                    
+                                }, function (res) {
+                                    console.log(res);
+                                    var menstrualListTime = [];
+                                    if(res.state == 2){
+                                        menstrualListTime = res.menstrualListTime
+                                    }
+                                    $(calendarView).xhInitCalendar({
+                                        calendarTimeYear: feYear,
+                                        calendarTimeMonth: nowDateObj.month,
+                                        isForecast: false,
+                                        beginDay: '',
+                                        dayNum: menstrualDays,
+                                        cycle: menstrualCycle,
+                                        menstrualListTime: menstrualListTime,
+
+                                    });
+                                    appointEle(selectDay);
+                                });
+                                appointEle(selectDay);
+                                that.toggleClass('active')
+                                $switchBegin.addClass('disabled')
+                            },
+
+                        });
+                        setModal.create();
+                    } else {
+                        comAjax('/menstrual/menstrualBeginEndData', {
+                            getDate: $(calendarView).find('.cur-date')
+                                .data(
+                                    'ymfirst'),
+                            end: $(calendarView).find('.cur-date').data(
+                                'time'),
+                            num: selectDay - $(calendarView).find('.set-open-day').data(
+                                'day') + 1
+                            
+                        }, function (res) {
+                            console.log(res);
+                            
+                            var menstrualListTime = [];
+                            if(res.state == 2){
+                                menstrualListTime = res.menstrualListTime
+                            }
+                            $(calendarView).xhInitCalendar({
+                                calendarTimeYear: feYear,
+                                calendarTimeMonth: nowDateObj.month,
+                                isForecast: false,
+                                beginDay: $(calendarView).find('.set-open-day').data(
+                                'day'),
+                                dayNum: menstrualDays,
+                                cycle: menstrualCycle,
+                                menstrualListTime: menstrualListTime,
+
+                            });
+                            appointEle(selectDay);
+                        });
+                        // $('.js-xh-calendar-view').xhInitCalendar({
+                        //     calendarTimeYear: nowDateObj.year,
+                        //     calendarTimeMonth: nowDateObj.month,
+                        //     isForecast: false,
+                        //     beginDay: $xhCalendarView.find('.set-open-day').data(
+                        //         'day'),
+                        //     dayNum: menstrualDays,
+
+                        //     cycle: menstrualCycle,
+                        //     menstrualListTime:menstrualListTime
+                        // });
+                        appointEle(selectDay);
+                        that.toggleClass('active')
+                        $switchBegin.addClass('disabled')
+                    }
+                }
+
+                // that.toggleClass('active')
+            });
+            $switchRemind.on('click', function () {
+                var that = $(this);
+                that.toggleClass('active')
+            })
+            // 帮助函数
+            // 获得当前时间
+            function getNowDate() {
+                var now = new Date();
+                var nowDate = now.getFullYear() + '-' + (((now.getMonth() + 1) < 10) ? ("0" + (now.getMonth() +
+                        1)) : (now.getMonth() + 1)) + '-' +
+                    ((now.getDate() < 10) ? ("0" + now.getDate()) : now.getDate());
+                var dateObj = {
+                    nowDate: nowDate,
+                    year: now.getFullYear().toString(),
+                    month: (now.getMonth() + 1).toString(),
+                    day: now.getDate().toString()
+
+                }
+                return dateObj;
+            }
+            /* 是否可点击 */
+            function canClick() {
+                if (setParams.menstrualCycle && setParams.menstrualDays && setParams.menstrualLastDate) {
+                    $completeBtn.addClass('on')
+                } else {
+                    $completeBtn.removeClass('on')
+                }
+            }
+
+            // 是否在当前月
+            function curMonth(yearmonth) {
+                var curDate = nowDateObj.year + nowDateObj.month;
+                console.log(yearmonth, showDate);
+
+                if (yearmonth == showDate) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+            // 指定元素有当前标示样式
+            function appointEle(index) {
+                console.log('选中第' + index + '个元素');
+
+                $(calendarView).find('.js-item-day').eq(index - 1).addClass('cur-date').siblings().removeClass(
+                    'cur-date')
+            }
+
+            function comAjax(u, data, callback) {
+                $.ajax({
+                    url: u,
+                    data: data,
+                    type: 'post',
+                    dataType: "json",
+                    success: function (data) {
+                        callback(data);
+                    }
+                })
+            }
+        })
+    </script>
+    {/block}
