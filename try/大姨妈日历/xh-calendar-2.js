@@ -182,7 +182,7 @@
 
             // 渲染❤️元素
             // 第一次
-            if (that.dayParams.isForecast && that.dayParams.beginDay + that.dayParams.dayNum > 3) {
+            if (that.dayParams.isForecast && that.dayParams.beginDay && that.dayParams.beginDay + that.dayParams.dayNum > that.nowDay) {
                 // 当前是预测并且符合应该显示的要求
                 that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
             } else {
@@ -199,9 +199,9 @@
                         that.renderMenstrualEle(curBeginDay, false, curNum);
                     }
                 } else {
-                    console.log('没有list传过来了');
+                    console.log('没有list传过来了2');
 
-                    that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
+                    // that.renderMenstrualEle(that.dayParams.beginDay, that.dayParams.isForecast)
                 }
 
             }
@@ -250,7 +250,7 @@
 
 
             // 如果有两次 正向 开始1+周期20 小于当月全部天数
-            if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length && that.dayParams.calendarTimeMonth >= that.nowMonth) {
+            if (that.dayParams.cycle + that.dayParams.beginDay <= that.allDateLi.length && that.dayParams.calendarTimeMonth >= that.nowMonth && that.dayParams.beginDay) {
                 var afterBeginDay = that.dayParams.cycle + that.dayParams.beginDay;
                 console.log('往后预测第二次');
                 that.renderMenstrualEle(afterBeginDay, true)
