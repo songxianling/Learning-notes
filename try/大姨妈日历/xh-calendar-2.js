@@ -394,7 +394,7 @@
                     } else if (j == oDayNum - 1) {
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-end-day');
                         // 燃脂（瘦身）的日期(正式经期结束后第3天)
-                        that.allDateLi.eq(beginDay + 3).append('<span class="text">燃脂</span>');
+                        that.allDateLi.eq(beginDay + 3).append('<span class="text remind">燃脂</span>');
                     } else {
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date');
                     }
@@ -410,7 +410,7 @@
                             that.allDateLi.eq(beginDay).addClass('forecast-menses-date forecast-menses-one');
                             // 渲染敷面膜（养颜汤）|| 皮肤清洁（排毒）的日期(预测经期开始日前第3天)
                             if (beginDay - 3 >= 0) {
-                                that.allDateLi.eq(beginDay - 3).append('<span class="text">敷面膜11</span>');
+                                that.allDateLi.eq(beginDay - 3).append('<span class="text remind">敷面膜11</span>');
                             }
 
                             // 倒推排卵期
@@ -444,7 +444,7 @@
                         } else if (j == that.dayParams.dayNum - 1) {
                             that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-end-day');
                             // 燃脂（瘦身）的日期(正式经期结束后第3天)
-                            that.allDateLi.eq(beginDay + 3).append('<span class="text">燃脂2</span>');
+                            that.allDateLi.eq(beginDay + 3).append('<span class="text remind">燃脂2</span>');
                         } else {
                             that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date');
                         }
