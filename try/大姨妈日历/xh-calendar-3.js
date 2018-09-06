@@ -111,19 +111,7 @@
             // that.xhCalendarWeek = $('<ul class="xh-calendar-week clearfix"></ul>');
             that.xhCalendarDate = $('<div class="xh-calendar-date js-xh-calendar-date clearfix"></div>');
 
-            // 定义实际元素字符串
-            // var titleDomStr = '<div class="center-box js-select-date-box">' +
-            //     '<span class="today-text js-today-text">' + year + '年' + month + '月</span>' +
-            //     '<span class="arrow-next js-arrow-next"></span>' +
-            //     '</div>' +
-            //     '<span class="today-btn js-go-today-btn">回今天</span>';
-            // var weekDomStr = '<li class="week-item">周日</li>' +
-            //     '<li class="week-item">周一</li>' +
-            //     '<li class="week-item">周二</li>' +
-            //     '<li class="week-item">周三</li>' +
-            //     '<li class="week-item">周四</li>' +
-            //     '<li class="week-item">周五</li>' +
-            //     '<li class="week-item">周六</li>';
+            
             var dateDomStr = '';
             // 每周7天；开始结束行尾补齐
             for (var i = 0, len = week; i < len; i++) {
@@ -176,7 +164,8 @@
             if (!that.dayParams) {
                 return;
             }
-            that.allDateLi = that.xhCalendarDate.find('.item-day');
+            // that.allDateLi = that.xhCalendarDate.find('.item-day');
+            that.allDateLi = $('.swiper-slide-active').find('.item-day');
             // console.log(that.allDateLi.length);
 
 
@@ -258,6 +247,7 @@
             //     that.renderMenstrualEle(afterBeginDay, true)
             // }
             if (that.dayParams.menstrualListTime) {
+                
                 for (var i = 0; i < that.dayParams.menstrualListTime.length; i++) {
                     var curNum = that.dayParams.menstrualListTime[i].num;
                     console.log('aaasss' + that.dayParams.menstrualListTime[i].beginTime);
@@ -265,7 +255,7 @@
                     var curBeginDay = Number(that.dayParams.menstrualListTime[i].beginTime.substring(8));
                     console.log('设置的开始日期' + curBeginDay);
 
-                    that.renderMenstrualEle(curBeginDay, false, curNum);
+                    that.renderMenstrualEle(curBeginDay, curNum);
                 }
             }
             if (that.dayParams.menstrual) {
@@ -282,37 +272,6 @@
                     that.renderOvulateEleT(cur)
                 }
             }
-
-            // 当前开始的日期和周期是否符合2次❤️(上次)反向
-            // if (that.dayParams.beginDay > that.dayParams.cycle && that.dayParams.beforeForecast) {
-            //     var agoBeginDay = that.dayParams.beginDay - that.dayParams.cycle - 1;
-            //     if (agoBeginDay >= 0 && agoBeginDay + that.dayParams.dayNum > 3) {
-            //         console.log('往前预测第二次');
-            //         var agoBeginDay = that.dayParams.beginDay - that.dayParams.cycle;
-            //         that.renderMenstrualEle(agoBeginDay, true)
-            //     }
-            // }
-
-            // 正向预测排卵期 跨越2个月的情况
-            // if (that.dayParams.beginDay + that.dayParams.cycle > that.allDateLi.length && that.dayParams.calendarTimeMonth >= that.nowMonth) {
-            //     var afterMonthBegin = that.dayParams.beginDay + that.dayParams.cycle - that.allDateLi.length;
-            //     // 下月月经第一天距离上次排卵第一天的值为19
-            //     var moreDayNum = 19 - afterMonthBegin;
-            //     // 当月天数减去当月开始的那一天就是本月开始的日期
-            //     var nowOvuBegin = that.allDateLi.length - moreDayNum;
-
-            //     for (var i = 1; i <= 10; i++) {
-
-            //         if (nowOvuBegin >= 0) {
-            //             if (i == 5) {
-            //                 that.allDateLi.eq(nowOvuBegin).addClass('ovulate-cur-date');
-            //                 that.allDateLi.eq(nowOvuBegin).append('<span class="text p-text">排卵日2</span>');
-            //             }
-            //             that.allDateLi.eq(nowOvuBegin).addClass('ovulate-date');
-            //         }
-            //         nowOvuBegin++;
-            //     }
-            // }
         },
         renderMenstrualEleT: function (arr) {
             var that = this;
@@ -338,13 +297,17 @@
             console.log(one);
 
         },
-        renderMenstrualEle: function (beginDay, isForecast, oDayNum) {
+        renderMenstrualEle: function (beginDay, oDayNum) {
             var that = this;
             if (!beginDay) {
                 return;
             }
             var beginDay = beginDay - 1;
             console.log(beginDay);
+            // 渲染安全期
+            for (var j = 0; j < that.allDateLi.length; j++) {
+                that.allDateLi.eq(j).addClass('anquan');
+            }
             // 渲染手动设置
             if (oDayNum) {
                 console.log('手动设置的');
@@ -355,14 +318,14 @@
 
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-open-day');
                         // 倒推排卵期
-                        var ovulateLastDay = beginDay - 10;
+                        // var ovulateLastDay = beginDay - 10;
                         // console.log('预测排卵期最后一天' + ovulateLastDay);
-                        console.log(that.dayParams.calendarTimeMonth, that.nowMonth);
+                        // console.log(that.dayParams.calendarTimeMonth, that.nowMonth);
 
                         // if (ovulateLastDay >= 0 && that.dayParams.calendarTimeMonth >= that.nowMonth) {
-                        if (ovulateLastDay >= 0) {
-                            that.renderOvulateEle(ovulateLastDay)
-                        }
+                        // if (ovulateLastDay >= 0) {
+                        //     that.renderOvulateEle(ovulateLastDay)
+                        // }
                     } else if (j == oDayNum - 1) {
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date set-end-day');
                         // 燃脂（瘦身）的日期(正式经期结束后第3天)
@@ -370,6 +333,7 @@
                     } else {
                         that.allDateLi.eq(beginDay).addClass('forecast-menses-date menses-date');
                     }
+                    
                     beginDay++;
                 }
                 return;
