@@ -70,10 +70,10 @@
                             <div class="js-xh-calendar-view js-xh-calendar-view-0 swiper-slide"></div>
                             <div class="js-xh-calendar-view js-xh-calendar-view-1 swiper-slide"></div>
                             <div class="js-xh-calendar-view js-xh-calendar-view-2 swiper-slide"></div>
-                            <!-- <div class="js-xh-calendar-view js-xh-calendar-view-3 swiper-slide"></div>
+                            <div class="js-xh-calendar-view js-xh-calendar-view-3 swiper-slide"></div>
                             <div class="js-xh-calendar-view js-xh-calendar-view-4 swiper-slide"></div>
                             <div class="js-xh-calendar-view js-xh-calendar-view-5 swiper-slide"></div>
-                            <div class="js-xh-calendar-view js-xh-calendar-view-6 swiper-slide"></div> -->
+                            <div class="js-xh-calendar-view js-xh-calendar-view-6 swiper-slide"></div>
                             <!-- <div class="swiper-slide">Slide 1</div>
                                 <div class="swiper-slide">Slide 2</div>
                                 <div class="swiper-slide">Slide 3</div> -->
@@ -587,40 +587,109 @@
                 // console.log(showDate);
 
             });
-            var sMonth = Number(nowDateObj.month);
+
+
+            // 固定7个
             var sA = [];
-            touch(sMonth)
+            var o = 9;
+            for(var n = 0 ; n < 7 ; n++){
+                if(n < 3){
+                    o -- ;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                if(n == 3){
+                    sA.sort()
+                    o = 9;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                if(n > 3){
+                    o ++ ;
+                    if(o < 10){
+                        var c = feYear+'-0'+o+'-'+'01';
+                    }else{
+                        var c = feYear+'-'+o+'-'+'01';
+                    }
+                }
+                
+                sA.push(c)
+                
+            }
+            console.log(sA);
+            function fn(cur,index) {
+                comAjax('/menstrual/getStartDate', {
+                date: cur,
+                menstrualCycle: menstrualCycle,
+                menstrualLastDate: menstrualLastDate
+                         }, function (res) {
+                            console.log(res);
+                            var menstrualListTime = [];
+                            if(res.state == 2){
+                                menstrualListTime = res.menstrualListTime;
+                                console.log(menstrualListTime);
+                            }
+                            var sTime = res.time;
+                            console.log(index);
+                            
+                            $('.js-xh-calendar-view-'+index).xhInitCalendar({
+                                    calendarTimeYear: Number(sTime.substring(0,4)),
+                                    calendarTimeMonth: Number(sTime.substring(5,7)),
+                                    isForecast: false,
+                                    beginDay: '',
+                                    dayNum: menstrualDays,
+                                    cycle: menstrualCycle,
+                                    menstrualListTime: menstrualListTime,
+                                });
+                            
+                        });
+            }
+            for(var i = 0;i<sA.length;i++){
+                var cur = sA[i];
+                fn(cur,i)
+            }
+
+
+            var sMonth = Number(nowDateObj.month);
+            // var sA = [];
+            // touch(sMonth)
             var curShowData = '';
             var swiperFirst = true;
             var selectEle = '';
             var swiper = new Swiper('.swiper-container', {
-                initialSlide: 1,
+                initialSlide: 3,
                 on: {
                     slideChangeTransitionEnd: function () {
                         calendarView = '.js-xh-calendar-view-' + this.realIndex;
                         // console.log(calendarView);
-                        if(!swiperFirst){
-                            if(this.realIndex > this.previousIndex){
-                                // sMonth ++;
-                                if(sMonth<12){
-                                    sMonth ++;
-                                }else{
-                                    sMonth  = 01;
-                                }
+                        // if(!swiperFirst){
+                        //     if(this.realIndex > this.previousIndex){
+                        //         // sMonth ++;
+                        //         if(sMonth<12){
+                        //             sMonth ++;
+                        //         }else{
+                        //             sMonth  = 01;
+                        //         }
                                 
-                                touch(sMonth)
-                                swiper.slideTo(1, 0, false)
-                            }else{
-                                if(sMonth>1){
-                                    sMonth --;
-                                }else{
-                                    sMonth  = 01;
-                                }
-                                // sMonth --;
-                                touch(sMonth)
-                                swiper.slideTo(1, 0, false)
-                            }
-                        }
+                        //         touch(sMonth)
+                        //         swiper.slideTo(1, 0, false)
+                        //     }else{
+                        //         if(sMonth>1){
+                        //             sMonth --;
+                        //         }else{
+                        //             sMonth  = 01;
+                        //         }
+                        //         // sMonth --;
+                        //         touch(sMonth)
+                        //         swiper.slideTo(1, 0, false)
+                        //     }
+                        // }
                         swiperFirst = false;
                         $selectDate.html(sA[this.realIndex].substring(0, 4) + '年' + sA[this.realIndex]
                             .substring(5, 7) + '月');
@@ -638,102 +707,106 @@
                     // },
                 },
             });
+            
 
+
+
+            
             
 
             // var sA = [];
             
-            function touch(sMonth){
-                // alert('c')
-                // 共3个
-                sA = []
-                // var o = sMonth;
-                // alert('中间月'+sMonth)
-                for (var n = 0; n < 3; n++) {
-                    if (n < 1) {
-                        var o = sMonth - 1;
-                        if (o < 10) {
-                            var c = feYear + '-0' + o + '-' + '01';
-                        } else {
-                            var c = feYear + '-' + o + '-' + '01';
-                        }
-                        // lookRender(c, n)
-                    }
-                    if (n == 1) {
-                        sA.sort()
-                        var o = sMonth;
-                        if (o < 10) {
-                            var c = feYear + '-0' + o + '-' + '01';
-                        } else {
-                            var c = feYear + '-' + o + '-' + '01';
-                        }
-                        // lookRender(c, n)
-                    }
-                    if (n > 1) {
-                        var o = sMonth+1;
-                        if(o>12){
-                            o = 1;
-                            feYear++;
-                        }
-                        // else{
-                        //     if (o < 10) {
-                        //         var c = feYear + '-0' + o + '-' + '01';
-                        //     } else {
-                        //         var c = feYear + '-' + o + '-' + '01';
-                        //     }
-                        // }
-                        if (o < 10) {
-                                var c = feYear + '-0' + o + '-' + '01';
-                            } else {
-                                var c = feYear + '-' + o + '-' + '01';
-                            }
+            // function touch(sMonth){
+            //     // alert('c')
+            //     // 共3个
+            //     sA = []
+            //     // var o = sMonth;
+            //     // alert('中间月'+sMonth)
+            //     for (var n = 0; n < 3; n++) {
+            //         if (n < 1) {
+            //             var o = sMonth - 1;
+            //             if (o < 10) {
+            //                 var c = feYear + '-0' + o + '-' + '01';
+            //             } else {
+            //                 var c = feYear + '-' + o + '-' + '01';
+            //             }
+            //             // lookRender(c, n)
+            //         }
+            //         if (n == 1) {
+            //             sA.sort()
+            //             var o = sMonth;
+            //             if (o < 10) {
+            //                 var c = feYear + '-0' + o + '-' + '01';
+            //             } else {
+            //                 var c = feYear + '-' + o + '-' + '01';
+            //             }
+            //             // lookRender(c, n)
+            //         }
+            //         if (n > 1) {
+            //             var o = sMonth+1;
+            //             if(o>12){
+            //                 o = 1;
+            //                 feYear++;
+            //             }
+            //             // else{
+            //             //     if (o < 10) {
+            //             //         var c = feYear + '-0' + o + '-' + '01';
+            //             //     } else {
+            //             //         var c = feYear + '-' + o + '-' + '01';
+            //             //     }
+            //             // }
+            //             if (o < 10) {
+            //                     var c = feYear + '-0' + o + '-' + '01';
+            //                 } else {
+            //                     var c = feYear + '-' + o + '-' + '01';
+            //                 }
                         
-                        // lookRender(c, n)
-                    }
-                    sA.push(c)
-                }
+            //             // lookRender(c, n)
+            //         }
+            //         sA.push(c)
+            //     }
 
                 
 
 
 
-                console.log(sA);
+            //     console.log(sA);
                 
-                function lookRender(cur, index) {
-                    // alert(cur)
-                    comAjax('/menstrual/getStartDate', {
-                        date: cur,
-                        menstrualCycle: menstrualCycle,
-                        menstrualLastDate: menstrualLastDate
+            //     function lookRender(cur, index) {
+            //         // alert(cur)
+            //         comAjax('/menstrual/getStartDate', {
+            //             date: cur,
+            //             menstrualCycle: menstrualCycle,
+            //             menstrualLastDate: menstrualLastDate
 
-                    }, function (res) {
-                        console.log(res);
-                        var menstrualListTime = [];
-                        if (res.state == 2) {
-                            menstrualListTime = res.menstrualListTime;
-                            console.log(menstrualListTime);
-                        }
-                        var sTime = res.time;
-                        console.log(index);
+            //         }, function (res) {
+            //             console.log(res);
+            //             var menstrualListTime = [];
+            //             if (res.state == 2) {
+            //                 menstrualListTime = res.menstrualListTime;
+            //                 console.log(menstrualListTime);
+            //             }
+            //             var sTime = res.time;
+            //             console.log(index);
                         
-                        $('.js-xh-calendar-view-' + index).xhInitCalendar({
-                            calendarTimeYear: Number(sTime.substring(0, 4)),
-                            calendarTimeMonth: Number(sTime.substring(5, 7)),
-                            menstrual:res.date.n_day,
-                            ovulate:res.date.ovulation,
-                            menstrualListTime: menstrualListTime,
-                        });
+            //             $('.js-xh-calendar-view-' + index).xhInitCalendar({
+            //                 calendarTimeYear: Number(sTime.substring(0, 4)),
+            //                 calendarTimeMonth: Number(sTime.substring(5, 7)),
+            //                 menstrual:res.date.n_day,
+            //                 ovulate:res.date.ovulation,
+            //                 menstrualListTime: menstrualListTime,
+            //             });
                         
 
 
-                    });
-                }
-                for (var i = 0; i < sA.length; i++) {
-                    var cur = sA[i];
-                    lookRender(cur, i)
-                }
-                // swiper.slideTo(1, 1000, false)
-            }
+            //         });
+            //     }
+            //     for (var i = 0; i < sA.length; i++) {
+            //         var cur = sA[i];
+            //         lookRender(cur, i)
+            //     }
+            //     // swiper.slideTo(1, 1000, false)
+            // }
 
             // 日历内的日期点击
             var $xhCalendarView = $('.js-xh-calendar-view');
