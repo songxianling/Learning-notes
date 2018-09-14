@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css居中写法</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 公共代码 */
+        .wp {
+            border: 1px solid red;
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+        }
+
+        .box {
+            background: green;
+        }
+
+        .box.size {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* 公共代码 */
+
+
+        /* 定位代码 这种方式比较好理解，兼容性也很好，缺点是需要知道子元素的宽高 */
+        /* .wp {
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+        } */
+
+        /* 定位代码  这种方式也要求居中元素的宽高必须固定;这种方法兼容性也很好，缺点是需要知道子元素的宽高 */
+        /* .wp {
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            ;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        } */
+
+        /* 定位代码 这种方法兼容性依赖calc的兼容性，缺点是需要知道子元素的宽高 */
+        /* .wp {
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            ;
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
+        } */
+
+        /* 定位代码 还是绝对定位，但这个方法不需要子元素固定宽高 这种方法兼容性依赖translate2d的兼容性 */
+        /* .wp {
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        } */
+
+        /* 定位代码 利用行内元素居中属性也可以做到水平垂直居中;这种方法需要在子元素中将文字显示重置为想要的效果 */
+        /* .wp {
+            line-height: 300px;
+            text-align: center;
+            font-size: 0px;
+        }
+
+        .box {
+            font-size: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: initial;
+            text-align: left;
+        } */
+
+        .div2 {
+            writing-mode: vertical-lr;
+        }
+
+        /* 定位代码 这种方法实现起来和理解起来都稍微有些复杂 解开二的代码*/
+        /* .wp {
+            writing-mode: vertical-lr;
+            text-align: center;
+        }
+
+        .wp-inner {
+            writing-mode: horizontal-tb;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .box {
+            display: inline-block;
+            margin: auto;
+            text-align: left;
+        } */
+
+        /* flex作为现代的布局方案，颠覆了过去的经验，只需几行代码就可以优雅的做到水平垂直居中  移动端已经完全可以使用flex了， */
+        /* .wp {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+        
+
+        /*  css新出的网格布局，由于兼容性不太好，一直没太关注，通过grid也可以实现水平垂直居中 */
+        /* 代码量也很少，但兼容性不如flex，不推荐使用 */
+        .wp {
+            display: grid;
+        }
+
+        .box {
+            align-self: center;
+            justify-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wp">
+        <div class="box size">123123</div>
+    </div>
+    <div class="div1">水平方向</div>
+    <div class="div2">垂直方向</div>
+    <!-- 查看此代码效果需要注释上面的 -->
+    <!-- 二 -->
+    <!-- <div class="wp">
+        <div class="wp-inner">
+            <div class="box">123123</div>
+        </div>
+    </div> -->
+    <!-- 二 -->
+
+</body>
+
+</html>
