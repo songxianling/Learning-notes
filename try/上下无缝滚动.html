@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 30px;
+            margin: 100px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 200px;
+            margin: 0
+        }
+
+        ul li {
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>qqqqqqqqqqqqqqqqq</li>
+            <li>wwwwwwwwwwwwwwwww</li>
+            <li>eeeeeeeeeeeeeeeee</li>
+            <li>rrrrrrrrrrrrrrrrr</li>
+            <li>aaaaaaaaaaaaaaaaa</li>
+            <li>bbbbbbbbbbbbbbbbb</li>
+            <li>ccccccccccccccccc</li>
+        </ul>
+    </div>
+
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    function gundong() {
+        var liH = $("ul li").height();
+        var gunH = 0;
+        console.log(liH);
+        $("ul").append($("ul li").eq(0).clone());
+        setInterval(function () {
+            gunH += liH;
+            console.log(gunH);
+            $("ul").animate({
+                marginTop: -gunH + "px"
+            }, 500);
+            if (gunH >= ($("ul li").length - 1) * 30) {
+                gunH = 0;
+                $("ul").animate({
+                    marginTop: gunH + "px"
+                }, 1);
+            }
+        }, 2000);
+    }
+    gundong()
+</script>
+
+</html>
