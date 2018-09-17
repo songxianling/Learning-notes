@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="aa">谁让你看的你告诉我我保证他在也看不到。</div>
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    $(".aa").each(function () {
+        var str = $(this).html();
+        var subStr = str.substring(0, 5);
+        $(this).html(subStr + (str.length > 5 ? '...' : ''));
+    });
+</script>
+
+</html>
