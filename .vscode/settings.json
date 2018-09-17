@@ -2,5 +2,7 @@
     "emmet.triggerExpansionOnTab": true,
     "editor.fontSize": 18,
     "search.followSymlinks": false,
-    
+    "cssrem.rootFontSize":32,
+    "cssrem.fixedDigits":6,
+    "cssrem.autoRemovePrefixZero":true
 }
