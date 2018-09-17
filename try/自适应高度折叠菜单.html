@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            width: 200px;
+            padding: 0;
+            margin: auto;
+        }
+
+        ul li p {
+            height: 0px;
+            transition: height 1s;
+            overflow: hidden;
+            margin: 0;
+            background: #43688a
+        }
+
+        ul li a {
+            display: block;
+            text-align: center;
+            color: white;
+            height: 32px
+        }
+
+        ul li a:hover {
+            color: red
+        }
+
+        ul li span {
+            background: #2f4050;
+            color: white;
+            display: block;
+            text-align: center;
+            padding: 8px 0;
+            position: relative
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="menu-side" id="xiala">
+        <li>
+            <span class="nav-label">订单管理</span>
+            <p>
+                <a href="###">网站订单</a>
+                <a href="###">店铺订单</a>
+                <a href="###">财务管理</a>
+                <a href="###">统计</a>
+            </p>
+        </li>
+        <li>
+            <span class="nav-label">号码管理</span>
+            <p>
+                <a href="###">主营号码</a>
+                <a href="###">号码回收</a>
+                <a href="###">推荐主题</a>
+                <a href="###">号码批处理</a>
+                <a href="###">号码定制</a>
+            </p>
+        </li>
+        <li>
+            <span class="nav-label">资讯管理</span>
+            <p>
+                <a href="###">广告</a>
+                <a href="###">频道</a>
+                <a href="###">文章</a>
+            </p>
+        </li>
+
+        <li>
+            <span class="nav-label">会员管理</span>
+            <p>
+                <a href="###">用户</a>
+                <a href="###">用户组</a>
+                <a href="###">代理加盟</a>
+                <a href="###">意见反馈</a>
+            </p>
+        </li>
+
+        <li>
+            <span class="nav-label">选项管理</span>
+            <p>
+                <a href="###">支付方式</a>
+                <a href="###">地区</a>
+                <a href="###">排序</a>
+                <a href="###">制式</a>
+                <a href="###">套餐</a>
+                <a href="###">套餐详情</a>
+                <a href="###">寓意</a>
+                <a href="###">平台</a>
+            </p>
+        </li>
+        <li>
+            <span class="nav-label">站点管理</span>
+            <p>
+                <a href="###">站点设置</a>
+                <a href="###">SEO优化</a>
+            </p>
+        </li>
+    </ul>
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    $(".nav-label").click(function () {
+        $("p").css({
+            height: '0px'
+        });
+        var obj = $(this).siblings("p");
+        if (obj.height() == 0) {
+            var arr = obj.children("a");
+            var height = arr.height() * arr.length;
+            obj.css({
+                height: height + 'px'
+            });
+        }
+    })
+</script>
+
+</html>
