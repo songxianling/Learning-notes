@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .draw-outline {
+            box-shadow: inset 0 0 0 2px #000;
+            color: #000;
+            -webkit-transition: color 0.25s 0.125s;
+            transition: color 0.25s 0.125s;
+            position: relative;
+        }
+
+        .draw-outline::before,
+        .draw-outline::after {
+            border: 0 solid transparent;
+            box-sizing: border-box;
+            content: '';
+            pointer-events: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        .draw-outline::before {
+            top: 0;
+            right: 0;
+        }
+
+        .draw-outline::after {
+            left: 0;
+            bottom: 0;
+        }
+
+        .draw-outline::after {
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .draw-outline::before {
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .draw-outline:hover {
+            color: #00a0e9;
+        }
+
+        .draw-outline:hover::before,
+        .draw-outline:hover::after {
+            border-color: #00a0e9;
+            -webkit-transition: border-color 0s, height 0.25s, width 0.25s;
+            transition: border-color 0s, height 0.25s, width 0.25s;
+            width: 100%;
+            height: 100%;
+        }
+
+        .draw-outline:hover::before {
+            -webkit-transition-delay: 0s, 0s, 0.25s;
+            transition-delay: 0s, 0s, 0.25s;
+        }
+
+        .draw-outline:hover::after {
+            -webkit-transition-delay: 0.5s, 0.5s, 0.75s;
+            transition-delay: 0.5s, 0.5s, 0.75s;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1.5;
+            font: 700 1.2rem 'Roboto Slab', sans-serif;
+            padding: 1em 2em;
+            letter-spacing: 0.05rem;
+        }
+
+        .btn:focus {
+            outline: 2px dotted #55d7dc;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn draw-outline">我的</button>
+</body>
+
+</html>
