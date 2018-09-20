@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css打字效果</title>
+    <style>
+        /*光标动画*/
+        @keyframes caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /*文本动画：从宽度为0开始*/
+        @keyframes text {
+            from {
+                width: 0;
+            }
+        }
+
+        .load-text {
+            width: 11ch;
+            margin: 0 auto;
+            overflow: hidden;
+            word-break: keep-all;
+            color: #b1f1f3;
+            border-right: 3px solid #000000;
+            font: bold 400% monospace;
+            animation: caret 0.5s step-end infinite, text 5s infinite steps(11);
+        }
+    </style>
+</head>
+
+<body>
+
+        <p class="load-text">loading...</p>
+</body>
+
+</html>
