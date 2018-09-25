@@ -1,0 +1,53 @@
+;
+(function ($, window, document, undefined) {
+var XhMarquee = function (ele, options) {
+this.wrapBox = ele;
+this.mParams = options;
+// console.log(options);
+}
+XhMarquee.prototype = {
+init: function (params) {
+var that = this;
+that.buildDom();
+},
+// 构建基本元素结构
+buildDom: function () {
+var that = this;
+that.warpBox = $('<div class="xh-marquee-box js-xh-marquee-box clearfix"></div>');
+
+var domStr = '<ul>';
+    if (that.mParams.barrage) {
+    domStr = '<ul class="barrage-ul">';
+        }
+        for (var i = 0; i < that.mParams.list.length; i++) { var curItem=that.mParams.list[i]; if
+            (that.mParams.barrage) { domStr +=' <li>' + '<img src="' + curItem.userImg + '">' + '<span>' +
+            curItem.userName + '刚刚加入了会员</span>' + '</li>' ; } else { domStr +=' <li>' + '<img src="' + curItem.userImg
+            + '">' + '<span>' + curItem.userName + '</span>' + '</li>' ; } } domStr +='</ul>' ;
+            that.warpBox.html(domStr); if (that.mParams.barrage) { that.warpBox.find('ul li').before('<li style="visibility: hidden;">
+            </li>');
+            }
+            // console.log(that.warpBox);
+            that.wrapBox.append(that.warpBox);
+            that.scrollAnimation();
+            },
+            // 开启滚动动画
+            scrollAnimation: function () {
+            var that = this;
+            var times = setInterval(function () {
+            that.wrapBox.find('ul').animate({
+            "top": -that.wrapBox.height()
+            }, 800, function () {
+            $(this).css({
+            top: "0px"
+            }).find("li:first").appendTo(this);
+            });
+            }, that.mParams.speedTime || 3000);
+            },
+            constructor: XhMarquee
+            }
+
+            $.fn.xhMarquee = function (options) {
+            var xhMarquee = new XhMarquee(this, options);
+            return xhMarquee.init();
+            };
+            })(jQuery, window, document);
