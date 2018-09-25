@@ -51,3 +51,24 @@ var domStr = '<ul>';
             return xhMarquee.init();
             };
             })(jQuery, window, document);
+
+
+
+            $(function (params) {
+            var list = [{
+            userName: '云南**',
+            userImg:
+            'http://www.ixiangha.com:9807/images/mo/webapp/activity/vipGuideRechargeNew/h4.jpg?vs=20170522111111123'
+            },
+            {
+            userName: '云南**',
+            userImg:
+            'http://www.ixiangha.com:9807/images/mo/webapp/activity/vipGuideRechargeNew/h4.jpg?vs=20170522111111123'
+            }
+            ];
+            $('.js-marquee-box').xhMarquee({
+            list:list,
+            speedTime:3000,
+            barrage:false,
+            });
+            });
