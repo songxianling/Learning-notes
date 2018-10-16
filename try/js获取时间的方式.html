@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 1.获取当前时间的时间戳
+    //第一种方法（精确到秒）
+    var timestamp = Date.parse(new Date());
+
+    //第二种方法（精确到毫秒）
+    var timestamp = (new Date()).valueOf();
+
+    //第三种方法(精确到毫秒)
+    var timestamp = new Date().getTime();
+
+
+
+    // 2.时间戳转指定日期格式
+
+    //第一种
+    function getLocalTime(nS) {
+        return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    }
+    var nowTime = getLocalTime(timestamp); //  2018/10/15 下午9:45
+
+    //第二种
+    function getLocalTime1(nS) {
+        return new Date(parseInt(nS)).toLocaleString().substr(0, 17)
+    }
+    var nowTime = getLocalTime1(timestamp); // 2018/10/15 下午9:53
+
+    //第三种
+    function getLocalTime2(nS) {
+        return new Date(parseInt(nS)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+    }
+    let nowTime1 = getLocalTime2(timestamp); //    2018/10/15 下午9:53:10
+
+    // 3.获取今天0点的时间戳
+    let getZeroTimestamp = new Date(new Date().toLocaleDateString()).getTime();
+</script>
+
+</html>
