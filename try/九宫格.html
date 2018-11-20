@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .gift-container {
+            position: relative;
+        }
+        .gift-container>ul {
+            font-size: 0;
+        }
+        .gift-container>ul>li {
+            margin-bottom: 20px;
+        }
+        .gift-container>ul>li> .gift-box:nth-of-type(2) {
+            margin: 0 20px;
+        }
+        .gift-container .gift-box {
+            display: inline-block;
+            width: 200px;
+            height: 60px;
+            line-height: 60px;
+            background: black;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .gift-container .gift-box.active {
+            background: red;
+        }
+        .get-gift-btn {
+            cursor: pointer;
+        }</style>
+</head>
+
+<body>
+    <div class="gift-container">
+        <ul>
+            <li>
+                <section class="gift-box active" data-role="0">0</section>
+                <section class="gift-box" data-role="1">1</section>
+                <section class="gift-box" data-role="2">2</section>
+            </li>
+            <li>
+                <section class="gift-box" data-role="7">7</section>
+                <section class="gift-box get-gift-btn">抽奖</section>
+                <section class="gift-box" data-role="3">3</section>
+            </li>
+            <li>
+                <section class="gift-box" data-role="6">6</section>
+                <section class="gift-box" data-role="5">5</section>
+                <section class="gift-box" data-role="4">4</section>
+            </li>
+        </ul>
+        <div>
+            <label for="gift-num">
+                <span>抽奖数字<small>0-7</small>:</span>
+                <input type="text" id="gift-num" name="gift-name">
+            </label>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    $(function () {
+        let $frameList = $('[data-role]');
+        let $input = $('#gift-num');
+        let k = null;
+        let times = 0;
+        let len = null;
+        let initDelayTime = 50;
+        let circleCount = 0;
+        let isBusy = false;
+        let oldTimes = null;
+        frameList = Array.from($frameList).sort((a, b) => {
+            return $(a).data('role') - $(b).data('role')
+        });
+        len = frameList.length;
+
+        function startGiftAm() {
+
+            k || (oldTimes = times);
+            let $curItem = $(frameList[(times++) % len]);
+            circleCount = parseInt((times - oldTimes) / len);
+            switch (circleCount) {
+                case 0:
+                case 1:
+                    {
+                        break;
+                    }
+                case 2:
+                case 3:
+                    {
+                        initDelayTime = 100;
+                        break;
+                    }
+                default:
+                    {
+                        initDelayTime = 200
+                    }
+            }
+            $frameList.removeClass('active');
+            $curItem.addClass('active');
+            if (circleCount === 4 && $input.val() == $curItem.data('role')) {
+                circleCount = 0;
+                k = null;
+                isBusy = false;
+                initDelayTime = 50;
+            } else {
+                k = setTimeout(startGiftAm, initDelayTime);
+            }
+        };
+        //
+        $('.get-gift-btn').on('click', function () {
+            if (!isBusy) {
+                console.log(isBusy);
+                isBusy = true;
+                startGiftAm();
+            }
+        })
+    })
+</script>
+
+</html>
