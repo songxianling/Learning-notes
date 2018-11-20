@@ -3,7 +3,7 @@
  */
 'use strict';
 
-// resolve 和 reject 类似于rerun的功能
+// resolve 和 reject 类似于retuen的功能
 
 var promise1 = new Promise((resolve, reject) => {
   resolve();
