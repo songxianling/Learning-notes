@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
 </body>
 <script>
     'use strict';
     let arr = ['a', 'b', 'c', 'd'];
-//    console.log(arr.keys());
-//    console.log(arr.values());
-//    console.log(arr.entries());
+    //    console.log(arr.keys());
+    //    console.log(arr.values());
+    //    console.log(arr.entries());
     let keys = arr.keys();
 
-//    for (let i = 0, len = keys.length; i < len; i++) {
-//        console.log(keys[i]);
-//    }
-//
-//    keys.forEach(function (item, index, arr) {
-//        console.log(item);
-//    });
+    //    for (let i = 0, len = keys.length; i < len; i++) {
+    //        console.log(keys[i]);
+    //    }
+    //
+    //    keys.forEach(function (item, index, arr) {
+    //        console.log(item);
+    //    });
 
     for (let item of arr.entries()) {
         console.log(item);
@@ -32,5 +34,25 @@
     console.log(keys.next());
     console.log(keys.next());
     console.log(keys.next());
+
+    // ES6 提供entries()，keys()和values(),用于遍历数组。它们都返回一个遍历器对象，可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。
+    for (let index of ['a', 'b'].keys()) {
+        console.log(index);
+    }
+    // 0
+    // 1
+
+    for (let elem of ['a', 'b'].values()) {
+        console.log(elem);
+    }
+    // 'a'
+    // 'b'
+
+    for (let [index, elem] of ['a', 'b'].entries()) {
+        console.log(index, elem);
+    }
+    // 0 "a"
+    // 1 "b"
 </script>
+
 </html>

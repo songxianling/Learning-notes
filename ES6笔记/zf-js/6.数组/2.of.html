@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
 </body>
 <script>
+    let items = new Array(2);
+    console.log(items.length); // 2
+    console.log(items[0]); // undefined
+    console.log(items[1]);
+
+
+    let items = new Array(1, 2);
+    console.log(items.length); // 2
+    console.log(items[0]); // 1
+    console.log(items[1]); // 2
+
+    //当使用单个数值参数来调用 Array 构造器时，数组的长度属性会被设置为该参数。 如果使用多个参数(无论是否为数值类型)来调用，这些参数也会成为目标数组的项。数组的这种行为既混乱又有风险，因为有时可能不会留意所传参数的类型。
+
     'use strict';
     // of 是为了将一组数值,转换为数组 和Array的功能类似,但是功能更友好一些
     console.log(Array(), Array().length);
@@ -29,4 +44,5 @@
         }
     }
 </script>
+
 </html>
