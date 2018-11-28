@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>数组去重</title>
+</head>
+
+<body>
+	<script>
+		var str="第1步：理赔报案<br/>通过太平洋财产保险股份有限公司客服电话（95500）申请理赔。<br/>第2步：提交理赔资料<br/>通过太平洋财产保险股份有限公司制定的理赔服务方案提交资料。<br/>第3步：完成理赔<br/>根据审核结果，将理赔款项支付到被保人制定账户。"
+		let strSplit=str.split('<br/>')
+		console.log(strSplit)
+		
+		
+		var arr=[]
+		var itemObj = {};
+		for(var i = 0;i<strSplit.length;i++){
+            itemObj = {};
+			if(i%2){
+				itemObj.title = strSplit[i-1];
+                itemObj.content = strSplit[i];
+                arr.push(itemObj);
+            }
+		}
+
+        // for (var i = 0; i <= (strSplit.length/2)+1; i++) {
+        //     console.log('c');
+        //     itemObj = {};
+        //     itemObj.title = strSplit[0];
+        //     itemObj.content = strSplit[1];
+        //     strSplit.splice(0, 2);
+        //     arr.push(itemObj);
+        // }
+		
+		console.log(arr)
+	</script>
+</body>
+
+</html>
