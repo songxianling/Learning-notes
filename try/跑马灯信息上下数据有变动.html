@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            list-style: none;
+            padding: 0;
+            width: 200px;
+            margin: 0
+        }
+
+        ul li {
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>aaaaaaaaaaaaaaaaaa</li>
+            <li>bbbbbbbbbbbbbbbbbb</li>
+            <li>cccccccccccccccccc</li>
+            <li>ddddddddddddddddddd</li>
+            <li>eeeeeeeeeeeeeeeeeee</li>
+            <li>fffffffffffffffffff</li>
+            <li>gggggggggggggggggggg</li>
+            <li>hhhhhhhhhhhhhhhhhhhh</li>
+            <li>iiiiiiiiiiiiiiiiiiii</li>
+            <li>jjjjjjjjjjjjjjjjjjjj</li>
+        </ul>
+    </div>
+
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    var liH = $("ul li").height();
+    var gunH = 0;
+    var scrollFre = 0; // 滚动的次数；根据后端返回的条数控制
+    var scrollEnd = true;  // 滚动结束
+
+    function scrollT() {
+        scrollEnd = false;
+        var time = setInterval(function () {
+            scrollFre--;
+            console.log(gunH);
+            if (scrollFre > -1) {
+                gunH += liH;
+                $("ul").animate({
+                    bottom: -gunH + "px"
+                }, 500);
+            } else {
+                scrollEnd = true;
+                clearInterval(time);
+            }
+        }, 2000);
+    }
+
+    // 每3s请求ajax追加10条数据到ul中
+    function reAjax() {
+        // 一旦有新数据;将滚动次数重置为0;然后for中累加滚动次数
+        // 如果之前次数滚动完了;就重新开始累加;如果还没有;则继续之前的累加
+        if(scrollFre == 0){
+            scrollFre = 0;
+        }else{
+            scrollFre = scrollFre;
+        }
+        var sHtml = '';
+        for (var i = 11; i < 13; i++) {
+            sHtml += '<li>' + i + '</li>';
+            scrollFre++;    
+        }
+        $('ul').prepend(sHtml);
+        // 如果已经滚动结束;添加好了之后开启滚动动画
+        // 如果没有结束;说明还有在滚动的或者没有滚动完的;上面的次数已经增加了;不需要重新开始定时器了
+        if(scrollEnd){
+            scrollT();
+        }
+        
+    }
+
+</script>
+
+</html>
