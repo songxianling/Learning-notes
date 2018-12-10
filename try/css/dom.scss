@@ -1,0 +1,85 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-alipay {
+    background-image: url(../sprite.png);
+    background-position: 0px -320px;
+    width: 43px;
+    height: 43px;
+  }
+  .icon-doselect {
+    background-image: url(../sprite.png);
+    background-position: 0px 0px;
+    width: 14px;
+    height: 25px;
+  }
+  .icon-huawei {
+    background-image: url(../sprite.png);
+    background-position: 0px -272px;
+    width: 43px;
+    height: 43px;
+  }
+  .icon-ios {
+    background-image: url(../sprite.png);
+    background-position: 0px -417px;
+    width: 41px;
+    height: 48px;
+  }
+  .icon-no_select {
+    background-image: url(../sprite.png);
+    background-position: 0px -131px;
+    width: 42px;
+    height: 42px;
+  }
+  .icon-renew {
+    background-image: url(../sprite.png);
+    background-position: 0px -30px;
+    width: 26px;
+    height: 26px;
+  }
+  .icon-selected {
+    background-image: url(../sprite.png);
+    background-position: 0px -225px;
+    width: 42px;
+    height: 42px;
+  }
+  .icon-type_back {
+    background-image: url(../sprite.png);
+    background-position: 0px -92px;
+    width: 19px;
+    height: 34px;
+  }
+  .icon-unrenew {
+    background-image: url(../sprite.png);
+    background-position: 0px -61px;
+    width: 26px;
+    height: 26px;
+  }
+  .icon-wx {
+    background-image: url(../sprite.png);
+    background-position: 0px -368px;
+    width: 50px;
+    height: 44px;
+  }
+  .icon-xd {
+    background-image: url(../sprite.png);
+    background-position: 0px -178px;
+    width: 46px;
+    height: 42px;
+  }
+  

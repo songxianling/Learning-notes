@@ -6,43 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            list-style: none;
+            padding: 0;
+            width: 200px;
+            margin: 0
+        }
+
+        ul li {
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="show-msg-box js-swiper-wrap">已有
-        <ul class="inner js-msg-inner">
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h1.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>小码小码</span>
-            </li>
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h2.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>时间一切</span>
-            </li>
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h3.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>云南菜东</span>
-            </li>
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h4.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>口袋的小</span>
-            </li>
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h5.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>赛场驰骋</span>
-            </li>
-            <li>
-                <img src="{$smarty.const.__STATIC_IMG__}/images/mo/webapp/activity/vipGuideRechargeNew/h6.jpg{$smarty.const.CSS_VERSION}123"
-                    alt="">
-                <span>世界很大</span>
-            </li>
-        </ul>等4167352位哈友加入香哈会员
+    <div>
+        <ul>
+            <li>aaaaaaaaaaaaaaaaaa</li>
+            <li>bbbbbbbbbbbbbbbbbb</li>
+            <li>cccccccccccccccccc</li>
+            <li>ddddddddddddddddddd</li>
+            <li>eeeeeeeeeeeeeeeeeee</li>
+            <li>fffffffffffffffffff</li>
+            <li>gggggggggggggggggggg</li>
+            <li>hhhhhhhhhhhhhhhhhhhh</li>
+            <li>iiiiiiiiiiiiiiiiiiii</li>
+            <li>jjjjjjjjjjjjjjjjjjjj</li>
+        </ul>
     </div>
+
 </body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    function gundong() {
+        var liH = $("ul li").height();
+        var gunH = 0;
+        console.log(liH);
+        // $("ul").append($("ul li").eq(0).clone());
+        setInterval(function () {
+            gunH += liH;
+            console.log(gunH);
+            $("ul").animate({
+                bottom: -gunH + "px"
+            }, 500);
+            // if (gunH >= ($("ul li").length - 1) * 30) {
+            //     $("ul").prepend($("ul").clone());
+            // }
+        }, 2000);
+    }
+    // gundong()
+
+
+    // 这个函数只执行一次;因为这个函数开启了滚动的动画
+    function addLi() {
+        var sHtml = '';
+        for(var i = 0;i<10;i++){
+            sHtml += '<li>'+ i +'</li>';
+        }
+        $('ul').prepend(sHtml);
+        gundong()
+    }
+
+    // 每3s请求ajax追加10条数据到ul中
+    function reAjax() {
+        var sHtml = '';
+        for(var i = 11;i<20;i++){
+            sHtml += '<li>'+ i +'</li>';
+        }
+        $('ul').prepend(sHtml);
+    }
+
+    
+    // addLi();
+    
+
+
+</script>
 
 </html>
