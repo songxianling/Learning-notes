@@ -58,6 +58,9 @@ function sassTask(path) {
             "browsers": ['last 2 version', 'iOS >= 8', 'android 4']
         }), cssnano
     ];
+    var plugins = [autoprefixer, cssnano];
+
+    
     sassFolder = sassFolder.replace('sass', 'css');
 
     return gulp.src('./' + path)

@@ -20,18 +20,86 @@
         </ul>
     </div>
 </body>
+<script src="./js/jquery-2.1.1.min.js"></script>
 <script>
-    var arr = [1, 2, 3, 4, 5];
-    var cur = '';
-    for (var i = 0; i < arr.length; i++) {
-        if (i == 0) {
-            cur += arr[i];
-        } else {
-            cur += ',' + arr[i];
-        }
-    }
-    console.log(cur);
+    // var mObj = {
+    //     'a': 1,
+    //     'a': 3
+    // }
+    var modalObj = '';
 
+    var p = 7;
+
+    // modalObj['p'] = 7;
+    modalObj = '{"a":"333","b":"777"}';
+
+    // console.log(modalObj);
+    
+    $('.list-wrap').attr('data-obj', modalObj);
+    $('.list-wrap').append('<div data-l="'+ modalObj +'" data-m='+ modalObj +'></div>')
+    var ss = $('.list-wrap div').data('m');
+    console.log(ss);
+    
+    // console.log($('.list-wrap').data('obj'));
+
+
+    // var arr = [1, 2, 3, 4, 5];
+    // var cur = '';
+    // for (var i = 0; i < arr.length; i++) {
+    //     if (i == 0) {
+    //         cur += arr[i];
+    //     } else {
+    //         cur += ',' + arr[i];
+    //     }
+    // }
+    // console.log(cur);
+
+
+    // $listBox = $(".js-list-box");
+    // $.ajax({
+    //     type: "get",
+    //     contentType: "application/json",
+    //     url: "/ball49/GetHistory",
+    //     success: function (data) {
+    //         console.log(data.items);
+    //         var oHtml = "";
+    //         var cur = "";
+    //         var curNum = '';
+    //         var modalObj = '';
+    //         for (var i = 0; i < data.items.length; i++) {
+    //             modalObj = '';
+    //             cur = data.items[i];
+
+    //             for (var j = 0; j < cur.balls.length; j++) {
+    //                 if (j == 0) {
+    //                     curNum += arr[j];
+    //                 } else {
+    //                     curNum += ',' + arr[j];
+    //                 }
+    //             }
+    //             modalObj = '{"a":"'+ cur.a +'","b":"'+ cur.b +'"}';
+
+    //             modalObj['aaa'] = cur.aaa;
+    //             modalObj['bbb'] = cur.bbb;
+    //             oHtml +=
+    //                 '<ul data-mobj="'+ modalObj +'">' +
+    //                 '<li>' + cur.betUser + '<[表情]>' +
+    //                 '<li>' + curNum + '<[表情]>' +
+    //                 '<li>' + cur.counts + '<[表情]>' +
+    //                 '<li>' +
+    //                 '<span calss="alone-span">' + cur.luckyBall + '</span>' +
+    //                 '<[表情]>' +
+    //                 '<li>' + cur.award + '<[表情]>' +
+    //                 '</ul>'
+    //         }
+    //         $listBox.append(oHtml);
+
+    //     },
+    //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //         console.log(909)
+
+    //     }
+    // })
 </script>
 
 </html>
