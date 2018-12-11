@@ -1,0 +1,35 @@
+@import './sCommon';
+
+.list-wrap {
+    ul {
+        width: pp(713);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: pp(23);
+        li:nth-of-type(1){
+            width: pp(177);
+            margin: {
+                left: pp(23);
+                right: pp(20);
+            }
+        }
+        li:nth-of-type(2){
+            width: pp(133);
+        }
+        li:nth-of-type(3){
+            width: pp(66);
+            margin: {
+                left: pp(25);
+                right: pp(40);
+            }
+        }
+        li:nth-of-type(4){
+            width: pp(66);
+        }
+        li:nth-of-type(5){
+            width: pp(88);
+        }
+    }
+}
