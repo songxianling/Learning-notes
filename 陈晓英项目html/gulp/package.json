@@ -13,6 +13,14 @@
     "cssnano": "^4.1.7",
     "gulp": "^3.9.1",
     "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "path": "latest",
+    "gulp-watch": "^4.3.11",
+    "gulp-plumber": "^1.2.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-notify": "^3.0.0",
+    "del": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-uglify": "^3.0.0"
   }
 }
