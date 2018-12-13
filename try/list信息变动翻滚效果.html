@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+        }
+        div{
+            width: 700px;
+            margin: 0 auto;
+        }
+        .ul li{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 10px;
+            background: royalblue;
+            text-align: center;
+            animation: rotate1 .4s ease;
+        }
+        @keyframes rotate1 {
+            0%{
+                transform: rotateX(0deg);
+            }
+            50%{
+                transform: rotateX(180deg);
+            }
+            100%{
+                transform: rotateX(0deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="ul js-ul">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+    
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+
+    // $('.js.ul')
+    function editLi(params) {
+        var sHtml = '';
+        for(var i =10;i<17;i++){
+            sHtml+='<li>'+ i +'</li>'
+        }
+        $('.js-ul').html(sHtml);
+    }
+</script>
+</html>
