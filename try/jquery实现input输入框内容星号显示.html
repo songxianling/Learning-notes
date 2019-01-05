@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    var str = '';
+    $('input').keyup(function () {
+        var value = $(this).val();
+        str += value.substr(value.length - 1, 1); //获取最后一个字符放到str,因为除了最后一个字符 其他的已经为*
+        $(this).val(value.replace(/./g, '*')) //输入框内容全部变为*
+        console.log(str); //str即为输入框的内容
+    })
+</script>
+
+</html>
