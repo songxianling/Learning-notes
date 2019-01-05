@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let dateLimit = {
+        beforeToday: { // 今天之前：不包含今天
+            disabledDate(time) {
+                return time.getTime() > Date.now() - 8.64e7;
+            }
+        },
+        beforeTomorrow: { // 明天之前：包含今天
+            disabledDate(time) {
+                return time.getTime() > Date.now();
+            }
+        },
+        afterToday: { // 今天之后：包含今天
+            disabledDate(time) {
+                return time.getTime() < Date.now() - 8.64e7;
+            }
+        },
+        afterTomorrow: { // 明天之后：不包含今天
+            disabledDate(time) {
+                return time.getTime() < Date.now();
+            }
+        }
+    };
+</script>
+
+</html>
