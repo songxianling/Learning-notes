@@ -10,14 +10,18 @@
 
     .hook {
         position: absolute;
-        top: pr(-400);
+        top: pr(-4900);
         left: 0;
         width: pr(10);
-        height: pr(500);
+        height: pr(5000);
         background: rebeccapurple;
 
         &.you {
             animation: youyou 5s linear infinite;
+        }
+
+        &.you7 {
+            animation: youyou7 3s linear forwards;
         }
 
         @keyframes youyou {
@@ -29,6 +33,20 @@
             }
             100% {
                 left: 0%;
+            }
+        }
+
+        @keyframes youyou7 {
+            0% {
+                left: 17%;
+            }
+            50% {
+                top: pr(-4700);
+                left: 17%;
+            }
+            100% {
+                top: pr(-4500);
+                left: 17%;
             }
         }
     }
