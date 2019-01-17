@@ -1,0 +1,56 @@
+@import './sCommon';
+
+.con-wrap {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    margin: pr(200) auto 0;
+    border: 1px solid blue;
+    box-sizing: border-box;
+
+    .hook {
+        position: absolute;
+        top: pr(-400);
+        left: 0;
+        width: pr(10);
+        height: pr(500);
+        background: rebeccapurple;
+
+        &.you {
+            animation: youyou 5s linear infinite;
+        }
+
+        @keyframes youyou {
+            0% {
+                left: 0%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: 0%;
+            }
+        }
+    }
+
+    .pool{
+        ul{
+            li{ 
+                float: left;
+                width: 33%;
+                height: pr(200);
+                border: 1px solid yellowgreen; 
+                box-sizing: border-box;
+                span{
+                    display: inline-block;
+                    width: pr(100);
+                    height: pr(100);
+                    margin: pr(40) auto;
+                    background: red;
+                }
+            }
+        }
+    }
+
+
+}
