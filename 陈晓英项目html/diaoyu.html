@@ -36,45 +36,10 @@
     var poolWidth = $pool.width(); // 鱼塘的宽度
 
 
-    // var fishTime = setInterval(function () {
-    //     goFishing(along);
-    // }, 100);
     
-
-    var along = true;
     // 钓鱼
-    function goFishing(along) {
-        var oLeft = $hook.css('left');
-        var oLeftPx = parseFloat(oLeft);
-
-        if (along) {
-            oLeftPx += 10;
-        } else {
-            oLeftPx -= 10;
-        }
-
-        if (oLeftPx > poolWidth) {
-            clearInterval(fishTime);
-            along = false;
-            fishTime = setInterval(function () {
-                goFishing(along);
-            }, 100);
-        }
-
-        if (oLeftPx < 0) {
-            clearInterval(fishTime);
-            along = true;
-            fishTime = setInterval(function () {
-                goFishing(along);
-            }, 100);
-        }
-
-
-        console.log(oLeftPx, poolWidth, along);
-
-        $hook.animate({
-            left: oLeftPx + 'px'
-        }, 100, 'linear');
+    function goFishing(target) {
+        $hook.removeClass('you').addClass('you'+target);
     }
 
     
