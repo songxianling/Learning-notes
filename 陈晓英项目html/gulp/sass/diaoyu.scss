@@ -7,7 +7,7 @@
     margin: pr(200) auto 0;
     border: 1px solid blue;
     box-sizing: border-box;
-
+    overflow: hidden;
     .hook {
         position: absolute;
         top: pr(-4900);
@@ -51,8 +51,73 @@
         }
     }
 
+
+    // 钩子在中间变换角度
+    .hook2 {
+        position: absolute;
+        top: pr(-90);
+        left: 50%;
+        width: pr(10);
+        height: pr(3000);
+        background: rebeccapurple;
+        transform : rotate(10deg);
+        &.you {
+            animation: youyou 5s linear infinite;
+        }
+
+        &.you7 {
+            animation: youyou7 3s linear forwards;
+        }
+
+        @keyframes youyou {
+            0% {
+                transform : rotate(70deg);
+            }
+            50% {
+                transform : rotate(-70deg);
+            }
+            100% {
+                transform : rotate(70deg);
+            }
+        }
+
+        @keyframes youyou7 {
+            0% {
+                transform : rotate(50deg);
+            }
+            50% {
+                top: pr(-4700);
+                transform : rotate(50deg);
+            }
+            100% {
+                top: pr(-4500);
+                transform : rotate(50deg);
+            }
+        }
+    }
+
     .pool{
         ul{
+            li{ 
+                float: left;
+                width: 33%;
+                height: pr(200);
+                border: 1px solid yellowgreen; 
+                box-sizing: border-box;
+                span{
+                    display: inline-block;
+                    width: pr(100);
+                    height: pr(100);
+                    margin: pr(40) auto;
+                    background: red;
+                }
+            }
+        }
+    }
+
+    .pool2{
+        ul{
+            margin-top: pr(200);
             li{ 
                 float: left;
                 width: 33%;
