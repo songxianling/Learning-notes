@@ -11,23 +11,23 @@
 
 <body>
     <div class="con-wrap">
-        <!-- <div class="hook js-hook you"></div> -->
-        <!-- <div class="pool js-pool">
-                <ul>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                    <li class="item"><span></span></li>
-                </ul>
-    
-            </div> -->
-        <div class="hook2 js-hook "></div>
+        <div class="hook js-hook you"></div>
+        <div class="pool js-pool">
+            <ul>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+                <li class="item js-fish" data-show="false"><span></span></li>
+            </ul>
+
+        </div>
+        <!-- <div class="hook2 js-hook "></div>
         <div class="pool2 js-pool">
             <ul>
                 <li class="item"><span></span></li>
@@ -42,7 +42,7 @@
                 <li class="item"><span></span></li>
             </ul>
 
-        </div>
+        </div> -->
     </div>
 </body>
 <script src="./js/jquery-2.1.1.min.js"></script>
@@ -52,13 +52,35 @@
     var poolWidth = $pool.width(); // 鱼塘的宽度
 
 
-    
+
     // 钓鱼
     function goFishing(target) {
-        $hook.removeClass('you').addClass('you'+target);
+        $hook.removeClass('you').addClass('you' + target);
     }
 
-    
+
+    var fishArr = $('.js-fish').length;
+    var randomArr = [];
+
+    function addFish() {
+        if(randomArr.length > 9 ){
+            alert('玩家已经全部就位～～');
+        }
+        var random = Math.floor(Math.random() * 10);
+        if (randomArr.indexOf(random) >= 0) {
+            addFish();
+        } else {
+            randomArr.push(random);
+            var cur = $('.js-fish').eq(random);
+            console.log(cur, random, cur.attr('data-show'), !cur.attr('data-show'));
+
+            if (cur.attr('data-show') == 'false') {
+                cur.show();
+                cur.attr('data-show', true);
+                return;
+            }
+        }
+    }
 </script>
 
 </html>
