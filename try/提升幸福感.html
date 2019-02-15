@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    //  1.string强制转换为数字
+    
+    var oo = '333' ;
+    // Number(oo);
+    // oo * 1;
+    console.log(typeof(oo));
+
+    // 实际是调用了 .valueOf 后然再调用 Number方法
+    // valueOf/toString的异同点
+
+    var ss = 1 * { valueOf:() => '777' }
+    console.log(typeof(ss));
+
+    console.log( + oo); // 一元加操作符
+
+
+
+    // 2.过滤数组的假值
+    var compact = arr => arr.filter(Boolean);
+    // arr.filter(function(item,index,array){
+    //     return Boolean(item);
+    // })
+    // 数组的filter是新建一个数组
+    // Boolean对象是一个布尔值对象的包装器；如果参数不是布尔值；则会将参数转换成
+    // 布尔值；但是如果参数是0 -0 null false NaN undefined '' ；生成的Boolean
+    // 对象是false；其他任何值都会生成一个true的Boolean的对象
+
+    var arr1 = [0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34];
+    console.log(compact(arr1));
+
+
+    // 3.双位运算符
+    Math.floor(3.7);
+    ~~3.7;
+
+    // 负数的时候？
+
+    // 4. 0取整
+    
+    console.log(3.3 | 0);
+    // 负数的时候?
+
+    // 5.判断奇偶数
+    console.log(!!(7 & 1));
+    console.log(!!(7 % 2));
+    
+    
+    
+
+
+    
+
+    
+    
+
+
+</script>
+</html>
