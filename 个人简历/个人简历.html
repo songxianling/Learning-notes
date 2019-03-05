@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .title{
+            text-align: center;
+            font-size: 30px;
+        }
+        .info{
+            
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h3 class="title">Web前端 宋现令</h3>
+    <div class="info">
+        <h4 class="name"><img src="./个人信息.png" alt="" >个人信息</h4>
+    </div>
+
+
+</body>
+<script>
+    function fn(url) {
+        var parse_url =
+            /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+        var url = url;
+        var result = parse_url.exec(url);
+        var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
+        return result[7];
+    }
+    var s = fn('https://0.plus/#/dice2019001');
+</script>
+
+</html>

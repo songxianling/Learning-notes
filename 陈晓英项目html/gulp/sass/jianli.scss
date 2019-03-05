@@ -1,0 +1,111 @@
+.title {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 30px;
+    // background: linear-gradient(to right, #ffc500, #c21500);
+    // /*必需加前缀 -webkit- 才支持这个text值 */
+    // -webkit-background-clip: text;
+    // /*text-fill-color会覆盖color所定义的字体颜色： */
+    // color: transparent;
+
+    // @media print {
+    //     background: linear-gradient(to right, #ffc500, #c21500);
+    //     /*必需加前缀 -webkit- 才支持这个text值 */
+    //     -webkit-background-clip: text;
+    //     /*text-fill-color会覆盖color所定义的字体颜色： */
+    //     color: transparent;
+    // }
+}
+
+.info {
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+
+    .item {
+        padding: 10px;
+
+        span:nth-of-type(n+2) {
+            margin-left: 50px;
+        }
+    }
+
+    img {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .item {
+        font-size: 17px;
+    }
+}
+
+.skill {
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+
+    img {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .item {
+        padding: 10px;
+
+        img {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.experience {
+    padding: 10px;
+
+    img {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .item {
+        padding: 10px;
+
+        h6 {
+            color: rgb(122, 117, 117);
+            font-size: 16px;
+        }
+
+        .p1 {
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        ul li {
+            font-size: 14px;
+            margin: 7px 0;
+        }
+
+        img {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    }
+
+    &.two {
+        ul {
+            margin-bottom: 20px;
+        }
+    }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function swap(A, i, j) {
+        const t = A[i];
+        A[i] = A[j];
+        A[j] = t;
+    }
+
+    // function swap(myArray, firstIndex, secondIndex) {
+    //     var temp = myArray[firstIndex];
+    //     myArray[firstIndex] = myArray[secondIndex];
+    //     myArray[secondIndex] = temp;
+    // }
+
+    /**
+     *
+     * @param {*} A  数组
+     * @param {*} p  起始下标
+     * @param {*} r  结束下标 + 1
+     */
+    function divide(A, p, r) {
+        const x = A[r - 1];
+        let i = p - 1;
+        
+        
+        for (let j = p; j < r - 1; j++) {
+            
+            if (A[j] <= x) {
+                i++;
+                swap(A, i, j);
+            }
+        }
+
+        swap(A, i + 1, r - 1);
+        // console.log(A);
+        return i + 1;
+    }
+
+
+    // function partition(myArray, left, right) {
+
+    //     var pivot = myArray[Math.floor((right + left) / 2)],
+    //         i = left,
+    //         j = right;
+
+
+    //     while (i <= j) {
+
+    //         while (myArray[i] < pivot) {
+    //             i++;
+    //         }
+
+    //         while (myArray[j] > pivot) {
+    //             j--;
+    //         }
+
+    //         if (i <= j) {
+    //             swap(myArray, i, j);
+    //             i++;
+    //             j--;
+    //         }
+    //     }
+
+    //     return i;
+    // }
+
+    /**
+     * 
+     * @param {*} A  数组
+     * @param {*} p  起始下标
+     * @param {*} r  结束下标 + 1
+     */
+    function qsort(A, p = 0, r) {
+        r = r || A.length;
+
+        if (p < r - 1) {
+            console.log(A, p, r);
+            
+            const q = divide(A, p, r);
+            console.log(q);
+            
+            qsort(A, p, q);
+            qsort(A, q + 1, r);
+            // console.log(A);
+        }
+        
+        
+        return A;
+    }
+
+    console.log(qsort([3,2,6,77,5,12,0,9,66,7,8,52,57]));
+    
+    
+
+
+
+    // function swap(myArray, firstIndex, secondIndex) {
+    //     var temp = myArray[firstIndex];
+    //     myArray[firstIndex] = myArray[secondIndex];
+    //     myArray[secondIndex] = temp;
+    // }
+
+    // function partition(myArray, left, right) {
+
+    //     var pivot = myArray[Math.floor((right + left) / 2)],
+    //         i = left,
+    //         j = right;
+
+
+    //     while (i <= j) {
+
+    //         while (myArray[i] < pivot) {
+    //             i++;
+    //         }
+
+    //         while (myArray[j] > pivot) {
+    //             j--;
+    //         }
+
+    //         if (i <= j) {
+    //             swap(myArray, i, j);
+    //             i++;
+    //             j--;
+    //         }
+    //     }
+
+    //     return i;
+    // }
+
+    // function quickSort(myArray, left, right) {
+
+    //     if (myArray.length < 2) return myArray;
+
+    //     left = (typeof left !== "number" ? 0 : left);
+
+    //     right = (typeof right !== "number" ? myArray.length - 1 : right);
+
+    //     var index = partition(myArray, left, right);
+
+    //     if (left < index - 1) {
+    //         quickSort(myArray, left, index - 1);
+    //     }
+
+    //     if (index < right) {
+    //         quickSort(myArray, index, right);
+    //     }
+
+    //     return myArray;
+
+    // }
+</script>
+
+</html>

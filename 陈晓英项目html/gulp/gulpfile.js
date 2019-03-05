@@ -7,11 +7,13 @@ var gulp = require('gulp'),
     path = require('path'),
     watch = require('gulp-watch'),
     notify = require('gulp-notify'),
-    uglify = require('gulp-uglify'),    // js压缩
-    gutil = require('gulp-util'),   // 输出
+    uglify = require('gulp-uglify'), // js压缩
+    gutil = require('gulp-util'), // 输出
     del = require('del'),
     plumber = require('gulp-plumber'); // 报错不中断
 
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
 /*当前目录的绝对路径*/
 var srcDir = path.resolve(process.cwd());
@@ -60,7 +62,7 @@ function sassTask(path) {
     ];
     var plugins = [autoprefixer, cssnano];
 
-    
+
     sassFolder = sassFolder.replace('sass', 'css');
 
     return gulp.src('./' + path)
@@ -75,4 +77,15 @@ function sassTask(path) {
 }
 
 //默认管道命令：
-gulp.task('default', ['sass'], function () {}) //可以让默认的时候执行多个命名，在 [ ] 中添加即可
+gulp.task('default', ['sass'], function () {
+    var files = [
+        '../../**/*'
+    ];
+    browserSync.init({
+        notify: false,
+        // reloadDelay: 2000,
+        files: files,
+        proxy: gulp.env.proxy
+    });
+    gulp.on("change", reload);
+}) //可以让默认的时候执行多个命名，在 [ ] 中添加即可
