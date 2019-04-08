@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">click</button>
+    <audio id="mp3" src="http://data.huiyi8.com/2017/gha/03/17/1702.mp3" ></audio>
+</body>
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    var $mp3 = $('#mp3')[0];
+    setTimeout(function(){
+        $mp3.play()
+        
+    },3000);
+    $('.btn').click(function () {
+        $mp3.play()
+    })
+
+</script>
+</html>

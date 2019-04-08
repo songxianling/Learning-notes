@@ -80,20 +80,29 @@
     .item {
         padding: 10px;
 
-        h6 {
+        h5 {
             color: rgb(122, 117, 117);
             font-size: 16px;
         }
 
-        .p1 {
-            font-size: 14px;
-            margin-top: 16px;
+        h6 {
+            padding-left: 20px;
+            margin-top: 10px;
         }
 
-        ul li {
+        .p1 {
             font-size: 14px;
-            margin: 7px 0;
+            margin-top: 5px;
+            margin-left: 30px;
         }
+        ul{
+            margin-left: 30px;
+            li {
+                font-size: 14px;
+                margin: 7px 0;
+            }
+        }
+        
 
         img {
             display: inline-block;
