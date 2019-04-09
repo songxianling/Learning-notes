@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //使用setInterval实现一个5的倒计时。
+    // (function () {
+    //     var time = 5; // 服务端返回的秒数时间戳
+    //     var p = document.getElementsById("time"); // 要显示的时间盒子
+    //     var set = setInterval(function () {
+    //         time--;
+    //         p.innerHTML = time;
+    //         if (time === 0) {
+    //             p.innerHTML = "定时器完成";
+    //             clearInterval(set);
+    //         }
+    //     }, 1000);
+    // })()
+
+
+    // function setOverTime(Num) {
+    //     var dataTime = document.getElementById('dataTime');
+    //     //这边我只考虑60S以上的，没有再去判断了。
+    //     dataTime.innerHTML = parseInt(Num / 60) + '分' + (Num % 60) + '秒';
+
+    //     function overTime(num) {
+    //         var mins = parseInt(num / 60)
+    //         var seconds = num % 60;
+    //         if (mins > 0) {
+    //             dataTime.innerHTML = mins + '分' + seconds + '秒';
+    //         } else {
+    //             dataTime.innerHTML = seconds + '秒';
+    //         }
+    //         if (!num > 0) {
+    //             //取消定时器--因为下面可有可无
+    //             clearInterval(saveTime);
+    //             location.replace(location.href);
+    //         }
+    //     }
+    //     //添加定时器
+    //     var saveTime = setInterval(function () {
+    //         Num--;
+    //         overTime(Num);
+    //     }, 1000);
+    // }
+
+    // //执行函数并可传入参数为秒数
+    // setOverTime(600);
+
+
+    function checkTime(i) {
+          if (i<10) {
+            i = "0" +i;
+          }
+          return i;
+        };
+    function GetRTime(t){
+            m=Math.floor(t/60%60);
+            s=Math.floor(t%60);
+            
+            m = checkTime(m);
+            s = checkTime(s); 
+            console.log(m+':'+s);
+            
+        }
+        var times = 600;
+        var time1 = setInterval(()=>{
+            if(times > 0){
+                times--;
+                GetRTime(times)
+            }else{
+                clearInterval(time1)
+            }
+        },1000)
+</script>
+
+</html>
