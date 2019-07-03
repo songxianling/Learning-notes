@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "all": "gulp --proxy http://m.ixiangha.com:9813/"
+    "all": "gulp --proxy 127.0.0.1"
   },
   "author": "chenxiaoying",
   "license": "ISC",

@@ -84,7 +84,7 @@
     // }, 1000)
 
 
-    var maxNum = 49
+    var maxNum = 19
     var time1 = setInterval(() => {
         if (maxNum > 0) {
             maxNum--
@@ -94,7 +94,8 @@
                 console.log("0" + maxNum)
             }
         } else {
-            clearInterval(time1)
+            maxNum = 19
+            // clearInterval(time1)
         }
     }, 1000)
 </script>
